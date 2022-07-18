@@ -19,6 +19,10 @@
 		229EBA3628842C4A0033A6BA /* Site+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229EBA3228842C4A0033A6BA /* Site+CoreDataProperties.swift */; };
 		229EBA3728842C4A0033A6BA /* Present+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229EBA3328842C4A0033A6BA /* Present+CoreDataClass.swift */; };
 		229EBA3828842C4A0033A6BA /* Present+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229EBA3428842C4A0033A6BA /* Present+CoreDataProperties.swift */; };
+		736D28742885331D00F95DFD /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736D28732885331D00F95DFD /* CardCell.swift */; };
+		736D28872885434800F95DFD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736D28862885434800F95DFD /* HomeViewController.swift */; };
+		736D2889288547F000F95DFD /* CardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736D2888288547F000F95DFD /* CardListView.swift */; };
+		736D288C28854CAE00F95DFD /* CardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736D288B28854CAE00F95DFD /* CardListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +40,10 @@
 		229EBA3228842C4A0033A6BA /* Site+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Site+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		229EBA3328842C4A0033A6BA /* Present+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Present+CoreDataClass.swift"; sourceTree = "<group>"; };
 		229EBA3428842C4A0033A6BA /* Present+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Present+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		736D28732885331D00F95DFD /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
+		736D28862885434800F95DFD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		736D2888288547F000F95DFD /* CardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListView.swift; sourceTree = "<group>"; };
+		736D288B28854CAE00F95DFD /* CardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +77,9 @@
 		224AAF4128813A0F0053E66A /* Yetda */ = {
 			isa = PBXGroup;
 			children = (
+				736D288A28854C9E00F95DFD /* ViewModel */,
+				736D28762885334400F95DFD /* ViewController */,
+				736D28752885333E00F95DFD /* View */,
 				229EBA3128842C4A0033A6BA /* Site+CoreDataClass.swift */,
 				229EBA3228842C4A0033A6BA /* Site+CoreDataProperties.swift */,
 				229EBA3328842C4A0033A6BA /* Present+CoreDataClass.swift */,
@@ -83,6 +94,31 @@
 				224AAF4B28813A0F0053E66A /* Yetda.xcdatamodeld */,
 			);
 			path = Yetda;
+			sourceTree = "<group>";
+		};
+		736D28752885333E00F95DFD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				736D28732885331D00F95DFD /* CardCell.swift */,
+				736D2888288547F000F95DFD /* CardListView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		736D28762885334400F95DFD /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				736D28862885434800F95DFD /* HomeViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		736D288A28854C9E00F95DFD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				736D288B28854CAE00F95DFD /* CardListViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,10 +193,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				736D2889288547F000F95DFD /* CardListView.swift in Sources */,
 				229EBA3628842C4A0033A6BA /* Site+CoreDataProperties.swift in Sources */,
+				736D28742885331D00F95DFD /* CardCell.swift in Sources */,
 				229EBA3728842C4A0033A6BA /* Present+CoreDataClass.swift in Sources */,
+				736D288C28854CAE00F95DFD /* CardListViewModel.swift in Sources */,
 				224AAF4728813A0F0053E66A /* ViewController.swift in Sources */,
 				224AAF4D28813A0F0053E66A /* Yetda.xcdatamodeld in Sources */,
+				736D28872885434800F95DFD /* HomeViewController.swift in Sources */,
 				224AAF4328813A0F0053E66A /* AppDelegate.swift in Sources */,
 				229EBA3528842C4A0033A6BA /* Site+CoreDataClass.swift in Sources */,
 				229EBA3828842C4A0033A6BA /* Present+CoreDataProperties.swift in Sources */,
