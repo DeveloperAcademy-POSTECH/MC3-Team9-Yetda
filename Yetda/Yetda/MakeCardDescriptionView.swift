@@ -17,8 +17,8 @@ class MakeCardDescriptionView: UIViewController, UICollectionViewDelegate, UICol
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        borderRadius(view: giftNameTextField)
-        borderRadius(view: giftRecipientTextField)
+        borderRadius(view: giftNameTextField).addLeftPadding()
+        borderRadius(view: giftRecipientTextField).addLeftPadding()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -40,4 +40,13 @@ class MakeCardDescriptionView: UIViewController, UICollectionViewDelegate, UICol
         view.layer.masksToBounds = true
         return view
     }
+}
+
+// textField 안에서 왼쪽 Padding 주는 함수
+extension UITextField {
+  func addLeftPadding() {
+    let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 6, height: self.frame.height))
+    self.leftView = paddingView
+    self.leftViewMode = ViewMode.always
+  }
 }
