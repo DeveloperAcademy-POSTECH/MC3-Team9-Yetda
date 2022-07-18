@@ -10,11 +10,15 @@ import UIKit
 class MakeCardDescriptionView: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var giftNameTextField: UITextField!
+    @IBOutlet weak var giftRecipientTextField: UITextField!
     
     var photos: [String] = ["photo1", "photo2", "photo3", "photo4", "photo5"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        borderRadius(view: giftNameTextField)
+        borderRadius(view: giftRecipientTextField)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -26,5 +30,14 @@ class MakeCardDescriptionView: UIViewController, UICollectionViewDelegate, UICol
         cell.chosenPhoto.image = UIImage(named: photos[indexPath.row])
         cell.layer.cornerRadius = 20.0
         return cell
+    }
+    
+    // textField corner 둥글게, 보더 적용하는 함수
+    func borderRadius(view: UITextField) -> UITextField{
+        view.layer.cornerRadius = 19.0
+        view.layer.borderWidth = 1.0
+        view.layer.borderColor = UIColor.systemGray5.cgColor
+        view.layer.masksToBounds = true
+        return view
     }
 }

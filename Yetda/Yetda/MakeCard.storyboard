@@ -79,23 +79,63 @@
                                     <constraint firstAttribute="height" constant="1" id="MbP-mY-HJV"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="어떤 선물을 구매했나요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bMs-H1-udB">
+                                <rect key="frame" x="20" y="250.33333333333337" width="146" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="입력하기" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ysi-vl-peB">
+                                <rect key="frame" x="20" y="278.33333333333331" width="350" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="0gS-tb-VMR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="누구를 위한 선물인가요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Hs-Lj-aud">
+                                <rect key="frame" x="20" y="341.33333333333331" width="146" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="입력하기" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bro-oj-fVq">
+                                <rect key="frame" x="20" y="369.33333333333331" width="350" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="pun-In-5tr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="KEM-ph-28x"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="qBA-De-u4M" firstAttribute="leading" secondItem="KEM-ph-28x" secondAttribute="leading" constant="20" id="0K7-dy-xy1"/>
+                            <constraint firstItem="KEM-ph-28x" firstAttribute="trailing" secondItem="ysi-vl-peB" secondAttribute="trailing" constant="20" id="4fx-0e-ipX"/>
                             <constraint firstItem="pe8-Ob-4yi" firstAttribute="top" secondItem="qBA-De-u4M" secondAttribute="bottom" constant="22" id="8gp-hi-AZ7"/>
+                            <constraint firstItem="2Hs-Lj-aud" firstAttribute="top" secondItem="ysi-vl-peB" secondAttribute="bottom" constant="25" id="AwN-cP-tzv"/>
+                            <constraint firstItem="ysi-vl-peB" firstAttribute="top" secondItem="bMs-H1-udB" secondAttribute="bottom" constant="10" id="COa-d2-uyx"/>
+                            <constraint firstItem="2Hs-Lj-aud" firstAttribute="leading" secondItem="KEM-ph-28x" secondAttribute="leading" constant="20" id="E0U-9I-P1d"/>
+                            <constraint firstItem="bMs-H1-udB" firstAttribute="top" secondItem="pe8-Ob-4yi" secondAttribute="bottom" constant="25" id="EWI-86-JRx"/>
                             <constraint firstItem="pe8-Ob-4yi" firstAttribute="leading" secondItem="fSg-S7-VDh" secondAttribute="leading" constant="20" id="F80-pv-3ah"/>
                             <constraint firstItem="3YG-mw-jmO" firstAttribute="top" secondItem="KEM-ph-28x" secondAttribute="top" constant="23" id="VLa-Wi-eBD"/>
                             <constraint firstItem="qBA-De-u4M" firstAttribute="top" secondItem="3YG-mw-jmO" secondAttribute="bottom" constant="21" id="WnU-Pw-tbS"/>
+                            <constraint firstItem="bMs-H1-udB" firstAttribute="leading" secondItem="KEM-ph-28x" secondAttribute="leading" constant="20" id="Z3Z-Fx-RUS"/>
+                            <constraint firstItem="Bro-oj-fVq" firstAttribute="top" secondItem="2Hs-Lj-aud" secondAttribute="bottom" constant="10" id="cob-wg-jc2"/>
                             <constraint firstAttribute="trailing" secondItem="pe8-Ob-4yi" secondAttribute="trailing" constant="20" id="d2q-T3-uGf"/>
+                            <constraint firstItem="KEM-ph-28x" firstAttribute="trailing" secondItem="Bro-oj-fVq" secondAttribute="trailing" constant="20" id="eYJ-7r-6wg"/>
                             <constraint firstItem="6l6-ri-8t0" firstAttribute="top" secondItem="3YG-mw-jmO" secondAttribute="bottom" constant="24" id="hhL-mt-7Sh"/>
                             <constraint firstItem="6l6-ri-8t0" firstAttribute="leading" secondItem="qBA-De-u4M" secondAttribute="trailing" constant="7" id="jGc-bL-Mi2"/>
                             <constraint firstAttribute="trailing" secondItem="3YG-mw-jmO" secondAttribute="trailing" constant="20" id="pf6-Ny-rPL"/>
+                            <constraint firstItem="Bro-oj-fVq" firstAttribute="leading" secondItem="KEM-ph-28x" secondAttribute="leading" constant="20" id="tWN-T8-7g5"/>
                             <constraint firstItem="3YG-mw-jmO" firstAttribute="leading" secondItem="KEM-ph-28x" secondAttribute="leading" constant="20" id="tcj-1D-qmh"/>
+                            <constraint firstItem="ysi-vl-peB" firstAttribute="leading" secondItem="KEM-ph-28x" secondAttribute="leading" constant="20" id="wU7-mJ-AVR"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="giftNameTextField" destination="ysi-vl-peB" id="Tdd-vY-T0o"/>
+                        <outlet property="giftRecipientTextField" destination="Bro-oj-fVq" id="YJi-gu-rIj"/>
                         <outlet property="locationLabel" destination="6l6-ri-8t0" id="JGQ-x5-MiT"/>
                     </connections>
                 </viewController>
