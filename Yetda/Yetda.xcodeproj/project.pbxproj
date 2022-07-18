@@ -19,6 +19,8 @@
 		229EBA3628842C4A0033A6BA /* Site+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229EBA3228842C4A0033A6BA /* Site+CoreDataProperties.swift */; };
 		229EBA3728842C4A0033A6BA /* Present+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229EBA3328842C4A0033A6BA /* Present+CoreDataClass.swift */; };
 		229EBA3828842C4A0033A6BA /* Present+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229EBA3428842C4A0033A6BA /* Present+CoreDataProperties.swift */; };
+		5DDD60F028853EC40077742D /* MakeCardDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDD60EF28853EC40077742D /* MakeCardDescriptionView.swift */; };
+		5DDD60F228853FC80077742D /* PhotoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDD60F128853FC80077742D /* PhotoCollectionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		229EBA3228842C4A0033A6BA /* Site+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Site+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		229EBA3328842C4A0033A6BA /* Present+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Present+CoreDataClass.swift"; sourceTree = "<group>"; };
 		229EBA3428842C4A0033A6BA /* Present+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Present+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		5DDD60EF28853EC40077742D /* MakeCardDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCardDescriptionView.swift; sourceTree = "<group>"; };
+		5DDD60F128853FC80077742D /* PhotoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,8 @@
 				224AAF4428813A0F0053E66A /* SceneDelegate.swift */,
 				224AAF4628813A0F0053E66A /* ViewController.swift */,
 				224AAF4828813A0F0053E66A /* Main.storyboard */,
+				5DDD60F128853FC80077742D /* PhotoCollectionCell.swift */,
+				5DDD60EF28853EC40077742D /* MakeCardDescriptionView.swift */,
 				224AAF4E28813A110053E66A /* Assets.xcassets */,
 				224AAF5028813A110053E66A /* LaunchScreen.storyboard */,
 				224AAF5328813A110053E66A /* Info.plist */,
@@ -161,7 +167,9 @@
 				229EBA3728842C4A0033A6BA /* Present+CoreDataClass.swift in Sources */,
 				224AAF4728813A0F0053E66A /* ViewController.swift in Sources */,
 				224AAF4D28813A0F0053E66A /* Yetda.xcdatamodeld in Sources */,
+				5DDD60F228853FC80077742D /* PhotoCollectionCell.swift in Sources */,
 				224AAF4328813A0F0053E66A /* AppDelegate.swift in Sources */,
+				5DDD60F028853EC40077742D /* MakeCardDescriptionView.swift in Sources */,
 				229EBA3528842C4A0033A6BA /* Site+CoreDataClass.swift in Sources */,
 				229EBA3828842C4A0033A6BA /* Present+CoreDataProperties.swift in Sources */,
 				224AAF4528813A0F0053E66A /* SceneDelegate.swift in Sources */,
