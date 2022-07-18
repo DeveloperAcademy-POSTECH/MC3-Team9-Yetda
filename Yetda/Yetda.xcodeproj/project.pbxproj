@@ -21,6 +21,7 @@
 		229EBA3828842C4A0033A6BA /* Present+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229EBA3428842C4A0033A6BA /* Present+CoreDataProperties.swift */; };
 		5DDD60F028853EC40077742D /* MakeCardDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDD60EF28853EC40077742D /* MakeCardDescriptionView.swift */; };
 		5DDD60F228853FC80077742D /* PhotoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDD60F128853FC80077742D /* PhotoCollectionCell.swift */; };
+		5DDD60F628854AEE0077742D /* MakeCard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DDD60F528854AEE0077742D /* MakeCard.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		229EBA3428842C4A0033A6BA /* Present+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Present+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5DDD60EF28853EC40077742D /* MakeCardDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCardDescriptionView.swift; sourceTree = "<group>"; };
 		5DDD60F128853FC80077742D /* PhotoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionCell.swift; sourceTree = "<group>"; };
+		5DDD60F528854AEE0077742D /* MakeCard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MakeCard.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				224AAF4828813A0F0053E66A /* Main.storyboard */,
 				5DDD60F128853FC80077742D /* PhotoCollectionCell.swift */,
 				5DDD60EF28853EC40077742D /* MakeCardDescriptionView.swift */,
+				5DDD60F528854AEE0077742D /* MakeCard.storyboard */,
 				224AAF4E28813A110053E66A /* Assets.xcassets */,
 				224AAF5028813A110053E66A /* LaunchScreen.storyboard */,
 				224AAF5328813A110053E66A /* Info.plist */,
@@ -150,6 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				224AAF5A28813A500053E66A /* .gitignore in Resources */,
+				5DDD60F628854AEE0077742D /* MakeCard.storyboard in Resources */,
 				224AAF5228813A110053E66A /* LaunchScreen.storyboard in Resources */,
 				224AAF4F28813A110053E66A /* Assets.xcassets in Resources */,
 				224AAF4A28813A0F0053E66A /* Main.storyboard in Resources */,
