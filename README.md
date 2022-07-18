@@ -1,6 +1,6 @@
 # MC3-Team9-Yetda
 
-[Jira](https://chaeminlee.atlassian.net/jira/software/projects/EARJ/boards/1) | [Notion](https://ripe-chicory-8d6.notion.site/Yetda-Wiki-cc25a7c3d7b44bf4b5a4d74fc52081b3)
+[Jira](https://chaeminlee.atlassian.net/jira/software/projects/EARJ/boards/1) | [Notion](https://www.notion.so/Yetda-Wiki-4a8f14f673e74624b2689d24484c8d3b)
 
 # Our ERD
 
