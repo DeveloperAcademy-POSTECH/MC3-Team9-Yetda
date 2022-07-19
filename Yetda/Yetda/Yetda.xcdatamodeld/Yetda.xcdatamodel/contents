@@ -22,7 +22,7 @@
         <relationship name="present" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Present" inverseName="site" inverseEntity="Present"/>
     </entity>
     <elements>
-        <element name="Present" positionX="-63" positionY="-18" width="128" height="224"/>
-        <element name="Site" positionX="-54" positionY="-9" width="128" height="89"/>
+        <element name="Present" positionX="4730.50390625" positionY="2211.30859375" width="128" height="224"/>
+        <element name="Site" positionX="4985.0078125" positionY="2277.32421875" width="128" height="89"/>
     </elements>
 </model>
