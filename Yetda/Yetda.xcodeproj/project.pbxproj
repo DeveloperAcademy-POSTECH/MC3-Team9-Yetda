@@ -22,6 +22,7 @@
 		5DDD60F028853EC40077742D /* MakeCardDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDD60EF28853EC40077742D /* MakeCardDescriptionView.swift */; };
 		5DDD60F228853FC80077742D /* PhotoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDD60F128853FC80077742D /* PhotoCollectionCell.swift */; };
 		5DDD60F628854AEE0077742D /* MakeCard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DDD60F528854AEE0077742D /* MakeCard.storyboard */; };
+		5DDD60FA2885CBE50077742D /* KeywordCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDD60F92885CBE50077742D /* KeywordCollectionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		5DDD60EF28853EC40077742D /* MakeCardDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCardDescriptionView.swift; sourceTree = "<group>"; };
 		5DDD60F128853FC80077742D /* PhotoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionCell.swift; sourceTree = "<group>"; };
 		5DDD60F528854AEE0077742D /* MakeCard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MakeCard.storyboard; sourceTree = "<group>"; };
+		5DDD60F92885CBE50077742D /* KeywordCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordCollectionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,8 +85,9 @@
 				224AAF4428813A0F0053E66A /* SceneDelegate.swift */,
 				224AAF4628813A0F0053E66A /* ViewController.swift */,
 				224AAF4828813A0F0053E66A /* Main.storyboard */,
-				5DDD60F128853FC80077742D /* PhotoCollectionCell.swift */,
 				5DDD60EF28853EC40077742D /* MakeCardDescriptionView.swift */,
+				5DDD60F128853FC80077742D /* PhotoCollectionCell.swift */,
+				5DDD60F92885CBE50077742D /* KeywordCollectionCell.swift */,
 				5DDD60F528854AEE0077742D /* MakeCard.storyboard */,
 				224AAF4E28813A110053E66A /* Assets.xcassets */,
 				224AAF5028813A110053E66A /* LaunchScreen.storyboard */,
@@ -168,6 +171,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				229EBA3628842C4A0033A6BA /* Site+CoreDataProperties.swift in Sources */,
+				5DDD60FA2885CBE50077742D /* KeywordCollectionCell.swift in Sources */,
 				229EBA3728842C4A0033A6BA /* Present+CoreDataClass.swift in Sources */,
 				224AAF4728813A0F0053E66A /* ViewController.swift in Sources */,
 				224AAF4D28813A0F0053E66A /* Yetda.xcdatamodeld in Sources */,
