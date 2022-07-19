@@ -10,7 +10,18 @@ import UIKit
 
 class CardListView: UIView, UIScrollViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    let cardCollectionView = UICollectionView()
+    let cardCollectionView : UICollectionView = {
+            
+            let layout = UICollectionViewFlowLayout()
+            layout.minimumLineSpacing = 10
+            
+            layout.scrollDirection = .vertical
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+           
+            let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+            
+            return cv
+        }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

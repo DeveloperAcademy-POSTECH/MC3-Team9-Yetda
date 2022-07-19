@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let storyboard = UIStoryboard(name: "DidCardShare", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "DidCardShareViewController")
-        self.window?.rootViewController = vc
+        self.window?.rootViewController = HomeViewController()
         self.window?.makeKeyAndVisible()
     }
 
