@@ -41,7 +41,10 @@ class MakeCardDescriptionView: UIViewController, UICollectionViewDelegate, UICol
         }
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "keywordCell", for: indexPath) as! KeywordCollectionCell
-//            cell.keywordButton.setTitle("\(keywords[indexPath.row])", for: .normal)
+//            cell.configure(indexPath)
+
+            cell.hibutton.setTitle(keywords[indexPath.item], for: .normal)
+
             return cell
         }
     }
@@ -66,3 +69,4 @@ extension UITextField {
     self.leftViewMode = ViewMode.always
   }
 }
+

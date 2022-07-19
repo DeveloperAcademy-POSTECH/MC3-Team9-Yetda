@@ -128,74 +128,80 @@
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="GKp-x6-T39">
-                                <rect key="frame" x="20" y="432.33333333333331" width="213" height="18"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="syi-I4-Qwk">
+                                <rect key="frame" x="20" y="431.33333333333326" width="350" height="210"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="선물 키워드를 선택해 주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G6Z-kn-KpS">
-                                        <rect key="frame" x="0.0" y="0.0" width="167.66666666666666" height="18"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(최대 4개)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="voG-7g-yTi">
-                                        <rect key="frame" x="169.66666666666666" y="0.0" width="43.333333333333343" height="18"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="GKp-x6-T39">
+                                        <rect key="frame" x="0.0" y="0.0" width="213" height="18"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="선물 키워드를 선택해 주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G6Z-kn-KpS">
+                                                <rect key="frame" x="0.0" y="0.0" width="167.66666666666666" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(최대 4개)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="voG-7g-yTi">
+                                                <rect key="frame" x="169.66666666666666" y="0.0" width="43.333333333333343" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7gM-ai-fUu">
+                                        <rect key="frame" x="0.0" y="25" width="350" height="185"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="185" id="3Ve-Ou-phF"/>
+                                            <constraint firstAttribute="width" constant="350" id="5Y6-ca-KTu"/>
+                                        </constraints>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PjS-XL-Ehw">
+                                            <size key="itemSize" width="128" height="128"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="keywordCell" id="fVb-ik-3Oc" customClass="KeywordCollectionCell" customModule="Yetda" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="93" height="38"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="lzi-hS-djz" customClass="KeywordCollectionCell" customModule="Yetda" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="93" height="38"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="viz-4P-aHG" userLabel="hibutton">
+                                                            <rect key="frame" x="0.0" y="0.0" width="93" height="38"/>
+                                                            <state key="normal" title="Button"/>
+                                                            <buttonConfiguration key="configuration" style="plain" title="☀️햇빛쨍쨍">
+                                                                <backgroundConfiguration key="background" cornerRadius="20">
+                                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="strokeColor" systemColor="systemGray5Color"/>
+                                                                </backgroundConfiguration>
+                                                                <fontDescription key="titleFontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                                                <color key="baseForegroundColor" systemColor="labelColor"/>
+                                                            </buttonConfiguration>
+                                                        </button>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="viz-4P-aHG" firstAttribute="top" secondItem="lzi-hS-djz" secondAttribute="top" id="4JC-rj-gBv"/>
+                                                        <constraint firstAttribute="trailing" secondItem="viz-4P-aHG" secondAttribute="trailing" id="Ido-T8-hbg"/>
+                                                        <constraint firstAttribute="bottom" secondItem="viz-4P-aHG" secondAttribute="bottom" id="cry-Bd-Ol7"/>
+                                                        <constraint firstItem="viz-4P-aHG" firstAttribute="leading" secondItem="lzi-hS-djz" secondAttribute="leading" id="wcq-rW-5bf"/>
+                                                    </constraints>
+                                                </collectionViewCellContentView>
+                                                <size key="customSize" width="93" height="38"/>
+                                                <connections>
+                                                    <outlet property="hibutton" destination="viz-4P-aHG" id="sIB-tg-ged"/>
+                                                </connections>
+                                            </collectionViewCell>
+                                        </cells>
+                                        <connections>
+                                            <outlet property="dataSource" destination="Zcw-ps-M3Y" id="76z-Nz-Qt3"/>
+                                            <outlet property="delegate" destination="Zcw-ps-M3Y" id="A0y-uc-CPx"/>
+                                        </connections>
+                                    </collectionView>
                                 </subviews>
                             </stackView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7gM-ai-fUu">
-                                <rect key="frame" x="20" y="458" width="350" height="185"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="185" id="3Ve-Ou-phF"/>
-                                </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PjS-XL-Ehw">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="keywordCell" id="fVb-ik-3Oc" customClass="KeywordCollectionCell" customModule="Yetda" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="93" height="38"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="lzi-hS-djz" customClass="KeywordCollectionCell" customModule="Yetda" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="93" height="38"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="viz-4P-aHG">
-                                                    <rect key="frame" x="0.0" y="0.0" width="93" height="38"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" title="☀️햇빛쨍쨍">
-                                                        <backgroundConfiguration key="background" cornerRadius="20">
-                                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <color key="strokeColor" systemColor="systemGray5Color"/>
-                                                        </backgroundConfiguration>
-                                                        <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
-                                                        <color key="baseForegroundColor" systemColor="labelColor"/>
-                                                    </buttonConfiguration>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="viz-4P-aHG" firstAttribute="top" secondItem="lzi-hS-djz" secondAttribute="top" id="4JC-rj-gBv"/>
-                                                <constraint firstAttribute="trailing" secondItem="viz-4P-aHG" secondAttribute="trailing" id="Ido-T8-hbg"/>
-                                                <constraint firstAttribute="bottom" secondItem="viz-4P-aHG" secondAttribute="bottom" id="cry-Bd-Ol7"/>
-                                                <constraint firstItem="viz-4P-aHG" firstAttribute="leading" secondItem="lzi-hS-djz" secondAttribute="leading" id="wcq-rW-5bf"/>
-                                            </constraints>
-                                        </collectionViewCellContentView>
-                                        <size key="customSize" width="93" height="38"/>
-                                        <connections>
-                                            <outlet property="keywordButton" destination="lzi-hS-djz" id="RFN-dj-LwW"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
-                                <connections>
-                                    <outlet property="dataSource" destination="Zcw-ps-M3Y" id="76z-Nz-Qt3"/>
-                                    <outlet property="delegate" destination="Zcw-ps-M3Y" id="A0y-uc-CPx"/>
-                                </connections>
-                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="KEM-ph-28x"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -204,17 +210,15 @@
                             <constraint firstItem="pe8-Ob-4yi" firstAttribute="trailing" secondItem="FAf-d9-WWN" secondAttribute="trailing" id="4cH-30-4Ti"/>
                             <constraint firstItem="KEM-ph-28x" firstAttribute="trailing" secondItem="Bdb-MH-ChM" secondAttribute="trailing" constant="20" id="DXg-DL-1Tb"/>
                             <constraint firstItem="pe8-Ob-4yi" firstAttribute="leading" secondItem="fSg-S7-VDh" secondAttribute="leading" constant="20" id="F80-pv-3ah"/>
+                            <constraint firstItem="KEM-ph-28x" firstAttribute="trailing" secondItem="syi-I4-Qwk" secondAttribute="trailing" constant="20" id="Jwb-ek-QZe"/>
                             <constraint firstItem="Bdb-MH-ChM" firstAttribute="leading" secondItem="KEM-ph-28x" secondAttribute="leading" constant="20" id="KSi-e1-zBZ"/>
+                            <constraint firstItem="syi-I4-Qwk" firstAttribute="leading" secondItem="KEM-ph-28x" secondAttribute="leading" constant="20" id="LIw-nd-jpw"/>
                             <constraint firstItem="pe8-Ob-4yi" firstAttribute="leading" secondItem="FAf-d9-WWN" secondAttribute="leading" id="O9Y-p1-bDn"/>
                             <constraint firstItem="KEM-ph-28x" firstAttribute="trailing" secondItem="S00-6y-1lu" secondAttribute="trailing" constant="20" id="TCt-2R-LAR"/>
-                            <constraint firstItem="pe8-Ob-4yi" firstAttribute="leading" secondItem="GKp-x6-T39" secondAttribute="leading" id="U34-r3-jg1"/>
-                            <constraint firstItem="pe8-Ob-4yi" firstAttribute="leading" secondItem="7gM-ai-fUu" secondAttribute="leading" id="WzR-Pu-4Xa"/>
                             <constraint firstItem="pe8-Ob-4yi" firstAttribute="top" secondItem="FAf-d9-WWN" secondAttribute="bottom" constant="21.999999999999972" id="aND-v2-UsW"/>
-                            <constraint firstItem="7gM-ai-fUu" firstAttribute="top" secondItem="GKp-x6-T39" secondAttribute="bottom" constant="7.6666666666666856" id="axu-PG-smr"/>
                             <constraint firstAttribute="trailing" secondItem="pe8-Ob-4yi" secondAttribute="trailing" constant="20" id="d2q-T3-uGf"/>
-                            <constraint firstItem="KEM-ph-28x" firstAttribute="bottom" secondItem="7gM-ai-fUu" secondAttribute="bottom" constant="167" id="eul-8i-lOh"/>
+                            <constraint firstItem="syi-I4-Qwk" firstAttribute="top" secondItem="S00-6y-1lu" secondAttribute="bottom" constant="25" id="jxQ-Fh-HFP"/>
                             <constraint firstItem="S00-6y-1lu" firstAttribute="top" secondItem="Bdb-MH-ChM" secondAttribute="bottom" constant="25" id="vYB-Xu-NbH"/>
-                            <constraint firstItem="pe8-Ob-4yi" firstAttribute="trailing" secondItem="7gM-ai-fUu" secondAttribute="trailing" id="xP0-Gv-qbV"/>
                             <constraint firstItem="Bdb-MH-ChM" firstAttribute="top" secondItem="pe8-Ob-4yi" secondAttribute="bottom" constant="25.000000000000028" id="xPk-lT-maJ"/>
                             <constraint firstItem="pe8-Ob-4yi" firstAttribute="top" secondItem="fSg-S7-VDh" secondAttribute="top" constant="224.33333333333334" id="zzn-Rq-Rc7"/>
                         </constraints>
@@ -222,7 +226,7 @@
                     <connections>
                         <outlet property="giftNameTextField" destination="ysi-vl-peB" id="Tdd-vY-T0o"/>
                         <outlet property="giftRecipientTextField" destination="Bro-oj-fVq" id="YJi-gu-rIj"/>
-                        <outlet property="keywordCollection" destination="7gM-ai-fUu" id="OAt-AH-XDA"/>
+                        <outlet property="keywordCollection" destination="7gM-ai-fUu" id="09H-69-aJ1"/>
                         <outlet property="locationLabel" destination="6l6-ri-8t0" id="JGQ-x5-MiT"/>
                         <outlet property="photoCollection" destination="3YG-mw-jmO" id="hHM-dV-0IF"/>
                     </connections>
