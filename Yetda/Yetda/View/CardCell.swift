@@ -7,13 +7,17 @@
 
 import Foundation
 import UIKit
+import RxSwift
+import RxCocoa
 
 class CardCell: UICollectionViewCell {
     
     static let identifier = "PresentCardCell"
 
     var nameLabel: UILabel = UILabel()
+    var firstImage: UIImage?
     var thumbnailImage: UIImageView = UIImageView()
+    let disposeBag = DisposeBag()
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -21,22 +25,22 @@ class CardCell: UICollectionViewCell {
         thumbnailImage.image = nil
     }
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupCell()
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
     private func setupCell() {
-        // TODO: 가로, 세로 길이 설정
         
         self.contentView.addSubview(thumbnailImage)
         setThumbnailImage()
         self.contentView.addSubview(nameLabel)
         setNameLabel()
         
-    }
-    
-    func loadImage() {
-        // TODO: 이미지 가져오기
     }
     
     private func setThumbnailImage() {
@@ -60,6 +64,14 @@ class CardCell: UICollectionViewCell {
         nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -13).isActive = true
         nameLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
         nameLabel.heightAnchor.constraint(equalToConstant: 16).isActive = true
+        
+    }
+    
+    func setData(_ model: Present) {
+        
+        self.nameLabel.text = model.whosFor
+        self.firstImage = UIImage(data: model.image1!)
+        thumbnailImage.image = firstImage
         
     }
     

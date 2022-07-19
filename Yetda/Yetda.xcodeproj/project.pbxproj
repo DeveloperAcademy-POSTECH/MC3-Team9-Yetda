@@ -23,6 +23,8 @@
 		736D28872885434800F95DFD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736D28862885434800F95DFD /* HomeViewController.swift */; };
 		736D2889288547F000F95DFD /* CardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736D2888288547F000F95DFD /* CardListView.swift */; };
 		736D288C28854CAE00F95DFD /* CardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736D288B28854CAE00F95DFD /* CardListViewModel.swift */; };
+		736D288F288673B000F95DFD /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 736D288E288673B000F95DFD /* RxCocoa */; };
+		736D2891288673B000F95DFD /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 736D2890288673B000F95DFD /* RxSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +53,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				736D2891288673B000F95DFD /* RxSwift in Frameworks */,
+				736D288F288673B000F95DFD /* RxCocoa in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +141,10 @@
 			dependencies = (
 			);
 			name = Yetda;
+			packageProductDependencies = (
+				736D288E288673B000F95DFD /* RxCocoa */,
+				736D2890288673B000F95DFD /* RxSwift */,
+			);
 			productName = Yetda;
 			productReference = 224AAF3F28813A0F0053E66A /* Yetda.app */;
 			productType = "com.apple.product-type.application";
@@ -165,6 +173,9 @@
 				Base,
 			);
 			mainGroup = 224AAF3628813A0F0053E66A;
+			packageReferences = (
+				736D288D288673B000F95DFD /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = 224AAF4028813A0F0053E66A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -422,6 +433,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		736D288D288673B000F95DFD /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift/";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		736D288E288673B000F95DFD /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 736D288D288673B000F95DFD /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		736D2890288673B000F95DFD /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 736D288D288673B000F95DFD /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		224AAF4B28813A0F0053E66A /* Yetda.xcdatamodeld */ = {

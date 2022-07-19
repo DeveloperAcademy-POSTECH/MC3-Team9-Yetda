@@ -7,6 +7,8 @@
 
 import Foundation
 import SwiftUI
+import RxSwift
+import RxCocoa
 
 class CardListViewModel: ObservableObject {
     
@@ -16,16 +18,28 @@ class CardListViewModel: ObservableObject {
     
     private var presentData: FetchedResults<Present>
     
+    let presentList = BehaviorRelay<[Present]>(value: [])
+    
     func getPresentList() {
-        // TODO: 모든 카드 리스트 호출
+        var temp: [Present] = []
+        for i in 0..<presentData.count {
+            temp.append(presentData[i])
+        }
+        presentList.accept(temp)
     }
     
     func getPresentAt(_ index: IndexPath) -> Present? {
-        // TODO: 일단 이렇게 작성해둠 index로 해당 카드 호출해야 함
-        return presentData.randomElement()
+        
+        let present = presentList.value[index.item]
+        return present
+        
     }
     
     func didSelect(_ index: IndexPath) {
-        // TODO: 카드 눌렀을 때
+        // TODO: 카드 눌렀을 때 디테일 뷰로 정보 넘겨줌
+//        let controller = CardDetailViewController()
+//        guard let present = getPresentAt(index) else {return}
+//        controller.cardId = present.id
+//        controller.cardSelected = present
     }
 }

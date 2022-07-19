@@ -7,15 +7,19 @@
 
 import Foundation
 import UIKit
+import RxSwift
+import RxCocoa
 
 class HomeViewController: UIViewController, UICollectionViewDelegate {
     
     let topView = UIView()
     let cardListView = CardListView()
-    let viewModel = CardListViewModel()
     let planeBtn = UIButton(type: .custom)
     let profileBtn = UIButton(type: .custom)
     let cityLabel = UILabel()
+    
+    let viewModel = CardListViewModel()
+    let disposeBag = DisposeBag()
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -29,7 +33,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         self.view.addSubview(cardListView)
         setCardListView()
         
-        // TODO: viewModel에서 리스트 가져오기
+        self.viewModel.getPresentList()
     }
     
     private func setTopView() {
@@ -63,9 +67,18 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     
     private func setPlaneBtn() {
         
+//        planeBtn.rx.tap.bind {
+//            self.navigationController?.pushViewController(TravelViewController(), animated: true)
+//        }.disposed(by: disposeBag)
+        
     }
     
     private func setProfileBtn() {
+        
+//        profileBtn.rx.tap.bind {
+//            self.navigationController?.pushViewController(ProfileViewController(), animated: true)
+//        }.disposed(by: disposeBag)
+
         
     }
     
@@ -76,10 +89,26 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     private func bindCollectionCardData() {
         
         let collectionView = cardListView.cardCollectionView
-        // TODO: collectionView 바인딩
+        
+        viewModel.presentList.bind(to: collectionView.rx.items(cellIdentifier: "PresentCardCell", cellType: CardCell.self)) { row, model, cell in
+            print(model)
+            cell.setData(model)
+        }.disposed(by: disposeBag)
+        
+        collectionView.rx.setDelegate(self).disposed(by: disposeBag)
+        
+        collectionView.rx.itemSelected.bind { indexPath in
+            self.cardListView.cardCollectionView.deselectItem(at: indexPath, animated: true)
+            guard let present = self.viewModel.getPresentAt(indexPath) else { return }
+            self.sendCardData(card: present)
+        }.disposed(by: disposeBag)
+        
     }
     
     private func sendCardData(card: Present) {
-        // TODO: 디테일 뷰로 데이터 보내주기
+//        let controller = CardDetailViewController()
+//        controller.cardId = present.id
+//        controller.cardSelected = present
+//        self.navigationController!.pushViewController(controller, animated: true)
     }
 }
