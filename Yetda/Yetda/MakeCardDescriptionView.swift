@@ -41,15 +41,12 @@ class MakeCardDescriptionView: UIViewController, UICollectionViewDelegate, UICol
         }
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "keywordCell", for: indexPath) as! KeywordCollectionCell
-//            cell.configure(indexPath)
-
-            cell.hibutton.setTitle(keywords[indexPath.item], for: .normal)
-
+            cell.configure(indexPath)
+            cell.keywordButton.setTitle(keywords[indexPath.item], for: .normal)
             return cell
         }
     }
 }
-
 
 // textField corner 둥글게, 보더 적용하는 함수
 func borderRadius(view: UITextField) -> UITextField{
@@ -60,7 +57,6 @@ func borderRadius(view: UITextField) -> UITextField{
     return view
 }
 
-
 // textField 안에서 왼쪽 Padding 주는 함수
 extension UITextField {
   func addLeftPadding() {
@@ -69,4 +65,5 @@ extension UITextField {
     self.leftViewMode = ViewMode.always
   }
 }
+
 

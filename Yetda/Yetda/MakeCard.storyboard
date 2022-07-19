@@ -102,7 +102,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="입력하기" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ysi-vl-peB">
                                         <rect key="frame" x="0.0" y="26.999999999999972" width="350" height="38"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="38" id="0gS-tb-VMR"/>
+                                            <constraint firstAttribute="height" constant="38" id="Zgo-C0-3qG"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -163,23 +163,27 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="keywordCell" id="fVb-ik-3Oc" customClass="KeywordCollectionCell" customModule="Yetda" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="93" height="38"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="90" height="38"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="lzi-hS-djz" customClass="KeywordCollectionCell" customModule="Yetda" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="93" height="38"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="90" height="38"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="viz-4P-aHG" userLabel="hibutton">
-                                                            <rect key="frame" x="0.0" y="0.0" width="93" height="38"/>
-                                                            <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="plain" title="☀️햇빛쨍쨍">
-                                                                <backgroundConfiguration key="background" cornerRadius="20">
-                                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <color key="strokeColor" systemColor="systemGray5Color"/>
-                                                                </backgroundConfiguration>
-                                                                <fontDescription key="titleFontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
-                                                                <color key="baseForegroundColor" systemColor="labelColor"/>
-                                                            </buttonConfiguration>
+                                                            <rect key="frame" x="0.0" y="0.0" width="90" height="38"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="90" id="OSZ-Z2-a4e"/>
+                                                                <constraint firstAttribute="height" constant="38" id="Uxi-lC-fk7"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <inset key="titleEdgeInsets" minX="10" minY="8" maxX="10" maxY="8"/>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="normal" title="☀️햇빛쨍쨍">
+                                                                <color key="titleColor" systemColor="labelColor"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="keywordButtonTapped:" destination="fVb-ik-3Oc" eventType="touchUpInside" id="FLK-F2-hKj"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <constraints>
@@ -189,9 +193,9 @@
                                                         <constraint firstItem="viz-4P-aHG" firstAttribute="leading" secondItem="lzi-hS-djz" secondAttribute="leading" id="wcq-rW-5bf"/>
                                                     </constraints>
                                                 </collectionViewCellContentView>
-                                                <size key="customSize" width="93" height="38"/>
+                                                <size key="customSize" width="90" height="38"/>
                                                 <connections>
-                                                    <outlet property="hibutton" destination="viz-4P-aHG" id="sIB-tg-ged"/>
+                                                    <outlet property="keywordButton" destination="viz-4P-aHG" id="5Q7-M7-Anm"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
@@ -204,7 +208,7 @@
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="KEM-ph-28x"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.97647058823529409" green="0.98039215686274506" blue="0.99215686274509807" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="S00-6y-1lu" firstAttribute="leading" secondItem="KEM-ph-28x" secondAttribute="leading" constant="20" id="0Bx-Ry-6VP"/>
                             <constraint firstItem="pe8-Ob-4yi" firstAttribute="trailing" secondItem="FAf-d9-WWN" secondAttribute="trailing" id="4cH-30-4Ti"/>
@@ -244,9 +248,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
