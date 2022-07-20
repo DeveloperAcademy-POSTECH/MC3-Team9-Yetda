@@ -14,6 +14,7 @@ class MakeCardDescriptionView: UIViewController, UICollectionViewDelegate, UICol
     @IBOutlet weak var giftRecipientTextField: UITextField!
     @IBOutlet weak var photoCollection: UICollectionView!
     @IBOutlet weak var keywordCollection: UICollectionView!
+    @IBOutlet weak var backGroundView: UIView!
     
     var photos: [String] = ["photo1", "photo2", "photo3", "photo4", "photo5"]
     
@@ -44,6 +45,10 @@ class MakeCardDescriptionView: UIViewController, UICollectionViewDelegate, UICol
         borderRadius(view: giftNameTextField).addLeftPadding()
         borderRadius(view: giftRecipientTextField).addLeftPadding()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.backGroundView.backgroundColor = .white
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

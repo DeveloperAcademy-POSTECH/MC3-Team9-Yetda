@@ -1,5 +1,5 @@
 //
-//  TestViewController.swift
+//  MakeCardStory.swift
 //  Yetda
 //
 //  Created by Youngseo Yoon on 2022/07/21.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TestViewController: UIViewController {
+class MakeCardStoryController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
