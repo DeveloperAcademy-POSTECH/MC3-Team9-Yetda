@@ -150,7 +150,7 @@
                                     </stackView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7gM-ai-fUu">
                                         <rect key="frame" x="0.0" y="25" width="350" height="185"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" red="0.82745098039215681" green="0.88627450980392153" blue="0.99215686274509807" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="185" id="3Ve-Ou-phF"/>
                                             <constraint firstAttribute="width" constant="350" id="5Y6-ca-KTu"/>
@@ -169,11 +169,11 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="90" height="38"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="viz-4P-aHG" userLabel="hibutton">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="viz-4P-aHG" userLabel="keywordButton">
                                                             <rect key="frame" x="0.0" y="0.0" width="90" height="38"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="90" id="OSZ-Z2-a4e"/>
-                                                                <constraint firstAttribute="height" constant="38" id="Uxi-lC-fk7"/>
+                                                                <constraint firstAttribute="height" constant="38" id="5fe-9T-9Mu"/>
+                                                                <constraint firstAttribute="width" constant="90" id="kMr-0b-NBI"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <inset key="titleEdgeInsets" minX="10" minY="8" maxX="10" maxY="8"/>
@@ -182,20 +182,19 @@
                                                                 <color key="titleColor" systemColor="labelColor"/>
                                                             </state>
                                                             <connections>
-                                                                <action selector="keywordButtonTapped:" destination="fVb-ik-3Oc" eventType="touchUpInside" id="FLK-F2-hKj"/>
+                                                                <action selector="keywordButtonTapped:" destination="fVb-ik-3Oc" eventType="touchUpInside" id="ItZ-sG-nAf"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="viz-4P-aHG" firstAttribute="top" secondItem="lzi-hS-djz" secondAttribute="top" id="4JC-rj-gBv"/>
-                                                        <constraint firstAttribute="trailing" secondItem="viz-4P-aHG" secondAttribute="trailing" id="Ido-T8-hbg"/>
-                                                        <constraint firstAttribute="bottom" secondItem="viz-4P-aHG" secondAttribute="bottom" id="cry-Bd-Ol7"/>
-                                                        <constraint firstItem="viz-4P-aHG" firstAttribute="leading" secondItem="lzi-hS-djz" secondAttribute="leading" id="wcq-rW-5bf"/>
+                                                        <constraint firstItem="viz-4P-aHG" firstAttribute="leading" secondItem="lzi-hS-djz" secondAttribute="leading" id="OLT-7H-vkj"/>
+                                                        <constraint firstAttribute="bottom" secondItem="viz-4P-aHG" secondAttribute="bottom" id="P95-HW-38O"/>
+                                                        <constraint firstItem="viz-4P-aHG" firstAttribute="top" secondItem="lzi-hS-djz" secondAttribute="top" id="Unj-uH-xyN"/>
+                                                        <constraint firstAttribute="trailing" secondItem="viz-4P-aHG" secondAttribute="trailing" id="VCX-Ap-h1f"/>
                                                     </constraints>
                                                 </collectionViewCellContentView>
-                                                <size key="customSize" width="90" height="38"/>
                                                 <connections>
-                                                    <outlet property="keywordButton" destination="viz-4P-aHG" id="5Q7-M7-Anm"/>
+                                                    <outlet property="keywordButton" destination="viz-4P-aHG" id="rww-kf-usp"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
