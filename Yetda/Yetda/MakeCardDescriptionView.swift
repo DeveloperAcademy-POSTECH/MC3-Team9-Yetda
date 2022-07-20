@@ -26,10 +26,9 @@ class MakeCardDescriptionView: UIViewController, UICollectionViewDelegate, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == self.photoCollection {
-            return photos.count
-        }
-        return keywords.count
+        var result: Int
+        result = collectionView == self.photoCollection ? photos.count : keywords.count
+        return result
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
