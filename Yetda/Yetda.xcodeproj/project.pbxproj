@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13A89D1E2886867900C64C3B /* SiteCollectionView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13A89D1D2886867900C64C3B /* SiteCollectionView.storyboard */; };
+		13A89D2C28868EDC00C64C3B /* SiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A89D2B28868EDC00C64C3B /* SiteViewController.swift */; };
+		13A89D2E2886977900C64C3B /* SiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A89D2D2886977900C64C3B /* SiteCell.swift */; };
+		13A89D3028869EB500C64C3B /* SiteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A89D2F28869EB500C64C3B /* SiteModel.swift */; };
 		224AAF4328813A0F0053E66A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224AAF4228813A0F0053E66A /* AppDelegate.swift */; };
 		224AAF4528813A0F0053E66A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224AAF4428813A0F0053E66A /* SceneDelegate.swift */; };
 		224AAF4728813A0F0053E66A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224AAF4628813A0F0053E66A /* ViewController.swift */; };
@@ -26,6 +30,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		13A89D1D2886867900C64C3B /* SiteCollectionView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SiteCollectionView.storyboard; sourceTree = "<group>"; };
+		13A89D2B28868EDC00C64C3B /* SiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteViewController.swift; sourceTree = "<group>"; };
+		13A89D2D2886977900C64C3B /* SiteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteCell.swift; sourceTree = "<group>"; };
+		13A89D2F28869EB500C64C3B /* SiteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteModel.swift; sourceTree = "<group>"; };
 		224AAF3F28813A0F0053E66A /* Yetda.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yetda.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		224AAF4228813A0F0053E66A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		224AAF4428813A0F0053E66A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +101,10 @@
 				224AAF5028813A110053E66A /* LaunchScreen.storyboard */,
 				224AAF5328813A110053E66A /* Info.plist */,
 				224AAF4B28813A0F0053E66A /* Yetda.xcdatamodeld */,
+				13A89D1D2886867900C64C3B /* SiteCollectionView.storyboard */,
+				13A89D2B28868EDC00C64C3B /* SiteViewController.swift */,
+				13A89D2D2886977900C64C3B /* SiteCell.swift */,
+				13A89D2F28869EB500C64C3B /* SiteModel.swift */,
 			);
 			path = Yetda;
 			sourceTree = "<group>";
@@ -161,6 +173,7 @@
 				224AAF4F28813A110053E66A /* Assets.xcassets in Resources */,
 				224AAF4A28813A0F0053E66A /* Main.storyboard in Resources */,
 				6E94A3DF28853B500076E703 /* DidCardShare.storyboard in Resources */,
+				13A89D1E2886867900C64C3B /* SiteCollectionView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,14 +185,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E94A3E528853C4A0076E703 /* DidPresentViewController.swift in Sources */,
+				13A89D3028869EB500C64C3B /* SiteModel.swift in Sources */,
 				229EBA3628842C4A0033A6BA /* Site+CoreDataProperties.swift in Sources */,
 				229EBA3728842C4A0033A6BA /* Present+CoreDataClass.swift in Sources */,
 				224AAF4728813A0F0053E66A /* ViewController.swift in Sources */,
+				13A89D2C28868EDC00C64C3B /* SiteViewController.swift in Sources */,
 				224AAF4D28813A0F0053E66A /* Yetda.xcdatamodeld in Sources */,
 				224AAF4328813A0F0053E66A /* AppDelegate.swift in Sources */,
 				229EBA3528842C4A0033A6BA /* Site+CoreDataClass.swift in Sources */,
 				229EBA3828842C4A0033A6BA /* Present+CoreDataProperties.swift in Sources */,
 				6E94A3E128853B8F0076E703 /* DidCardShareViewController.swift in Sources */,
+				13A89D2E2886977900C64C3B /* SiteCell.swift in Sources */,
 				224AAF4528813A0F0053E66A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
