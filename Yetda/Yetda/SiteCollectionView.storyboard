@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,8 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" ambiguous="YES" image="BackgroundDesign" translatesAutoresizingMaskIntoConstraints="NO" id="KRa-H3-SeM">
-                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="BackgroundDesign" translatesAutoresizingMaskIntoConstraints="NO" id="KRa-H3-SeM">
+                                <rect key="frame" x="-12" y="0.0" width="414" height="896"/>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Hxf-zV-ICX">
                                 <rect key="frame" x="0.0" y="183" width="390" height="713"/>
@@ -95,12 +96,21 @@
                                 <rect key="frame" x="20" y="136.66666666666666" width="25" height="17.333333333333343"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zGj-Ud-BCq">
+                                <rect key="frame" x="328" y="65" width="42" height="42"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <menu key="menu" id="lZZ-MS-5PC"/>
+                                <state key="normal" image="siteViewButton"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="KRa-H3-SeM" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="3qu-rj-zV6"/>
                             <constraint firstItem="KRa-H3-SeM" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="1.06154" id="3rl-ih-bmP"/>
                             <constraint firstItem="Hxf-zV-ICX" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="4rG-wq-gSy"/>
+                            <constraint firstItem="zGj-Ud-BCq" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="65" id="Ak1-us-RLd"/>
+                            <constraint firstAttribute="trailing" secondItem="zGj-Ud-BCq" secondAttribute="trailing" constant="20" id="FWk-QA-ZIT"/>
                             <constraint firstItem="21h-fc-t9H" firstAttribute="leading" secondItem="QCn-gJ-LFB" secondAttribute="trailing" constant="11.880000000000001" id="Gdj-WQ-FSo"/>
                             <constraint firstItem="QCn-gJ-LFB" firstAttribute="centerY" secondItem="21h-fc-t9H" secondAttribute="centerY" id="Vga-ZR-0du"/>
                             <constraint firstItem="Hxf-zV-ICX" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="139" id="jpy-VD-jBH"/>
@@ -110,12 +120,15 @@
                             <constraint firstItem="21h-fc-t9H" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="57" id="qwH-DU-lCt"/>
                             <constraint firstItem="Hxf-zV-ICX" firstAttribute="top" secondItem="21h-fc-t9H" secondAttribute="bottom" constant="19.579999999999998" id="rLG-uU-Xfh"/>
                             <constraint firstItem="Hxf-zV-ICX" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" id="vgr-At-xaq"/>
+                            <constraint firstAttribute="top" secondItem="KRa-H3-SeM" secondAttribute="top" id="xij-Bc-UmP"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="siteCollectionView" destination="Hxf-zV-ICX" id="lMY-SG-ngN"/>
+                        <outlet property="siteMenu" destination="lZZ-MS-5PC" id="It6-fQ-vqP"/>
                         <outlet property="siteTitleLabel" destination="21h-fc-t9H" id="cNi-ia-oNX"/>
                         <outlet property="siteViewAirplaneIcon" destination="QCn-gJ-LFB" id="hH5-z7-bct"/>
+                        <outlet property="siteViewButton" destination="zGj-Ud-BCq" id="gET-hc-TO4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -128,6 +141,7 @@
         <image name="ShadowCell" width="350" height="141"/>
         <image name="airplane.departure" catalog="system" width="128" height="83"/>
         <image name="sitePlaceIcon" width="27" height="32"/>
+        <image name="siteViewButton" width="42" height="42"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

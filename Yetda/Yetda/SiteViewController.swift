@@ -9,14 +9,13 @@ import UIKit
 import SwiftUI
 
 class SiteViewController: UIViewController, UICollectionViewDelegate {
-
     
-    //@IBOutlet weak var siteViewBackground: UIImageView!
-    //@IBOutlet weak var siteCollectionCell: UICollectionViewCell!
-    //@IBOutlet weak var siteShadowCell: UIImageView!
+    
     @IBOutlet weak var siteViewAirplaneIcon: UIImageView!
     @IBOutlet weak var siteTitleLabel: UILabel!
+    @IBOutlet weak var siteViewButton: UIButton!
     @IBOutlet weak var siteCollectionView: UICollectionView!
+    @IBOutlet var siteMenu: UIMenu!
     
     let list = [SiteModel(name: "Fukuoka"), SiteModel(name: "Akita"), SiteModel(name: "Fukushima"), SiteModel(name: "Tokyo"), SiteModel(name: "Nagasaki")]
     
@@ -28,8 +27,17 @@ class SiteViewController: UIViewController, UICollectionViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
+        
+        siteCollectionView.layer.cornerRadius = 20
+        
+        lazy var menuChildren: [UIAction] = {
+            return [
+                UIAction(title: "목록 편집", image: UIImage(systemName: "pencil"), state: .off, handler: { _ in }), //TODO: 편집기능 넣기
+                UIAction(title: "닫기", image: UIImage(systemName: "arrow.down.forward.and.arrow.up.backward.circle"), state: .off, handler: { _ in })
+            ]
+        }()
+        
+        siteViewButton.menu =  UIMenu(title: "", image: UIImage(systemName: "pencil"), identifier: nil, options: .displayInline, children: menuChildren)
         siteCollectionView.collectionViewLayout = layout()
         siteCollectionView.delegate = self
         
@@ -58,15 +66,14 @@ class SiteViewController: UIViewController, UICollectionViewDelegate {
         
         let itemsize = NSCollectionLayoutSize(widthDimension: .absolute(UICClayoutInsetSize), heightDimension: .estimated(100))
         let itemLayout = NSCollectionLayoutItem(layoutSize: itemsize)
-//        itemLayout.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 32, bottom: 0, trailing: 32)
+        
         print(itemsize.widthDimension.dimension.significandWidth)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(100))
         let groupLayout = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [itemLayout]
         )
-        //groupLayout.contentInsets = NSDirectionalEdgeInsets(top: 32, leading: 32, bottom: 0, trailing: spacingSize)
         
-//        groupLayout.interItemSpacing = .fixed(spacingSize)
+        
         
         
         let section = NSCollectionLayoutSection(group: groupLayout)
@@ -76,7 +83,7 @@ class SiteViewController: UIViewController, UICollectionViewDelegate {
         
         
         return UICollectionViewCompositionalLayout(section: section)
-        }
+    }
     
 }
 
