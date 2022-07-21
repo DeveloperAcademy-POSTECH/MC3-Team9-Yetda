@@ -22,7 +22,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //                let vc = storyboard.instantiateViewController(withIdentifier: "MakeCardDescriptionView")
 //                self.window?.rootViewController = vc
 //                self.window?.makeKeyAndVisible()
-        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

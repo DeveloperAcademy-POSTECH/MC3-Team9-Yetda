@@ -27,6 +27,11 @@
 		229EBA3728842C4A0033A6BA /* Present+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229EBA3328842C4A0033A6BA /* Present+CoreDataClass.swift */; };
 		229EBA3828842C4A0033A6BA /* Present+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229EBA3428842C4A0033A6BA /* Present+CoreDataProperties.swift */; };
 		22E27EBB2888E8D500CB27B0 /* OnBoardingFirstStepController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E27EBA2888E8D500CB27B0 /* OnBoardingFirstStepController.swift */; };
+		6E94A3DF28853B500076E703 /* DidCardShare.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E94A3DE28853B500076E703 /* DidCardShare.storyboard */; };
+		6E94A3E128853B8F0076E703 /* DidCardShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E94A3E028853B8F0076E703 /* DidCardShareViewController.swift */; };
+		6E94A3E328853C380076E703 /* DidPresent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E94A3E228853C380076E703 /* DidPresent.storyboard */; };
+		6E94A3E528853C4A0076E703 /* DidPresentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E94A3E428853C4A0076E703 /* DidPresentViewController.swift */; };
+		7355FEE5288708B0009F32E3 /* YPImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = 7355FEE4288708B0009F32E3 /* YPImagePicker */; };
 		5DDD60F028853EC40077742D /* MakeCardDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDD60EF28853EC40077742D /* MakeCardDescriptionView.swift */; };
 		5DDD60F228853FC80077742D /* PhotoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDD60F128853FC80077742D /* PhotoCollectionCell.swift */; };
 		5DDD60F628854AEE0077742D /* MakeCard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DDD60F528854AEE0077742D /* MakeCard.storyboard */; };
@@ -86,6 +91,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				736D2891288673B000F95DFD /* RxSwift in Frameworks */,
+				7355FEE5288708B0009F32E3 /* YPImagePicker in Frameworks */,
 				736D288F288673B000F95DFD /* RxCocoa in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -111,6 +117,7 @@
 				224AAF5928813A500053E66A /* .gitignore */,
 				224AAF4128813A0F0053E66A /* Yetda */,
 				224AAF4028813A0F0053E66A /* Products */,
+				7355FEE6288709F1009F32E3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -159,6 +166,11 @@
 				229EBA3428842C4A0033A6BA /* Present+CoreDataProperties.swift */,
 			);
 			path = Model;
+		7355FEE6288709F1009F32E3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		736D28752885333E00F95DFD /* View */ = {
@@ -208,6 +220,7 @@
 			packageProductDependencies = (
 				736D288E288673B000F95DFD /* RxCocoa */,
 				736D2890288673B000F95DFD /* RxSwift */,
+				7355FEE4288708B0009F32E3 /* YPImagePicker */,
 			);
 			productName = Yetda;
 			productReference = 224AAF3F28813A0F0053E66A /* Yetda.app */;
@@ -239,6 +252,7 @@
 			mainGroup = 224AAF3628813A0F0053E66A;
 			packageReferences = (
 				736D288D288673B000F95DFD /* XCRemoteSwiftPackageReference "RxSwift" */,
+				7355FEE3288708B0009F32E3 /* XCRemoteSwiftPackageReference "YPImagePicker" */,
 			);
 			productRefGroup = 224AAF4028813A0F0053E66A /* Products */;
 			projectDirPath = "";
@@ -445,6 +459,7 @@
 				DEVELOPMENT_TEAM = JASCMY8XL7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Yetda/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -473,6 +488,7 @@
 				DEVELOPMENT_TEAM = JASCMY8XL7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Yetda/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -515,6 +531,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		7355FEE3288708B0009F32E3 /* XCRemoteSwiftPackageReference "YPImagePicker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Yummypets/YPImagePicker";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		736D288D288673B000F95DFD /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift/";
@@ -526,6 +550,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7355FEE4288708B0009F32E3 /* YPImagePicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7355FEE3288708B0009F32E3 /* XCRemoteSwiftPackageReference "YPImagePicker" */;
+			productName = YPImagePicker;
+		};
 		736D288E288673B000F95DFD /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 736D288D288673B000F95DFD /* XCRemoteSwiftPackageReference "RxSwift" */;

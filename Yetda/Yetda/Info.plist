@@ -10,6 +10,10 @@
 		<string>SpoqaHanSansNeo-Regular.ttf</string>
 		<string>SpoqaHanSansNeo-Thin.ttf</string>
 	</array>
+	<key></key>
+	<string></string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string></string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
