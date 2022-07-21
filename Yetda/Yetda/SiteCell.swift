@@ -14,8 +14,10 @@ class SiteCell: UICollectionViewCell {
     @IBOutlet weak var siteLabel: UILabel!
     @IBOutlet weak var siteImage: UIImageView!
     @IBOutlet weak var siteShadowCell: UIImageView!
+    @IBOutlet weak var sitePlaceIcon: UIImageView!
     
     func configure(_ data: SiteModel) {
+        sitePlaceIcon.image = UIImage(named: "sitePlaceIcon")
         siteLabel.text = "\(data.name)"
         
         siteImage.widthAnchor.constraint(equalToConstant: 350).isActive = true

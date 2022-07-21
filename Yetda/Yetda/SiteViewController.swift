@@ -10,9 +10,12 @@ import SwiftUI
 
 class SiteViewController: UIViewController, UICollectionViewDelegate {
 
+    
     //@IBOutlet weak var siteViewBackground: UIImageView!
     //@IBOutlet weak var siteCollectionCell: UICollectionViewCell!
     //@IBOutlet weak var siteShadowCell: UIImageView!
+    @IBOutlet weak var siteViewAirplaneIcon: UIImageView!
+    @IBOutlet weak var siteTitleLabel: UILabel!
     @IBOutlet weak var siteCollectionView: UICollectionView!
     
     let list = [SiteModel(name: "Fukuoka"), SiteModel(name: "Akita"), SiteModel(name: "Fukushima"), SiteModel(name: "Tokyo"), SiteModel(name: "Nagasaki")]
@@ -25,10 +28,8 @@ class SiteViewController: UIViewController, UICollectionViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        siteViewBackground.image = UIImage(named: "BackgroundDesign")
-//        siteShadowCell.image = UIImage(named: "ShadowCell")
-//
-        
+
+
         siteCollectionView.collectionViewLayout = layout()
         siteCollectionView.delegate = self
         
@@ -52,10 +53,10 @@ class SiteViewController: UIViewController, UICollectionViewDelegate {
     
     private func layout() -> UICollectionViewCompositionalLayout {
         
-        
+        let UICClayoutInsetSize: CGFloat = UIScreen.main.bounds.width - 24
         let spacingSize: CGFloat = 16
         
-        let itemsize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(100))
+        let itemsize = NSCollectionLayoutSize(widthDimension: .absolute(UICClayoutInsetSize), heightDimension: .estimated(100))
         let itemLayout = NSCollectionLayoutItem(layoutSize: itemsize)
 //        itemLayout.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 32, bottom: 0, trailing: 32)
         print(itemsize.widthDimension.dimension.significandWidth)
