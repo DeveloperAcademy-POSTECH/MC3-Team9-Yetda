@@ -35,12 +35,10 @@ class CardCell: UICollectionViewCell {
     }
     
     private func setupCell() {
-        
         self.contentView.addSubview(thumbnailImage)
         setThumbnailImage()
         self.contentView.addSubview(nameLabel)
         setNameLabel()
-        
     }
     
     private func setThumbnailImage() {
@@ -54,7 +52,6 @@ class CardCell: UICollectionViewCell {
         thumbnailImage.clipsToBounds = true
         thumbnailImage.layer.cornerRadius = 20
         thumbnailImage.contentMode = .scaleAspectFill
-        
     }
     
     private func setNameLabel() {
@@ -64,15 +61,15 @@ class CardCell: UICollectionViewCell {
         nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -13).isActive = true
         nameLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
         nameLabel.heightAnchor.constraint(equalToConstant: 16).isActive = true
-        
     }
     
-    func setData(_ model: Present) {
+    func setData(_ model: String) {
         
-        self.nameLabel.text = model.whosFor
-        self.firstImage = UIImage(data: model.image1!)
-        thumbnailImage.image = firstImage
+        self.nameLabel.text = "이름"
         
+//        self.nameLabel.text = model.whosFor
+//        self.firstImage = UIImage(data: model.image1!)
+        thumbnailImage.image = UIImage(named: model)
     }
     
 }
