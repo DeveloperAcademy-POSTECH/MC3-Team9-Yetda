@@ -49,12 +49,7 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
         if let giftRecipientTextField = giftRecipientTextField {
             borderRadius(view: giftRecipientTextField).addLeftPadding()
         }
-//        view.backgroundColor = UIColor.white
 //        bindData()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-//        self.view.backgroundColor = .white
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

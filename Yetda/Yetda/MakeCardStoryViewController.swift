@@ -9,6 +9,7 @@ import UIKit
 
 class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    @IBOutlet weak var locationLabel: UILabel!
     var photos: [String] = ["photo1", "photo2", "photo3", "photo4", "photo5"]
         
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -17,7 +18,7 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell2", for: indexPath) as! PhotoCollectionCell
         cell.chosenPhotoStory.image = UIImage(named: photos[indexPath.row])
-//        cell.layer.cornerRadius = 10.0
+        cell.layer.cornerRadius = 10.0
         return cell
     }
     
