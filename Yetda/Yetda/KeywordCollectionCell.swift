@@ -9,22 +9,45 @@ import UIKit
 
 class KeywordCollectionCell: UICollectionViewCell {
     
-    var count: Int = 0
-    var selectedKeyword: [String] = []
+    let appDelegate = UIApplication.shared.delegate as? AppDelegate
+    
+    var count = 0
+    
     
     @IBOutlet weak var keywordButton: UIButton!
     @IBAction func keywordButtonTapped(_ sender: UIButton) {
         sender.isSelected.toggle()
-        if sender.isSelected {
-            selectedKeyword.append("\(sender.titleLabel?.text ?? "")")
-        }
-        else {
-            if let index = selectedKeyword.firstIndex(of: sender.titleLabel?.text ?? "") {
-                selectedKeyword.remove(at: index)
+        bindState(sender.titleLabel?.text ?? "", sender.isSelected)
+        changeButtonState(sender)
+    }
+    
+    private func bindState(_ name: String, _ select: Bool) {
+        if select && count<4 {
+            appDelegate?.selectedKeyword.append(name)
+            for keyword in MakeCardDescriptionView().keywords {
+                if (keyword.findKeyword(name: name)) {
+                    keyword.state = true
+                    count += 1
+                    print(keyword.name)
+                    print(keyword.state)
+                    print(count)
+                }
             }
         }
-        print(selectedKeyword)
-        changeButtonState(sender)
+        else {
+            if let index = appDelegate?.selectedKeyword.firstIndex(of: name) {
+                appDelegate?.selectedKeyword.remove(at: index)
+                for keyword in MakeCardDescriptionView().keywords {
+                        if (keyword.findKeyword(name: name)) {
+                            keyword.state = false
+                            MakeCardDescriptionView().count -= 1
+                            print(keyword.name)
+                            print(keyword.state)
+                            print(MakeCardDescriptionView().count)
+                        }
+                }
+            }
+        }
     }
     
     func customizeButton(_ index: IndexPath) {
@@ -32,6 +55,7 @@ class KeywordCollectionCell: UICollectionViewCell {
         keywordButton.widthAnchor.constraint(greaterThanOrEqualTo: keywordButton.titleLabel?.widthAnchor ?? keywordButton.widthAnchor, constant: 20).isActive = true
         customButton(keywordButton)
     }
+    
     
     func changeButtonState(_ button : UIButton) {
         button.backgroundColor = button.isSelected ? UIColor.systemCyan : UIColor.white

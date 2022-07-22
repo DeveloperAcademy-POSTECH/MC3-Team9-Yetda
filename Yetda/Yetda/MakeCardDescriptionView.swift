@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class MakeCardDescriptionView: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -15,6 +17,14 @@ class MakeCardDescriptionView: UIViewController, UICollectionViewDelegate, UICol
     @IBOutlet weak var photoCollection: UICollectionView!
     @IBOutlet weak var keywordCollection: UICollectionView!
     @IBOutlet weak var backGroundView: UIView!
+    
+//    @IBAction func tapNextButton(_ sender: UIButton) {
+//        guard let makeCardStoryController = self.storyboard?.instantiateViewController(withIdentifier: "MakeCardStoryController") as? MakeCardStoryController else { return }
+//        
+//        self.navigationController?.pushViewController(makeCardStoryController, animated: true)
+//    }
+    
+    var count: Int = 0
     
     var photos: [String] = ["photo1", "photo2", "photo3", "photo4", "photo5"]
     
@@ -39,16 +49,21 @@ class MakeCardDescriptionView: UIViewController, UICollectionViewDelegate, UICol
         Keyword(name: "🗽관광중~", state: false),
         Keyword(name: "🏝휴양중~", state: false)
     ]
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        borderRadius(view: giftNameTextField).addLeftPadding()
-        borderRadius(view: giftRecipientTextField).addLeftPadding()
-        
+        if let giftNameTextField = giftNameTextField {
+            borderRadius(view: giftNameTextField).addLeftPadding()
+        }
+        if let giftRecipientTextField = giftRecipientTextField {
+            borderRadius(view: giftRecipientTextField).addLeftPadding()
+        }
+        view.backgroundColor = UIColor.white
+//        bindData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.backGroundView.backgroundColor = .white
+        self.view.backgroundColor = .white
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -63,7 +78,7 @@ class MakeCardDescriptionView: UIViewController, UICollectionViewDelegate, UICol
         if collectionView == self.photoCollection {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoCollectionCell
             cell.chosenPhoto.image = UIImage(named: photos[indexPath.row])
-            cell.layer.cornerRadius = 20.0
+            cell.layer.cornerRadius = 10.0
             return cell
         }
         else {
@@ -77,6 +92,21 @@ class MakeCardDescriptionView: UIViewController, UICollectionViewDelegate, UICol
     //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     //        return CGSize(width: keywords[indexPath.item].name.size(withAttributes: [NSAttributedString.Key : UIFont.systemFont(ofSize: 14)]).width + 20, height: 38)
     //    }
+    
+//    private func bindData() {
+//
+//        let keywordList = BehaviorRelay<[Keyword]>(value: keywords)
+//        keywordList.bind(to: keywordCollection.rx.items(cellIdentifier: "keywordCell", cellType: KeywordCollectionCell.self)) { row, model, cell in
+//
+//        }.disposed(by: DisposeBag())
+//
+//        keywordCollection.rx.itemSelected.bind { indexPath in
+//            self.keywordCollection.deselectItem(at: indexPath, animated: true)
+//            guard let state = self.keywords[indexPath.row].state else { return }
+//            keywords[indexPath.row].state = !state
+//        }
+//    }
+    
 }
 
 
@@ -98,7 +128,21 @@ extension UITextField {
   }
 }
 
-struct Keyword {
-    let name: String
+class Keyword {
+    var name: String = ""
     var state: Bool = false
+    
+    init(name: String, state: Bool) {
+        self.name = name
+        self.state = state
+        
+    }
+    
+    func findKeyword(name: String) -> Bool {
+        if self.name == name {
+            return true
+        } else {
+            return false
+        }
+    }
 }
