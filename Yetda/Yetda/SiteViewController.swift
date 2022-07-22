@@ -48,15 +48,12 @@ class SiteViewController: UIViewController, UICollectionViewDelegate {
                 return nil
             }
             siteCell.configure(item)
-            return siteCell
-            
-        })
+            return siteCell})
         
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections([.main])
         snapshot.appendItems(list, toSection: .main)
         siteDataSource.apply(snapshot)
-        
     }
     
     private func layout() -> UICollectionViewCompositionalLayout {
@@ -67,38 +64,14 @@ class SiteViewController: UIViewController, UICollectionViewDelegate {
         let itemsize = NSCollectionLayoutSize(widthDimension: .absolute(UICClayoutInsetSize), heightDimension: .estimated(100))
         let itemLayout = NSCollectionLayoutItem(layoutSize: itemsize)
         
-        print(itemsize.widthDimension.dimension.significandWidth)
-        
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(100))
-        let groupLayout = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [itemLayout]
-        )
-        
-        
-        
+        let groupLayout = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [itemLayout])
         
         let section = NSCollectionLayoutSection(group: groupLayout)
         section.contentInsets = NSDirectionalEdgeInsets(top: 32, leading: 12, bottom: 0, trailing: 12)
-        
         section.interGroupSpacing = spacingSize
-        
         
         return UICollectionViewCompositionalLayout(section: section)
     }
-    
 }
-
-
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Container().edgesIgnoringSafeArea(.all)
-//    }
-//    struct Container: UIViewControllerRepresentable {
-//        func makeUIViewController(context: Context) -> UIViewController {
-//            return     UINavigationController(rootViewController: SiteViewController())
-//        }
-//        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-//        }
-//        typealias  UIViewControllerType = UIViewController
-//    }
-//}
 

@@ -7,9 +7,14 @@
 
 import UIKit
 
+extension String {var localized: String {
+    return NSLocalizedString(self, tableName: "LocalizingFile", value: self, comment: "")}
+}
+
+
 class SiteCell: UICollectionViewCell {
     
-   // let list = ["Fukuoka", "Fukushima"]
+   
     
     @IBOutlet weak var siteLabel: UILabel!
     @IBOutlet weak var siteImage: UIImageView!
@@ -18,11 +23,11 @@ class SiteCell: UICollectionViewCell {
     
     func configure(_ data: SiteModel) {
         sitePlaceIcon.image = UIImage(named: "sitePlaceIcon")
-        siteLabel.text = "\(data.name)"
+        siteLabel.text = "\(data.name)".localized
         
         siteImage.widthAnchor.constraint(equalToConstant: 350).isActive = true
         siteImage.heightAnchor.constraint(equalToConstant: 141).isActive = true
-//        siteImage.backgroundColor = UIColor(patternImage: UIImage(named: "\(data.name)")!)
+
         siteImage.image = UIImage(named: "\(data.name)")
         siteImage.contentMode = .scaleAspectFill
         siteImage.layer.cornerRadius = 20
