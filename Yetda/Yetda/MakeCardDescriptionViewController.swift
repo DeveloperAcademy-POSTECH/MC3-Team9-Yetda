@@ -1,5 +1,5 @@
 //
-//  MakeCardDescriptionView.swift
+//  MakeCardDescriptionViewController.swift
 //  Yetda
 //
 //  Created by Youngseo Yoon on 2022/07/18.
@@ -9,25 +9,16 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class MakeCardDescriptionView: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class MakeCardDescriptionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var giftNameTextField: UITextField!
     @IBOutlet weak var giftRecipientTextField: UITextField!
     @IBOutlet weak var photoCollection: UICollectionView!
     @IBOutlet weak var keywordCollection: UICollectionView!
-    @IBOutlet weak var backGroundView: UIView!
-    
-//    @IBAction func tapNextButton(_ sender: UIButton) {
-//        guard let makeCardStoryController = self.storyboard?.instantiateViewController(withIdentifier: "MakeCardStoryController") as? MakeCardStoryController else { return }
-//        
-//        self.navigationController?.pushViewController(makeCardStoryController, animated: true)
-//    }
     
     var count: Int = 0
-    
     var photos: [String] = ["photo1", "photo2", "photo3", "photo4", "photo5"]
-    
     var keywords: [Keyword] = [
         Keyword(name: "☀️햇빛쨍쨍", state: false),
         Keyword(name: "😋짱맛있대", state: false),
@@ -58,12 +49,12 @@ class MakeCardDescriptionView: UIViewController, UICollectionViewDelegate, UICol
         if let giftRecipientTextField = giftRecipientTextField {
             borderRadius(view: giftRecipientTextField).addLeftPadding()
         }
-        view.backgroundColor = UIColor.white
+//        view.backgroundColor = UIColor.white
 //        bindData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.view.backgroundColor = .white
+//        self.view.backgroundColor = .white
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -72,12 +63,10 @@ class MakeCardDescriptionView: UIViewController, UICollectionViewDelegate, UICol
         return result
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {        
         if collectionView == self.photoCollection {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoCollectionCell
-            cell.chosenPhoto.image = UIImage(named: photos[indexPath.row])
+            cell.chosenPhotoDescription.image = UIImage(named: photos[indexPath.row])
             cell.layer.cornerRadius = 10.0
             return cell
         }

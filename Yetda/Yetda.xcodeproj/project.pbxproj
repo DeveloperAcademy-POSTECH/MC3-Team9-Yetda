@@ -19,10 +19,10 @@
 		229EBA3628842C4A0033A6BA /* Site+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229EBA3228842C4A0033A6BA /* Site+CoreDataProperties.swift */; };
 		229EBA3728842C4A0033A6BA /* Present+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229EBA3328842C4A0033A6BA /* Present+CoreDataClass.swift */; };
 		229EBA3828842C4A0033A6BA /* Present+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229EBA3428842C4A0033A6BA /* Present+CoreDataProperties.swift */; };
-		5DB7C00B2888552F003BB5EF /* MakeCardStoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB7C00A2888552F003BB5EF /* MakeCardStoryController.swift */; };
-		5DDD60F028853EC40077742D /* MakeCardDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDD60EF28853EC40077742D /* MakeCardDescriptionView.swift */; };
+		5DA0A056288A82DC00066653 /* MakeCard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DDD60F528854AEE0077742D /* MakeCard.storyboard */; };
+		5DB7C00B2888552F003BB5EF /* MakeCardStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB7C00A2888552F003BB5EF /* MakeCardStoryViewController.swift */; };
+		5DDD60F028853EC40077742D /* MakeCardDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDD60EF28853EC40077742D /* MakeCardDescriptionViewController.swift */; };
 		5DDD60F228853FC80077742D /* PhotoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDD60F128853FC80077742D /* PhotoCollectionCell.swift */; };
-		5DDD60F628854AEE0077742D /* MakeCard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DDD60F528854AEE0077742D /* MakeCard.storyboard */; };
 		5DDD60FA2885CBE50077742D /* KeywordCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDD60F92885CBE50077742D /* KeywordCollectionCell.swift */; };
 		6E94A3DF28853B500076E703 /* DidCardShare.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E94A3DE28853B500076E703 /* DidCardShare.storyboard */; };
 		6E94A3E128853B8F0076E703 /* DidCardShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E94A3E028853B8F0076E703 /* DidCardShareViewController.swift */; };
@@ -51,8 +51,8 @@
 		229EBA3228842C4A0033A6BA /* Site+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Site+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		229EBA3328842C4A0033A6BA /* Present+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Present+CoreDataClass.swift"; sourceTree = "<group>"; };
 		229EBA3428842C4A0033A6BA /* Present+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Present+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		5DB7C00A2888552F003BB5EF /* MakeCardStoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCardStoryController.swift; sourceTree = "<group>"; };
-		5DDD60EF28853EC40077742D /* MakeCardDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCardDescriptionView.swift; sourceTree = "<group>"; };
+		5DB7C00A2888552F003BB5EF /* MakeCardStoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCardStoryViewController.swift; sourceTree = "<group>"; };
+		5DDD60EF28853EC40077742D /* MakeCardDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCardDescriptionViewController.swift; sourceTree = "<group>"; };
 		5DDD60F128853FC80077742D /* PhotoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionCell.swift; sourceTree = "<group>"; };
 		5DDD60F528854AEE0077742D /* MakeCard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MakeCard.storyboard; sourceTree = "<group>"; };
 		5DDD60F92885CBE50077742D /* KeywordCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordCollectionCell.swift; sourceTree = "<group>"; };
@@ -111,8 +111,8 @@
 				224AAF4628813A0F0053E66A /* ViewController.swift */,
 				224AAF4828813A0F0053E66A /* Main.storyboard */,
 				5DDD60F528854AEE0077742D /* MakeCard.storyboard */,
-				5DB7C00A2888552F003BB5EF /* MakeCardStoryController.swift */,
-				5DDD60EF28853EC40077742D /* MakeCardDescriptionView.swift */,
+				5DB7C00A2888552F003BB5EF /* MakeCardStoryViewController.swift */,
+				5DDD60EF28853EC40077742D /* MakeCardDescriptionViewController.swift */,
 				5DDD60F128853FC80077742D /* PhotoCollectionCell.swift */,
 				5DDD60F92885CBE50077742D /* KeywordCollectionCell.swift */,
 				6E94A3DE28853B500076E703 /* DidCardShare.storyboard */,
@@ -218,12 +218,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				224AAF5A28813A500053E66A /* .gitignore in Resources */,
-				5DDD60F628854AEE0077742D /* MakeCard.storyboard in Resources */,
 				224AAF5228813A110053E66A /* LaunchScreen.storyboard in Resources */,
 				6E94A3E328853C380076E703 /* DidPresent.storyboard in Resources */,
 				224AAF4F28813A110053E66A /* Assets.xcassets in Resources */,
 				224AAF4A28813A0F0053E66A /* Main.storyboard in Resources */,
 				6E94A3DF28853B500076E703 /* DidCardShare.storyboard in Resources */,
+				5DA0A056288A82DC00066653 /* MakeCard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,11 +246,11 @@
 				5DDD60F228853FC80077742D /* PhotoCollectionCell.swift in Sources */,
 				736D28872885434800F95DFD /* HomeViewController.swift in Sources */,
 				224AAF4328813A0F0053E66A /* AppDelegate.swift in Sources */,
-				5DDD60F028853EC40077742D /* MakeCardDescriptionView.swift in Sources */,
+				5DDD60F028853EC40077742D /* MakeCardDescriptionViewController.swift in Sources */,
 				229EBA3528842C4A0033A6BA /* Site+CoreDataClass.swift in Sources */,
 				229EBA3828842C4A0033A6BA /* Present+CoreDataProperties.swift in Sources */,
 				6E94A3E128853B8F0076E703 /* DidCardShareViewController.swift in Sources */,
-				5DB7C00B2888552F003BB5EF /* MakeCardStoryController.swift in Sources */,
+				5DB7C00B2888552F003BB5EF /* MakeCardStoryViewController.swift in Sources */,
 				224AAF4528813A0F0053E66A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -24,7 +24,7 @@ class KeywordCollectionCell: UICollectionViewCell {
     private func bindState(_ name: String, _ select: Bool) {
         if select && count<4 {
             appDelegate?.selectedKeyword.append(name)
-            for keyword in MakeCardDescriptionView().keywords {
+            for keyword in MakeCardDescriptionViewController().keywords {
                 if (keyword.findKeyword(name: name)) {
                     keyword.state = true
                     count += 1
@@ -37,13 +37,13 @@ class KeywordCollectionCell: UICollectionViewCell {
         else {
             if let index = appDelegate?.selectedKeyword.firstIndex(of: name) {
                 appDelegate?.selectedKeyword.remove(at: index)
-                for keyword in MakeCardDescriptionView().keywords {
+                for keyword in MakeCardDescriptionViewController().keywords {
                         if (keyword.findKeyword(name: name)) {
                             keyword.state = false
-                            MakeCardDescriptionView().count -= 1
+                            MakeCardDescriptionViewController().count -= 1
                             print(keyword.name)
                             print(keyword.state)
-                            print(MakeCardDescriptionView().count)
+                            print(MakeCardDescriptionViewController().count)
                         }
                 }
             }
