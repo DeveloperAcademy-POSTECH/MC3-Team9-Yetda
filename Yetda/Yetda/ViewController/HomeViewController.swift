@@ -39,6 +39,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        if Storage.isFirstTime() {
+            let onBoardingVC = OnBoardingViewController()
+            onBoardingVC.modalPresentationStyle = .fullScreen
+            
+            self.present(onBoardingVC, animated: true, completion: nil)
+        }
     }
     
     override func viewDidLoad() {
@@ -77,6 +84,57 @@ class HomeViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
             cell.thumbnailImage.image = UIImage(named: sampleImages[indexPath.row - 1])
         }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CardCell.identifier, for: indexPath) as! CardCell
+        if (indexPath.row == 0) {
+            var config = YPImagePickerConfiguration()
+            config.library.maxNumberOfItems = 5 - self.imageCount
+            config.library.preSelectItemOnMultipleSelection = false
+            config.library.defaultMultipleSelection = true
+            config.library.mediaType = .photo
+            config.library.isSquareByDefault = false
+            config.onlySquareImagesFromCamera = false
+            config.hidesCancelButton = false
+            config.bottomMenuItemSelectedTextColour = UIColor(displayP3Red: 48/255, green: 113/255, blue: 231/255, alpha: 1.0)
+            config.startOnScreen = .library
+            config.wordings.libraryTitle = "모든 사진"
+            config.wordings.albumsTitle = "앨범 목록"
+            config.wordings.cameraTitle = "카메라"
+            config.wordings.cover = "커버 사진"
+            config.wordings.crop = "사진 크롭"
+            config.wordings.filter = "필터 적용"
+            config.wordings.save = "저장"
+            config.wordings.ok = "확인"
+            config.wordings.processing = "진행중"
+            config.wordings.cancel = "취소"
+            config.wordings.done = "완료"
+            config.wordings.next = "다음"
+            config.wordings.warningMaxItemsLimit = "최대 5장까지 첨부 가능합니다"
+            
+            let imagePicker = YPImagePicker(configuration: config)
+            imagePicker.didFinishPicking{[unowned imagePicker] items, _ in
+                var newImages:[UIImage] = []
+                
+                for item in items {
+                    switch item{
+                    case .photo(let photo):
+                        newImages += [photo.image]
+                    case .video:
+                        print("비디오는 아직 준비중이에요ㅜ")
+                    }
+                    
+                }
+//                self.selectedImages.accept(self.selectedImages.value+newImages)
+                imagePicker.dismiss(animated: true)
+            }
+            imagePicker.view.backgroundColor = .white
+            self.present(imagePicker, animated: true)
+        }
+        else {
+            
+        }
     }
     
     private func setTopView() {
@@ -155,52 +213,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
 //            self.navigationController?.pushViewController(ProfileViewController(), animated: true)
 //        }.disposed(by: disposeBag)
         
-        profileBtn.rx.tap.bind{
-            var config = YPImagePickerConfiguration()
-            config.library.maxNumberOfItems = 5 - self.imageCount
-            config.library.preSelectItemOnMultipleSelection = false
-            config.library.defaultMultipleSelection = true
-            config.library.mediaType = .photo
-            config.library.isSquareByDefault = false
-            config.onlySquareImagesFromCamera = false
-            config.hidesCancelButton = false
-            config.bottomMenuItemSelectedTextColour = UIColor(displayP3Red: 48/255, green: 113/255, blue: 231/255, alpha: 1.0)
-            config.startOnScreen = .library
-            config.wordings.libraryTitle = "모든 사진"
-            config.wordings.albumsTitle = "앨범 목록"
-            config.wordings.cameraTitle = "카메라"
-            config.wordings.cover = "커버 사진"
-            config.wordings.crop = "사진 크롭"
-            config.wordings.filter = "필터 적용"
-            config.wordings.save = "저장"
-            config.wordings.ok = "확인"
-            config.wordings.processing = "진행중"
-            config.wordings.cancel = "취소"
-            config.wordings.done = "완료"
-            config.wordings.next = "다음"
-            config.wordings.warningMaxItemsLimit = "최대 5장까지 첨부 가능합니다"
-            
-            let imagePicker = YPImagePicker(configuration: config)
-            imagePicker.didFinishPicking{[unowned imagePicker] items, _ in
-                var newImages:[UIImage] = []
-                
-                for item in items {
-                    switch item{
-                    case .photo(let photo):
-                        newImages += [photo.image]
-                    case .video:
-                        print("비디오는 아직 준비중이에요ㅜ")
-                    }
-                    
-                }
-//                self.selectedImages.accept(self.selectedImages.value+newImages)
-                imagePicker.dismiss(animated: true)
-            }
-            imagePicker.view.backgroundColor = .white
-            self.present(imagePicker, animated: true)
-        }.disposed(by: disposeBag)
-
-        
     }
     
     private func setCityLabel() {
@@ -239,4 +251,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegateFlowLayout, 
 //        self.navigationController!.pushViewController(controller, animated: true)
     }
 }
+
+
 
