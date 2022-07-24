@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Did Card Share View Controller-->
+        <!--카드카드~-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController storyboardIdentifier="DidCardShareViewController" id="Y6W-OH-hqX" customClass="DidCardShareViewController" customModule="Yetda" customModuleProvider="target" sceneMemberID="viewController">
@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zby-V1-4mG">
-                                <rect key="frame" x="203.5" y="443" width="7.5" height="20.5"/>
+                                <rect key="frame" x="203.5" y="465" width="7.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -30,13 +30,32 @@
                             <constraint firstItem="Zby-V1-4mG" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="pgN-P5-s0q"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="카드카드~" id="2fe-rM-kC3"/>
                     <connections>
                         <outlet property="testLabel" destination="Zby-V1-4mG" id="mvp-Zb-s9J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="30" y="97"/>
+            <point key="canvasLocation" x="939.13043478260875" y="96.428571428571431"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="yFH-Na-aNF">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="M7G-IC-WP5" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ki6-0c-0wQ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="mDs-rY-jTo"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kpc-Ui-eS0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="28.985507246376812" y="96.428571428571431"/>
         </scene>
     </scenes>
     <resources>
