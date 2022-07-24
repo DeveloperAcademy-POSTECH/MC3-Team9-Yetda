@@ -49,6 +49,7 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
         if let giftRecipientTextField = giftRecipientTextField {
             borderRadius(view: giftRecipientTextField).addLeftPadding()
         }
+        self.hideKeyboardWhenTappedAround()
 //        bindData()
     }
     
@@ -128,5 +129,17 @@ class Keyword {
         } else {
             return false
         }
+    }
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
