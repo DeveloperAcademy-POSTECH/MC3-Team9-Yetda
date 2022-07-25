@@ -18,6 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // MARK: 여기서 자기가 띄우고 싶은 스토리보드랑 뷰컨트롤러를 설정해주면 됩니다.
         guard let _ = (scene as? UIWindowScene) else { return }
+
                 let storyboard = UIStoryboard(name: "MakeCard", bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "MakeCardDescriptionViewController")
                 self.window?.rootViewController = vc
@@ -54,6 +55,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Save changes in the application's managed object context when the application transitions to the background.
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
-
     
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+          // kakao123456789://kakaolink
+          // kakao123456789://kakaolink?key1=value1&key2=value2
+          if let url = URLContexts.first?.url {
+              print("url : \(url)")
+              if ((url.query!.contains("second"))) {
+                  let storyboard = UIStoryboard(name: "DidPresent", bundle: nil)
+                  let vc = storyboard.instantiateViewController(withIdentifier: "DidPresentViewController") as? DidPresentViewController
+                  vc?.modalPresentationStyle = .overFullScreen
+                  self.window?.rootViewController?.present(vc!, animated: true)
+                  // TODO: 이 부분에서 데이터를 가공해서 보여주기
+                  // vc?.descriptionLabel.text = serverId.object.text
+                  
+              }
+          }
+      }
 }
