@@ -18,8 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // MARK: 여기서 자기가 띄우고 싶은 스토리보드랑 뷰컨트롤러를 설정해주면 됩니다.
         guard let _ = (scene as? UIWindowScene) else { return }
-                let storyboard = UIStoryboard(name: "SiteCollectionView", bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "SiteViewController")
+                let storyboard = UIStoryboard(name: "MakeCard", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "MakeCardDescriptionViewController")
                 self.window?.rootViewController = vc
                 self.window?.makeKeyAndVisible()
     }
