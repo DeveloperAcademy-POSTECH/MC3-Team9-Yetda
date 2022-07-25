@@ -48,10 +48,10 @@ class KeywordCollectionCell: UICollectionViewCell {
         customButton(keywordButton)
     }
     
+    
     func changeButtonState(_ button : UIButton) {
-        button.backgroundColor = button.isSelected ? UIColor(red: 211/255, green: 226/255, blue: 253/255, alpha: 0.1) : UIColor.white
-        button.layer.borderColor = button.isSelected ? CGColor(red: 48/255, green: 113/255, blue: 231/255, alpha: 0.5) : CGColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1)
-        
+        button.backgroundColor = button.isSelected ? UIColor(red: 211/255, green: 225/255, blue: 253/255, alpha: 0.1) : UIColor.white
+        button.layer.borderColor = button.isSelected ? CGColor(red: 211/255, green: 225/255, blue: 253/255, alpha: 1) : UIColor.white.cgColor
     }
 }
 
