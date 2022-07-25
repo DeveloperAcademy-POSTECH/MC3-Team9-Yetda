@@ -128,6 +128,8 @@ fastlane/test_output
 
 iOSInjectionProject/
 
+# End of https://www.toptal.com/developers/gitignore/api/swift,cocoapods,macos.DS_Store
+
 ### Xcode ###
 
 ## Xcode 8 and earlier
@@ -141,3 +143,4 @@ iOSInjectionProject/
 **/xcshareddata/WorkspaceSettings.xcsettings
 
 # End of https://www.toptal.com/developers/gitignore/api/xcode,cocoapods,swift,macos
+# End of https://www.toptal.com/developers/gitignore/api/swift,cocoapods,macos.DS_Store
