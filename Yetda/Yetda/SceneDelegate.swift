@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
                 let storyboard = UIStoryboard(name: "SiteCollectionView", bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "SiteViewController")
-                self.window?.rootViewController = vc
+                self.window?.rootViewController = HomeViewController()
                 self.window?.makeKeyAndVisible()
     }
 
