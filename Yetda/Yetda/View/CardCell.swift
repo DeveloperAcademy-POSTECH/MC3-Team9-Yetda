@@ -35,6 +35,19 @@ class CardCell: UICollectionViewCell {
     }
     
     private func setupCell() {
+        self.contentView.layer.cornerRadius = 20
+        self.contentView.clipsToBounds = true
+        self.contentView.layer.borderWidth = 2.0
+        self.contentView.layer.borderColor = UIColor.clear.cgColor
+        self.contentView.layer.masksToBounds = true
+
+        self.layer.shadowColor = UIColor.gray.cgColor
+        self.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        self.layer.shadowRadius = 5.0
+        self.layer.shadowOpacity = 0.5
+        self.layer.masksToBounds = false
+        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.contentView.layer.cornerRadius).cgPath
+        
         self.contentView.addSubview(thumbnailImage)
         setThumbnailImage()
         self.contentView.addSubview(nameLabel)
@@ -42,12 +55,9 @@ class CardCell: UICollectionViewCell {
     }
     
     private func setThumbnailImage() {
-        
         thumbnailImage.translatesAutoresizingMaskIntoConstraints = false
-        thumbnailImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-        thumbnailImage.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        thumbnailImage.trailingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-        thumbnailImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        thumbnailImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        thumbnailImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         
         thumbnailImage.clipsToBounds = true
         thumbnailImage.layer.cornerRadius = 20
@@ -55,21 +65,26 @@ class CardCell: UICollectionViewCell {
     }
     
     private func setNameLabel() {
-        
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -17).isActive = true
+        nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -13).isActive = true
         nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -13).isActive = true
-        nameLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        nameLabel.heightAnchor.constraint(equalToConstant: 16).isActive = true
+        nameLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        
+        let font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        nameLabel.font = font
+        nameLabel.textColor = .blue
+        nameLabel.backgroundColor = .white
+        nameLabel.layer.cornerRadius = 10
+        nameLabel.clipsToBounds = true
     }
     
     func setData(_ model: String) {
-        
-        self.nameLabel.text = "이름"
-        
-//        self.nameLabel.text = model.whosFor
-//        self.firstImage = UIImage(data: model.image1!)
-        thumbnailImage.image = UIImage(named: model)
+        if (model == "addPhoto") {
+            self.contentView.backgroundColor = .white
+            thumbnailImage.image = UIImage(named: "plus")
+        } else {
+            self.nameLabel.text = "  To. " + String(model.split(separator: ".")[0]) + "  "
+            thumbnailImage.image = UIImage(named: model)
+        }
     }
-    
 }
