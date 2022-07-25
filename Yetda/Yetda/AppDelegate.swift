@@ -11,12 +11,9 @@ import CoreData
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-<<<<<<< HEAD
-=======
     var selectedKeyword: [String] = []
 //    rxSwift
 
->>>>>>> 9bf02f24838d99344269adcf087fbfea39d5fe74
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true
