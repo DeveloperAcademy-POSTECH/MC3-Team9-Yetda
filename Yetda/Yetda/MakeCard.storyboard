@@ -368,20 +368,64 @@
                                     <constraint firstAttribute="height" constant="1" id="TJK-8u-CH4"/>
                                 </constraints>
                             </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="입력하기" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="NEH-wh-UXr">
+                                <rect key="frame" x="20" y="341.33333333333331" width="350" height="339.99999999999994"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="340" id="4yZ-lO-Z9h"/>
+                                </constraints>
+                                <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="15"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="선물과 함께 전할 이야기를 작성해 주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="skb-Cm-xLQ">
+                                <rect key="frame" x="20" y="312" width="256.33333333333331" height="19.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hAN-Tw-Eqm">
+                                <rect key="frame" x="20" y="733" width="350" height="58"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="58" id="efB-YC-iIM"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="다음">
+                                    <color key="titleColor" red="0.97647058819999999" green="0.98039215690000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" title="다음">
+                                    <backgroundConfiguration key="background" cornerRadius="10">
+                                        <color key="backgroundColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </backgroundConfiguration>
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="17"/>
+                                    <color key="baseForegroundColor" red="0.97647058819999999" green="0.98039215690000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </buttonConfiguration>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rDz-Xa-Mum"/>
                         <color key="backgroundColor" red="0.97647058819999999" green="0.98039215690000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="NEH-wh-UXr" firstAttribute="centerX" secondItem="Fuw-em-nST" secondAttribute="centerX" id="2fz-He-zT5"/>
                             <constraint firstItem="mEo-cg-sSE" firstAttribute="top" secondItem="rDz-Xa-Mum" secondAttribute="top" constant="42" id="9i6-Lq-4KT"/>
+                            <constraint firstItem="hAN-Tw-Eqm" firstAttribute="leading" secondItem="rDz-Xa-Mum" secondAttribute="leading" constant="20" id="Nt4-Ew-SIg"/>
+                            <constraint firstItem="skb-Cm-xLQ" firstAttribute="leading" secondItem="rDz-Xa-Mum" secondAttribute="leading" constant="20" id="OYA-lR-DyD"/>
+                            <constraint firstItem="rDz-Xa-Mum" firstAttribute="trailing" secondItem="hAN-Tw-Eqm" secondAttribute="trailing" constant="20" id="Phd-9R-QZ9"/>
                             <constraint firstItem="mEo-cg-sSE" firstAttribute="leading" secondItem="Y3g-h4-iKK" secondAttribute="leading" id="Q96-qP-2j3"/>
                             <constraint firstItem="mEo-cg-sSE" firstAttribute="centerX" secondItem="Fuw-em-nST" secondAttribute="centerX" id="Qet-iu-k1e"/>
+                            <constraint firstItem="skb-Cm-xLQ" firstAttribute="top" secondItem="Y3g-h4-iKK" secondAttribute="bottom" constant="25" id="S7S-aV-YUB"/>
                             <constraint firstItem="Y3g-h4-iKK" firstAttribute="top" secondItem="mEo-cg-sSE" secondAttribute="bottom" constant="21.666666666666629" id="V7P-1H-hwe"/>
+                            <constraint firstItem="NEH-wh-UXr" firstAttribute="top" secondItem="skb-Cm-xLQ" secondAttribute="bottom" constant="10" id="Z0W-w6-IVs"/>
+                            <constraint firstItem="rDz-Xa-Mum" firstAttribute="trailing" secondItem="NEH-wh-UXr" secondAttribute="trailing" constant="20" id="hL7-a6-tzF"/>
+                            <constraint firstItem="NEH-wh-UXr" firstAttribute="leading" secondItem="rDz-Xa-Mum" secondAttribute="leading" constant="20" id="q6O-EW-Gbk"/>
                             <constraint firstItem="mEo-cg-sSE" firstAttribute="trailing" secondItem="Y3g-h4-iKK" secondAttribute="trailing" id="rpU-8L-l9W"/>
+                            <constraint firstAttribute="bottom" secondItem="hAN-Tw-Eqm" secondAttribute="bottom" constant="53" id="sUm-nZ-l5y"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="카드 작성" id="Zqd-RT-lzc"/>
                     <connections>
                         <outlet property="locationLabel" destination="x2r-4e-bAQ" id="sEi-fx-WVv"/>
+                        <outlet property="storyTextView" destination="NEH-wh-UXr" id="FPS-z4-rtj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ohy-c9-2Pa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
