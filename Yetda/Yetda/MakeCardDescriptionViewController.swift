@@ -73,11 +73,6 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
             return cell
         }
     }
-    // 셀 너비 동적으로 조절하는 함수
-    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    //        return CGSize(width: keywords[indexPath.item].name.size(withAttributes: [NSAttributedString.Key : UIFont.systemFont(ofSize: 14)]).width + 20, height: 38)
-    //    }
-    
 //    private func bindData() {
 //
 //        let keywordList = BehaviorRelay<[Keyword]>(value: keywords)
@@ -91,7 +86,6 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
 //            keywords[indexPath.row].state = !state
 //        }
 //    }
-    
 }
 
 
@@ -111,7 +105,6 @@ class Keyword {
     init(name: String, state: Bool) {
         self.name = name
         self.state = state
-        
     }
     
     func findKeyword(name: String) -> Bool {
@@ -125,11 +118,11 @@ class Keyword {
 
 // textField 안에서 왼쪽 Padding 주는 함수
 extension UITextField {
-  func addLeftPadding() {
-    let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 6, height: self.frame.height))
-    self.leftView = paddingView
-    self.leftViewMode = ViewMode.always
-  }
+    func addLeftPadding() {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 6, height: self.frame.height))
+        self.leftView = paddingView
+        self.leftViewMode = ViewMode.always
+    }
 }
 
 extension UIViewController {

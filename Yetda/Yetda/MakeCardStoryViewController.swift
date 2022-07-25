@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITextViewDelegate {
     
     @IBOutlet weak var locationLabel: UILabel!
     var photos: [String] = ["photo1", "photo2", "photo3", "photo4", "photo5"]
@@ -16,16 +16,11 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        storyTextView.text = "입력하기"
-        storyTextView.textColor = UIColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1)
-        
-        
-        storyTextView.textContainerInset = .init(top: 15, left: 15, bottom: 15, right: 15)
-        storyTextView.layer.masksToBounds = true
-        storyTextView.layer.cornerRadius = 20.0
-        storyTextView.layer.borderWidth = 1
-        storyTextView.layer.borderColor = CGColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1)
-        
+        storyTextView.delegate = self
+        textViewDidBeginEditing(storyTextView)
+        textViewDidEndEditing(storyTextView)
+        customTextView(storyTextView)
+        self.hideKeyboardWhenTappedAround()
 //         Do any additional setup after loading the view.
     }
     
@@ -51,5 +46,14 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
             textView.text = "입력하기"
             textView.textColor = UIColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1)
         }
+    }
+    func customTextView(_ textView: UITextView) {
+        textView.text = "입력하기"
+        textView.textColor = UIColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1)
+        textView.textContainerInset = .init(top: 15, left: 15, bottom: 15, right: 15)
+        textView.layer.masksToBounds = true
+        textView.layer.cornerRadius = 20.0
+        textView.layer.borderWidth = 1
+        textView.layer.borderColor = CGColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1)
     }
 }

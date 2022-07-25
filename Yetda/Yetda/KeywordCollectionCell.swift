@@ -10,9 +10,7 @@ import UIKit
 class KeywordCollectionCell: UICollectionViewCell {
     
     let appDelegate = UIApplication.shared.delegate as? AppDelegate
-    
     var count = 0
-    
     
     @IBOutlet weak var keywordButton: UIButton!
     @IBAction func keywordButtonTapped(_ sender: UIButton) {
@@ -28,9 +26,6 @@ class KeywordCollectionCell: UICollectionViewCell {
                 if (keyword.findKeyword(name: name)) {
                     keyword.state = true
                     count += 1
-                    print(keyword.name)
-                    print(keyword.state)
-                    print(count)
                 }
             }
         }
@@ -38,13 +33,10 @@ class KeywordCollectionCell: UICollectionViewCell {
             if let index = appDelegate?.selectedKeyword.firstIndex(of: name) {
                 appDelegate?.selectedKeyword.remove(at: index)
                 for keyword in MakeCardDescriptionViewController().keywords {
-                        if (keyword.findKeyword(name: name)) {
-                            keyword.state = false
-                            MakeCardDescriptionViewController().count -= 1
-                            print(keyword.name)
-                            print(keyword.state)
-                            print(MakeCardDescriptionViewController().count)
-                        }
+                    if (keyword.findKeyword(name: name)) {
+                        keyword.state = false
+                        MakeCardDescriptionViewController().count -= 1
+                    }
                 }
             }
         }
