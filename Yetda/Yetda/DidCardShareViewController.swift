@@ -7,12 +7,8 @@
 
 import UIKit
 
-class DidCardShareViewController: UIViewController, ShareKaKao {
+class DidCardShareViewController: UIViewController {
     @IBOutlet weak var testLabel: UILabel!
-    
-    lazy var shareButton: UIButton = {
-        return configureShareButton(self, action: #selector(shareButtonAction))
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,11 +24,5 @@ class DidCardShareViewController: UIViewController, ShareKaKao {
                 self.present(vc, animated: true)
             }
         }
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: shareButton)
-    }
-    
-    @objc func shareButtonAction(sender: UIButton!) {
-        shareKaKao(self, key: "Id", value: "2")
     }
 }
