@@ -8,6 +8,6 @@
 import UIKit
 
 class PhotoCollectionCell: UICollectionViewCell {
-    @IBOutlet weak var chosenPhoto: UIImageView!
-    
+    @IBOutlet weak var chosenPhotoDescription: UIImageView!
+    @IBOutlet weak var chosenPhotoStory: UIImageView!
 }

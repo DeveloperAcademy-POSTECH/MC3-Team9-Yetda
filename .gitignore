@@ -1,5 +1,7 @@
-# Created by https://www.toptal.com/developers/gitignore/api/swift,cocoapods,macos
-# Edit at https://www.toptal.com/developers/gitignore?templates=swift,cocoapods,macos
+Info.plist
+
+# Created by https://www.toptal.com/developers/gitignore/api/xcode,cocoapods,swift,macos
+# Edit at https://www.toptal.com/developers/gitignore?templates=xcode,cocoapods,swift,macos
 
 ### CocoaPods ###
 ## CocoaPods GitIgnore Template
@@ -126,4 +128,20 @@ fastlane/test_output
 
 iOSInjectionProject/
 
+<<<<<<< HEAD
 # End of https://www.toptal.com/developers/gitignore/api/swift,cocoapods,macos.DS_Store
+=======
+### Xcode ###
+
+## Xcode 8 and earlier
+
+### Xcode Patch ###
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcworkspace/contents.xcworkspacedata
+/*.gcno
+**/xcshareddata/WorkspaceSettings.xcsettings
+
+# End of https://www.toptal.com/developers/gitignore/api/xcode,cocoapods,swift,macos
+>>>>>>> d172f43eb5416acf912eaaa858c545101c86cf02

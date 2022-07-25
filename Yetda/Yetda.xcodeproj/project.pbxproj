@@ -31,10 +31,14 @@
 		229EBA3628842C4A0033A6BA /* Site+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229EBA3228842C4A0033A6BA /* Site+CoreDataProperties.swift */; };
 		229EBA3728842C4A0033A6BA /* Present+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229EBA3328842C4A0033A6BA /* Present+CoreDataClass.swift */; };
 		229EBA3828842C4A0033A6BA /* Present+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229EBA3428842C4A0033A6BA /* Present+CoreDataProperties.swift */; };
-		5DDD60F028853EC40077742D /* MakeCardDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDD60EF28853EC40077742D /* MakeCardDescriptionView.swift */; };
+		5DA0A056288A82DC00066653 /* MakeCard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DDD60F528854AEE0077742D /* MakeCard.storyboard */; };
+		5DB7C00B2888552F003BB5EF /* MakeCardStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB7C00A2888552F003BB5EF /* MakeCardStoryViewController.swift */; };
+		5DDD60F028853EC40077742D /* MakeCardDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDD60EF28853EC40077742D /* MakeCardDescriptionViewController.swift */; };
 		5DDD60F228853FC80077742D /* PhotoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDD60F128853FC80077742D /* PhotoCollectionCell.swift */; };
-		5DDD60F628854AEE0077742D /* MakeCard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DDD60F528854AEE0077742D /* MakeCard.storyboard */; };
 		5DDD60FA2885CBE50077742D /* KeywordCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDD60F92885CBE50077742D /* KeywordCollectionCell.swift */; };
+		6365B0311E0EA6CFEAB0651A /* Pods_Yetda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1272BAE88449EC3D2A6E5F4 /* Pods_Yetda.framework */; };
+		6E27CDAC288E61E9009B9691 /* ShareButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E27CDAB288E61E9009B9691 /* ShareButton+Extension.swift */; };
+		6E27CDAE288E621F009B9691 /* AbleShareKaKao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E27CDAD288E621F009B9691 /* AbleShareKaKao.swift */; };
 		6E94A3DF28853B500076E703 /* DidCardShare.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E94A3DE28853B500076E703 /* DidCardShare.storyboard */; };
 		6E94A3E128853B8F0076E703 /* DidCardShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E94A3E028853B8F0076E703 /* DidCardShareViewController.swift */; };
 		6E94A3E328853C380076E703 /* DidPresent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E94A3E228853C380076E703 /* DidPresent.storyboard */; };
@@ -78,10 +82,13 @@
 		229EBA3228842C4A0033A6BA /* Site+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Site+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		229EBA3328842C4A0033A6BA /* Present+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Present+CoreDataClass.swift"; sourceTree = "<group>"; };
 		229EBA3428842C4A0033A6BA /* Present+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Present+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		5DDD60EF28853EC40077742D /* MakeCardDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCardDescriptionView.swift; sourceTree = "<group>"; };
+		5DB7C00A2888552F003BB5EF /* MakeCardStoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCardStoryViewController.swift; sourceTree = "<group>"; };
+		5DDD60EF28853EC40077742D /* MakeCardDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCardDescriptionViewController.swift; sourceTree = "<group>"; };
 		5DDD60F128853FC80077742D /* PhotoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionCell.swift; sourceTree = "<group>"; };
 		5DDD60F528854AEE0077742D /* MakeCard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MakeCard.storyboard; sourceTree = "<group>"; };
 		5DDD60F92885CBE50077742D /* KeywordCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordCollectionCell.swift; sourceTree = "<group>"; };
+		6E27CDAB288E61E9009B9691 /* ShareButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShareButton+Extension.swift"; sourceTree = "<group>"; };
+		6E27CDAD288E621F009B9691 /* AbleShareKaKao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbleShareKaKao.swift; sourceTree = "<group>"; };
 		6E94A3DE28853B500076E703 /* DidCardShare.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DidCardShare.storyboard; sourceTree = "<group>"; };
 		6E94A3E028853B8F0076E703 /* DidCardShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DidCardShareViewController.swift; sourceTree = "<group>"; };
 		6E94A3E228853C380076E703 /* DidPresent.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DidPresent.storyboard; sourceTree = "<group>"; };
@@ -90,6 +97,9 @@
 		736D28862885434800F95DFD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		736D2888288547F000F95DFD /* CardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListView.swift; sourceTree = "<group>"; };
 		736D288B28854CAE00F95DFD /* CardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListViewModel.swift; sourceTree = "<group>"; };
+		939E9F511ED97B3A60413A4C /* Pods-Yetda.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yetda.release.xcconfig"; path = "Target Support Files/Pods-Yetda/Pods-Yetda.release.xcconfig"; sourceTree = "<group>"; };
+		A1272BAE88449EC3D2A6E5F4 /* Pods_Yetda.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yetda.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECBA2707E0AAC4B2197AA5CC /* Pods-Yetda.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yetda.debug.xcconfig"; path = "Target Support Files/Pods-Yetda/Pods-Yetda.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +110,7 @@
 				736D2891288673B000F95DFD /* RxSwift in Frameworks */,
 				7355FEE5288708B0009F32E3 /* YPImagePicker in Frameworks */,
 				736D288F288673B000F95DFD /* RxCocoa in Frameworks */,
+				6365B0311E0EA6CFEAB0651A /* Pods_Yetda.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,6 +146,7 @@
 				224AAF4128813A0F0053E66A /* Yetda */,
 				224AAF4028813A0F0053E66A /* Products */,
 				7355FEE6288709F1009F32E3 /* Frameworks */,
+				26D4EAE00CF428049DCF6A7B /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -158,10 +170,11 @@
 				224AAF4428813A0F0053E66A /* SceneDelegate.swift */,
 				224AAF4628813A0F0053E66A /* ViewController.swift */,
 				224AAF4828813A0F0053E66A /* Main.storyboard */,
-				5DDD60EF28853EC40077742D /* MakeCardDescriptionView.swift */,
+				5DDD60F528854AEE0077742D /* MakeCard.storyboard */,
+				5DB7C00A2888552F003BB5EF /* MakeCardStoryViewController.swift */,
+				5DDD60EF28853EC40077742D /* MakeCardDescriptionViewController.swift */,
 				5DDD60F128853FC80077742D /* PhotoCollectionCell.swift */,
 				5DDD60F92885CBE50077742D /* KeywordCollectionCell.swift */,
-				5DDD60F528854AEE0077742D /* MakeCard.storyboard */,
 				6E94A3DE28853B500076E703 /* DidCardShare.storyboard */,
 				6E94A3E228853C380076E703 /* DidPresent.storyboard */,
 				6E94A3E028853B8F0076E703 /* DidCardShareViewController.swift */,
@@ -170,6 +183,8 @@
 				2241F12A288AB37E0044E704 /* SiteCollectionView.storyboard */,
 				2241F12B288AB37E0044E704 /* SiteModel.swift */,
 				2241F12C288AB37E0044E704 /* SiteViewController.swift */,
+				6E27CDAB288E61E9009B9691 /* ShareButton+Extension.swift */,
+				6E27CDAD288E621F009B9691 /* AbleShareKaKao.swift */,
 				13E7EE65288ABD9F001090EC /* LocalizingFile.strings */,
 				224AAF4E28813A110053E66A /* Assets.xcassets */,
 				224AAF5028813A110053E66A /* LaunchScreen.storyboard */,
@@ -179,9 +194,19 @@
 			path = Yetda;
 			sourceTree = "<group>";
 		};
+		26D4EAE00CF428049DCF6A7B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ECBA2707E0AAC4B2197AA5CC /* Pods-Yetda.debug.xcconfig */,
+				939E9F511ED97B3A60413A4C /* Pods-Yetda.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		7355FEE6288709F1009F32E3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A1272BAE88449EC3D2A6E5F4 /* Pods_Yetda.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -221,9 +246,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 224AAF5628813A110053E66A /* Build configuration list for PBXNativeTarget "Yetda" */;
 			buildPhases = (
+				0F443D64BCFD659B6EB95EBC /* [CP] Check Pods Manifest.lock */,
 				224AAF3B28813A0F0053E66A /* Sources */,
 				224AAF3C28813A0F0053E66A /* Frameworks */,
 				224AAF3D28813A0F0053E66A /* Resources */,
+				ED078AB555846EE3254094AD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -286,6 +313,7 @@
 				13E7EE63288ABD9F001090EC /* LocalizingFile.strings in Resources */,
 				5DDD60F628854AEE0077742D /* MakeCard.storyboard in Resources */,
 				2241F125288AB2010044E704 /* SpoqaHanSansNeo-Regular.ttf in Resources */,
+				224AAF5A28813A500053E66A /* .gitignore in Resources */,
 				224AAF5228813A110053E66A /* LaunchScreen.storyboard in Resources */,
 				6E94A3E328853C380076E703 /* DidPresent.storyboard in Resources */,
 				224AAF4F28813A110053E66A /* Assets.xcassets in Resources */,
@@ -295,10 +323,53 @@
 				2241F129288AB2010044E704 /* SpoqaHanSansNeo-Thin.ttf in Resources */,
 				2241F127288AB2010044E704 /* SpoqaHanSansNeo-Light.ttf in Resources */,
 				6E94A3DF28853B500076E703 /* DidCardShare.storyboard in Resources */,
+				5DA0A056288A82DC00066653 /* MakeCard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0F443D64BCFD659B6EB95EBC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Yetda-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ED078AB555846EE3254094AD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Yetda/Pods-Yetda-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Yetda/Pods-Yetda-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Yetda/Pods-Yetda-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		224AAF3B28813A0F0053E66A /* Sources */ = {
@@ -310,6 +381,7 @@
 				6E94A3E528853C4A0076E703 /* DidPresentViewController.swift in Sources */,
 				229EBA3628842C4A0033A6BA /* Site+CoreDataProperties.swift in Sources */,
 				5DDD60FA2885CBE50077742D /* KeywordCollectionCell.swift in Sources */,
+				6E27CDAC288E61E9009B9691 /* ShareButton+Extension.swift in Sources */,
 				2241F11C288AB1900044E704 /* OnBoardingViewController.swift in Sources */,
 				736D28742885331D00F95DFD /* CardCell.swift in Sources */,
 				229EBA3728842C4A0033A6BA /* Present+CoreDataClass.swift in Sources */,
@@ -322,10 +394,13 @@
 				736D28872885434800F95DFD /* HomeViewController.swift in Sources */,
 				2241F130288AB37F0044E704 /* SiteViewController.swift in Sources */,
 				224AAF4328813A0F0053E66A /* AppDelegate.swift in Sources */,
+
 				5DDD60F028853EC40077742D /* MakeCardDescriptionView.swift in Sources */,
+				6E27CDAE288E621F009B9691 /* AbleShareKaKao.swift in Sources */,
 				229EBA3528842C4A0033A6BA /* Site+CoreDataClass.swift in Sources */,
 				229EBA3828842C4A0033A6BA /* Present+CoreDataProperties.swift in Sources */,
 				6E94A3E128853B8F0076E703 /* DidCardShareViewController.swift in Sources */,
+				5DB7C00B2888552F003BB5EF /* MakeCardStoryViewController.swift in Sources */,
 				224AAF4528813A0F0053E66A /* SceneDelegate.swift in Sources */,
 				2241F131288AB37F0044E704 /* SiteCell.swift in Sources */,
 			);
@@ -482,12 +557,13 @@
 		};
 		224AAF5728813A110053E66A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECBA2707E0AAC4B2197AA5CC /* Pods-Yetda.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JASCMY8XL7;
+				DEVELOPMENT_TEAM = PCJ686F4KQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Yetda/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
@@ -501,7 +577,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.guell.Yetda;
+				PRODUCT_BUNDLE_IDENTIFIER = sdd.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -511,12 +587,13 @@
 		};
 		224AAF5828813A110053E66A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 939E9F511ED97B3A60413A4C /* Pods-Yetda.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JASCMY8XL7;
+				DEVELOPMENT_TEAM = PCJ686F4KQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Yetda/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
@@ -530,7 +607,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.guell.Yetda;
+				PRODUCT_BUNDLE_IDENTIFIER = sdd.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
