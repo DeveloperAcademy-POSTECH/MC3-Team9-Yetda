@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
                 let storyboard = UIStoryboard(name: "SiteCollectionView", bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "SiteViewController")
-                self.window?.rootViewController = HomeViewController()
+                self.window?.rootViewController = vc
                 self.window?.makeKeyAndVisible()
     }
 

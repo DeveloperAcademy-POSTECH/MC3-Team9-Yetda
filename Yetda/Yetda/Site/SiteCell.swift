@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Hero
 
 extension String {var localized: String {
     return NSLocalizedString(self, tableName: "LocalizingFile", value: self, comment: "")}
@@ -14,14 +15,17 @@ extension String {var localized: String {
 
 class SiteCell: UICollectionViewCell {
     
-   
-    
     @IBOutlet weak var siteLabel: UILabel!
     @IBOutlet weak var siteImage: UIImageView!
     @IBOutlet weak var siteShadowCell: UIImageView!
     @IBOutlet weak var sitePlaceIcon: UIImageView!
     
     func configure(_ data: SiteModel) {
+        
+        self.isHeroEnabled = true
+        self.hero.id = "\(data.name)".localized
+        self.hero.modifiers = [.cascade]
+        
         sitePlaceIcon.image = UIImage(named: "sitePlaceIcon")
         siteLabel.text = "\(data.name)".localized
         
@@ -33,13 +37,11 @@ class SiteCell: UICollectionViewCell {
         siteImage.layer.cornerRadius = 20
         siteImage.clipsToBounds = true
         
-        
-        
         siteShadowCell.image = UIImage(named: "ShadowCell")
         siteShadowCell.contentMode = .scaleAspectFill
         siteShadowCell.layer.cornerRadius = 20
         siteShadowCell.clipsToBounds = true
-        
-        
     }
+    
+    
 }
