@@ -26,7 +26,7 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
         textViewDidEndEditing(storyTextView)
         self.hideKeyboardWhenTappedAround()
         
-        //         Do any additional setup after loading the view.
+        // Do any additional setup after loading the view.
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

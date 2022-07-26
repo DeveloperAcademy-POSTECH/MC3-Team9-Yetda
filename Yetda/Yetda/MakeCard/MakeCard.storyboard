@@ -181,9 +181,6 @@
                                                             <state key="normal" title="☀️햇빛쨍쨍">
                                                                 <color key="titleColor" systemColor="labelColor"/>
                                                             </state>
-                                                            <connections>
-                                                                <action selector="keywordButtonTapped:" destination="fVb-ik-3Oc" eventType="touchUpInside" id="ItZ-sG-nAf"/>
-                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <constraints>
