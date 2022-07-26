@@ -12,7 +12,6 @@ extension String {var localized: String {
     return NSLocalizedString(self, tableName: "LocalizingFile", value: self, comment: "")}
 }
 
-
 class SiteCell: UICollectionViewCell {
     
     @IBOutlet weak var siteLabel: UILabel!
@@ -42,6 +41,4 @@ class SiteCell: UICollectionViewCell {
         siteShadowCell.layer.cornerRadius = 20
         siteShadowCell.clipsToBounds = true
     }
-    
-    
 }

@@ -13,7 +13,6 @@ import Hero
 
 class SiteViewController: UIViewController, UICollectionViewDelegate {
     
-    
     @IBOutlet weak var siteViewAirplaneIcon: UIImageView!
     @IBOutlet weak var siteTitleLabel: UILabel!
     @IBOutlet weak var siteViewButton: UIButton!
@@ -60,8 +59,6 @@ class SiteViewController: UIViewController, UICollectionViewDelegate {
         snapshot.appendItems(list, toSection: .main)
         siteDataSource.apply(snapshot)
     
-//        self.isHeroEnabled = true
-//        self.siteCollectionView.hero.id = "site"
         self.hero.modalAnimationType = .fade
         bindTouch()
     }

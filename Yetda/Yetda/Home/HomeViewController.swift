@@ -51,7 +51,6 @@ class HomeViewController: UIViewController {
         
         self.isHeroEnabled = true
         self.cardListView.hero.id = "후쿠오카"
-//        self.hero.modalAnimationType = .selectBy(presenting: .pull(direction: .up), dismissing: .slide(direction: .down))
         self.hero.modalAnimationType = .fade
     }
     
@@ -118,10 +117,6 @@ class HomeViewController: UIViewController {
         
         profileBtn.menu = UIMenu(title: "", image: nil, identifier: nil, options: .displayInline, children: menuItems)
         profileBtn.showsMenuAsPrimaryAction = true
-        
-//        profileBtn.rx.tap.bind {
-//            self.navigationController?.pushViewController(ProfileViewController(), animated: true)
-//        }.disposed(by: disposeBag)
         
     }
     
