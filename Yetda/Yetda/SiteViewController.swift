@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SwiftUI
 
 class SiteViewController: UIViewController, UICollectionViewDelegate {
     
@@ -16,8 +15,9 @@ class SiteViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var siteViewButton: UIButton!
     @IBOutlet weak var siteCollectionView: UICollectionView!
     @IBOutlet var siteMenu: UIMenu!
+    @IBOutlet var siteView: UIView!
     
-    let list = [SiteModel(name: "Fukuoka"), SiteModel(name: "Akita"), SiteModel(name: "Fukushima"), SiteModel(name: "Tokyo"), SiteModel(name: "Nagasaki")]
+    let list = [SiteModel(name: "Fukuoka"), SiteModel(name: "Akita"), SiteModel(name: "Fukushima"), SiteModel(name: "Tokyo"), SiteModel(name: "Nagasaki")] //TODO: 임시데이터 상수값이기 때문에 데이터 연결 후 삭제해랴 합니다.
     
     typealias Item = SiteModel
     enum Section {
@@ -28,7 +28,9 @@ class SiteViewController: UIViewController, UICollectionViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        siteCollectionView.layer.cornerRadius = 20
+//        siteCollectionView.layer.cornerRadius = 20
+        
+        self.makeSiteSearchBar()
         
         lazy var menuChildren: [UIAction] = {
             return [
@@ -56,6 +58,29 @@ class SiteViewController: UIViewController, UICollectionViewDelegate {
         siteDataSource.apply(snapshot)
     }
     
+    func makeSiteSearchBar() {
+        
+        let siteSearchBar = UISearchBar()
+        siteSearchBar.placeholder = "여행지를 추가해주세요"
+        siteSearchBar.searchBarStyle = .minimal
+        siteSearchBar.backgroundColor = .systemBackground
+        siteSearchBar.sizeToFit()
+        siteSearchBar.frame.size.width = siteCollectionView.frame.size.width
+        siteSearchBar.layer.cornerRadius = 20
+        siteSearchBar.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMaxXMinYCorner)
+        
+        siteView.addSubview(siteSearchBar)
+        
+        siteSearchBar.translatesAutoresizingMaskIntoConstraints = false
+        
+        siteSearchBar.topAnchor.constraint(equalTo: siteView.topAnchor, constant: 189).isActive = true
+        siteSearchBar.widthAnchor.constraint(equalToConstant: siteCollectionView.frame.size.width).isActive = true
+        siteSearchBar.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        
+        let directionalMargins = NSDirectionalEdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 12)
+        siteSearchBar.directionalLayoutMargins = directionalMargins
+    }
+    
     private func layout() -> UICollectionViewCompositionalLayout {
         
         let UICClayoutInsetSize: CGFloat = UIScreen.main.bounds.width - 24
@@ -74,4 +99,5 @@ class SiteViewController: UIViewController, UICollectionViewDelegate {
         return UICollectionViewCompositionalLayout(section: section)
     }
 }
+
 

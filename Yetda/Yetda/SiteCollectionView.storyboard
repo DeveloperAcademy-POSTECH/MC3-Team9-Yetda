@@ -22,7 +22,7 @@
                                 <rect key="frame" x="-12" y="0.0" width="414" height="896"/>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Hxf-zV-ICX">
-                                <rect key="frame" x="0.0" y="183" width="390" height="713"/>
+                                <rect key="frame" x="0.0" y="248" width="390" height="713"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rzk-yg-lrl">
                                     <size key="itemSize" width="350" height="141"/>
@@ -48,13 +48,13 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="350" height="141"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBO-8b-1Ow">
-                                                    <rect key="frame" x="48" y="55.666666666666657" width="64" height="30"/>
+                                                    <rect key="frame" x="48" y="55.666666666666686" width="64" height="30"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sitePlaceIcon" translatesAutoresizingMaskIntoConstraints="NO" id="mY7-9T-eoA">
-                                                    <rect key="frame" x="18" y="54.666666666666657" width="27" height="32"/>
+                                                    <rect key="frame" x="18" y="54.666666666666686" width="27" height="32"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -87,13 +87,13 @@
                                 </cells>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="여행지 선택" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21h-fc-t9H">
-                                <rect key="frame" x="57" y="127.33333333333331" width="137" height="36"/>
+                                <rect key="frame" x="57" y="142.33333333333334" width="137" height="36"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="airplane.departure" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="QCn-gJ-LFB">
-                                <rect key="frame" x="20" y="136.66666666666666" width="25" height="17.333333333333343"/>
+                                <rect key="frame" x="20" y="151.66666666666666" width="25" height="17.333333333333343"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zGj-Ud-BCq">
@@ -113,12 +113,12 @@
                             <constraint firstAttribute="trailing" secondItem="zGj-Ud-BCq" secondAttribute="trailing" constant="20" id="FWk-QA-ZIT"/>
                             <constraint firstItem="21h-fc-t9H" firstAttribute="leading" secondItem="QCn-gJ-LFB" secondAttribute="trailing" constant="11.880000000000001" id="Gdj-WQ-FSo"/>
                             <constraint firstItem="QCn-gJ-LFB" firstAttribute="centerY" secondItem="21h-fc-t9H" secondAttribute="centerY" id="Vga-ZR-0du"/>
-                            <constraint firstItem="Hxf-zV-ICX" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="139" id="jpy-VD-jBH"/>
+                            <constraint firstItem="Hxf-zV-ICX" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="248" id="jpy-VD-jBH"/>
                             <constraint firstItem="KRa-H3-SeM" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="1.06161" id="k5a-2e-NqS"/>
                             <constraint firstItem="Hxf-zV-ICX" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.844787" id="lr1-Xi-j1f"/>
                             <constraint firstItem="QCn-gJ-LFB" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" constant="20" id="nC2-5W-Gkh"/>
                             <constraint firstItem="21h-fc-t9H" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="57" id="qwH-DU-lCt"/>
-                            <constraint firstItem="Hxf-zV-ICX" firstAttribute="top" secondItem="21h-fc-t9H" secondAttribute="bottom" constant="19.579999999999998" id="rLG-uU-Xfh"/>
+                            <constraint firstItem="Hxf-zV-ICX" firstAttribute="top" secondItem="21h-fc-t9H" secondAttribute="bottom" constant="69.579999999999998" id="rLG-uU-Xfh"/>
                             <constraint firstItem="Hxf-zV-ICX" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" id="vgr-At-xaq"/>
                             <constraint firstAttribute="top" secondItem="KRa-H3-SeM" secondAttribute="top" id="xij-Bc-UmP"/>
                         </constraints>
@@ -127,6 +127,7 @@
                         <outlet property="siteCollectionView" destination="Hxf-zV-ICX" id="lMY-SG-ngN"/>
                         <outlet property="siteMenu" destination="lZZ-MS-5PC" id="It6-fQ-vqP"/>
                         <outlet property="siteTitleLabel" destination="21h-fc-t9H" id="cNi-ia-oNX"/>
+                        <outlet property="siteView" destination="5EZ-qb-Rvc" id="GeX-cx-Sfe"/>
                         <outlet property="siteViewAirplaneIcon" destination="QCn-gJ-LFB" id="hH5-z7-bct"/>
                         <outlet property="siteViewButton" destination="zGj-Ud-BCq" id="gET-hc-TO4"/>
                     </connections>
