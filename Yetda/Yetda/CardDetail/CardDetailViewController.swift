@@ -14,7 +14,7 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate {
     var dummyImages = ["Aichi", "Akita", "Aomori", "Chiba"]
     
     private let keywords = Keywords()
-    private let contents = "QWERTYQWERTYQWERTYQWEQRTYQWERTYQWERTYQWERTYQWERTYQWERTY"
+    private let contents = "QWERTYQWERTYQWERTYQWEQRTYQWERTYQWERTYQWERTYQWERTYQWERTYQWERTYQWERTYQWERTYQWEQRTYQWERTYQWERTYQWERTYQWERTYQWERTY"
     
     let pageSize = 4
     
@@ -116,6 +116,13 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
         let width = collectionView.frame.width - 10
         let keywordWidth = collectionView.frame.width / 4 - 10
         
+        let cellSize = NSString(string: contents).boundingRect(
+            with: CGSize(width: width, height: CGFloat.greatestFiniteMagnitude),
+            options: .usesLineFragmentOrigin,
+            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)],
+            context: nil
+        )
+        
         switch (indexPath.section) {
         case site:
             return CGSize(width: width, height: 50)
@@ -124,7 +131,7 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
         case keywordsCell:
             return CGSize(width: keywordWidth, height: keywordWidth)
         case description:
-            return CGSize(width: width, height: 300)
+            return CGSize(width: width, height: cellSize.height + 20)
         case map:
             return CGSize(width: width, height: 100)
         default:
