@@ -8,6 +8,10 @@ target 'Yetda' do
   # Pods for Yetda
 
   pod 'KakaoSDK'
+  pod 'Firebase/Auth'
+  pod 'GoogleSignIn'
+  pod 'Firebase/Firestore'
+  pod 'FirebaseFirestoreSwift'
 
 end
 
