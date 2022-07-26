@@ -29,10 +29,9 @@ class CardListViewModel: ObservableObject {
     }
     
     func getPresentAt(_ index: IndexPath) -> Present? {
-        
+        getPresentList()
         let present = presentList.value[index.item]
         return present
-        
     }
     
     func didSelect(_ index: IndexPath) {
@@ -43,3 +42,4 @@ class CardListViewModel: ObservableObject {
 //        controller.cardSelected = present
     }
 }
+
