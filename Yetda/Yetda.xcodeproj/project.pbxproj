@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1332D285288FB1A70066CD01 /* Yetda.app in Resources */ = {isa = PBXBuildFile; fileRef = 224AAF3F28813A0F0053E66A /* Yetda.app */; platformFilter = ios; };
 		13E7EE63288ABD9F001090EC /* LocalizingFile.strings in Resources */ = {isa = PBXBuildFile; fileRef = 13E7EE65288ABD9F001090EC /* LocalizingFile.strings */; };
 		2241F11B288AB1900044E704 /* OnBoardingSecondStepController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2241F118288AB1900044E704 /* OnBoardingSecondStepController.swift */; };
 		2241F11C288AB1900044E704 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2241F119288AB1900044E704 /* OnBoardingViewController.swift */; };
@@ -367,6 +368,7 @@
 				2241F127288AB2010044E704 /* SpoqaHanSansNeo-Light.ttf in Resources */,
 				6E94A3DF28853B500076E703 /* DidCardShare.storyboard in Resources */,
 				5DA0A056288A82DC00066653 /* MakeCard.storyboard in Resources */,
+				1332D285288FB1A70066CD01 /* Yetda.app in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
