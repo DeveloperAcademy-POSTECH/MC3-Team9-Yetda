@@ -7,15 +7,19 @@
 
 import UIKit
 import SwiftUI
+import RxSwift
+import RxCocoa
+import Hero
 
 class SiteViewController: UIViewController, UICollectionViewDelegate {
-    
     
     @IBOutlet weak var siteViewAirplaneIcon: UIImageView!
     @IBOutlet weak var siteTitleLabel: UILabel!
     @IBOutlet weak var siteViewButton: UIButton!
     @IBOutlet weak var siteCollectionView: UICollectionView!
     @IBOutlet var siteMenu: UIMenu!
+    
+    let disposeBag = DisposeBag()
     
     let list = [SiteModel(name: "Fukuoka"), SiteModel(name: "Akita"), SiteModel(name: "Fukushima"), SiteModel(name: "Tokyo"), SiteModel(name: "Nagasaki")]
     
@@ -54,12 +58,15 @@ class SiteViewController: UIViewController, UICollectionViewDelegate {
         snapshot.appendSections([.main])
         snapshot.appendItems(list, toSection: .main)
         siteDataSource.apply(snapshot)
+    
+        self.hero.modalAnimationType = .fade
+        bindTouch()
     }
     
     private func layout() -> UICollectionViewCompositionalLayout {
         
-        let UICClayoutInsetSize: CGFloat = UIScreen.main.bounds.width - 24
-        let spacingSize: CGFloat = 16
+        let UICClayoutInsetSize: CGFloat = UIScreen.main.bounds.width - 30
+        let spacingSize: CGFloat = 15
         
         let itemsize = NSCollectionLayoutSize(widthDimension: .absolute(UICClayoutInsetSize), heightDimension: .estimated(100))
         let itemLayout = NSCollectionLayoutItem(layoutSize: itemsize)
@@ -68,10 +75,19 @@ class SiteViewController: UIViewController, UICollectionViewDelegate {
         let groupLayout = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [itemLayout])
         
         let section = NSCollectionLayoutSection(group: groupLayout)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 32, leading: 12, bottom: 0, trailing: 12)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 15, bottom: 0, trailing: 15)
         section.interGroupSpacing = spacingSize
         
         return UICollectionViewCompositionalLayout(section: section)
+    }
+    
+    private func bindTouch() {
+        siteCollectionView.rx.itemSelected.bind { indexPath in
+            self.siteCollectionView.deselectItem(at: indexPath, animated: true)
+            let vc = HomeViewController()
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true)
+        }.disposed(by: disposeBag)
     }
 }
 

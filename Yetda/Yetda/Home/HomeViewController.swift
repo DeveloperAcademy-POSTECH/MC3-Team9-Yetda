@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import YPImagePicker
+import Hero
 
 class HomeViewController: UIViewController {
     
@@ -47,6 +48,10 @@ class HomeViewController: UIViewController {
         self.view.addSubview(cardListView)
         setCardListView()
 //        self.viewModel.getPresentList()
+        
+        self.isHeroEnabled = true
+        self.cardListView.hero.id = "후쿠오카"
+        self.hero.modalAnimationType = .fade
     }
     
     private func setTopView() {
@@ -97,9 +102,9 @@ class HomeViewController: UIViewController {
         planeBtn.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: 20).isActive = true
         planeBtn.topAnchor.constraint(equalTo: topView.topAnchor, constant: 65).isActive = true
         
-//        planeBtn.rx.tap.bind {
-//            self.navigationController?.pushViewController(TravelViewController(), animated: true)
-//        }.disposed(by: disposeBag)
+        planeBtn.rx.tap.bind {
+            self.dismiss(animated: true)
+        }.disposed(by: disposeBag)
         
     }
     
@@ -112,10 +117,6 @@ class HomeViewController: UIViewController {
         
         profileBtn.menu = UIMenu(title: "", image: nil, identifier: nil, options: .displayInline, children: menuItems)
         profileBtn.showsMenuAsPrimaryAction = true
-        
-//        profileBtn.rx.tap.bind {
-//            self.navigationController?.pushViewController(ProfileViewController(), animated: true)
-//        }.disposed(by: disposeBag)
         
     }
     
@@ -194,7 +195,7 @@ class HomeViewController: UIViewController {
                 imagePicker.view.backgroundColor = .white
                 self.present(imagePicker, animated: true)
             } else {
-//                self.sendCardData(indexPatxh: indexPath)
+//                self.sendCardData(indexPath: indexPath)
             }
         }.disposed(by: disposeBag)
     }
