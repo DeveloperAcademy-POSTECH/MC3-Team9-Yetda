@@ -10,9 +10,7 @@ import UIKit
 class KeywordCollectionCell: UICollectionViewCell {
     
     let appDelegate = UIApplication.shared.delegate as? AppDelegate
-    
     var count = 0
-    
     
     @IBOutlet weak var keywordButton: UIButton!
     @IBAction func keywordButtonTapped(_ sender: UIButton) {
@@ -28,9 +26,6 @@ class KeywordCollectionCell: UICollectionViewCell {
                 if (keyword.findKeyword(name: name)) {
                     keyword.state = true
                     count += 1
-                    print(keyword.name)
-                    print(keyword.state)
-                    print(count)
                 }
             }
         }
@@ -38,13 +33,10 @@ class KeywordCollectionCell: UICollectionViewCell {
             if let index = appDelegate?.selectedKeyword.firstIndex(of: name) {
                 appDelegate?.selectedKeyword.remove(at: index)
                 for keyword in MakeCardDescriptionViewController().keywords {
-                        if (keyword.findKeyword(name: name)) {
-                            keyword.state = false
-                            MakeCardDescriptionViewController().count -= 1
-                            print(keyword.name)
-                            print(keyword.state)
-                            print(MakeCardDescriptionViewController().count)
-                        }
+                    if (keyword.findKeyword(name: name)) {
+                        keyword.state = false
+                        MakeCardDescriptionViewController().count -= 1
+                    }
                 }
             }
         }
@@ -56,10 +48,9 @@ class KeywordCollectionCell: UICollectionViewCell {
         customButton(keywordButton)
     }
     
-    
     func changeButtonState(_ button : UIButton) {
-        button.backgroundColor = button.isSelected ? UIColor.systemCyan : UIColor.white
-        button.layer.borderColor = button.isSelected ? CGColor(red: 211, green: 226, blue: 253, alpha: 1) : CGColor(red: 225/255, green: 225/255, blue: 225/255, alpha: 1)
+        button.backgroundColor = button.isSelected ? UIColor(red: 211/255, green: 226/255, blue: 253/255, alpha: 0.1) : UIColor.white
+        button.layer.borderColor = button.isSelected ? CGColor(red: 48/255, green: 113/255, blue: 231/255, alpha: 0.5) : CGColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1)
     }
 }
 

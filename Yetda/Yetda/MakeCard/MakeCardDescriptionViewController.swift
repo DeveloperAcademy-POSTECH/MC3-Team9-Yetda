@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class MakeCardDescriptionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class MakeCardDescriptionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate {
     
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var giftNameTextField: UITextField!
@@ -43,14 +43,12 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let giftNameTextField = giftNameTextField {
-            borderRadius(view: giftNameTextField).addLeftPadding()
-        }
-        if let giftRecipientTextField = giftRecipientTextField {
-            borderRadius(view: giftRecipientTextField).addLeftPadding()
-        }
+
+        giftNameTextField?.delegate = self
+        giftRecipientTextField?.delegate = self
+        if let giftNameTextField = giftNameTextField {borderRadius(giftNameTextField).addLeftPadding()}
+        if let giftRecipientTextField = giftRecipientTextField {borderRadius( giftRecipientTextField).addLeftPadding()}
         self.hideKeyboardWhenTappedAround()
-//        bindData()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -73,35 +71,25 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
             return cell
         }
     }
-    // 셀 너비 동적으로 조절하는 함수
-    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    //        return CGSize(width: keywords[indexPath.item].name.size(withAttributes: [NSAttributedString.Key : UIFont.systemFont(ofSize: 14)]).width + 20, height: 38)
-    //    }
     
-//    private func bindData() {
-//
-//        let keywordList = BehaviorRelay<[Keyword]>(value: keywords)
-//        keywordList.bind(to: keywordCollection.rx.items(cellIdentifier: "keywordCell", cellType: KeywordCollectionCell.self)) { row, model, cell in
-//
-//        }.disposed(by: DisposeBag())
-//
-//        keywordCollection.rx.itemSelected.bind { indexPath in
-//            self.keywordCollection.deselectItem(at: indexPath, animated: true)
-//            guard let state = self.keywords[indexPath.row].state else { return }
-//            keywords[indexPath.row].state = !state
-//        }
-//    }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.layer.borderColor = CGColor(red: 211/255, green: 225/255, blue: 253/255, alpha: 1)
+        textField.backgroundColor = UIColor(red: 211/255, green: 225/255, blue: 253/255, alpha: 0.1)
+    }
     
-}
-
-
-// textField corner 둥글게, 보더 적용하는 함수
-func borderRadius(view: UITextField) -> UITextField{
-    view.layer.cornerRadius = 19.0
-    view.layer.borderWidth = 1.0
-    view.layer.borderColor = UIColor.systemGray5.cgColor
-    view.layer.masksToBounds = true
-    return view
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        borderRadius(textField)
+    }
+    
+    // textField corner 둥글게, 보더 적용하는 함수
+    func borderRadius(_ textField: UITextField) -> UITextField{
+        textField.layer.masksToBounds = true
+        textField.layer.cornerRadius = 19.0
+        textField.layer.borderWidth = 1.0
+        textField.layer.borderColor = UIColor.systemGray5.cgColor
+        textField.backgroundColor = UIColor.white
+        return textField
+    }
 }
 
 class Keyword {
@@ -111,7 +99,6 @@ class Keyword {
     init(name: String, state: Bool) {
         self.name = name
         self.state = state
-        
     }
     
     func findKeyword(name: String) -> Bool {
@@ -125,11 +112,11 @@ class Keyword {
 
 // textField 안에서 왼쪽 Padding 주는 함수
 extension UITextField {
-  func addLeftPadding() {
-    let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 6, height: self.frame.height))
-    self.leftView = paddingView
-    self.leftViewMode = ViewMode.always
-  }
+    func addLeftPadding() {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 6, height: self.frame.height))
+        self.leftView = paddingView
+        self.leftViewMode = ViewMode.always
+    }
 }
 
 extension UIViewController {
