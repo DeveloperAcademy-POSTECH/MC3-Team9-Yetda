@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02C4284E9952EE585D397E08 /* Pods_Yetda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED0A4F234A31FC9D7DAE7A44 /* Pods_Yetda.framework */; };
 		13E7EE63288ABD9F001090EC /* LocalizingFile.strings in Resources */ = {isa = PBXBuildFile; fileRef = 13E7EE65288ABD9F001090EC /* LocalizingFile.strings */; };
 		2241F11B288AB1900044E704 /* OnBoardingSecondStepController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2241F118288AB1900044E704 /* OnBoardingSecondStepController.swift */; };
 		2241F11C288AB1900044E704 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2241F119288AB1900044E704 /* OnBoardingViewController.swift */; };
@@ -61,6 +60,7 @@
 		736D288C28854CAE00F95DFD /* CardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736D288B28854CAE00F95DFD /* CardListViewModel.swift */; };
 		736D288F288673B000F95DFD /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 736D288E288673B000F95DFD /* RxCocoa */; };
 		736D2891288673B000F95DFD /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 736D2890288673B000F95DFD /* RxSwift */; };
+		B083B41DB048D76AEBF92F4D /* Pods_Yetda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F20D45ACE0529691DB71925A /* Pods_Yetda.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,8 +104,6 @@
 		2FE866ED288E7061002242B0 /* KeywordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeywordCell.swift; sourceTree = "<group>"; };
 		2FE866F4288E7103002242B0 /* DummyData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyData.swift; sourceTree = "<group>"; };
 		2FE86704288E7258002242B0 /* CardDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailViewController.swift; sourceTree = "<group>"; };
-		37E05425CAFC5DFE08426C80 /* Pods-Yetda.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yetda.release.xcconfig"; path = "Target Support Files/Pods-Yetda/Pods-Yetda.release.xcconfig"; sourceTree = "<group>"; };
-		59D1F0E934172BB0A2E57D4A /* Pods-Yetda.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yetda.debug.xcconfig"; path = "Target Support Files/Pods-Yetda/Pods-Yetda.debug.xcconfig"; sourceTree = "<group>"; };
 		5DB7C00A2888552F003BB5EF /* MakeCardStoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCardStoryViewController.swift; sourceTree = "<group>"; };
 		5DDD60EF28853EC40077742D /* MakeCardDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCardDescriptionViewController.swift; sourceTree = "<group>"; };
 		5DDD60F128853FC80077742D /* PhotoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionCell.swift; sourceTree = "<group>"; };
@@ -121,7 +119,9 @@
 		736D28862885434800F95DFD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		736D2888288547F000F95DFD /* CardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListView.swift; sourceTree = "<group>"; };
 		736D288B28854CAE00F95DFD /* CardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListViewModel.swift; sourceTree = "<group>"; };
-		ED0A4F234A31FC9D7DAE7A44 /* Pods_Yetda.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yetda.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A865A8426A67AA1E49E256C4 /* Pods-Yetda.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yetda.release.xcconfig"; path = "Target Support Files/Pods-Yetda/Pods-Yetda.release.xcconfig"; sourceTree = "<group>"; };
+		DA592800ABB67C10E0BDC69C /* Pods-Yetda.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yetda.debug.xcconfig"; path = "Target Support Files/Pods-Yetda/Pods-Yetda.debug.xcconfig"; sourceTree = "<group>"; };
+		F20D45ACE0529691DB71925A /* Pods_Yetda.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yetda.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,21 +133,13 @@
 				7355FEE5288708B0009F32E3 /* YPImagePicker in Frameworks */,
 				736D288F288673B000F95DFD /* RxCocoa in Frameworks */,
 				73215E16288FC32C003AD7E7 /* Hero in Frameworks */,
-				02C4284E9952EE585D397E08 /* Pods_Yetda.framework in Frameworks */,
+				B083B41DB048D76AEBF92F4D /* Pods_Yetda.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		20DEB9E00D6AE98178098C60 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				ED0A4F234A31FC9D7DAE7A44 /* Pods_Yetda.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		2241F11E288AB1D00044E704 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,7 +169,7 @@
 				224AAF4128813A0F0053E66A /* Yetda */,
 				224AAF4028813A0F0053E66A /* Products */,
 				26D4EAE00CF428049DCF6A7B /* Pods */,
-				20DEB9E00D6AE98178098C60 /* Frameworks */,
+				59B03FDE4B6B2CF887C6BC8D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -281,10 +273,18 @@
 		26D4EAE00CF428049DCF6A7B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				59D1F0E934172BB0A2E57D4A /* Pods-Yetda.debug.xcconfig */,
-				37E05425CAFC5DFE08426C80 /* Pods-Yetda.release.xcconfig */,
+				DA592800ABB67C10E0BDC69C /* Pods-Yetda.debug.xcconfig */,
+				A865A8426A67AA1E49E256C4 /* Pods-Yetda.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		59B03FDE4B6B2CF887C6BC8D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F20D45ACE0529691DB71925A /* Pods_Yetda.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		736D28762885334400F95DFD /* OnBoarding */ = {
@@ -304,12 +304,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 224AAF5628813A110053E66A /* Build configuration list for PBXNativeTarget "Yetda" */;
 			buildPhases = (
-				32F856B3E768038D6E85C433 /* [CP] Check Pods Manifest.lock */,
+				0C319D33326B145C8C60CB5A /* [CP] Check Pods Manifest.lock */,
 				224AAF3B28813A0F0053E66A /* Sources */,
 				224AAF3C28813A0F0053E66A /* Frameworks */,
 				224AAF3D28813A0F0053E66A /* Resources */,
-				53452BF072AE38777F0C8F31 /* [CP] Embed Pods Frameworks */,
-				73FB3B131DA4424D0299A7D7 /* [CP] Copy Pods Resources */,
+				146DEDEF93899590EA103B0E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -392,7 +391,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		32F856B3E768038D6E85C433 /* [CP] Check Pods Manifest.lock */ = {
+		0C319D33326B145C8C60CB5A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -414,7 +413,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		53452BF072AE38777F0C8F31 /* [CP] Embed Pods Frameworks */ = {
+		146DEDEF93899590EA103B0E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -429,23 +428,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Yetda/Pods-Yetda-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		73FB3B131DA4424D0299A7D7 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Yetda/Pods-Yetda-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Yetda/Pods-Yetda-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Yetda/Pods-Yetda-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -642,7 +624,7 @@
 		};
 		224AAF5728813A110053E66A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 59D1F0E934172BB0A2E57D4A /* Pods-Yetda.debug.xcconfig */;
+			baseConfigurationReference = DA592800ABB67C10E0BDC69C /* Pods-Yetda.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -676,7 +658,7 @@
 		};
 		224AAF5828813A110053E66A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 37E05425CAFC5DFE08426C80 /* Pods-Yetda.release.xcconfig */;
+			baseConfigurationReference = A865A8426A67AA1E49E256C4 /* Pods-Yetda.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
