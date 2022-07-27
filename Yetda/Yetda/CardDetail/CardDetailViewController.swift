@@ -209,7 +209,8 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
             contentsCell?.contentsLabel.text = contents
             return contentsCell ?? UICollectionViewCell()
         case map:
-            mapCell?.mapView
+            mapCell?.moveLocation(latitudeValue: 37.334754657382234, longitudeValue: -122.00898272593827, delta: 0.01)
+            mapCell?.setAnnotation(latitudeValue: 37.334754657382234, longitudeValue: -122.00898272593827, delta: 0.01, title: "Apple Park", subtitle: "aa")
             return mapCell ?? UICollectionViewCell()
         default:
             contentsCell?.contentsLabel.text = contents
