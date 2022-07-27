@@ -21,12 +21,13 @@ class KeywordCell: UICollectionViewCell {
         super.init(frame: .zero)
         setupCell()
         setupLabel()
+        self.layer.masksToBounds = true
+        self.layer.cornerRadius = 12.0
     }
     
     func setupCell() {
         keywordLabel = UILabel()
         contentView.addSubview(keywordLabel)
-        keywordLabel.clipsToBounds = true
         keywordLabel.translatesAutoresizingMaskIntoConstraints = false
         keywordLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
         keywordLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor).isActive = true
