@@ -91,16 +91,16 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="Bdb-MH-ChM">
-                                <rect key="frame" x="20" y="314" width="350" height="65"/>
+                                <rect key="frame" x="20" y="314" width="350" height="66.333333333333314"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="어떤 선물을 구매했나요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bMs-H1-udB">
-                                        <rect key="frame" x="0.0" y="0.0" width="350" height="18"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="350" height="19.333333333333332"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="입력하기" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ysi-vl-peB">
-                                        <rect key="frame" x="0.0" y="27" width="350" height="38"/>
+                                        <rect key="frame" x="0.0" y="28.333333333333314" width="350" height="38"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="38" id="Zgo-C0-3qG"/>
                                         </constraints>
@@ -110,16 +110,16 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="S00-6y-1lu">
-                                <rect key="frame" x="20" y="404" width="350" height="66"/>
+                                <rect key="frame" x="20" y="405.33333333333331" width="350" height="67.333333333333314"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="누구를 위한 선물인가요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Hs-Lj-aud">
-                                        <rect key="frame" x="0.0" y="0.0" width="350" height="18"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="350" height="19.333333333333332"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="입력하기" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bro-oj-fVq">
-                                        <rect key="frame" x="0.0" y="28" width="350" height="38"/>
+                                        <rect key="frame" x="0.0" y="29.333333333333371" width="350" height="38"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="38" id="pun-In-5tr"/>
                                         </constraints>
@@ -128,28 +128,28 @@
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="syi-I4-Qwk">
-                                <rect key="frame" x="20" y="495" width="350" height="210"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="syi-I4-Qwk">
+                                <rect key="frame" x="20" y="497.66666666666669" width="350" height="211.33333333333331"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="GKp-x6-T39">
-                                        <rect key="frame" x="0.0" y="0.0" width="350" height="18"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="GKp-x6-T39">
+                                        <rect key="frame" x="0.0" y="0.0" width="232.33333333333334" height="19.333333333333332"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="선물 키워드를 선택해 주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G6Z-kn-KpS">
-                                                <rect key="frame" x="0.0" y="0.0" width="174" height="18"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="178.66666666666666" height="19.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(최대 4개)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="voG-7g-yTi">
-                                                <rect key="frame" x="176" y="0.0" width="174" height="18"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                <rect key="frame" x="180.66666666666666" y="0.0" width="51.666666666666657" height="19.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7gM-ai-fUu">
-                                        <rect key="frame" x="0.0" y="25" width="350" height="185"/>
+                                        <rect key="frame" x="0.0" y="26.333333333333314" width="350" height="185"/>
                                         <color key="backgroundColor" red="0.97647058819999999" green="0.98039215690000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="185" id="3Ve-Ou-phF"/>
@@ -181,9 +181,6 @@
                                                             <state key="normal" title="☀️햇빛쨍쨍">
                                                                 <color key="titleColor" systemColor="labelColor"/>
                                                             </state>
-                                                            <connections>
-                                                                <action selector="keywordButtonTapped:" destination="fVb-ik-3Oc" eventType="touchUpInside" id="ItZ-sG-nAf"/>
-                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <constraints>
@@ -206,7 +203,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="feC-Ey-yjW">
-                                <rect key="frame" x="20" y="733" width="350" height="58"/>
+                                <rect key="frame" x="20" y="737" width="350" height="58"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="58" id="9zF-oj-nlN"/>
                                 </constraints>
@@ -226,6 +223,7 @@
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
+                                    <action selector="sendKeywordList:" destination="Zcw-ps-M3Y" eventType="touchUpInside" id="Ngb-mZ-cZ5"/>
                                     <segue destination="qiv-ON-jwV" kind="push" id="75m-eH-Yan"/>
                                 </connections>
                             </button>
@@ -258,8 +256,8 @@
                         <barButtonItem key="leftBarButtonItem" title="Item" image="chevron.left" catalog="system" id="LTG-Od-5Fn"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="giftNameTextField" destination="ysi-vl-peB" id="83G-BF-ej9"/>
-                        <outlet property="giftRecipientTextField" destination="Bro-oj-fVq" id="q7S-Zy-ncN"/>
+                        <outlet property="giftNameTextField" destination="ysi-vl-peB" id="3Sf-j4-cxH"/>
+                        <outlet property="giftRecipientTextField" destination="Bro-oj-fVq" id="caA-F1-nOg"/>
                         <outlet property="keywordCollection" destination="7gM-ai-fUu" id="n6k-GY-edE"/>
                         <outlet property="locationLabel" destination="6l6-ri-8t0" id="moa-6H-6GL"/>
                         <outlet property="photoCollection" destination="3YG-mw-jmO" id="6QA-Jy-gJn"/>
