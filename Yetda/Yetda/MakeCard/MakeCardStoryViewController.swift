@@ -11,7 +11,7 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
     
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var storyTextView: UITextView!
-    
+
     var photos: [String] = ["photo1", "photo2", "photo3", "photo4", "photo5"]
     
     override func viewDidLoad() {

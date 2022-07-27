@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
 
 class MakeCardDescriptionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate {
     
@@ -16,8 +14,10 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
     @IBOutlet weak var giftRecipientTextField: UITextField!
     @IBOutlet weak var photoCollection: UICollectionView!
     @IBOutlet weak var keywordCollection: UICollectionView!
+    @IBAction func sendKeywordList(_ sender: Any) {
+        prepareKeyword()
+    }
     
-//    var count: Int = 0
     var photos: [String] = ["photo1", "photo2", "photo3", "photo4", "photo5"]
     var keywords: [Keyword] = [
         Keyword(name: "☀️햇빛쨍쨍", state: false),
@@ -79,6 +79,7 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
     
     // 다음 뷰에 키워드를 담은 배열 값을 넘겨줄 준비
     func prepareKeyword() -> [Keyword] {
+        
         var results: [Keyword] = []
         
         for keyword in keywords {
@@ -86,41 +87,39 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
                 results.append(keyword)
             }
         }
-        
         return results
     }
     
-    // 셀에 있어 내가 적용시킬 변화는 controller에서 적용시키는 것이 좋음
+    // 키워드 state 토글해주고 값 제한하는 함수
     @objc func didTapButton(_ sender: UIButton) {
-//        var number = 0
-//        for keyword in keywords {
-//            if keyword.state {
-//                number += 1
-//            }
-//        }
-//        if number > 4 {
-//
-//        }
         
-        // contains 메소드는 아래의 for문을 돌리는 것과 같은 결과(Bool값)를 출력함. -> Equatable 타입일 때만 사용 가능한 메소드
-//        keywords.contains(<#T##element: Keyword##Keyword#>)
-//
-//        for keyword in keywords {
-//            if keyword == element {
-//                return true
-//            }
-//        }
-//        return false
+        var number = 0
         
-        // button이 tap이 되었을 때 실행되는 함수로, keyword를 돌리면서 누른 값에 해당하는 keyword를 찾아 그 state를 true로 바꿔줌
-        // 반드시 reloadData를 해주면서 전체 cell을 업데이트를 해줘야만 이게 반영이 됨
+        for keyword in keywords {
+            if keyword.state == true {
+                number += 1
+            }
+        }
+        
         for keyword in keywords {
             if keyword.name == sender.title(for: .normal) {
                 keyword.state.toggle()
+                if number<4 && (keyword.state == true){
+                    number += 1
+                } else if number >= 4 && (keyword.state == false) {
+                    number -= 1
+                } else if number >= 4 && (keyword.state == true){
+                    keyword.state.toggle()
+                } else {
+                    number -= 1
+                }
                 keywordCollection.reloadData()
+                print(number)
                 return
             }
         }
+        print(number)
+        
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -143,12 +142,7 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
     }
 }
 
-class Keyword: Equatable {
-    // Keyword는 내가 따로 구현한 타입이기 때문에 Int, String과 같이 비교할 수 있는 기준이 없음.
-    // 따라서 Equatable로 변경하면서 어떤 값을 기준으로 변경할 것인지 알려주기~ * ex) 앞에 인자, 뒤에 인자를 비교해서 Bool 값을 알려줄 거예요~
-    static func == (firstKeyword: Keyword, secondKeyword: Keyword) -> Bool {
-        return firstKeyword.name == secondKeyword.name
-    }
+class Keyword {
     
     var name: String = ""
     var state: Bool = false
