@@ -94,6 +94,7 @@
 		229EBA3228842C4A0033A6BA /* Site+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Site+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		229EBA3328842C4A0033A6BA /* Present+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Present+CoreDataClass.swift"; sourceTree = "<group>"; };
 		229EBA3428842C4A0033A6BA /* Present+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Present+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		22A72FBD2890C71500FC3B96 /* Yetda.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Yetda.entitlements; sourceTree = "<group>"; };
 		22E1AD48288FDAAD0031E911 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		22EEF861288FE13F0046ECB8 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		2FE866E8288E7060002242B0 /* MapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapCell.swift; sourceTree = "<group>"; };
@@ -191,6 +192,7 @@
 		224AAF4128813A0F0053E66A /* Yetda */ = {
 			isa = PBXGroup;
 			children = (
+				22A72FBD2890C71500FC3B96 /* Yetda.entitlements */,
 				22B25D81288E7FC900936EAD /* CardDetail */,
 				22B25D80288E7FB100936EAD /* Site */,
 				22B25D7F288E7F9500936EAD /* MakeCard */,
@@ -644,6 +646,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Yetda/Yetda.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JASCMY8XL7;
@@ -677,6 +680,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Yetda/Yetda.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JASCMY8XL7;
@@ -696,7 +700,6 @@
 				);
 				MARKETING_VERSION = 1.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = sdd.com;
 				PRODUCT_BUNDLE_IDENTIFIER = sdd.com.Yetda;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
