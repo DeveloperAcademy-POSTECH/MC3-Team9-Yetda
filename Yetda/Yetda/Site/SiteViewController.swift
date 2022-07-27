@@ -18,6 +18,7 @@ class SiteViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var siteViewButton: UIButton!
     @IBOutlet weak var siteCollectionView: UICollectionView!
     @IBOutlet var siteMenu: UIMenu!
+    @IBOutlet var siteView: UIView!
     
     let disposeBag = DisposeBag()
     
@@ -32,7 +33,7 @@ class SiteViewController: UIViewController, UICollectionViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        siteCollectionView.layer.cornerRadius = 20
+        self.makeSiteSearchBar()
         
         lazy var menuChildren: [UIAction] = {
             return [
@@ -62,11 +63,33 @@ class SiteViewController: UIViewController, UICollectionViewDelegate {
         self.hero.modalAnimationType = .fade
         bindTouch()
     }
+    func makeSiteSearchBar() {
+        
+        let siteSearchBar = UISearchBar()
+        siteSearchBar.placeholder = "여행지를 추가해주세요"
+        siteSearchBar.searchBarStyle = .minimal
+        siteSearchBar.backgroundColor = UIColor(named: "YettdaMainBackground")
+        siteSearchBar.sizeToFit()
+        siteSearchBar.frame.size.width = siteCollectionView.frame.size.width
+        siteSearchBar.layer.cornerRadius = 30
+        siteSearchBar.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMaxXMinYCorner)
+        
+        siteView.addSubview(siteSearchBar)
+        
+        siteSearchBar.translatesAutoresizingMaskIntoConstraints = false
+        
+        siteSearchBar.topAnchor.constraint(equalTo: siteView.topAnchor, constant: 180).isActive = true
+        siteSearchBar.widthAnchor.constraint(equalToConstant: siteCollectionView.frame.size.width).isActive = true
+        siteSearchBar.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        
+        let directionalMargins = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: -20, trailing: 20)
+        siteSearchBar.directionalLayoutMargins = directionalMargins
+    }
     
     private func layout() -> UICollectionViewCompositionalLayout {
         
-        let UICClayoutInsetSize: CGFloat = UIScreen.main.bounds.width - 30
-        let spacingSize: CGFloat = 15
+        let UICClayoutInsetSize: CGFloat = UIScreen.main.bounds.width - 40
+        let spacingSize: CGFloat = 20
         
         let itemsize = NSCollectionLayoutSize(widthDimension: .absolute(UICClayoutInsetSize), heightDimension: .estimated(100))
         let itemLayout = NSCollectionLayoutItem(layoutSize: itemsize)
@@ -75,7 +98,7 @@ class SiteViewController: UIViewController, UICollectionViewDelegate {
         let groupLayout = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [itemLayout])
         
         let section = NSCollectionLayoutSection(group: groupLayout)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 15, bottom: 0, trailing: 15)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 53, leading: 20, bottom: 0, trailing: 20)
         section.interGroupSpacing = spacingSize
         
         return UICollectionViewCompositionalLayout(section: section)
