@@ -11,8 +11,12 @@ import RxSwift
 import RxCocoa
 import YPImagePicker
 import Hero
+import FirebaseFirestore
 
 class HomeViewController: UIViewController {
+    var db = Firestore.firestore()
+    
+    var presents: [Present] = []
     
     let sampleImages = [" . ", "Aichi.png", "Akita.png", "Aomori.png", "Chiba.png", "Ehime.png", "Fukui.png"]
 
@@ -52,6 +56,28 @@ class HomeViewController: UIViewController {
         self.isHeroEnabled = true
         self.cardListView.hero.id = "후쿠오카"
         self.hero.modalAnimationType = .fade
+        
+        // Firestore DB 읽기
+        db.collection("presents").addSnapshotListener { snapshot, error in
+            guard let documents = snapshot?.documents else {
+                print("ERROR Firestore fetching document \(String(describing: error))")
+                return
+            }
+            
+            self.presents = documents.compactMap { doc -> Present? in
+                do {
+                    let jsonData = try JSONSerialization.data(withJSONObject: doc.data(), options: [])
+                    let present = try JSONDecoder().decode(Present.self, from: jsonData)
+                    return present
+                } catch let error {
+                    print("ERROR JSON Parsing \(error)")
+                    return nil
+                }
+            }
+            
+            print(self.presents)
+        }
+        
     }
     
     private func setTopView() {
