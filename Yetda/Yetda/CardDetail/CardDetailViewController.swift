@@ -62,6 +62,18 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate {
         return cardDetailView
     }()
     
+    lazy var backButton: UIButton = {
+        let button = makeButton(symbols: "chevron.backward")
+        
+        return button
+    }()
+    
+    lazy var shareButton: UIButton = {
+        let button = makeButton(symbols: "square.and.arrow.up")
+        
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
@@ -69,9 +81,9 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate {
         
         let width = self.view.frame.width
         let height = self.view.frame.height
-        
-//        let topContainerView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: height/2))
+
         let topContainerView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: width))
+        
         topContainerView.translatesAutoresizingMaskIntoConstraints = false
         topContainerView.backgroundColor = .systemBackground
         topContainerView.clipsToBounds = true
@@ -105,9 +117,19 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate {
         
         topContainerView.addSubview(self.imageScrollView)
         topContainerView.addSubview(self.pageControl)
+        topContainerView.addSubview(backButton)
+        topContainerView.addSubview(shareButton)
         
         pageControl.topAnchor.constraint(equalTo: topContainerView.bottomAnchor, constant: -50).isActive = true
         pageControl.centerXAnchor.constraint(equalTo: topContainerView.centerXAnchor).isActive = true
+        
+        backButton.topAnchor.constraint(equalTo: topContainerView.topAnchor, constant: 20).isActive = true
+        backButton.leadingAnchor.constraint(equalTo: topContainerView.leadingAnchor, constant: 20).isActive = true
+        backButton.trailingAnchor.constraint(equalTo: topContainerView.trailingAnchor, constant: -(width-60)).isActive = true
+        
+        shareButton.topAnchor.constraint(equalTo: topContainerView.topAnchor, constant: 20).isActive = true
+        shareButton.leadingAnchor.constraint(equalTo: topContainerView.leadingAnchor, constant: width-60).isActive = true
+        shareButton.trailingAnchor.constraint(equalTo: topContainerView.trailingAnchor, constant: -20).isActive = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -118,6 +140,19 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate {
         if fmod(scrollView.contentOffset.x, scrollView.frame.maxX) == 0 {
             pageControl.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.maxX)
         }
+    }
+    
+    func makeButton(symbols: String) -> UIButton {
+        let button = UIButton(type: .system)
+        let image = UIImage(systemName: symbols)?.withTintColor(.blue, renderingMode: .alwaysOriginal)
+        button.setImage(image, for: .normal)
+        button.configuration = .filled()
+        button.tintColor = .white
+        button.configuration?.imagePadding = 0
+        button.alpha = 0.5
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
     }
 }
 
