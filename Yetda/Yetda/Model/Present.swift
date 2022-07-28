@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct Present: Hashable, Codable {
+    let id: String?
     var user: String
     var site: String
     var name: String
