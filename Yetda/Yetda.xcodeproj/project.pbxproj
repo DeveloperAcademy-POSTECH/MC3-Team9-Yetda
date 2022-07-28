@@ -615,7 +615,7 @@
 				CODE_SIGN_ENTITLEMENTS = Yetda/Yetda.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JASCMY8XL7;
+				DEVELOPMENT_TEAM = PCJ686F4KQ;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Yetda/Info.plist;
