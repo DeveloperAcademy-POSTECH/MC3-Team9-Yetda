@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class MakeCardDescriptionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate {
     
@@ -121,6 +122,16 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
         print(number)
         
     }
+    
+    @IBAction func saveButton(_ sender: UIButton) {
+        let selectedImage = UIImage(named: "photo1")
+//        guard let user = Auth.auth().currentUser else { return }
+                
+        let imageURL = FirebaseStorageManager.uploadImage(image: selectedImage!)
+        
+        print(imageURL)
+    }
+    
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.layer.borderColor = CGColor(red: 211/255, green: 225/255, blue: 253/255, alpha: 1)
