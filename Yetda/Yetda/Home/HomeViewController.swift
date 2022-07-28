@@ -64,25 +64,7 @@ class HomeViewController: UIViewController {
         
         let touchGesture = UITapGestureRecognizer(target: self, action: #selector(self.tap(_:)))
         self.topView.addGestureRecognizer(touchGesture)
-    }
-    
-    @objc func longTap(_ gesture: UIGestureRecognizer) {
         
-        switch(gesture.state) {
-        case .began:
-            guard let selectedIndexPath = cardListView.cardCollectionView.indexPathForItem(at: gesture.location(in: cardListView.cardCollectionView)) else { return }
-            cardListView.cardCollectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
-            
-        case .changed:
-            cardListView.cardCollectionView.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
-            
-        case .ended:
-            cardListView.cardCollectionView.endInteractiveMovement()
-            longPressEnabled = true
-            self.cardListView.cardCollectionView.reloadData()
-            
-        default:
-            cardListView.cardCollectionView.cancelInteractiveMovement()
         // Firestore DB 읽기
         db.collection("presents").addSnapshotListener { snapshot, error in
             guard let documents = snapshot?.documents else {
@@ -102,6 +84,27 @@ class HomeViewController: UIViewController {
             }
             
             print(self.presents)
+        }
+    }
+    
+    @objc func longTap(_ gesture: UIGestureRecognizer) {
+        
+        switch(gesture.state) {
+        case .began:
+            guard let selectedIndexPath = cardListView.cardCollectionView.indexPathForItem(at: gesture.location(in: cardListView.cardCollectionView)) else { return }
+            cardListView.cardCollectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
+            
+        case .changed:
+            cardListView.cardCollectionView.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
+            
+        case .ended:
+            cardListView.cardCollectionView.endInteractiveMovement()
+            longPressEnabled = true
+            self.cardListView.cardCollectionView.reloadData()
+            
+        default:
+            cardListView.cardCollectionView.cancelInteractiveMovement()
+            
         }
     }
     
