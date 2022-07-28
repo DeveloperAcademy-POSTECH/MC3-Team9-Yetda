@@ -11,10 +11,14 @@ import RxSwift
 import RxCocoa
 import YPImagePicker
 import Hero
+import FirebaseFirestore
 
 class HomeViewController: UIViewController {
 
     var sampleCards = BehaviorRelay<[String]>(value: [" . ", "Aichi.png", "Akita.png", "Aomori.png", "Chiba.png", "Ehime.png", "Fukui.png"])
+    var db = Firestore.firestore()
+    
+    var presents: [Present] = []
     
     let topView = UIView()
     let cardListView = CardListView()
@@ -79,6 +83,25 @@ class HomeViewController: UIViewController {
             
         default:
             cardListView.cardCollectionView.cancelInteractiveMovement()
+        // Firestore DB 읽기
+        db.collection("presents").addSnapshotListener { snapshot, error in
+            guard let documents = snapshot?.documents else {
+                print("ERROR Firestore fetching document \(String(describing: error))")
+                return
+            }
+            
+            self.presents = documents.compactMap { doc -> Present? in
+                do {
+                    let jsonData = try JSONSerialization.data(withJSONObject: doc.data(), options: [])
+                    let present = try JSONDecoder().decode(Present.self, from: jsonData)
+                    return present
+                } catch let error {
+                    print("ERROR JSON Parsing \(error)")
+                    return nil
+                }
+            }
+            
+            print(self.presents)
         }
     }
     

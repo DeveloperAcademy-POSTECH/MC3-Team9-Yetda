@@ -8,10 +8,10 @@ target 'Yetda' do
   # Pods for Yetda
 
   pod 'KakaoSDK'
-  pod 'Firebase/Auth', '8.6.0'
-  pod 'Firebase/Firestore', '8.6.0'
-  pod 'GoogleSignIn', '5.0.2'
-
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
+  pod 'FirebaseFirestoreSwift'
+ 
 end
 
 post_install do |installer|
