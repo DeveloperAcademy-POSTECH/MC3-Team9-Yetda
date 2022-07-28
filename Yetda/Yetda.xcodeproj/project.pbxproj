@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02C4284E9952EE585D397E08 /* Pods_Yetda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED0A4F234A31FC9D7DAE7A44 /* Pods_Yetda.framework */; };
 		13E7EE63288ABD9F001090EC /* LocalizingFile.strings in Resources */ = {isa = PBXBuildFile; fileRef = 13E7EE65288ABD9F001090EC /* LocalizingFile.strings */; };
 		2241F11B288AB1900044E704 /* OnBoardingSecondStepController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2241F118288AB1900044E704 /* OnBoardingSecondStepController.swift */; };
 		2241F11C288AB1900044E704 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2241F119288AB1900044E704 /* OnBoardingViewController.swift */; };
@@ -61,6 +60,7 @@
 		736D288C28854CAE00F95DFD /* CardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736D288B28854CAE00F95DFD /* CardListViewModel.swift */; };
 		736D288F288673B000F95DFD /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 736D288E288673B000F95DFD /* RxCocoa */; };
 		736D2891288673B000F95DFD /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 736D2890288673B000F95DFD /* RxSwift */; };
+		7383463728911AB10087D76F /* Pods_Yetda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED0A4F234A31FC9D7DAE7A44 /* Pods_Yetda.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -129,11 +129,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7383463728911AB10087D76F /* Pods_Yetda.framework in Frameworks */,
 				736D2891288673B000F95DFD /* RxSwift in Frameworks */,
 				7355FEE5288708B0009F32E3 /* YPImagePicker in Frameworks */,
 				736D288F288673B000F95DFD /* RxCocoa in Frameworks */,
 				73215E16288FC32C003AD7E7 /* Hero in Frameworks */,
-				02C4284E9952EE585D397E08 /* Pods_Yetda.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -649,7 +649,8 @@
 				CODE_SIGN_ENTITLEMENTS = Yetda/Yetda.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JASCMY8XL7;
+				DEVELOPMENT_TEAM = 99K458V69X;
+				"EXCLUDED_ARCHS[sdk=*]" = arm64;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Yetda/Info.plist;
@@ -683,7 +684,8 @@
 				CODE_SIGN_ENTITLEMENTS = Yetda/Yetda.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JASCMY8XL7;
+				DEVELOPMENT_TEAM = 9R26FF9CS4;
+				"EXCLUDED_ARCHS[sdk=*]" = arm64;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Yetda/Info.plist;
