@@ -17,12 +17,12 @@ class FirebaseStorageManager {
         let imageName = UUID().uuidString + String(Date().timeIntervalSince1970)
         
         let storegeRef = Storage.storage().reference()
-        let riversRef = storegeRef.child("\(imageName)")
+        let imageRef = storegeRef.child("\(imageName)")
         
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
         
-        riversRef.putData(imageData, metadata: metadata)
+        imageRef.putData(imageData, metadata: metadata)
         
         return imageName
     }

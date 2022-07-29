@@ -42,4 +42,3 @@ class CardListViewModel: ObservableObject {
 ////        controller.cardSelected = present
 //    }
 }
-
