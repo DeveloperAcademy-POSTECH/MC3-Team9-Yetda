@@ -12,11 +12,19 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var storyTextView: UITextView!
     @IBOutlet weak var numbersTyped: UILabel!
+    @IBOutlet weak var storyTypeLimit: UILabel!
+    @IBOutlet weak var nextButton: UIButton!
+    @IBAction func nextButton(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
+    }
     
     var activeField: UITextField? = nil
     var photos: [String] = ["photo1", "photo2", "photo3", "photo4", "photo5"]
     var isKeyboardShowing: Bool = false
-    @IBOutlet weak var storyTypeLimit: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +33,12 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
         storyTextView.text = "입력하기"
         storyTextView.textColor = UIColor(named: "YettdaMainGray")
         storyTypeLimit.text = "0/200"
+        
+        nextButton.isUserInteractionEnabled = false
+        nextButton.backgroundColor = UIColor(named: "YettdaSubDisabledButton")
+        nextButton.layer.cornerRadius = 10
         customTextView(storyTextView)
-
+        
         textViewDidBeginEditing(storyTextView)
         textViewDidEndEditing(storyTextView)
         self.hideKeyboardWhenTappedAround()
@@ -59,12 +71,21 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
         textView.layer.borderColor = UIColor(named: "YettdaMainLightBlue")?.cgColor
         textView.layer.backgroundColor = CGColor(red: 211/255, green: 225/255, blue: 253/255, alpha: 0.1)
     }
+    
     func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
+        customTextView(textView)
+        
+        if storyTextView.text?.count == 0 {
             textView.text = "입력하기"
             textView.textColor = UIColor(named: "YettdaMainGray")
+            self.nextButton.isUserInteractionEnabled = false
+            self.nextButton.backgroundColor = UIColor(named: "YettdaSubDisabledButton")
+            self.nextButton.layer.cornerRadius = 10
+        } else {
+            self.nextButton.isUserInteractionEnabled = true
+            self.nextButton.backgroundColor = UIColor(named: "YettdaMainBlue")
+            self.nextButton.layer.cornerRadius = 10
         }
-        customTextView(textView)
     }
     
     func customTextView(_ textView: UITextView) {
@@ -93,25 +114,25 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
     @objc func keyboardWillHide(notification: NSNotification) {
         self.view.frame.origin.y = 0
         isKeyboardShowing.toggle()
-    }
-    
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        let currentText = storyTextView.text ?? ""
-        guard let stringRange = Range(range, in: currentText) else {return false}
         
-        let changedText = currentText.replacingCharacters(in: stringRange, with: text)
-        numbersTyped.text = "\(changedText.count)/200"
-        
-        // 키보드의 백버튼이 적용되고 값이 줄어들게한다
-        if let char =  text.cString(using: String.Encoding.utf8) {
-            let isBackSpace = strcmp(char, "\\b")
-            if isBackSpace == -92 {
-                return true
+        func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+            let currentText = storyTextView.text ?? ""
+            guard let stringRange = Range(range, in: currentText) else {return false}
+            
+            let changedText = currentText.replacingCharacters(in: stringRange, with: text)
+            numbersTyped.text = "\(changedText.count)/200"
+            
+            // 키보드의 백버튼이 적용되고 값이 줄어들게한다
+            if let char =  text.cString(using: String.Encoding.utf8) {
+                let isBackSpace = strcmp(char, "\\b")
+                if isBackSpace == -92 {
+                    return true
+                }
             }
+            
+            guard textView.text!.count < 200 else {return false}
+            
+            return true
         }
-        
-        guard textView.text!.count < 200 else {return false}
-        
-        return true
     }
 }

@@ -216,9 +216,7 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain">
-                                    <backgroundConfiguration key="background" cornerRadius="10">
-                                        <color key="backgroundColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </backgroundConfiguration>
+                                    <backgroundConfiguration key="background" cornerRadius="10"/>
                                     <attributedString key="attributedTitle">
                                         <fragment content="다음">
                                             <attributes>
@@ -226,7 +224,7 @@
                                             </attributes>
                                         </fragment>
                                     </attributedString>
-                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseForegroundColor" name="YettdaMainBackground"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="sendKeywordList:" destination="Zcw-ps-M3Y" eventType="touchUpInside" id="Ngb-mZ-cZ5"/>
@@ -270,18 +268,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NKH-RR-Zmr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2898.4615384615386" y="115.87677725118483"/>
+            <point key="canvasLocation" x="2977" y="116"/>
         </scene>
         <!--카드 작성-->
         <scene sceneID="wlM-eE-9Fo">
             <objects>
                 <viewController storyboardIdentifier="MakeCardStoryController" id="qiv-ON-jwV" customClass="MakeCardStoryViewController" customModule="Yetda" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fuw-em-nST">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="mEo-cg-sSE">
-                                <rect key="frame" x="20" y="103.66666666666667" width="350" height="134.33333333333331"/>
+                                <rect key="frame" x="20" y="83.666666666666671" width="350" height="134.33333333333331"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="u85-SL-EsI">
                                         <rect key="frame" x="0.0" y="0.0" width="350" height="94"/>
@@ -347,14 +345,14 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y3g-h4-iKK">
-                                <rect key="frame" x="20" y="259.66666666666669" width="350" height="1"/>
+                                <rect key="frame" x="20" y="239.66666666666666" width="350" height="1"/>
                                 <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="TJK-8u-CH4"/>
                                 </constraints>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="입력하기" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="NEH-wh-UXr">
-                                <rect key="frame" x="20" y="315" width="350" height="340"/>
+                                <rect key="frame" x="20" y="295" width="350" height="340"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="340" id="4yZ-lO-Z9h"/>
@@ -365,13 +363,13 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="선물과 함께 전할 이야기를 작성해 주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="skb-Cm-xLQ">
-                                <rect key="frame" x="20" y="285.66666666666669" width="256.33333333333331" height="19.333333333333314"/>
+                                <rect key="frame" x="20" y="265.66666666666669" width="256.33333333333331" height="19.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hAN-Tw-Eqm">
-                                <rect key="frame" x="20" y="733" width="350" height="58"/>
+                                <rect key="frame" x="20" y="713" width="350" height="58"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="58" id="efB-YC-iIM"/>
                                 </constraints>
@@ -380,22 +378,23 @@
                                     <color key="titleColor" red="0.97647058819999999" green="0.98039215690000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <buttonConfiguration key="configuration" style="plain">
-                                    <backgroundConfiguration key="background" cornerRadius="10">
-                                        <color key="backgroundColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </backgroundConfiguration>
+                                    <backgroundConfiguration key="background" cornerRadius="10"/>
                                     <attributedString key="attributedTitle">
                                         <fragment content="다음">
                                             <attributes>
-                                                <font key="NSFont" size="17" name=".AppleSDGothicNeoI-Regular"/>
+                                                <font key="NSFont" metaFont="system" size="17"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                     </attributedString>
                                     <color key="baseForegroundColor" red="0.97647058819999999" green="0.98039215690000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="nextButton:" destination="qiv-ON-jwV" eventType="touchUpInside" id="y84-v9-qZd"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/ 200" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7NT-tN-opk">
-                                <rect key="frame" x="334.33333333333331" y="660" width="35.666666666666686" height="18"/>
+                                <rect key="frame" x="334.33333333333331" y="640" width="35.666666666666686" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.82745098039999998" green="0.8862745098" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -425,6 +424,7 @@
                     <navigationItem key="navigationItem" title="카드 작성" id="Zqd-RT-lzc"/>
                     <connections>
                         <outlet property="locationLabel" destination="x2r-4e-bAQ" id="sEi-fx-WVv"/>
+                        <outlet property="nextButton" destination="hAN-Tw-Eqm" id="STd-Ss-9tv"/>
                         <outlet property="numbersTyped" destination="7NT-tN-opk" id="gan-Y0-nzD"/>
                         <outlet property="storyTextView" destination="NEH-wh-UXr" id="FPS-z4-rtj"/>
                         <outlet property="storyTypeLimit" destination="7NT-tN-opk" id="TOp-Ph-0fs"/>
@@ -441,58 +441,13 @@
             </objects>
             <point key="canvasLocation" x="3749.2307692307691" y="115.87677725118483"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="TKi-cE-Wtc">
-            <objects>
-                <navigationController storyboardIdentifier="MakeCardDescriptionViewController" automaticallyAdjustsScrollViewInsets="NO" id="ItK-bX-wQc" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Oe2-Af-z1o">
-                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="8lH-Rq-3R8" kind="relationship" relationship="rootViewController" id="bY6-B4-A1H"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QmC-Tk-P7J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1345" y="116"/>
-        </scene>
-        <!--Test View Controller-->
-        <scene sceneID="kSB-qt-OIF">
-            <objects>
-                <viewController id="8lH-Rq-3R8" customClass="TestViewController" customModule="Yetda" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="hUL-bY-lbE">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Twg-Ti-bhd">
-                                <rect key="frame" x="161.66666666666666" y="406.66666666666669" width="67" height="31"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
-                                <connections>
-                                    <segue destination="Zcw-ps-M3Y" kind="show" id="tNJ-Ur-LNT"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="4uG-T2-3qL"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="Twg-Ti-bhd" firstAttribute="centerX" secondItem="hUL-bY-lbE" secondAttribute="centerX" id="cep-6d-81f"/>
-                            <constraint firstItem="Twg-Ti-bhd" firstAttribute="centerY" secondItem="hUL-bY-lbE" secondAttribute="centerY" id="iw2-S8-4Jn"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="dEB-ID-7NY"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CIg-O5-CWd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2203" y="116"/>
-        </scene>
     </scenes>
     <resources>
         <image name="globe" catalog="system" width="128" height="121"/>
         <image name="photo1" width="183" height="275"/>
+        <namedColor name="YettdaMainBackground">
+            <color red="0.97647058823529409" green="0.98039215686274506" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
