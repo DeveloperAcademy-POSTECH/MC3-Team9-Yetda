@@ -42,13 +42,13 @@ class HomeViewController: UIViewController {
     var imageCount = 0
     var longPressEnabled = false
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        let showOnBoarding = defaults.bool(forKey: "isFirst")
-        if !showOnBoarding {
-            self.navigationController?.pushViewController(OnBoardingViewController(), animated: false)
-        }
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        let showOnBoarding = defaults.bool(forKey: "isFirst")
+//        if !showOnBoarding {
+//            self.navigationController?.pushViewController(OnBoardingViewController(), animated: false)
+//        }
+//    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -64,7 +64,7 @@ class HomeViewController: UIViewController {
         setCardListView()
         
         self.isHeroEnabled = true
-        self.cardListView.hero.id = "후쿠오카"
+        self.cardListView.hero.id = defaults.string(forKey: "site")
         self.hero.modalAnimationType = .fade
         
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.longTap(_:)))
@@ -125,7 +125,7 @@ class HomeViewController: UIViewController {
         topView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         topView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         topView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-        topView.heightAnchor.constraint(equalToConstant: 220).isActive = true
+//        topView.heightAnchor.constraint(equalToConstant: 220).isActive = true
         
         topView.addSubview(backgroundImage)
         setBackgroundImage()
@@ -138,14 +138,14 @@ class HomeViewController: UIViewController {
     }
     
     private func setCardListView() {
-        cardListView.layer.cornerRadius = 20
+        cardListView.layer.cornerRadius = 30
         cardListView.backgroundColor = UIColor(displayP3Red: 249/255, green: 250/255, blue: 253/255, alpha: 1.0)
         cardListView.clipsToBounds = true
         
         cardListView.translatesAutoresizingMaskIntoConstraints = false
         cardListView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         cardListView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        cardListView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 125).isActive = true
+        cardListView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 90).isActive = true
         cardListView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
         bindCollectionCardData()
@@ -191,7 +191,7 @@ class HomeViewController: UIViewController {
         cityLabel.leadingAnchor.constraint(equalTo: planeBtn.leadingAnchor).isActive = true
         cityLabel.topAnchor.constraint(equalTo: planeBtn.bottomAnchor, constant: 20).isActive = true
     
-        cityLabel.text = "후쿠오카"
+        cityLabel.text = defaults.string(forKey: "site")
         let font = UIFont.systemFont(ofSize: 25, weight: .bold)
         cityLabel.font = font
         cityLabel.textColor = .white
