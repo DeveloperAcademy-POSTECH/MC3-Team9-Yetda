@@ -122,7 +122,6 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate, ShareKaK
         topContainerView.addSubview(imageScrollView)
         topContainerView.addSubview(pageControl)
         topContainerView.addSubview(backButton)
-//        topContainerView.addSubview(configureShareButton(self, action: #selector(DidCardShareViewController.shareButtonAction)))
         
         setCardDetailViewConstraints(topView: topContainerView)
         setPageControlConstraints(topView: topContainerView)
