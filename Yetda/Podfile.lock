@@ -729,11 +729,7 @@ PODS:
     - gRPC-Core/Interface (= 1.44.0)
     - Libuv-gRPC (= 0.0.10)
   - gRPC-Core/Interface (1.44.0)
-<<<<<<< HEAD
-  - GTMSessionFetcher/Core (1.7.2)
-=======
   - GTMSessionFetcher/Core (2.0.0)
->>>>>>> Develop
   - KakaoSDK (2.11.0):
     - KakaoSDKAuth (= 2.11.0)
     - KakaoSDKCommon (= 2.11.0)
@@ -847,11 +843,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
   "gRPC-C++": 9675f953ace2b3de7c506039d77be1f2e77a8db2
   gRPC-Core: 943e491cb0d45598b0b0eb9e910c88080369290b
-<<<<<<< HEAD
-  GTMSessionFetcher: 5595ec75acf5be50814f81e9189490412bad82ba
-=======
   GTMSessionFetcher: 681175626052e03fdde7952f7e9c7a9785719506
->>>>>>> Develop
   KakaoSDK: ed91a3fba765f848fbbcfe18c67aaafb8cf1923b
   KakaoSDKAuth: b9470887e42b869725b391f4af34c4aaec42ea46
   KakaoSDKCommon: 0f59f2c1aead6012d92758e8ca46b63ea11c408b
@@ -867,10 +859,6 @@ SPEC CHECKSUMS:
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
 
-<<<<<<< HEAD
-PODFILE CHECKSUM: c3106d0c71034650755b73237d87ccacfe870824
-=======
 PODFILE CHECKSUM: 25c92227ea781224bf375f58e7ebc4372fb19ee3
->>>>>>> Develop
 
 COCOAPODS: 1.11.3
