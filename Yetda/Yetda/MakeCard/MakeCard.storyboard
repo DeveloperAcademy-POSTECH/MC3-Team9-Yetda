@@ -12,7 +12,7 @@
         <!--카드 작성-->
         <scene sceneID="17M-sM-Rmg">
             <objects>
-                <viewController id="Zcw-ps-M3Y" customClass="MakeCardDescriptionViewController" customModule="Yetda" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MakeCard" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Zcw-ps-M3Y" customClass="MakeCardDescriptionViewController" customModule="Yetda" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" restorationIdentifier="MakeCardDescriptionViewController" id="fSg-S7-VDh">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -227,6 +227,7 @@
                                     <color key="baseForegroundColor" name="YettdaMainBackground"/>
                                 </buttonConfiguration>
                                 <connections>
+                                    <action selector="saveButton:" destination="Zcw-ps-M3Y" eventType="touchUpInside" id="2zf-Rw-nwi"/>
                                     <action selector="sendKeywordList:" destination="Zcw-ps-M3Y" eventType="touchUpInside" id="Ngb-mZ-cZ5"/>
                                     <segue destination="qiv-ON-jwV" kind="show" id="RGI-62-UkN"/>
                                 </connections>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--My Page View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="MyPageViewController" id="Y6W-OH-hqX" customClass="MyPageViewController" customModule="Yetda" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nJv-Ns-2qb">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="마이페이지" id="Q8U-CA-i9R">
+                                        <barButtonItem key="rightBarButtonItem" title="완료" id="Bje-HZ-VQs">
+                                            <connections>
+                                                <action selector="forDismissButton:" destination="Y6W-OH-hqX" id="FjR-5I-FSz"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <button opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hy9-4K-Fiq">
+                                <rect key="frame" x="0.0" y="100" width="414" height="34.5"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button" image="carat.png">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="로그아웃">
+                                            <attributes>
+                                                <font key="NSFont" size="16" name="SpoqaHanSansNeo-Medium"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" imagePadding="0.0" titleAlignment="automatic">
+                                    <imageReference key="image" image="chevron.forward" catalog="system" symbolScale="default"/>
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="로그아웃">
+                                            <attributes>
+                                                <color key="NSColor" systemColor="systemGrayColor"/>
+                                                <font key="NSFont" size="16" name="SpoqaHanSansNeo-Medium"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                    <color key="baseForegroundColor" systemColor="systemGrayColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="logoutAlert:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="T7h-47-t65"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7LE-uU-bNX">
+                                <rect key="frame" x="0.0" y="145.5" width="414" height="34.5"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button" image="carat.png">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="로그아웃">
+                                            <attributes>
+                                                <font key="NSFont" size="16" name="SpoqaHanSansNeo-Medium"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" imagePadding="0.0" titleAlignment="automatic">
+                                    <imageReference key="image" image="chevron.forward" catalog="system" symbolScale="default"/>
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="회원탈퇴">
+                                            <attributes>
+                                                <color key="NSColor" systemColor="systemGrayColor"/>
+                                                <font key="NSFont" size="16" name="SpoqaHanSansNeo-Medium"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                    <color key="baseForegroundColor" systemColor="systemGrayColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="forResginButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="E9s-Up-PRF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ESW-Zz-sdq">
+                                <rect key="frame" x="0.0" y="191" width="414" height="34.5"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button" image="carat.png">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="로그아웃">
+                                            <attributes>
+                                                <font key="NSFont" size="16" name="SpoqaHanSansNeo-Medium"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" imagePadding="0.0" titleAlignment="automatic">
+                                    <imageReference key="image" image="chevron.forward" catalog="system" symbolScale="default"/>
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="오픈소스 및 라이선스">
+                                            <attributes>
+                                                <color key="NSColor" systemColor="systemGrayColor"/>
+                                                <font key="NSFont" size="16" name="SpoqaHanSansNeo-Medium"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                    <color key="baseForegroundColor" systemColor="systemGrayColor"/>
+                                </buttonConfiguration>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ESW-Zz-sdq" firstAttribute="top" secondItem="7LE-uU-bNX" secondAttribute="bottom" constant="11" id="5Eg-IR-jHz"/>
+                            <constraint firstItem="hy9-4K-Fiq" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="6iD-QL-h3t"/>
+                            <constraint firstItem="7LE-uU-bNX" firstAttribute="centerX" secondItem="hy9-4K-Fiq" secondAttribute="centerX" id="9jR-74-XsY"/>
+                            <constraint firstItem="ESW-Zz-sdq" firstAttribute="height" secondItem="7LE-uU-bNX" secondAttribute="height" id="9q4-gB-eaq"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="hy9-4K-Fiq" secondAttribute="trailing" id="EVF-eq-cix"/>
+                            <constraint firstItem="ESW-Zz-sdq" firstAttribute="width" secondItem="7LE-uU-bNX" secondAttribute="width" id="GiP-fT-VSB"/>
+                            <constraint firstItem="7LE-uU-bNX" firstAttribute="top" secondItem="hy9-4K-Fiq" secondAttribute="bottom" constant="11" id="Nmm-L3-c1W"/>
+                            <constraint firstItem="7LE-uU-bNX" firstAttribute="height" secondItem="hy9-4K-Fiq" secondAttribute="height" id="QzC-YE-z15"/>
+                            <constraint firstItem="hy9-4K-Fiq" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="UvG-lU-qNN"/>
+                            <constraint firstItem="nJv-Ns-2qb" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="e6S-BW-emx"/>
+                            <constraint firstItem="nJv-Ns-2qb" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" id="epP-5i-ccU"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="top" secondItem="nJv-Ns-2qb" secondAttribute="top" id="mpW-gb-pE9"/>
+                            <constraint firstItem="7LE-uU-bNX" firstAttribute="width" secondItem="hy9-4K-Fiq" secondAttribute="width" id="mrg-Ou-A5F"/>
+                            <constraint firstItem="hy9-4K-Fiq" firstAttribute="top" secondItem="nJv-Ns-2qb" secondAttribute="bottom" constant="12" id="r0k-rx-WdN"/>
+                            <constraint firstItem="ESW-Zz-sdq" firstAttribute="centerX" secondItem="7LE-uU-bNX" secondAttribute="centerX" id="sBc-qq-X3f"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="doneButtonNaviBar" destination="Bje-HZ-VQs" id="Te2-yr-txY"/>
+                        <outlet property="informButton" destination="ESW-Zz-sdq" id="ovG-Sx-RpC"/>
+                        <outlet property="logoutButton" destination="hy9-4K-Fiq" id="8w2-fd-7bc"/>
+                        <outlet property="myPageNavi" destination="nJv-Ns-2qb" id="GhX-dN-1J0"/>
+                        <outlet property="resignButton" destination="7LE-uU-bNX" id="4PV-Xf-6z0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="carat.png" width="16" height="28"/>
+        <image name="chevron.forward" catalog="system" width="96" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

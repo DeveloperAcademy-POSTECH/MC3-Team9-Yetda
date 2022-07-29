@@ -6,26 +6,21 @@
 //
 
 import UIKit
-import GoogleSignIn
 import AuthenticationServices
 import FirebaseAuth
 import CryptoKit
 
 class ViewController: UIViewController {
-    @IBOutlet weak var googleLoginButton: GIDSignInButton!
-    
     let isFirstLaunching: Bool = UserDefaults.standard.bool(forKey: "isFirstLaunching")
     
     private var currentNonce: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        GIDSignIn.sharedInstance()?.presentingViewController = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if Storage.isFirstTime() {
+        if myStorage.isFirstTime() {
             let onBoardingVC = OnBoardingViewController()
             onBoardingVC.modalPresentationStyle = .fullScreen
             
@@ -33,16 +28,12 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func googleLoginAction(_ sender: UIButton) {
-        GIDSignIn.sharedInstance().signIn()
-    }
-    
     @IBAction func appleLoginAction(_ sender: UIButton) {
         startSignInWithAppleFlow()
     }
 }
 
-public class Storage {
+public class myStorage {
     static func isFirstTime() -> Bool {
         let defaults = UserDefaults.standard
         if defaults.object(forKey: "isFirstTime") == nil {

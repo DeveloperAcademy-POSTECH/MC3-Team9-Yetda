@@ -11,11 +11,15 @@ import RxSwift
 import RxCocoa
 import YPImagePicker
 import Hero
+import FirebaseFirestore
 
 class HomeViewController: UIViewController {
-    
-    let sampleImages = [" . ", "Aichi.png", "Akita.png", "Aomori.png", "Chiba.png", "Ehime.png", "Fukui.png"]
 
+    var sampleCards = BehaviorRelay<[String]>(value: [" . ", "Aichi.png", "Akita.png", "Aomori.png", "Chiba.png", "Ehime.png", "Fukui.png"])
+    var db = Firestore.firestore()
+    
+    var presents: [Present] = []
+    
     let topView = UIView()
     let cardListView = CardListView()
     let cardCell = CardCell()
@@ -34,7 +38,17 @@ class HomeViewController: UIViewController {
     let viewModel = CardListViewModel()
     let disposeBag = DisposeBag()
     
+    var imageList: [UIImage] = []
     var imageCount = 0
+    var longPressEnabled = false
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        let showOnBoarding = defaults.bool(forKey: "isFirst")
+//        if !showOnBoarding {
+//            self.navigationController?.pushViewController(OnBoardingViewController(), animated: false)
+//        }
+//    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -43,15 +57,67 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        
         self.view.addSubview(topView)
         setTopView()
         self.view.addSubview(cardListView)
         setCardListView()
-//        self.viewModel.getPresentList()
         
         self.isHeroEnabled = true
-        self.cardListView.hero.id = "후쿠오카"
+        self.cardListView.hero.id = defaults.string(forKey: "site")
         self.hero.modalAnimationType = .fade
+        
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.longTap(_:)))
+        cardListView.cardCollectionView.addGestureRecognizer(longPressGesture)
+        
+        let touchGesture = UITapGestureRecognizer(target: self, action: #selector(self.tap(_:)))
+        self.topView.addGestureRecognizer(touchGesture)
+        
+        // Firestore DB 읽기
+//        db.collection("presents").addSnapshotListener { snapshot, error in
+//            guard let documents = snapshot?.documents else {
+//                print("ERROR Firestore fetching document \(String(describing: error?.localizedDescription))")
+//                return
+//            }
+//
+//            self.presents = documents.compactMap { doc -> Present? in
+//                do {
+//                    let jsonData = try JSONSerialization.data(withJSONObject: doc.data(), options: [])
+//                    let present = try JSONDecoder().decode(Present.self, from: jsonData)
+//                    return present
+//                } catch let error {
+//                    print("ERROR JSON Parsing \(error)")
+//                    return nil
+//                }
+//            }
+//            print(self.presents)
+//        }
+    }
+    
+    @objc func longTap(_ gesture: UIGestureRecognizer) {
+        
+        switch(gesture.state) {
+        case .began:
+            guard let selectedIndexPath = cardListView.cardCollectionView.indexPathForItem(at: gesture.location(in: cardListView.cardCollectionView)) else { return }
+            cardListView.cardCollectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
+            
+        case .changed:
+            cardListView.cardCollectionView.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
+            
+        case .ended:
+            cardListView.cardCollectionView.endInteractiveMovement()
+            longPressEnabled = true
+            self.cardListView.cardCollectionView.reloadData()
+            
+        default:
+            cardListView.cardCollectionView.cancelInteractiveMovement()
+            
+        }
+    }
+    
+    @objc func tap(_ gesture: UIGestureRecognizer) {
+        longPressEnabled = false
+        self.cardListView.cardCollectionView.reloadData()
     }
     
     private func setTopView() {
@@ -59,7 +125,7 @@ class HomeViewController: UIViewController {
         topView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         topView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         topView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-        topView.heightAnchor.constraint(equalToConstant: 220).isActive = true
+//        topView.heightAnchor.constraint(equalToConstant: 220).isActive = true
         
         topView.addSubview(backgroundImage)
         setBackgroundImage()
@@ -72,14 +138,14 @@ class HomeViewController: UIViewController {
     }
     
     private func setCardListView() {
-        cardListView.layer.cornerRadius = 20
+        cardListView.layer.cornerRadius = 30
         cardListView.backgroundColor = UIColor(displayP3Red: 249/255, green: 250/255, blue: 253/255, alpha: 1.0)
         cardListView.clipsToBounds = true
         
         cardListView.translatesAutoresizingMaskIntoConstraints = false
         cardListView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         cardListView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        cardListView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 125).isActive = true
+        cardListView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 90).isActive = true
         cardListView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
         bindCollectionCardData()
@@ -125,23 +191,29 @@ class HomeViewController: UIViewController {
         cityLabel.leadingAnchor.constraint(equalTo: planeBtn.leadingAnchor).isActive = true
         cityLabel.topAnchor.constraint(equalTo: planeBtn.bottomAnchor, constant: 20).isActive = true
     
-        cityLabel.text = "후쿠오카"
+        cityLabel.text = defaults.string(forKey: "site")
         let font = UIFont.systemFont(ofSize: 25, weight: .bold)
         cityLabel.font = font
         cityLabel.textColor = .white
     }
     
     private func bindCollectionCardData() {
-        let sampleImageList = Observable.just(
-            sampleImages.map{$0}
-        )
+        
         let collectionView = cardListView.cardCollectionView
         
-        sampleImageList.bind(to: collectionView.rx.items(cellIdentifier: "PresentCardCell", cellType: CardCell.self)) { row, model, cell in
-            if (row==0) {
+        sampleCards
+            .bind(to: collectionView.rx.items(cellIdentifier: "PresentCardCell", cellType: CardCell.self)) { [self] row, model, cell in
+            if (row == 0) {
                 cell.setData("addPhoto")
+                cell.removeBtn.isHidden = true
             } else {
                 cell.setData(model)
+                cell.removeBtn.addTarget(self, action: #selector(removeBtnClick(_:)), for: .touchUpInside)
+                if self.longPressEnabled {
+                    cell.startAnimate()
+                } else {
+                    cell.stopAnimate()
+                }
             }
         }.disposed(by: disposeBag)
 
@@ -149,7 +221,6 @@ class HomeViewController: UIViewController {
 
         collectionView.rx.itemSelected.bind { indexPath in
             self.cardListView.cardCollectionView.deselectItem(at: indexPath, animated: true)
-//            guard let present = self.viewModel.getPresentAt(indexPath) else { return }
             
             if (indexPath.row == 0) {
                 var config = YPImagePickerConfiguration()
@@ -189,19 +260,32 @@ class HomeViewController: UIViewController {
                         }
                         
                     }
-    //                self.selectedImages.accept(self.selectedImages.value+newImages)
-                    imagePicker.dismiss(animated: true)
+                    self.imageList = newImages
+//                    MakeCardDescriptionViewController().photos = self.imageList
+                    imagePicker.dismiss(animated: false)
+                    let storyboard = UIStoryboard(name: "MakeCard", bundle: nil)
+                    let makeCardVC = storyboard.instantiateViewController(withIdentifier: "MakeCard")
+                    self.present(makeCardVC, animated: true)
                 }
                 imagePicker.view.backgroundColor = .white
                 self.present(imagePicker, animated: true)
             } else {
-//                self.sendCardData(indexPath: indexPath)
+                self.sendCardData(indexPath: indexPath)
             }
         }.disposed(by: disposeBag)
     }
     
+    @IBAction func removeBtnClick(_ sender: UIButton) {
+        let hitPoint = sender.convert(CGPoint.zero, to: self.cardListView.cardCollectionView)
+        let hitIndex = self.cardListView.cardCollectionView.indexPathForItem(at: hitPoint)
+        let row = hitIndex?.row ?? -1
+        var original = self.sampleCards.value
+        original.remove(at: row + 2)
+        self.sampleCards.accept(original)
+    }
+    
     private func sendCardData(indexPath: IndexPath) {
 //        viewModel.didSelect(indexPath)
-//        self.navigationController!.pushViewController(controller, animated: true)
+        self.navigationController!.pushViewController(CardDetailViewController(), animated: true)
     }
 }

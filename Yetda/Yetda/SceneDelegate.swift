@@ -17,12 +17,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
         // MARK: 여기서 자기가 띄우고 싶은 스토리보드랑 뷰컨트롤러를 설정해주면 됩니다.
-//        guard let _ = (scene as? UIWindowScene) else { return }
-//
-//                let storyboard = UIStoryboard(name: "MakeCard", bundle: nil)
-//                let vc = storyboard.instantiateViewController(withIdentifier: "MakeCardDescriptionViewController")
-//                self.window?.rootViewController = vc
-//                self.window?.makeKeyAndVisible()
+        guard let _ = (scene as? UIWindowScene) else { return }
+
+        let homeVC = UINavigationController(rootViewController: HomeViewController())
+        self.window?.rootViewController = homeVC
+        self.window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -17,7 +17,6 @@ class SiteViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var siteTitleLabel: UILabel!
     @IBOutlet weak var siteViewButton: UIButton!
     @IBOutlet weak var siteCollectionView: UICollectionView!
-    @IBOutlet var siteMenu: UIMenu!
     @IBOutlet var siteView: UIView!
     
     let disposeBag = DisposeBag()
@@ -35,14 +34,6 @@ class SiteViewController: UIViewController, UICollectionViewDelegate {
         
         self.makeSiteSearchBar()
         
-        lazy var menuChildren: [UIAction] = {
-            return [
-                UIAction(title: "목록 편집", image: UIImage(systemName: "pencil"), state: .off, handler: { _ in }), //TODO: 편집기능 넣기
-                UIAction(title: "닫기", image: UIImage(systemName: "arrow.down.forward.and.arrow.up.backward.circle"), state: .off, handler: { _ in })
-            ]
-        }()
-        
-        siteViewButton.menu =  UIMenu(title: "", image: UIImage(systemName: "pencil"), identifier: nil, options: .displayInline, children: menuChildren)
         siteCollectionView.collectionViewLayout = layout()
         siteCollectionView.delegate = self
         
@@ -102,6 +93,17 @@ class SiteViewController: UIViewController, UICollectionViewDelegate {
         section.interGroupSpacing = spacingSize
         
         return UICollectionViewCompositionalLayout(section: section)
+    }
+    @IBAction func myPageButton(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "MyPageView", bundle: nil)
+        guard let childVC = storyboard.instantiateViewController(withIdentifier: "MyPageViewController") as? MyPageViewController else { return }
+        //let childVC = MyPageViewController()
+        
+        childVC.view.backgroundColor = UIColor(named: "YettdaMainBackground")
+        childVC.modalPresentationStyle = .formSheet
+        
+        
+        self.present(childVC, animated: true)
     }
     
     private func bindTouch() {
