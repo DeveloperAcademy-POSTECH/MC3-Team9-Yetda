@@ -195,7 +195,7 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate, ShareKaK
 //        self.navigationController?.popToRootViewController(animated: true)
     }
     
-    @objc func popoverModal() {
+    @objc func popOverModal() {
 //        var vc = UIViewController()
 //        self.present(vc, animated: true)
     }
