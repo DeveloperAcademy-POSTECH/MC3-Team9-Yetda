@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CardDetailViewController: UIViewController, UIScrollViewDelegate {
+class CardDetailViewController: UIViewController, UIScrollViewDelegate, ShareKaKao {
     
 
 //    let pageSize = Present().imageArray.count
@@ -122,7 +122,7 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate {
         topContainerView.addSubview(imageScrollView)
         topContainerView.addSubview(pageControl)
         topContainerView.addSubview(backButton)
-        topContainerView.addSubview(shareButton)
+//        topContainerView.addSubview(configureShareButton(self, action: #selector(DidCardShareViewController.shareButtonAction)))
         
         setCardDetailViewConstraints(topView: topContainerView)
         setPageControlConstraints(topView: topContainerView)
@@ -142,12 +142,13 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate {
     
     func makeButton(symbols: String) -> UIButton {
         let button = UIButton(type: .system)
-        let image = UIImage(systemName: symbols)?.withTintColor(.blue, renderingMode: .alwaysOriginal)
+        let image = UIImage(systemName: symbols)?.withTintColor(.systemBlue, renderingMode: .alwaysOriginal)
         button.setImage(image, for: .normal)
+        button.setPreferredSymbolConfiguration(.init(pointSize: 22, weight: .regular), forImageIn: .normal)
         button.configuration = .filled()
         button.tintColor = .white
         button.configuration?.imagePadding = 0
-        button.alpha = 0.5
+        button.alpha = 0.8
         
         return button
     }
@@ -168,10 +169,12 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func setShareButtonConstraints(topView: UIView, width: CGFloat) {
-        shareButton.translatesAutoresizingMaskIntoConstraints = false
-        shareButton.topAnchor.constraint(equalTo: topView.topAnchor, constant: 20).isActive = true
-        shareButton.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: width-60).isActive = true
-        shareButton.trailingAnchor.constraint(equalTo: topView.trailingAnchor, constant: -20).isActive = true
+        let configureShareButton = configureShareButton(self, action: #selector(shareButtonAction))
+
+        configureShareButton.translatesAutoresizingMaskIntoConstraints = false
+        configureShareButton.topAnchor.constraint(equalTo: topView.topAnchor, constant: 20).isActive = true
+        configureShareButton.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: width-60).isActive = true
+        configureShareButton.trailingAnchor.constraint(equalTo: topView.trailingAnchor, constant: -20).isActive = true
     }
     
     func setCardDetailViewConstraints(topView: UIView) {
@@ -195,6 +198,10 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate {
     @objc func popoverModal() {
 //        var vc = UIViewController()
 //        self.present(vc, animated: true)
+    }
+    
+    @objc func shareButtonAction(sender: UIButton!) {
+        shareKaKao(self, key: "Id", value: "2")
     }
 }
 
