@@ -3,9 +3,9 @@
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,8 +22,8 @@
                                 <rect key="frame" x="-12" y="0.0" width="414" height="896"/>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Hxf-zV-ICX">
-                                <rect key="frame" x="0.0" y="183" width="390" height="713"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <rect key="frame" x="0.0" y="204" width="390" height="713"/>
+                                <color key="backgroundColor" name="YettdaMainBackground"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rzk-yg-lrl">
                                     <size key="itemSize" width="350" height="141"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -48,13 +48,13 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="350" height="141"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBO-8b-1Ow">
-                                                    <rect key="frame" x="48" y="55.666666666666657" width="64" height="30"/>
+                                                    <rect key="frame" x="48" y="55.666666666666686" width="64" height="30"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sitePlaceIcon" translatesAutoresizingMaskIntoConstraints="NO" id="mY7-9T-eoA">
-                                                    <rect key="frame" x="18" y="54.666666666666657" width="27" height="32"/>
+                                                    <rect key="frame" x="18" y="54.666666666666686" width="27" height="32"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -87,25 +87,25 @@
                                 </cells>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="여행지 선택" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21h-fc-t9H">
-                                <rect key="frame" x="57" y="127.33333333333331" width="137" height="36"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                                <rect key="frame" x="57.000000000000007" y="129" width="113.66666666666669" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="airplane.departure" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="QCn-gJ-LFB">
-                                <rect key="frame" x="20" y="136.66666666666666" width="25" height="17.333333333333343"/>
+                                <rect key="frame" x="20" y="135.66666666666666" width="25" height="17"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zGj-Ud-BCq">
                                 <rect key="frame" x="328" y="65" width="42" height="42"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <menu key="menu" id="lZZ-MS-5PC"/>
-                                <state key="normal" image="siteViewButton"/>
+                                <state key="normal" image="ProfileBtn"/>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Hxf-zV-ICX" firstAttribute="top" secondItem="21h-fc-t9H" secondAttribute="bottom" constant="45" id="22Q-WZ-Qbs"/>
                             <constraint firstItem="KRa-H3-SeM" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="3qu-rj-zV6"/>
                             <constraint firstItem="KRa-H3-SeM" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="1.06154" id="3rl-ih-bmP"/>
                             <constraint firstItem="Hxf-zV-ICX" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="4rG-wq-gSy"/>
@@ -113,20 +113,19 @@
                             <constraint firstAttribute="trailing" secondItem="zGj-Ud-BCq" secondAttribute="trailing" constant="20" id="FWk-QA-ZIT"/>
                             <constraint firstItem="21h-fc-t9H" firstAttribute="leading" secondItem="QCn-gJ-LFB" secondAttribute="trailing" constant="11.880000000000001" id="Gdj-WQ-FSo"/>
                             <constraint firstItem="QCn-gJ-LFB" firstAttribute="centerY" secondItem="21h-fc-t9H" secondAttribute="centerY" id="Vga-ZR-0du"/>
-                            <constraint firstItem="Hxf-zV-ICX" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="139" id="jpy-VD-jBH"/>
+                            <constraint firstItem="Hxf-zV-ICX" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="160" id="jpy-VD-jBH"/>
                             <constraint firstItem="KRa-H3-SeM" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="1.06161" id="k5a-2e-NqS"/>
                             <constraint firstItem="Hxf-zV-ICX" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.844787" id="lr1-Xi-j1f"/>
                             <constraint firstItem="QCn-gJ-LFB" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" constant="20" id="nC2-5W-Gkh"/>
                             <constraint firstItem="21h-fc-t9H" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="57" id="qwH-DU-lCt"/>
-                            <constraint firstItem="Hxf-zV-ICX" firstAttribute="top" secondItem="21h-fc-t9H" secondAttribute="bottom" constant="19.579999999999998" id="rLG-uU-Xfh"/>
                             <constraint firstItem="Hxf-zV-ICX" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" id="vgr-At-xaq"/>
                             <constraint firstAttribute="top" secondItem="KRa-H3-SeM" secondAttribute="top" id="xij-Bc-UmP"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="siteCollectionView" destination="Hxf-zV-ICX" id="lMY-SG-ngN"/>
-                        <outlet property="siteMenu" destination="lZZ-MS-5PC" id="It6-fQ-vqP"/>
                         <outlet property="siteTitleLabel" destination="21h-fc-t9H" id="cNi-ia-oNX"/>
+                        <outlet property="siteView" destination="5EZ-qb-Rvc" id="Rly-7c-k68"/>
                         <outlet property="siteViewAirplaneIcon" destination="QCn-gJ-LFB" id="hH5-z7-bct"/>
                         <outlet property="siteViewButton" destination="zGj-Ud-BCq" id="gET-hc-TO4"/>
                     </connections>
@@ -138,10 +137,13 @@
     </scenes>
     <resources>
         <image name="BackgroundDesign" width="390" height="844"/>
+        <image name="ProfileBtn" width="42" height="42"/>
         <image name="ShadowCell" width="350" height="141"/>
         <image name="airplane.departure" catalog="system" width="128" height="83"/>
         <image name="sitePlaceIcon" width="27" height="32"/>
-        <image name="siteViewButton" width="42" height="42"/>
+        <namedColor name="YettdaMainBackground">
+            <color red="0.97647058823529409" green="0.98039215686274506" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

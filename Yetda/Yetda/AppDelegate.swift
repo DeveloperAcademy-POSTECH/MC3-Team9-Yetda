@@ -7,15 +7,19 @@
  
 import UIKit
 import CoreData
+import Firebase
+import FirebaseFirestore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var selectedKeyword: [String] = []
-//    rxSwift
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        FirebaseApp.configure()
+        
+        let db = Firestore.firestore()
+        
         return true
     }
 
@@ -80,3 +84,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate {
+    ///Main 화면으로 보내기
+    func showMainViewController() {
+        let storyboard = UIStoryboard(name: "Home", bundle: Bundle.main)
+        let homeViewController = storyboard.instantiateViewController(identifier: "HomeViewController")
+        homeViewController.modalPresentationStyle = .fullScreen
+        UIApplication.shared.windows.first?.rootViewController?.show(homeViewController, sender: nil)
+    }
+}

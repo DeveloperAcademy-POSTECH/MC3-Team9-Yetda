@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "hero",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/HeroTransitions/Hero",
+      "state" : {
+        "branch" : "develop",
+        "revision" : "e6d234106a5654fdb94ab905c64cca270d8e7cd8"
+      }
+    },
+    {
       "identity" : "prynttrimmerview",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/HHK1/PryntTrimmerView",

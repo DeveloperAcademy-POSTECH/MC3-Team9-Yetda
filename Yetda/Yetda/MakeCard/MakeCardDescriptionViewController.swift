@@ -6,18 +6,18 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
 
-class MakeCardDescriptionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class MakeCardDescriptionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate {
     
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var giftNameTextField: UITextField!
     @IBOutlet weak var giftRecipientTextField: UITextField!
     @IBOutlet weak var photoCollection: UICollectionView!
     @IBOutlet weak var keywordCollection: UICollectionView!
+    @IBAction func sendKeywordList(_ sender: Any) {
+        prepareKeyword()
+    }
     
-    var count: Int = 0
     var photos: [String] = ["photo1", "photo2", "photo3", "photo4", "photo5"]
     var keywords: [Keyword] = [
         Keyword(name: "☀️햇빛쨍쨍", state: false),
@@ -43,14 +43,15 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let giftNameTextField = giftNameTextField {
-            borderRadius(view: giftNameTextField).addLeftPadding()
-        }
-        if let giftRecipientTextField = giftRecipientTextField {
-            borderRadius(view: giftRecipientTextField).addLeftPadding()
-        }
+
+        giftNameTextField?.delegate = self
+        giftRecipientTextField?.delegate = self
+        
+        if let giftNameTextField = giftNameTextField {borderRadius(giftNameTextField).addLeftPadding()}
+        if let giftRecipientTextField = giftRecipientTextField {borderRadius( giftRecipientTextField).addLeftPadding()}
         self.hideKeyboardWhenTappedAround()
-//        bindData()
+        
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -59,7 +60,7 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
         return result
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {        
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.photoCollection {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoCollectionCell
             cell.chosenPhotoDescription.image = UIImage(named: photos[indexPath.row])
@@ -68,50 +69,87 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
         }
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "keywordCell", for: indexPath) as! KeywordCollectionCell
-            cell.customizeButton(indexPath)
+            cell.keywordButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+            cell.initButton()
+            cell.setButton(keywords[indexPath.row].state)
             cell.keywordButton.setTitle(keywords[indexPath.item].name, for: .normal)
             return cell
         }
     }
-    // 셀 너비 동적으로 조절하는 함수
-    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    //        return CGSize(width: keywords[indexPath.item].name.size(withAttributes: [NSAttributedString.Key : UIFont.systemFont(ofSize: 14)]).width + 20, height: 38)
-    //    }
     
-//    private func bindData() {
-//
-//        let keywordList = BehaviorRelay<[Keyword]>(value: keywords)
-//        keywordList.bind(to: keywordCollection.rx.items(cellIdentifier: "keywordCell", cellType: KeywordCollectionCell.self)) { row, model, cell in
-//
-//        }.disposed(by: DisposeBag())
-//
-//        keywordCollection.rx.itemSelected.bind { indexPath in
-//            self.keywordCollection.deselectItem(at: indexPath, animated: true)
-//            guard let state = self.keywords[indexPath.row].state else { return }
-//            keywords[indexPath.row].state = !state
-//        }
-//    }
+    // 다음 뷰에 키워드를 담은 배열 값을 넘겨줄 준비
+    func prepareKeyword() -> [Keyword] {
+        
+        var results: [Keyword] = []
+        
+        for keyword in keywords {
+            if keyword.state {
+                results.append(keyword)
+            }
+        }
+        return results
+    }
     
-}
-
-
-// textField corner 둥글게, 보더 적용하는 함수
-func borderRadius(view: UITextField) -> UITextField{
-    view.layer.cornerRadius = 19.0
-    view.layer.borderWidth = 1.0
-    view.layer.borderColor = UIColor.systemGray5.cgColor
-    view.layer.masksToBounds = true
-    return view
+    // 키워드 state 토글해주고 값 제한하는 함수
+    @objc func didTapButton(_ sender: UIButton) {
+        
+        var number = 0
+        
+        for keyword in keywords {
+            if keyword.state == true {
+                number += 1
+            }
+        }
+        
+        for keyword in keywords {
+            if keyword.name == sender.title(for: .normal) {
+                keyword.state.toggle()
+                if number<4 && (keyword.state == true){
+                    number += 1
+                } else if number >= 4 && (keyword.state == false) {
+                    number -= 1
+                } else if number >= 4 && (keyword.state == true){
+                    keyword.state.toggle()
+                } else {
+                    number -= 1
+                }
+                keywordCollection.reloadData()
+                print(number)
+                return
+            }
+        }
+        print(number)
+        
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.layer.borderColor = CGColor(red: 211/255, green: 225/255, blue: 253/255, alpha: 1)
+        textField.backgroundColor = UIColor(red: 211/255, green: 225/255, blue: 253/255, alpha: 0.1)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        borderRadius(textField)
+    }
+    
+    // textField corner 둥글게, 보더 적용하는 함수
+    func borderRadius(_ textField: UITextField) -> UITextField{
+        textField.layer.masksToBounds = true
+        textField.layer.cornerRadius = 19.0
+        textField.layer.borderWidth = 1.0
+        textField.layer.borderColor = UIColor.systemGray5.cgColor
+        textField.backgroundColor = UIColor.white
+        return textField
+    }
 }
 
 class Keyword {
+    
     var name: String = ""
     var state: Bool = false
     
     init(name: String, state: Bool) {
         self.name = name
         self.state = state
-        
     }
     
     func findKeyword(name: String) -> Bool {
@@ -125,11 +163,11 @@ class Keyword {
 
 // textField 안에서 왼쪽 Padding 주는 함수
 extension UITextField {
-  func addLeftPadding() {
-    let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 6, height: self.frame.height))
-    self.leftView = paddingView
-    self.leftViewMode = ViewMode.always
-  }
+    func addLeftPadding() {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 6, height: self.frame.height))
+        self.leftView = paddingView
+        self.leftViewMode = ViewMode.always
+    }
 }
 
 extension UIViewController {

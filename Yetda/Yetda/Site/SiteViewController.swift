@@ -7,15 +7,19 @@
 
 import UIKit
 import SwiftUI
+import RxSwift
+import RxCocoa
+import Hero
 
 class SiteViewController: UIViewController, UICollectionViewDelegate {
-    
     
     @IBOutlet weak var siteViewAirplaneIcon: UIImageView!
     @IBOutlet weak var siteTitleLabel: UILabel!
     @IBOutlet weak var siteViewButton: UIButton!
     @IBOutlet weak var siteCollectionView: UICollectionView!
-    @IBOutlet var siteMenu: UIMenu!
+    @IBOutlet var siteView: UIView!
+    
+    let disposeBag = DisposeBag()
     
     let list = [SiteModel(name: "Fukuoka"), SiteModel(name: "Akita"), SiteModel(name: "Fukushima"), SiteModel(name: "Tokyo"), SiteModel(name: "Nagasaki")]
     
@@ -28,16 +32,8 @@ class SiteViewController: UIViewController, UICollectionViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        siteCollectionView.layer.cornerRadius = 20
+        self.makeSiteSearchBar()
         
-        lazy var menuChildren: [UIAction] = {
-            return [
-                UIAction(title: "목록 편집", image: UIImage(systemName: "pencil"), state: .off, handler: { _ in }), //TODO: 편집기능 넣기
-                UIAction(title: "닫기", image: UIImage(systemName: "arrow.down.forward.and.arrow.up.backward.circle"), state: .off, handler: { _ in })
-            ]
-        }()
-        
-        siteViewButton.menu =  UIMenu(title: "", image: UIImage(systemName: "pencil"), identifier: nil, options: .displayInline, children: menuChildren)
         siteCollectionView.collectionViewLayout = layout()
         siteCollectionView.delegate = self
         
@@ -54,12 +50,37 @@ class SiteViewController: UIViewController, UICollectionViewDelegate {
         snapshot.appendSections([.main])
         snapshot.appendItems(list, toSection: .main)
         siteDataSource.apply(snapshot)
+    
+        self.hero.modalAnimationType = .fade
+        bindTouch()
+    }
+    func makeSiteSearchBar() {
+        
+        let siteSearchBar = UISearchBar()
+        siteSearchBar.placeholder = "여행지를 추가해주세요"
+        siteSearchBar.searchBarStyle = .minimal
+        siteSearchBar.backgroundColor = UIColor(named: "YettdaMainBackground")
+        siteSearchBar.sizeToFit()
+        siteSearchBar.frame.size.width = siteCollectionView.frame.size.width
+        siteSearchBar.layer.cornerRadius = 30
+        siteSearchBar.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMaxXMinYCorner)
+        
+        siteView.addSubview(siteSearchBar)
+        
+        siteSearchBar.translatesAutoresizingMaskIntoConstraints = false
+        
+        siteSearchBar.topAnchor.constraint(equalTo: siteView.topAnchor, constant: 180).isActive = true
+        siteSearchBar.widthAnchor.constraint(equalToConstant: siteCollectionView.frame.size.width).isActive = true
+        siteSearchBar.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        
+        let directionalMargins = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: -20, trailing: 20)
+        siteSearchBar.directionalLayoutMargins = directionalMargins
     }
     
     private func layout() -> UICollectionViewCompositionalLayout {
         
-        let UICClayoutInsetSize: CGFloat = UIScreen.main.bounds.width - 24
-        let spacingSize: CGFloat = 16
+        let UICClayoutInsetSize: CGFloat = UIScreen.main.bounds.width - 40
+        let spacingSize: CGFloat = 20
         
         let itemsize = NSCollectionLayoutSize(widthDimension: .absolute(UICClayoutInsetSize), heightDimension: .estimated(100))
         let itemLayout = NSCollectionLayoutItem(layoutSize: itemsize)
@@ -68,10 +89,19 @@ class SiteViewController: UIViewController, UICollectionViewDelegate {
         let groupLayout = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [itemLayout])
         
         let section = NSCollectionLayoutSection(group: groupLayout)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 32, leading: 12, bottom: 0, trailing: 12)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 53, leading: 20, bottom: 0, trailing: 20)
         section.interGroupSpacing = spacingSize
         
         return UICollectionViewCompositionalLayout(section: section)
+    }
+    
+    private func bindTouch() {
+        siteCollectionView.rx.itemSelected.bind { indexPath in
+            self.siteCollectionView.deselectItem(at: indexPath, animated: true)
+            let vc = HomeViewController()
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true)
+        }.disposed(by: disposeBag)
     }
 }
 
