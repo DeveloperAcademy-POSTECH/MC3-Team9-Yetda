@@ -189,7 +189,7 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @objc func moveToHomeView() {
-//        self.navigationController?.popViewController(animated: true)
+//        self.navigationController?.popToRootViewController(animated: true)
     }
     
     @objc func popoverModal() {
