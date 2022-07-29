@@ -137,8 +137,8 @@ extension SearchResultViewController: UICollectionViewDelegate {
         let site = viewModel.resultData[indexPath.item]
         setSiteUserDefault(site: site)
         defaults.set(site, forKey: "site")
-        /// 온보딩은 루트뷰가 아니므로 디스미스
-        self.dismiss(animated: false)
+        defaults.set(true, forKey: "isFirst")
+        self.navigationController?.popViewController(animated: false)
     }
 
     func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
