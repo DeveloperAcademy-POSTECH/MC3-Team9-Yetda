@@ -11,7 +11,8 @@ target 'Yetda' do
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
- 
+  pod 'Firebase/Storage'
+
 end
 
 post_install do |installer|

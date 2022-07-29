@@ -68,7 +68,7 @@ class HomeViewController: UIViewController {
         // Firestore DB 읽기
         db.collection("presents").addSnapshotListener { snapshot, error in
             guard let documents = snapshot?.documents else {
-                print("ERROR Firestore fetching document \(String(describing: error))")
+                print("ERROR Firestore fetching document \(String(describing: error?.localizedDescription))")
                 return
             }
             
@@ -82,7 +82,6 @@ class HomeViewController: UIViewController {
                     return nil
                 }
             }
-            
             print(self.presents)
         }
     }
