@@ -42,6 +42,14 @@ class HomeViewController: UIViewController {
     var imageCount = 0
     var longPressEnabled = false
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let showOnBoarding = defaults.bool(forKey: "isFirst")
+        if !showOnBoarding {
+            self.navigationController?.pushViewController(OnBoardingViewController(), animated: false)
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
@@ -66,24 +74,24 @@ class HomeViewController: UIViewController {
         self.topView.addGestureRecognizer(touchGesture)
         
         // Firestore DB 읽기
-        db.collection("presents").addSnapshotListener { snapshot, error in
-            guard let documents = snapshot?.documents else {
-                print("ERROR Firestore fetching document \(String(describing: error?.localizedDescription))")
-                return
-            }
-            
-            self.presents = documents.compactMap { doc -> Present? in
-                do {
-                    let jsonData = try JSONSerialization.data(withJSONObject: doc.data(), options: [])
-                    let present = try JSONDecoder().decode(Present.self, from: jsonData)
-                    return present
-                } catch let error {
-                    print("ERROR JSON Parsing \(error)")
-                    return nil
-                }
-            }
-            print(self.presents)
-        }
+//        db.collection("presents").addSnapshotListener { snapshot, error in
+//            guard let documents = snapshot?.documents else {
+//                print("ERROR Firestore fetching document \(String(describing: error?.localizedDescription))")
+//                return
+//            }
+//
+//            self.presents = documents.compactMap { doc -> Present? in
+//                do {
+//                    let jsonData = try JSONSerialization.data(withJSONObject: doc.data(), options: [])
+//                    let present = try JSONDecoder().decode(Present.self, from: jsonData)
+//                    return present
+//                } catch let error {
+//                    print("ERROR JSON Parsing \(error)")
+//                    return nil
+//                }
+//            }
+//            print(self.presents)
+//        }
     }
     
     @objc func longTap(_ gesture: UIGestureRecognizer) {
@@ -253,13 +261,16 @@ class HomeViewController: UIViewController {
                         
                     }
                     self.imageList = newImages
-                    print(self.imageList)
-                    imagePicker.dismiss(animated: true)
+//                    MakeCardDescriptionViewController().photos = self.imageList
+                    imagePicker.dismiss(animated: false)
+                    let storyboard = UIStoryboard(name: "MakeCard", bundle: nil)
+                    let makeCardVC = storyboard.instantiateViewController(withIdentifier: "MakeCard")
+                    self.present(makeCardVC, animated: true)
                 }
                 imagePicker.view.backgroundColor = .white
                 self.present(imagePicker, animated: true)
             } else {
-//                self.sendCardData(indexPath: indexPath)
+                self.sendCardData(indexPath: indexPath)
             }
         }.disposed(by: disposeBag)
     }
@@ -275,6 +286,6 @@ class HomeViewController: UIViewController {
     
     private func sendCardData(indexPath: IndexPath) {
 //        viewModel.didSelect(indexPath)
-//        self.navigationController!.pushViewController(controller, animated: true)
+        self.navigationController!.pushViewController(CardDetailViewController(), animated: true)
     }
 }
