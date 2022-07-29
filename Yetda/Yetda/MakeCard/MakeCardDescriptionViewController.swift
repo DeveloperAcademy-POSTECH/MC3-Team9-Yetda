@@ -53,6 +53,8 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
         if let giftRecipientTextField = giftRecipientTextField {borderRadius( giftRecipientTextField).addLeftPadding()}
         self.hideKeyboardWhenTappedAround()
         
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
         setUpUI()
     }
     
@@ -125,7 +127,7 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.layer.borderColor = CGColor(red: 211/255, green: 225/255, blue: 253/255, alpha: 1)
+        textField.layer.borderColor = UIColor(named: "YettdaMainLightBlue")?.cgColor
         textField.backgroundColor = UIColor(red: 211/255, green: 225/255, blue: 253/255, alpha: 0.1)
         self.activeField = textField
     }

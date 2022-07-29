@@ -23,7 +23,7 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
         
         storyTextView.delegate = self
         storyTextView.text = "입력하기"
-        storyTextView.textColor = UIColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1)
+        storyTextView.textColor = UIColor(named: "YettdaMainGray")
         storyTypeLimit.text = "0/200"
         customTextView(storyTextView)
 
@@ -51,18 +51,18 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1) {
+        if textView.textColor == UIColor(named: "YettdaMainGray") {
             textView.text = nil
             textView.textColor = UIColor.black
         }
         textView.layer.borderWidth = 1
-        textView.layer.borderColor = CGColor(red: 211/255, green: 225/255, blue: 253/255, alpha: 1)
+        textView.layer.borderColor = UIColor(named: "YettdaMainLightBlue")?.cgColor
         textView.layer.backgroundColor = CGColor(red: 211/255, green: 225/255, blue: 253/255, alpha: 0.1)
     }
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = "입력하기"
-            textView.textColor = UIColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1)
+            textView.textColor = UIColor(named: "YettdaMainGray")
         }
         customTextView(textView)
     }
@@ -73,7 +73,7 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
         textView.layer.masksToBounds = true
         textView.layer.cornerRadius = 20.0
         textView.layer.borderWidth = 1
-        textView.layer.borderColor = CGColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1)
+        textView.layer.borderColor = UIColor(named: "YettdaMainGray")?.cgColor
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -81,7 +81,7 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
             if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
                 let keyboardHeight = keyboardFrame.cgRectValue.height
                 let bottomSpace = self.view.frame.height - (storyTextView.frame.origin.y + storyTextView.frame.height)
-                self.view.frame.origin.y -= keyboardHeight - bottomSpace + 10
+                self.view.frame.origin.y -= keyboardHeight - bottomSpace + 70
             }
             isKeyboardShowing.toggle()
         }
@@ -92,6 +92,7 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
     
     @objc func keyboardWillHide(notification: NSNotification) {
         self.view.frame.origin.y = 0
+        isKeyboardShowing.toggle()
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
