@@ -49,7 +49,7 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate, ShareKaK
         let screenHeight = self.view.frame.height
         let topContainerView = UIView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenWidth))
         
-        topContainerView.backgroundColor = .systemBackground
+        topContainerView.backgroundColor = UIColor(named: "YettdaMainBackground")
         topContainerView.clipsToBounds = true
         topContainerView.layer.cornerRadius = 20
         topContainerView.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMaxYCorner, .layerMaxXMaxYCorner)
@@ -64,7 +64,7 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate, ShareKaK
         cardDetailView.delegate = self
         cardDetailView.dataSource = self
         
-        cardDetailView.backgroundColor = .systemBackground
+        cardDetailView.backgroundColor = UIColor(named: "YettdaMainBackground")
         cardDetailView.register(KeywordCell.self, forCellWithReuseIdentifier: "keywordCell")
         cardDetailView.register(ContentsCell.self, forCellWithReuseIdentifier: "contentsCell")
         cardDetailView.register(MapCell.self, forCellWithReuseIdentifier: "mapCell")
@@ -87,19 +87,19 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate, ShareKaK
         return button
     }()
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .systemBackground
+        self.view.backgroundColor = UIColor(named: "YettdaMainBackground")
         
         let screenWidth = self.view.frame.width
         let screenHeight = self.view.frame.height
@@ -158,7 +158,7 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate, ShareKaK
         topContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         topContainerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         topContainerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        topContainerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -(height-width)).isActive = true
+        topContainerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -width).isActive = true
     }
     
     func setBackButtonConstraints(topView: UIView, width: CGFloat) {
@@ -274,6 +274,8 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
             return contentsCell ?? UICollectionViewCell()
         case Section.title.rawValue:
             contentsCell?.contentsLabel.text = "대충 제목"
+            contentsCell?.contentsLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+            contentsCell?.backgroundColor = UIColor(named: "YettdaBackgroundcolor")
             return contentsCell ?? UICollectionViewCell()
         case Section.keywordsCell.rawValue:
             keywordCell?.keywordLabel.text = keywords.keywords[indexPath.row]
@@ -300,7 +302,6 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
         
         switch (indexPath.section) {
         case Section.story.rawValue:
-            header.backgroundColor = .red
             header.prepare(text: "함께 전하는 이야기")
             return header
         default:

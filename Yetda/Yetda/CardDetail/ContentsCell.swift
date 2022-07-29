@@ -22,7 +22,7 @@ class ContentsCell: UICollectionViewCell {
         setupLabel()
         self.layer.masksToBounds = true
         self.layer.cornerRadius = 12.0
-        self.backgroundColor = .lightGray
+        self.backgroundColor = .white
     }
     
     func setupCell() {

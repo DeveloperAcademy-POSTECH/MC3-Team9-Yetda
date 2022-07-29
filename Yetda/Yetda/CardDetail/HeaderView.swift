@@ -18,6 +18,7 @@ class HeaderView: UICollectionReusableView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        label.backgroundColor = UIColor(named: "YettdaMainBackground")
         label.translatesAutoresizingMaskIntoConstraints = false
         label.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
         label.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 5).isActive = true
