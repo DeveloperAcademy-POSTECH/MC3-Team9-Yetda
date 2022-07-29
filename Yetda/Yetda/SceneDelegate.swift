@@ -18,11 +18,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // MARK: 여기서 자기가 띄우고 싶은 스토리보드랑 뷰컨트롤러를 설정해주면 됩니다.
         guard let _ = (scene as? UIWindowScene) else { return }
+<<<<<<< HEAD
 
                 let storyboard = UIStoryboard(name: "SiteCollectionView", bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "SiteViewController")
                 self.window?.rootViewController = vc
                 self.window?.makeKeyAndVisible()
+=======
+            let storyboard = UIStoryboard(name: "MyPageView", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "MyPageViewController")
+            self.window?.rootViewController = OnBoardingSecondViewController()
+            self.window?.makeKeyAndVisible()
+>>>>>>> Develop
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

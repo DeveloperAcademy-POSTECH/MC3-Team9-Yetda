@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if Storage.isFirstTime() {
+        if myStorage.isFirstTime() {
             let onBoardingVC = OnBoardingViewController()
             onBoardingVC.modalPresentationStyle = .fullScreen
             
@@ -33,7 +33,7 @@ class ViewController: UIViewController {
     }
 }
 
-public class Storage {
+public class myStorage {
     static func isFirstTime() -> Bool {
         let defaults = UserDefaults.standard
         if defaults.object(forKey: "isFirstTime") == nil {

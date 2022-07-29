@@ -13,9 +13,8 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate {
 //    let pageSize = Present().imageArray.count
     var dummyImages = ["Aichi", "Akita", "Aomori", "Chiba"]
     
-    private var cardDetilView: CardDeatilView!
     private let keywords = Keywords()
-    private let contents = "QWERTYQWERTYQWERTYQWEQRTYQWERTYQWERTYQWERTYQWERTYQWERTY"
+    private let contents = "QWERTYQWERTYQWERTYQWEQRTYQWERTYQWERTYQWERTYQWERTYQWERTYQWERTYQWERTYQWERTYQWEQRTYQWERTYQWERTYQWERTYQWERTYQWERTY"
     
     let pageSize = 4
     
@@ -45,24 +44,71 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate {
         return scrollView
     }()
     
+    lazy var topContainerView: UIView = {
+        let screenWidth = self.view.frame.width
+        let screenHeight = self.view.frame.height
+        let topContainerView = UIView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenWidth))
+        
+        topContainerView.backgroundColor = .systemBackground
+        topContainerView.clipsToBounds = true
+        topContainerView.layer.cornerRadius = 20
+        topContainerView.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMaxYCorner, .layerMaxXMaxYCorner)
+        
+        return topContainerView
+    }()
+    
+    lazy var cardDetailView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let cardDetailView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        
+        cardDetailView.delegate = self
+        cardDetailView.dataSource = self
+        
+        cardDetailView.backgroundColor = .systemBackground
+        cardDetailView.register(KeywordCell.self, forCellWithReuseIdentifier: "keywordCell")
+        cardDetailView.register(ContentsCell.self, forCellWithReuseIdentifier: "contentsCell")
+        cardDetailView.register(MapCell.self, forCellWithReuseIdentifier: "mapCell")
+        cardDetailView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
+        
+        return cardDetailView
+    }()
+    
+    lazy var backButton: UIButton = {
+        let button = makeButton(symbols: "chevron.backward")
+//        button.addTarget(self, action: #selector(moveToHomeView), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    lazy var shareButton: UIButton = {
+        let button = makeButton(symbols: "square.and.arrow.up")
+//        button.addTarget(self, action: #selector(popoverModal), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureCollectionView()
-        registerCollectionView()
-        collectionViewDelegate()
+        self.view.backgroundColor = .systemBackground
         
-        let width = self.view.frame.maxX
-        let height = self.view.frame.maxY
-        
-        let topContainerView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: height/2))
-        topContainerView.backgroundColor = .systemBackground
+        let screenWidth = self.view.frame.width
+        let screenHeight = self.view.frame.height
         
         self.view.addSubview(topContainerView)
-        
-        pageControl.frame = CGRect(x: 0, y: topContainerView.frame.maxY - 50, width: topContainerView.frame.maxX, height: 50)
+        setTopContainerViewConstraints(width: screenWidth, height: screenHeight)
         
         for i in 0 ..< dummyImages.count {
-            let imageView = UIImageView(frame: CGRect(x: CGFloat(i) * width, y: 0, width: width, height: topContainerView.frame.maxY))
+            let imageView = UIImageView(frame: CGRect(x: CGFloat(i) * screenWidth, y: 0, width: screenWidth, height: topContainerView.frame.height))
             imageView.image = UIImage(named: dummyImages[i])
             imageView.contentMode = .scaleToFill
             imageView.clipsToBounds = true
@@ -72,14 +118,16 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate {
             imageScrollView.addSubview(imageView)
         }
         
-        self.view.addSubview(cardDetilView)
-        cardDetilView.topAnchor.constraint(equalTo: topContainerView.bottomAnchor).isActive = true
-        cardDetilView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        cardDetilView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-        cardDetilView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        self.view.addSubview(cardDetailView)
+        topContainerView.addSubview(imageScrollView)
+        topContainerView.addSubview(pageControl)
+        topContainerView.addSubview(backButton)
+        topContainerView.addSubview(shareButton)
         
-        topContainerView.addSubview(self.imageScrollView)
-        topContainerView.addSubview(self.pageControl)
+        setCardDetailViewConstraints(topView: topContainerView)
+        setPageControlConstraints(topView: topContainerView)
+        setBackButtonConstraints(topView: topContainerView, width: screenWidth)
+        setShareButtonConstraints(topView: topContainerView, width: screenWidth)
     }
     
     override func didReceiveMemoryWarning() {
@@ -92,46 +140,94 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    func configureCollectionView() {
-        cardDetilView = CardDeatilView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init())
-        cardDetilView.translatesAutoresizingMaskIntoConstraints = false
-        cardDetilView.backgroundColor = .systemBackground
+    func makeButton(symbols: String) -> UIButton {
+        let button = UIButton(type: .system)
+        let image = UIImage(systemName: symbols)?.withTintColor(.blue, renderingMode: .alwaysOriginal)
+        button.setImage(image, for: .normal)
+        button.configuration = .filled()
+        button.tintColor = .white
+        button.configuration?.imagePadding = 0
+        button.alpha = 0.5
+        
+        return button
     }
     
-    func registerCollectionView() {
-        cardDetilView.register(KeywordCell.classForCoder(), forCellWithReuseIdentifier: "keywordCell")
-        cardDetilView.register(ContentsCell.classForCoder(), forCellWithReuseIdentifier: "contentsCell")
-        cardDetilView.register(MapCell.classForCoder(), forCellWithReuseIdentifier: "mapCell")
-        cardDetilView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
+    func setTopContainerViewConstraints(width: CGFloat, height: CGFloat) {
+        topContainerView.translatesAutoresizingMaskIntoConstraints = false
+        topContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        topContainerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        topContainerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        topContainerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -(height-width)).isActive = true
     }
     
-    func collectionViewDelegate() {
-        cardDetilView.delegate = self
-        cardDetilView.dataSource = self
+    func setBackButtonConstraints(topView: UIView, width: CGFloat) {
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        backButton.topAnchor.constraint(equalTo: topView.topAnchor, constant: 20).isActive = true
+        backButton.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: 20).isActive = true
+        backButton.trailingAnchor.constraint(equalTo: topView.trailingAnchor, constant: -(width-60)).isActive = true
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 5
+    func setShareButtonConstraints(topView: UIView, width: CGFloat) {
+        shareButton.translatesAutoresizingMaskIntoConstraints = false
+        shareButton.topAnchor.constraint(equalTo: topView.topAnchor, constant: 20).isActive = true
+        shareButton.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: width-60).isActive = true
+        shareButton.trailingAnchor.constraint(equalTo: topView.trailingAnchor, constant: -20).isActive = true
     }
     
+    func setCardDetailViewConstraints(topView: UIView) {
+        cardDetailView.translatesAutoresizingMaskIntoConstraints = false
+        cardDetailView.topAnchor.constraint(equalTo: topView.bottomAnchor).isActive = true
+        cardDetailView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        cardDetailView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        cardDetailView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+    }
+    
+    func setPageControlConstraints(topView: UIView) {
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
+        pageControl.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: -50).isActive = true
+        pageControl.centerXAnchor.constraint(equalTo: topView.centerXAnchor).isActive = true
+    }
+    
+    @objc func moveToHomeView() {
+//        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func popoverModal() {
+//        var vc = UIViewController()
+//        self.present(vc, animated: true)
+    }
 }
 
 extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    enum Section: Int {
+        case site
+        case title
+        case keywordsCell
+        case story
+        case map
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width - 10
         let keywordWidth = collectionView.frame.width / 4 - 10
         
+        let cellSize = NSString(string: contents).boundingRect(
+            with: CGSize(width: width, height: CGFloat.greatestFiniteMagnitude),
+            options: .usesLineFragmentOrigin,
+            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)],
+            context: nil
+        )
+        
         switch (indexPath.section) {
-        case 0:
+        case Section.site.rawValue:
             return CGSize(width: width, height: 50)
-        case 1:
+        case Section.title.rawValue:
             return CGSize(width: width, height: 50)
-        case 2:
+        case Section.keywordsCell.rawValue:
             return CGSize(width: keywordWidth, height: keywordWidth)
-        case 3:
-            return CGSize(width: width, height: 300)
-        case 4:
+        case Section.story.rawValue:
+            return CGSize(width: width, height: cellSize.height + 20)
+        case Section.map.rawValue:
             return CGSize(width: width, height: 100)
         default:
             return CGSize(width: 0, height: 0)
@@ -140,20 +236,19 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch (section) {
-        case 0:
+        case Section.site.rawValue:
             return 1
-        case 1:
+        case Section.title.rawValue:
             return 1
-        case 2:
+        case Section.keywordsCell.rawValue:
             return keywords.keywords.count
-        case 3:
+        case Section.story.rawValue:
             return 1
-        case 4:
+        case Section.map.rawValue:
             return 1
         default:
-            return 0 
+            return 0
         }
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -162,29 +257,27 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let keywordCell = cardDetilView.dequeueReusableCell(withReuseIdentifier: "keywordCell", for: indexPath) as? KeywordCell
-        let contentsCell = cardDetilView.dequeueReusableCell(withReuseIdentifier: "contentsCell", for: indexPath) as? ContentsCell
-        let mapCell = cardDetilView.dequeueReusableCell(withReuseIdentifier: "mapCell", for: indexPath) as? MapCell
+        let keywordCell = cardDetailView.dequeueReusableCell(withReuseIdentifier: "keywordCell", for: indexPath) as? KeywordCell
+        let contentsCell = cardDetailView.dequeueReusableCell(withReuseIdentifier: "contentsCell", for: indexPath) as? ContentsCell
+        let mapCell = cardDetailView.dequeueReusableCell(withReuseIdentifier: "mapCell", for: indexPath) as? MapCell
+        
         switch (indexPath.section) {
-        case 0:
+        case Section.site.rawValue:
             contentsCell?.contentsLabel.text = "어딘가의 장소"
-            contentsCell?.contentsLabel.backgroundColor = .lightGray
-            contentsCell?.contentsLabel.font = .systemFont(ofSize: 32.0, weight: .bold)
             return contentsCell ?? UICollectionViewCell()
-        case 1:
+        case Section.title.rawValue:
             contentsCell?.contentsLabel.text = "대충 제목"
-            contentsCell?.contentsLabel.backgroundColor = .lightGray
             return contentsCell ?? UICollectionViewCell()
-        case 2:
+        case Section.keywordsCell.rawValue:
             keywordCell?.keywordLabel.text = keywords.keywords[indexPath.row]
             keywordCell?.backgroundColor = .cyan
             return keywordCell ?? UICollectionViewCell()
-        case 3:
+        case Section.story.rawValue:
             contentsCell?.contentsLabel.text = contents
-            contentsCell?.backgroundColor = .lightGray
             return contentsCell ?? UICollectionViewCell()
-        case 4:
-            mapCell?.mapView
+        case Section.map.rawValue:
+            mapCell?.moveLocation(latitudeValue: 37.334754657382234, longitudeValue: -122.00898272593827, delta: 0.01)
+            mapCell?.setAnnotation(latitudeValue: 37.334754657382234, longitudeValue: -122.00898272593827, delta: 0.01, title: "Apple Park", subtitle: "aa")
             return mapCell ?? UICollectionViewCell()
         default:
             contentsCell?.contentsLabel.text = contents
@@ -197,8 +290,9 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
         guard kind == UICollectionView.elementKindSectionHeader,
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header", for: indexPath) as? HeaderView
         else { return UICollectionReusableView() }
+        
         switch (indexPath.section) {
-        case 3:
+        case Section.story.rawValue:
             header.backgroundColor = .red
             header.prepare(text: "함께 전하는 이야기")
             return header
@@ -208,14 +302,19 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        let description: Int = 3
+        
         switch (section) {
-        case 3:
-            return CGSize(width: collectionView.frame.width - 100, height: 30)
+        case description:
+            return CGSize(width: collectionView.frame.width, height: 30)
         default:
             return CGSize(width: 0, height: 0)
         }
         
     }
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 5
+    }
     
 }

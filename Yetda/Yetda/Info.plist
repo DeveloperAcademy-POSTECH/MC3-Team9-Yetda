@@ -42,5 +42,7 @@
 			</array>
 		</dict>
 	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Need map authority</string>
 </dict>
 </plist>

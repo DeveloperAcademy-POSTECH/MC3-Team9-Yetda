@@ -14,12 +14,12 @@ import Hero
 import FirebaseFirestore
 
 class HomeViewController: UIViewController {
+
+    var sampleCards = BehaviorRelay<[String]>(value: [" . ", "Aichi.png", "Akita.png", "Aomori.png", "Chiba.png", "Ehime.png", "Fukui.png"])
     var db = Firestore.firestore()
     
     var presents: [Present] = []
     
-    let sampleImages = [" . ", "Aichi.png", "Akita.png", "Aomori.png", "Chiba.png", "Ehime.png", "Fukui.png"]
-
     let topView = UIView()
     let cardListView = CardListView()
     let cardCell = CardCell()
@@ -38,7 +38,9 @@ class HomeViewController: UIViewController {
     let viewModel = CardListViewModel()
     let disposeBag = DisposeBag()
     
+    var imageList: [UIImage] = []
     var imageCount = 0
+    var longPressEnabled = false
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -47,20 +49,26 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        
         self.view.addSubview(topView)
         setTopView()
         self.view.addSubview(cardListView)
         setCardListView()
-//        self.viewModel.getPresentList()
         
         self.isHeroEnabled = true
         self.cardListView.hero.id = "후쿠오카"
         self.hero.modalAnimationType = .fade
         
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.longTap(_:)))
+        cardListView.cardCollectionView.addGestureRecognizer(longPressGesture)
+        
+        let touchGesture = UITapGestureRecognizer(target: self, action: #selector(self.tap(_:)))
+        self.topView.addGestureRecognizer(touchGesture)
+        
         // Firestore DB 읽기
         db.collection("presents").addSnapshotListener { snapshot, error in
             guard let documents = snapshot?.documents else {
-                print("ERROR Firestore fetching document \(String(describing: error))")
+                print("ERROR Firestore fetching document \(String(describing: error?.localizedDescription))")
                 return
             }
             
@@ -74,10 +82,34 @@ class HomeViewController: UIViewController {
                     return nil
                 }
             }
-            
             print(self.presents)
         }
+    }
+    
+    @objc func longTap(_ gesture: UIGestureRecognizer) {
         
+        switch(gesture.state) {
+        case .began:
+            guard let selectedIndexPath = cardListView.cardCollectionView.indexPathForItem(at: gesture.location(in: cardListView.cardCollectionView)) else { return }
+            cardListView.cardCollectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
+            
+        case .changed:
+            cardListView.cardCollectionView.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
+            
+        case .ended:
+            cardListView.cardCollectionView.endInteractiveMovement()
+            longPressEnabled = true
+            self.cardListView.cardCollectionView.reloadData()
+            
+        default:
+            cardListView.cardCollectionView.cancelInteractiveMovement()
+            
+        }
+    }
+    
+    @objc func tap(_ gesture: UIGestureRecognizer) {
+        longPressEnabled = false
+        self.cardListView.cardCollectionView.reloadData()
     }
     
     private func setTopView() {
@@ -158,16 +190,22 @@ class HomeViewController: UIViewController {
     }
     
     private func bindCollectionCardData() {
-        let sampleImageList = Observable.just(
-            sampleImages.map{$0}
-        )
+        
         let collectionView = cardListView.cardCollectionView
         
-        sampleImageList.bind(to: collectionView.rx.items(cellIdentifier: "PresentCardCell", cellType: CardCell.self)) { row, model, cell in
-            if (row==0) {
+        sampleCards
+            .bind(to: collectionView.rx.items(cellIdentifier: "PresentCardCell", cellType: CardCell.self)) { [self] row, model, cell in
+            if (row == 0) {
                 cell.setData("addPhoto")
+                cell.removeBtn.isHidden = true
             } else {
                 cell.setData(model)
+                cell.removeBtn.addTarget(self, action: #selector(removeBtnClick(_:)), for: .touchUpInside)
+                if self.longPressEnabled {
+                    cell.startAnimate()
+                } else {
+                    cell.stopAnimate()
+                }
             }
         }.disposed(by: disposeBag)
 
@@ -175,7 +213,6 @@ class HomeViewController: UIViewController {
 
         collectionView.rx.itemSelected.bind { indexPath in
             self.cardListView.cardCollectionView.deselectItem(at: indexPath, animated: true)
-//            guard let present = self.viewModel.getPresentAt(indexPath) else { return }
             
             if (indexPath.row == 0) {
                 var config = YPImagePickerConfiguration()
@@ -215,7 +252,8 @@ class HomeViewController: UIViewController {
                         }
                         
                     }
-    //                self.selectedImages.accept(self.selectedImages.value+newImages)
+                    self.imageList = newImages
+                    print(self.imageList)
                     imagePicker.dismiss(animated: true)
                 }
                 imagePicker.view.backgroundColor = .white
@@ -224,6 +262,15 @@ class HomeViewController: UIViewController {
 //                self.sendCardData(indexPath: indexPath)
             }
         }.disposed(by: disposeBag)
+    }
+    
+    @IBAction func removeBtnClick(_ sender: UIButton) {
+        let hitPoint = sender.convert(CGPoint.zero, to: self.cardListView.cardCollectionView)
+        let hitIndex = self.cardListView.cardCollectionView.indexPathForItem(at: hitPoint)
+        let row = hitIndex?.row ?? -1
+        var original = self.sampleCards.value
+        original.remove(at: row + 2)
+        self.sampleCards.accept(original)
     }
     
     private func sendCardData(indexPath: IndexPath) {
