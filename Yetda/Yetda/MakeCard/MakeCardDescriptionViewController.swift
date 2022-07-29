@@ -14,10 +14,12 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
     @IBOutlet weak var giftRecipientTextField: UITextField!
     @IBOutlet weak var photoCollection: UICollectionView!
     @IBOutlet weak var keywordCollection: UICollectionView!
+    @IBOutlet weak var nextButton: UIButton!
     @IBAction func sendKeywordList(_ sender: Any) {
         prepareKeyword()
     }
     
+    var activeField: UITextField? = nil
     var photos: [String] = ["photo1", "photo2", "photo3", "photo4", "photo5"]
     var keywords: [Keyword] = [
         Keyword(name: "☀️햇빛쨍쨍", state: false),
@@ -43,13 +45,18 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         giftNameTextField?.delegate = self
         giftRecipientTextField?.delegate = self
         
         if let giftNameTextField = giftNameTextField {borderRadius(giftNameTextField).addLeftPadding()}
         if let giftRecipientTextField = giftRecipientTextField {borderRadius( giftRecipientTextField).addLeftPadding()}
         self.hideKeyboardWhenTappedAround()
+        
+        setUpUI()
+        
+        //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
@@ -125,11 +132,33 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.layer.borderColor = CGColor(red: 211/255, green: 225/255, blue: 253/255, alpha: 1)
         textField.backgroundColor = UIColor(red: 211/255, green: 225/255, blue: 253/255, alpha: 0.1)
+        self.activeField = textField
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         borderRadius(textField)
+        self.activeField = nil
     }
+    
+    private func setUpUI() {
+        NSLayoutConstraint.activate([
+            view.keyboardLayoutGuide.topAnchor.constraint(greaterThanOrEqualTo: photoCollection.bottomAnchor, constant: 100)
+        ])
+    }
+    
+    // 글자수 15자 입력 제한
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if let char =  string.cString(using: String.Encoding.utf8) {
+            let isBackSpace = strcmp(char, "\\b")
+            if isBackSpace == -92 {
+                return true
+            }
+        }
+        guard textField.text!.count < 15 else {return false}
+        return true
+    }
+    
     
     // textField corner 둥글게, 보더 적용하는 함수
     func borderRadius(_ textField: UITextField) -> UITextField{
@@ -176,7 +205,7 @@ extension UIViewController {
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
-
+    
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }

@@ -11,8 +11,12 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
     
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var storyTextView: UITextView!
-
+    @IBOutlet weak var numbersTyped: UILabel!
+    
+    var activeField: UITextField? = nil
     var photos: [String] = ["photo1", "photo2", "photo3", "photo4", "photo5"]
+    var isKeyboardShowing: Bool = false
+    @IBOutlet weak var storyTypeLimit: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,11 +24,15 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
         storyTextView.delegate = self
         storyTextView.text = "입력하기"
         storyTextView.textColor = UIColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1)
+        storyTypeLimit.text = "0/200"
         customTextView(storyTextView)
-        
+
         textViewDidBeginEditing(storyTextView)
         textViewDidEndEditing(storyTextView)
         self.hideKeyboardWhenTappedAround()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         // Do any additional setup after loading the view.
     }
@@ -64,5 +72,43 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
         textView.layer.cornerRadius = 20.0
         textView.layer.borderWidth = 1
         textView.layer.borderColor = CGColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if isKeyboardShowing == false {
+            if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+                let keyboardHeight = keyboardFrame.cgRectValue.height
+                let bottomSpace = self.view.frame.height - (storyTextView.frame.origin.y + storyTextView.frame.height)
+                self.view.frame.origin.y -= keyboardHeight - bottomSpace + 10
+            }
+            isKeyboardShowing.toggle()
+        }
+        else {
+            return
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        self.view.frame.origin.y = 0
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let currentText = storyTextView.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else {return false}
+        
+        let changedText = currentText.replacingCharacters(in: stringRange, with: text)
+        numbersTyped.text = "\(changedText.count)/200"
+        
+        // 키보드의 백버튼이 적용되고 값이 줄어들게한다
+        if let char =  text.cString(using: String.Encoding.utf8) {
+            let isBackSpace = strcmp(char, "\\b")
+            if isBackSpace == -92 {
+                return true
+            }
+        }
+        
+        guard textView.text!.count < 200 else {return false}
+        
+        return true
     }
 }
