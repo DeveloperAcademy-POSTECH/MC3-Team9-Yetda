@@ -47,7 +47,7 @@ class OnBoardingSecondViewController: UIViewController, UISearchControllerDelega
         subtitleLabel.font = UIFont(name: "SpoqaHanSansNeo-Medium", size: 30)
         
         let attributedStr = NSMutableAttributedString(string: subtitleLabel.text!)
-        attributedStr.addAttribute(.foregroundColor, value: UIColor.blue, range: (subtitleLabel.text! as NSString).range(of: "여행지"))
+        attributedStr.addAttribute(.foregroundColor, value: UIColor(named: "YettdaMainBlue"), range: (subtitleLabel.text! as NSString).range(of: "여행지"))
         subtitleLabel.attributedText = attributedStr
         
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -167,5 +167,3 @@ extension OnBoardingSecondViewController: UISearchResultsUpdating {
         viewModel.filterdData(text: searchController.searchBar.text!)
     }
 }
-
-
