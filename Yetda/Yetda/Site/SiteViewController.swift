@@ -94,6 +94,17 @@ class SiteViewController: UIViewController, UICollectionViewDelegate {
         
         return UICollectionViewCompositionalLayout(section: section)
     }
+    @IBAction func myPageButton(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "MyPageView", bundle: nil)
+        guard let childVC = storyboard.instantiateViewController(withIdentifier: "MyPageViewController") as? MyPageViewController else { return }
+        //let childVC = MyPageViewController()
+        
+        childVC.view.backgroundColor = UIColor(named: "YettdaMainBackground")
+        childVC.modalPresentationStyle = .formSheet
+        
+        
+        self.present(childVC, animated: true)
+    }
     
     private func bindTouch() {
         siteCollectionView.rx.itemSelected.bind { indexPath in
