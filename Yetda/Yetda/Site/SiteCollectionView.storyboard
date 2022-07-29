@@ -100,6 +100,9 @@
                                 <rect key="frame" x="328" y="65" width="42" height="42"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="ProfileBtn"/>
+                                <connections>
+                                    <action selector="myPageButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="cc1-QX-Mtb"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
