@@ -118,11 +118,6 @@ class SearchResultViewController: UIViewController {
         section.interGroupSpacing = spacing
         return UICollectionViewCompositionalLayout(section: section)
     }
-    // MARK: UserDefault에 값을 넣는 함수
-    private func setSiteUserDefault(site: String) {
-        userSiteModel.mysiteArray.append(site)
-        defaults.set(userSiteModel.mysiteArray, forKey: "sites")
-    }
 }
 
 extension SearchResultViewController: UICollectionViewDelegate {
@@ -137,8 +132,8 @@ extension SearchResultViewController: UICollectionViewDelegate {
         let site = viewModel.resultData[indexPath.item]
         setSiteUserDefault(site: site)
         defaults.set(site, forKey: "site")
-        /// 온보딩은 루트뷰가 아니므로 디스미스
-        self.dismiss(animated: false)
+        defaults.set(true, forKey: "isFirst")
+        self.navigationController?.popViewController(animated: false)
     }
 
     func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
@@ -146,5 +141,14 @@ extension SearchResultViewController: UICollectionViewDelegate {
             let originalTransform = CGAffineTransform(scaleX: 1, y: 1)
             UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 3, options: [.curveEaseInOut], animations: { cell.transform = originalTransform })
         }
+    }
+}
+
+extension UIViewController {
+    // UserDefault 값 넣는 함수
+    // 인자로 지역의 이름을 영문으로 넣어 주시면 됩니다.
+    func setSiteUserDefault(site: String) {
+        userSiteModel.mysiteArray.append(site)
+        defaults.set(userSiteModel.mysiteArray, forKey: "sites")
     }
 }

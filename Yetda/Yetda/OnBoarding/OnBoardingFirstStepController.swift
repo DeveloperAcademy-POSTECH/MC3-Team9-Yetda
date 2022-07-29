@@ -27,7 +27,7 @@ class OnBoardingFirstViewController: UIViewController {
         
         titleLabel.text = "옜다!"
         titleLabel.font = UIFont(name: "SpoqaHanSansNeo-Medium", size: 30)
-        titleLabel.textColor = .blue
+        titleLabel.textColor = UIColor(named: "YettdaMainBlue")
         
         self.view.addSubview(titleLabel)
         

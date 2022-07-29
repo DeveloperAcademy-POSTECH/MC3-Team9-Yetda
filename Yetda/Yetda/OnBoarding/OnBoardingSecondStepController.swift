@@ -28,7 +28,6 @@ class OnBoardingSecondViewController: UIViewController, UISearchControllerDelega
         searchBar.searchTextField.font =  UIFont(name: "SpoqaHanSansNeo-Medium", size: 17)
         searchBar.searchBarStyle = .minimal
         searchBar.delegate = self
-        searchBar.showsCancelButton = true
         searchBar.showsSearchResultsButton = true
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         return searchBar
@@ -48,7 +47,7 @@ class OnBoardingSecondViewController: UIViewController, UISearchControllerDelega
         subtitleLabel.font = UIFont(name: "SpoqaHanSansNeo-Medium", size: 30)
         
         let attributedStr = NSMutableAttributedString(string: subtitleLabel.text!)
-        attributedStr.addAttribute(.foregroundColor, value: UIColor.blue, range: (subtitleLabel.text! as NSString).range(of: "여행지"))
+        attributedStr.addAttribute(.foregroundColor, value: UIColor(named: "YettdaMainBlue"), range: (subtitleLabel.text! as NSString).range(of: "여행지"))
         subtitleLabel.attributedText = attributedStr
         
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -131,7 +130,7 @@ extension OnBoardingSecondViewController: UISearchBarDelegate {
         NSLayoutConstraint.deactivate(constraintArr)
         UIView.animate(withDuration: 0.33) {
             self.view.layoutIfNeeded()
-            self.makeSubtitle2.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 120).isActive = true
+            self.makeSubtitle2.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 140).isActive = true
         }
         view.addSubview(searchResultViewController.view)
         
@@ -168,5 +167,3 @@ extension OnBoardingSecondViewController: UISearchResultsUpdating {
         viewModel.filterdData(text: searchController.searchBar.text!)
     }
 }
-
-
