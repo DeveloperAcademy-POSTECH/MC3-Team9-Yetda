@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02C4284E9952EE585D397E08 /* Pods_Yetda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED0A4F234A31FC9D7DAE7A44 /* Pods_Yetda.framework */; };
+		1325962028924FE80045ACE2 /* MyPageView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1325961F28924FE80045ACE2 /* MyPageView.storyboard */; };
+		13259622289250070045ACE2 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13259621289250070045ACE2 /* MyPageViewController.swift */; };
 		13E7EE63288ABD9F001090EC /* LocalizingFile.strings in Resources */ = {isa = PBXBuildFile; fileRef = 13E7EE65288ABD9F001090EC /* LocalizingFile.strings */; };
 		2241F11B288AB1900044E704 /* OnBoardingSecondStepController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2241F118288AB1900044E704 /* OnBoardingSecondStepController.swift */; };
 		2241F11C288AB1900044E704 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2241F119288AB1900044E704 /* OnBoardingViewController.swift */; };
@@ -60,6 +63,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1325961F28924FE80045ACE2 /* MyPageView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPageView.storyboard; sourceTree = "<group>"; };
+		13259621289250070045ACE2 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		13E7EE61288ABD7F001090EC /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
 		13E7EE62288ABD7F001090EC /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		13E7EE64288ABD9F001090EC /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LocalizingFile.strings; sourceTree = "<group>"; };
@@ -132,6 +137,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1325961E28924FCA0045ACE2 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				1325961F28924FE80045ACE2 /* MyPageView.storyboard */,
+				13259621289250070045ACE2 /* MyPageViewController.swift */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
+		20DEB9E00D6AE98178098C60 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ED0A4F234A31FC9D7DAE7A44 /* Pods_Yetda.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		2241F11E288AB1D00044E704 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				22A72FBD2890C71500FC3B96 /* Yetda.entitlements */,
+				1325961E28924FCA0045ACE2 /* MyPage */,
 				22B25D81288E7FC900936EAD /* CardDetail */,
 				22B25D80288E7FB100936EAD /* Site */,
 				22B25D7F288E7F9500936EAD /* MakeCard */,
@@ -358,6 +381,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22EEF862288FE13F0046ECB8 /* Home.storyboard in Resources */,
+				1325962028924FE80045ACE2 /* MyPageView.storyboard in Resources */,
 				2241F12E288AB37F0044E704 /* SiteCollectionView.storyboard in Resources */,
 				13E7EE63288ABD9F001090EC /* LocalizingFile.strings in Resources */,
 				2241F125288AB2010044E704 /* SpoqaHanSansNeo-Regular.ttf in Resources */,
@@ -449,6 +473,9 @@
 				5DDD60F028853EC40077742D /* MakeCardDescriptionViewController.swift in Sources */,
 				6E27CDAE288E621F009B9691 /* AbleShareKaKao.swift in Sources */,
 				2FE866EE288E7061002242B0 /* MapCell.swift in Sources */,
+				229EBA3528842C4A0033A6BA /* Site+CoreDataClass.swift in Sources */,
+				13259622289250070045ACE2 /* MyPageViewController.swift in Sources */,
+				229EBA3828842C4A0033A6BA /* Present+CoreDataProperties.swift in Sources */,
 				6E94A3E128853B8F0076E703 /* DidCardShareViewController.swift in Sources */,
 				5DB7C00B2888552F003BB5EF /* MakeCardStoryViewController.swift in Sources */,
 				224AAF4528813A0F0053E66A /* SceneDelegate.swift in Sources */,
