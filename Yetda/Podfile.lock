@@ -643,7 +643,7 @@ PODS:
     - nanopb (< 2.30910.0, >= 2.30908.0)
   - FirebaseFirestoreSwift (9.3.0):
     - FirebaseFirestore (~> 9.0)
-  - GoogleDataTransport (9.2.0):
+  - GoogleDataTransport (9.1.4):
     - GoogleUtilities/Environment (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - PromisesObjC (< 3.0, >= 1.2)
@@ -713,7 +713,7 @@ PODS:
     - gRPC-Core/Interface (= 1.44.0)
     - Libuv-gRPC (= 0.0.10)
   - gRPC-Core/Interface (1.44.0)
-  - GTMSessionFetcher/Core (1.7.2)
+  - GTMSessionFetcher/Core (2.0.0)
   - KakaoSDK (2.11.0):
     - KakaoSDKAuth (= 2.11.0)
     - KakaoSDKCommon (= 2.11.0)
@@ -812,11 +812,11 @@ SPEC CHECKSUMS:
   FirebaseCoreInternal: 635d1c9a612a6502b6377a0c92af83758076ffff
   FirebaseFirestore: 5a72aa925528f67469b16a54a6cfc369467197e4
   FirebaseFirestoreSwift: 427a66f18feaaa26c69cf0d1d5645d827b888ae5
-  GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f
+  GoogleDataTransport: 5fffe35792f8b96ec8d6775f5eccd83c998d5a3b
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
   "gRPC-C++": 9675f953ace2b3de7c506039d77be1f2e77a8db2
   gRPC-Core: 943e491cb0d45598b0b0eb9e910c88080369290b
-  GTMSessionFetcher: 5595ec75acf5be50814f81e9189490412bad82ba
+  GTMSessionFetcher: 681175626052e03fdde7952f7e9c7a9785719506
   KakaoSDK: ed91a3fba765f848fbbcfe18c67aaafb8cf1923b
   KakaoSDKAuth: b9470887e42b869725b391f4af34c4aaec42ea46
   KakaoSDKCommon: 0f59f2c1aead6012d92758e8ca46b63ea11c408b
