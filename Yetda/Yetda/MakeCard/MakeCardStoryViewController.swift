@@ -88,6 +88,15 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
         }
     }
     
+    func textViewDidChange(_ textView: UITextView) {
+        // 행간 조절하기 -> Font를 다시 지정해주지 않으면 기존 폰트로 돌아감
+        let attrString = NSMutableAttributedString(string: textView.text!, attributes: [ NSAttributedString.Key.font: UIFont(name: "SpoqaHanSansNeo-Regular", size: 15.0)! ])
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 10
+        attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attrString.length))
+        textView.attributedText = attrString
+    }
+    
     func customTextView(_ textView: UITextView) {
         textView.textContainerInset = .init(top: 15, left: 15, bottom: 15, right: 15)
         textView.layer.backgroundColor = UIColor.white.cgColor
@@ -95,6 +104,26 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
         textView.layer.cornerRadius = 20.0
         textView.layer.borderWidth = 1
         textView.layer.borderColor = UIColor(named: "YettdaMainGray")?.cgColor
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let currentText = storyTextView.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else {return false}
+        
+        let changedText = currentText.replacingCharacters(in: stringRange, with: text)
+        numbersTyped.text = "\(changedText.count)/200"
+        
+        // 키보드의 백버튼이 적용되고 값이 줄어들게한다
+        if let char =  text.cString(using: String.Encoding.utf8) {
+            let isBackSpace = strcmp(char, "\\b")
+            if isBackSpace == -92 {
+                return true
+            }
+        }
+        
+        guard textView.text!.count < 199 else {return false}
+        
+        return true
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -114,25 +143,6 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
     @objc func keyboardWillHide(notification: NSNotification) {
         self.view.frame.origin.y = 0
         isKeyboardShowing.toggle()
-        
-        func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-            let currentText = storyTextView.text ?? ""
-            guard let stringRange = Range(range, in: currentText) else {return false}
-            
-            let changedText = currentText.replacingCharacters(in: stringRange, with: text)
-            numbersTyped.text = "\(changedText.count)/200"
-            
-            // 키보드의 백버튼이 적용되고 값이 줄어들게한다
-            if let char =  text.cString(using: String.Encoding.utf8) {
-                let isBackSpace = strcmp(char, "\\b")
-                if isBackSpace == -92 {
-                    return true
-                }
-            }
-            
-            guard textView.text!.count < 200 else {return false}
-            
-            return true
-        }
     }
 }
+

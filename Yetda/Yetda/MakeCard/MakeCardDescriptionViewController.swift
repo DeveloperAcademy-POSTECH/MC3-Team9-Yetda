@@ -21,8 +21,8 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
     }
     
     @IBAction func nextButton(_ sender: Any) {
-//        let vc = MakeCardStoryViewController()
-//        navigationController?.pushViewController(vc, animated: true)
+        let storyVC = UIStoryboard(name: "MakeCard", bundle: nil).instantiateViewController(withIdentifier: "MakeCardStoryViewController") as! MakeCardStoryViewController
+        self.navigationController?.pushViewController(storyVC, animated: true)
     }
     
     var activeField: UITextField? = nil
