@@ -3,6 +3,7 @@
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -191,7 +192,7 @@
                                                                 <constraint firstAttribute="height" constant="38" id="5fe-9T-9Mu"/>
                                                                 <constraint firstAttribute="width" constant="95" id="kMr-0b-NBI"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="14"/>
+                                                            <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="0.0"/>
                                                             <inset key="titleEdgeInsets" minX="10" minY="8" maxX="10" maxY="8"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             <state key="normal" title="☀️햇빛쨍쨍">
@@ -219,7 +220,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="feC-Ey-yjW">
-                                <rect key="frame" x="20" y="736" width="350" height="58"/>
+                                <rect key="frame" x="20" y="733" width="350" height="58"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="58" id="9zF-oj-nlN"/>
                                 </constraints>
@@ -231,6 +232,7 @@
                                         <fragment content="다음">
                                             <attributes>
                                                 <font key="NSFont" size="17" name="SpoqaHanSansNeo-Medium"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                     </attributedString>
@@ -264,7 +266,7 @@
                             <constraint firstItem="pe8-Ob-4yi" firstAttribute="top" secondItem="FAf-d9-WWN" secondAttribute="bottom" constant="20.666666666666629" id="aND-v2-UsW"/>
                             <constraint firstItem="feC-Ey-yjW" firstAttribute="centerX" secondItem="fSg-S7-VDh" secondAttribute="centerX" id="bmH-RF-8OY"/>
                             <constraint firstAttribute="trailing" secondItem="pe8-Ob-4yi" secondAttribute="trailing" constant="20" id="d2q-T3-uGf"/>
-                            <constraint firstItem="KEM-ph-28x" firstAttribute="bottom" secondItem="feC-Ey-yjW" secondAttribute="bottom" constant="16" id="haQ-Lb-hqu"/>
+                            <constraint firstItem="KEM-ph-28x" firstAttribute="bottom" secondItem="feC-Ey-yjW" secondAttribute="bottom" constant="19" id="haQ-Lb-hqu"/>
                             <constraint firstItem="syi-I4-Qwk" firstAttribute="top" secondItem="S00-6y-1lu" secondAttribute="bottom" constant="25.666666666666686" id="ik0-SV-JZw"/>
                             <constraint firstItem="S00-6y-1lu" firstAttribute="top" secondItem="Bdb-MH-ChM" secondAttribute="bottom" constant="25.666666666666686" id="vYB-Xu-NbH"/>
                             <constraint firstItem="feC-Ey-yjW" firstAttribute="leading" secondItem="KEM-ph-28x" secondAttribute="leading" constant="20" id="w8y-fQ-3YM"/>
@@ -295,7 +297,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="mEo-cg-sSE">
-                                <rect key="frame" x="20" y="102.66666666666667" width="350" height="134.33333333333331"/>
+                                <rect key="frame" x="20" y="104.00000000000001" width="350" height="134.33333333333337"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="u85-SL-EsI">
                                         <rect key="frame" x="0.0" y="0.0" width="350" height="94"/>
@@ -345,7 +347,7 @@
                                         </connections>
                                     </collectionView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="nAl-tI-sXX">
-                                        <rect key="frame" x="0.0" y="113.99999999999999" width="245.66666666666666" height="20.333333333333329"/>
+                                        <rect key="frame" x="0.0" y="114" width="245.66666666666666" height="20.333333333333343"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="globe" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qJr-15-QjW">
                                                 <rect key="frame" x="0.0" y="0.99999999999999822" width="19.666666666666668" height="19"/>
@@ -361,14 +363,14 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y3g-h4-iKK">
-                                <rect key="frame" x="20" y="258.66666666666669" width="350" height="1"/>
+                                <rect key="frame" x="20" y="260" width="350" height="1"/>
                                 <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="TJK-8u-CH4"/>
                                 </constraints>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="입력하기" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="NEH-wh-UXr">
-                                <rect key="frame" x="20" y="315" width="350" height="340"/>
+                                <rect key="frame" x="20" y="316.33333333333331" width="350" height="339.99999999999994"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="340" id="4yZ-lO-Z9h"/>
@@ -379,7 +381,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="선물과 함께 전할 이야기를 작성해 주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="skb-Cm-xLQ">
-                                <rect key="frame" x="20" y="284.66666666666669" width="268.33333333333331" height="20.333333333333314"/>
+                                <rect key="frame" x="20" y="286" width="268.33333333333331" height="20.333333333333314"/>
                                 <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -403,14 +405,14 @@
                                             </attributes>
                                         </fragment>
                                     </attributedString>
-                                    <color key="baseForegroundColor" red="0.97647058819999999" green="0.98039215690000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="baseForegroundColor" name="YettdaMainBackground"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="nextButton:" destination="qiv-ON-jwV" eventType="touchUpInside" id="y84-v9-qZd"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/ 200" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7NT-tN-opk">
-                                <rect key="frame" x="333.66666666666669" y="660" width="36.333333333333314" height="19"/>
+                                <rect key="frame" x="333.66666666666669" y="661.33333333333337" width="36.333333333333314" height="19"/>
                                 <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="15"/>
                                 <color key="textColor" red="0.82745098039999998" green="0.8862745098" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -426,10 +428,12 @@
                             <constraint firstItem="rDz-Xa-Mum" firstAttribute="trailing" secondItem="hAN-Tw-Eqm" secondAttribute="trailing" constant="20" id="Phd-9R-QZ9"/>
                             <constraint firstItem="mEo-cg-sSE" firstAttribute="leading" secondItem="Y3g-h4-iKK" secondAttribute="leading" id="Q96-qP-2j3"/>
                             <constraint firstItem="mEo-cg-sSE" firstAttribute="centerX" secondItem="Fuw-em-nST" secondAttribute="centerX" id="Qet-iu-k1e"/>
+                            <constraint firstItem="Y3g-h4-iKK" firstAttribute="top" secondItem="Fuw-em-nST" secondAttribute="top" constant="260" id="RZK-Ar-Uxq"/>
                             <constraint firstItem="skb-Cm-xLQ" firstAttribute="top" secondItem="Y3g-h4-iKK" secondAttribute="bottom" constant="25" id="S7S-aV-YUB"/>
                             <constraint firstItem="Y3g-h4-iKK" firstAttribute="top" secondItem="mEo-cg-sSE" secondAttribute="bottom" constant="21.666666666666629" id="V7P-1H-hwe"/>
                             <constraint firstItem="NEH-wh-UXr" firstAttribute="top" secondItem="skb-Cm-xLQ" secondAttribute="bottom" constant="10" id="Z0W-w6-IVs"/>
                             <constraint firstItem="rDz-Xa-Mum" firstAttribute="trailing" secondItem="NEH-wh-UXr" secondAttribute="trailing" constant="20" id="hL7-a6-tzF"/>
+                            <constraint firstItem="hAN-Tw-Eqm" firstAttribute="centerX" secondItem="Fuw-em-nST" secondAttribute="centerX" id="htI-f5-I6O"/>
                             <constraint firstItem="7NT-tN-opk" firstAttribute="top" secondItem="NEH-wh-UXr" secondAttribute="bottom" constant="5" id="iEE-62-Ufy"/>
                             <constraint firstItem="rDz-Xa-Mum" firstAttribute="bottom" secondItem="hAN-Tw-Eqm" secondAttribute="bottom" constant="19" id="iS4-dm-Fbl"/>
                             <constraint firstItem="NEH-wh-UXr" firstAttribute="leading" secondItem="rDz-Xa-Mum" secondAttribute="leading" constant="20" id="q6O-EW-Gbk"/>
