@@ -10,9 +10,6 @@ import FirebaseAuth
 
 class MakeCardDescriptionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate {
     
-    private var giftNameText: Int = 0
-    private var giftRecipientText: Int = 0
-    
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var giftNameTextField: UITextField!
     @IBOutlet weak var giftRecipientTextField: UITextField!
@@ -21,6 +18,11 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
     @IBOutlet weak var nextButton: UIButton!
     @IBAction func sendKeywordList(_ sender: Any) {
         prepareKeyword()
+    }
+    
+    @IBAction func nextButton(_ sender: Any) {
+//        let vc = MakeCardStoryViewController()
+//        navigationController?.pushViewController(vc, animated: true)
     }
     
     var activeField: UITextField? = nil
