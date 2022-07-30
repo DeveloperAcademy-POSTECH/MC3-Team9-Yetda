@@ -6,12 +6,5 @@
 //
 
 import Foundation
-import Combine
 
 public let defaults = UserDefaults.standard
-
-class UserSiteModel {
-    static let shared = UserSiteModel()
-    
-    @Published var mysiteArray: [String] = []
-}
