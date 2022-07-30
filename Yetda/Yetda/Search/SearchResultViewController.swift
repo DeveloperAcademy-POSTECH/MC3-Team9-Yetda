@@ -8,7 +8,12 @@
 import UIKit
 import Combine
 
+protocol GoHomeView {
+    func goToHomeView()
+}
+
 class SearchResultViewController: UIViewController {
+    var delegate: GoHomeView?
     enum Section {
         case main
     }
@@ -118,6 +123,13 @@ class SearchResultViewController: UIViewController {
         section.interGroupSpacing = spacing
         return UICollectionViewCompositionalLayout(section: section)
     }
+    private func homeViewWillAppear() {
+        self.view.window?.rootViewController?.dismiss(animated: false, completion: {
+            let homeVC = UINavigationController(rootViewController: HomeViewController())
+            let sd = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+            sd.window?.rootViewController = homeVC
+        })
+    }
 }
 
 extension SearchResultViewController: UICollectionViewDelegate {
@@ -130,10 +142,12 @@ extension SearchResultViewController: UICollectionViewDelegate {
                         UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 3, options: [.curveEaseInOut], animations: { cell.transform = pressedDownTransform })
         }
         let site = viewModel.resultData[indexPath.item]
-        setSiteUserDefault(site: site)
-        defaults.set(site, forKey: "site")
+        setSiteUserDefault(userSiteModel: userSiteModel, site: site)
+        defaults.set(site.localized, forKey: "site")
         defaults.set(true, forKey: "isFirst")
-        self.navigationController?.popViewController(animated: false)
+        // MARK: Delegate로 가면 홈뷰의 UI가 조금 깨짐,,
+        //self.delegate?.goToHomeView()
+        homeViewWillAppear()
     }
 
     func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
@@ -146,8 +160,7 @@ extension SearchResultViewController: UICollectionViewDelegate {
 
 extension UIViewController {
     // UserDefault 값 넣는 함수
-    // 인자로 지역의 이름을 영문으로 넣어 주시면 됩니다.
-    func setSiteUserDefault(site: String) {
+    func setSiteUserDefault(userSiteModel: UserSiteModel ,site: String) {
         userSiteModel.mysiteArray.append(site)
         defaults.set(userSiteModel.mysiteArray, forKey: "sites")
     }

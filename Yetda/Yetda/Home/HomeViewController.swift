@@ -42,13 +42,13 @@ class HomeViewController: UIViewController {
     var imageCount = 0
     var longPressEnabled = false
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        let showOnBoarding = defaults.bool(forKey: "isFirst")
-//        if !showOnBoarding {
-//            self.navigationController?.pushViewController(OnBoardingViewController(), animated: false)
-//        }
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let showOnBoarding = defaults.bool(forKey: "isFirst")
+        if !showOnBoarding {
+            self.navigationController?.pushViewController(OnBoardingViewController(), animated: false)
+        }
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
