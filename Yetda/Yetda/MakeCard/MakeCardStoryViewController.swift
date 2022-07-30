@@ -11,20 +11,42 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
     
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var storyTextView: UITextView!
-
+    @IBOutlet weak var numbersTyped: UILabel!
+    @IBOutlet weak var storyTypeLimit: UILabel!
+    @IBOutlet weak var nextButton: UIButton!
+    @IBAction func nextButton(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
+    }
+    
+    var activeField: UITextField? = nil
     var photos: [String] = ["photo1", "photo2", "photo3", "photo4", "photo5"]
+    var isKeyboardShowing: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         storyTextView.delegate = self
         storyTextView.text = "입력하기"
-        storyTextView.textColor = UIColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1)
+        storyTextView.textColor = UIColor(named: "YettdaMainGray")
+        storyTypeLimit.text = "0/200"
+        
+        nextButton.isUserInteractionEnabled = false
+        nextButton.backgroundColor = UIColor(named: "YettdaSubDisabledButton")
+        nextButton.layer.cornerRadius = 10
         customTextView(storyTextView)
         
         textViewDidBeginEditing(storyTextView)
         textViewDidEndEditing(storyTextView)
         self.hideKeyboardWhenTappedAround()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         // Do any additional setup after loading the view.
     }
@@ -41,20 +63,38 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1) {
+        if textView.textColor == UIColor(named: "YettdaMainGray") {
             textView.text = nil
             textView.textColor = UIColor.black
         }
         textView.layer.borderWidth = 1
-        textView.layer.borderColor = CGColor(red: 211/255, green: 225/255, blue: 253/255, alpha: 1)
+        textView.layer.borderColor = UIColor(named: "YettdaMainLightBlue")?.cgColor
         textView.layer.backgroundColor = CGColor(red: 211/255, green: 225/255, blue: 253/255, alpha: 0.1)
     }
+    
     func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            textView.text = "입력하기"
-            textView.textColor = UIColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1)
-        }
         customTextView(textView)
+        
+        if storyTextView.text?.count == 0 {
+            textView.text = "입력하기"
+            textView.textColor = UIColor(named: "YettdaMainGray")
+            self.nextButton.isUserInteractionEnabled = false
+            self.nextButton.backgroundColor = UIColor(named: "YettdaSubDisabledButton")
+            self.nextButton.layer.cornerRadius = 10
+        } else {
+            self.nextButton.isUserInteractionEnabled = true
+            self.nextButton.backgroundColor = UIColor(named: "YettdaMainBlue")
+            self.nextButton.layer.cornerRadius = 10
+        }
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        // 행간 조절하기 -> Font를 다시 지정해주지 않으면 기존 폰트로 돌아감
+        let attrString = NSMutableAttributedString(string: textView.text!, attributes: [ NSAttributedString.Key.font: UIFont(name: "SpoqaHanSansNeo-Regular", size: 15.0)! ])
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 10
+        attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attrString.length))
+        textView.attributedText = attrString
     }
     
     func customTextView(_ textView: UITextView) {
@@ -63,6 +103,46 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
         textView.layer.masksToBounds = true
         textView.layer.cornerRadius = 20.0
         textView.layer.borderWidth = 1
-        textView.layer.borderColor = CGColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1)
+        textView.layer.borderColor = UIColor(named: "YettdaMainGray")?.cgColor
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let currentText = storyTextView.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else {return false}
+        
+        let changedText = currentText.replacingCharacters(in: stringRange, with: text)
+        numbersTyped.text = "\(changedText.count)/200"
+        
+        // 키보드의 백버튼이 적용되고 값이 줄어들게한다
+        if let char =  text.cString(using: String.Encoding.utf8) {
+            let isBackSpace = strcmp(char, "\\b")
+            if isBackSpace == -92 {
+                return true
+            }
+        }
+        
+        guard textView.text!.count < 199 else {return false}
+        
+        return true
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if isKeyboardShowing == false {
+            if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+                let keyboardHeight = keyboardFrame.cgRectValue.height
+                let bottomSpace = self.view.frame.height - (storyTextView.frame.origin.y + storyTextView.frame.height)
+                self.view.frame.origin.y -= keyboardHeight - bottomSpace + 70
+            }
+            isKeyboardShowing.toggle()
+        }
+        else {
+            return
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        self.view.frame.origin.y = 0
+        isKeyboardShowing.toggle()
     }
 }
+

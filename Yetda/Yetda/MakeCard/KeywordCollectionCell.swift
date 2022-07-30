@@ -18,13 +18,13 @@ class KeywordCollectionCell: UICollectionViewCell {
         keywordButton.layer.cornerRadius = 19.0
         keywordButton.layer.masksToBounds = true
         keywordButton.backgroundColor = UIColor.white
-        keywordButton.layer.borderColor = CGColor(red: 225/255, green: 225/255, blue: 225/255, alpha: 1)
+        keywordButton.layer.borderColor = UIColor(named: "YettdaMainGray")?.cgColor
         keywordButton.layer.borderWidth = 1.0
     }
     
     func setButton(_ isSelected: Bool) {
         keywordButton.backgroundColor = isSelected ? UIColor(red: 211/255, green: 226/255, blue: 253/255, alpha: 0.1) : UIColor.white
-        keywordButton.layer.borderColor = isSelected ? CGColor(red: 48/255, green: 113/255, blue: 231/255, alpha: 0.5) : CGColor(red: 227/255, green: 227/255, blue: 227/255, alpha: 1)
+        keywordButton.layer.borderColor = isSelected ? CGColor(red: 48/255, green: 113/255, blue: 231/255, alpha: 0.5) : UIColor(named: "YettdaMainGray")?.cgColor
     }
 }
 
