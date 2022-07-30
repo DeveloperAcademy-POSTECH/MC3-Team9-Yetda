@@ -9,7 +9,7 @@ import UIKit
 
 class OnBoardingSecondViewController: UIViewController {
     let viewModel: SearchViewModel = SearchViewModel.shared
-    let searchResultViewController = SearchResultViewController()
+    let searchResultViewController = SearchResultViewController(view: .OnBoarding)
     
     private var constraintArr: [NSLayoutConstraint] = []
     
@@ -157,12 +157,6 @@ extension OnBoardingSecondViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-    }
-}
-
-extension OnBoardingSecondViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        viewModel.filterdData(text: searchController.searchBar.text!)
     }
 }
 
