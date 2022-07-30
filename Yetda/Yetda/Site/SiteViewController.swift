@@ -6,12 +6,19 @@
 //
 
 import UIKit
-import SwiftUI
 import RxSwift
 import RxCocoa
 import Hero
+import Combine
 
-class SiteViewController: UIViewController, UICollectionViewDelegate {
+class SiteViewController: UIViewController {
+    let viewModel: SearchViewModel = SearchViewModel.shared
+    let searchResultViewController = SearchResultViewController(view: .Nothing)
+    
+    var delegate: SendUpdateDelegate?
+    
+    @Published var list: [String] = []
+    var subscriptions = Set<AnyCancellable>()
     
     @IBOutlet weak var siteViewAirplaneIcon: UIImageView!
     @IBOutlet weak var siteTitleLabel: UILabel!
@@ -20,24 +27,34 @@ class SiteViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet var siteView: UIView!
     
     let disposeBag = DisposeBag()
-    
-    let list = [SiteModel(name: "Fukuoka"), SiteModel(name: "Akita"), SiteModel(name: "Fukushima"), SiteModel(name: "Tokyo"), SiteModel(name: "Nagasaki")]
-    
-    typealias Item = SiteModel
+
     enum Section {
         case main
     }
-    var siteDataSource: UICollectionViewDiffableDataSource<Section, Item>!
+    var siteDataSource: UICollectionViewDiffableDataSource<Section, String>!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let list = defaults.array(forKey: "sites") {
+            self.list = list as? [String] ?? ["error"]
+        } else {
+            list = []
+        }
+        
+//        let vc = HomeViewController(city: defaults.string(forKey: "site"))
+//        vc.modalPresentationStyle = .overfullScreen
+//        self.present(vc, animated: true)
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.makeSiteSearchBar()
-        
         siteCollectionView.collectionViewLayout = layout()
         siteCollectionView.delegate = self
+        hideKeyboardWhenTappedAround()
+        dismissKeyboard()
         
-        siteDataSource = UICollectionViewDiffableDataSource<Section,Item>(collectionView: siteCollectionView, cellProvider: {
+        siteDataSource = UICollectionViewDiffableDataSource<Section,String>(collectionView: siteCollectionView, cellProvider: {
             collectionView, indexPath, item in
             guard let siteCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SiteCell", for: indexPath)
                     as? SiteCell else {
@@ -46,16 +63,23 @@ class SiteViewController: UIViewController, UICollectionViewDelegate {
             siteCell.configure(item)
             return siteCell})
         
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, String>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(list, toSection: .main)
+        snapshot.appendItems([], toSection: .main)
         siteDataSource.apply(snapshot)
     
         self.hero.modalAnimationType = .fade
-        bindTouch()
+        // bindTouch()
+        makeSearchBar()
+        bind()
     }
-    func makeSiteSearchBar() {
-        
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.delegate?.updateCity(city: defaults.string(forKey: "site"))
+    }
+    
+    private lazy var siteSearchBar: UISearchBar = {
         let siteSearchBar = UISearchBar()
         siteSearchBar.placeholder = "여행지를 추가해주세요"
         siteSearchBar.searchBarStyle = .minimal
@@ -65,8 +89,12 @@ class SiteViewController: UIViewController, UICollectionViewDelegate {
         siteSearchBar.layer.cornerRadius = 30
         siteSearchBar.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMaxXMinYCorner)
         
+        siteSearchBar.delegate = self
+        return siteSearchBar
+    }()
+    
+    func makeSearchBar() {
         siteView.addSubview(siteSearchBar)
-        
         siteSearchBar.translatesAutoresizingMaskIntoConstraints = false
         
         siteSearchBar.topAnchor.constraint(equalTo: siteView.topAnchor, constant: 180).isActive = true
@@ -106,13 +134,82 @@ class SiteViewController: UIViewController, UICollectionViewDelegate {
         self.present(childVC, animated: true)
     }
     
-    private func bindTouch() {
-        siteCollectionView.rx.itemSelected.bind { indexPath in
-            self.siteCollectionView.deselectItem(at: indexPath, animated: true)
-            let vc = HomeViewController()
-            vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true)
-        }.disposed(by: disposeBag)
+//    private func bindTouch() {
+//        siteCollectionView.rx.itemSelected.bind { indexPath in
+//            self.siteCollectionView.deselectItem(at: indexPath, animated: true)
+//            let vc = HomeViewController()
+//            vc.modalPresentationStyle = .fullScreen
+//            self.present(vc, animated: true)
+//        }.disposed(by: disposeBag)
+//    }
+    private func applySnapshot(items: [String], section: Section){
+        var snapshot = siteDataSource.snapshot()
+        if snapshot.numberOfItems != 0 {
+            snapshot.deleteAllItems()
+            snapshot.appendSections([.main])
+        }
+        snapshot.appendItems(items, toSection: section)
+        siteDataSource.apply(snapshot)
+    }
+    
+    private func bind() {
+        $list
+            .receive(on: RunLoop.main)
+            .sink { item in
+                self.applySnapshot(items: item, section: .main)
+            }.store(in: &subscriptions)
+    }
+    
+    private func setupResultViewUI() {
+        searchResultViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        searchResultViewController.view.topAnchor.constraint(equalTo: siteSearchBar.bottomAnchor,constant: 10).isActive = true
+        searchResultViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        searchResultViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        searchResultViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
 }
 
+extension SiteViewController: UISearchBarDelegate {
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        beginAppearanceTransition(true, animated: true)
+        view.addSubview(searchResultViewController.view)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.searchResultViewController.view.layer.opacity = 1
+            self.searchResultViewController.view.layer.cornerRadius = 2
+            self.searchResultViewController.view.isHidden = false
+        }
+        self.setupResultViewUI()
+        return true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        searchBar.text = ""
+        viewModel.filterdData(text: "")
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let checkSearchView = view.subviews.filter { $0 == searchResultViewController.view }
+        if checkSearchView.isEmpty {
+            view.addSubview(searchResultViewController.view)
+            self.setupResultViewUI()
+        }
+        searchResultViewController.view.isHidden = false
+        viewModel.filterdData(text: searchText)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+}
+extension SiteViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        defaults.set(siteDataSource.itemIdentifier(for: indexPath), forKey: "site")
+        self.dismiss(animated: false)
+    }
+}
+
+protocol SendUpdateDelegate {
+    func updateCity(city: String?)
+}
