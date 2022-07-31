@@ -14,7 +14,26 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
     @IBOutlet weak var numbersTyped: UILabel!
     @IBOutlet weak var storyTypeLimit: UILabel!
     @IBOutlet weak var nextButton: UIButton!
+    
     @IBAction func nextButton(_ sender: Any) {
+        
+        // 데이터 저장로직 누르자마자 저장 로직과는 별개로 바로 이동할 수 있도록 비동기로 처리함
+        // 애초에 데이터 저장하고 넘어가는 UI를 실행하는 것은 텀이 생기게 돼서 iOS에서 터트림.
+        DispatchQueue.global().sync {
+            let images: [UIImage] = [UIImage(named: "photo1")!, UIImage(named: "photo2")!]
+            let imageURLs: [String] = StorageManager.uploadImages(images: images)
+            FirestoreManager.uploadData(present: Present(id: nil,
+                                                         user: "testUser",
+                                                         site: "testSite",
+                                                         name: "testName",
+                                                         content: "testContent",
+                                                         whosFor: "testFor",
+                                                         date: "testDate",
+                                                         keyWords: ["testKeyword1", "testKeyword2", "testKeyword3", "testKeyword4"],
+                                                         images: imageURLs,
+                                                         coordinate: ["coordinate1", "coordinate2"]))
+        }
+        
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
         

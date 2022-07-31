@@ -140,7 +140,7 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
         let selectedImage = UIImage(named: "photo1")
 //        guard let user = Auth.auth().currentUser else { return }
                 
-        let imageURL = FirebaseStorageManager.uploadImage(image: selectedImage!)
+        let imageURL = StorageManager.uploadImage(image: selectedImage!)
         
         print(imageURL)
     }

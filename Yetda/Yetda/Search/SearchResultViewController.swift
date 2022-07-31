@@ -144,7 +144,7 @@ extension SearchResultViewController: UICollectionViewDelegate {
     }
 }
 
-extension UIViewController {
+extension SearchResultViewController {
     // UserDefault 값 넣는 함수
     // 인자로 지역의 이름을 영문으로 넣어 주시면 됩니다.
     func setSiteUserDefault(site: String) {
