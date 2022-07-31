@@ -30,13 +30,13 @@
                                 </items>
                             </navigationBar>
                             <button opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hy9-4K-Fiq">
-                                <rect key="frame" x="0.0" y="100" width="414" height="34.5"/>
+                                <rect key="frame" x="0.0" y="100" width="414" height="33.5"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Button" image="carat.png">
                                     <attributedString key="attributedTitle">
                                         <fragment content="로그아웃">
                                             <attributes>
-                                                <font key="NSFont" size="16" name="SpoqaHanSansNeo-Medium"/>
+                                                <font key="NSFont" metaFont="system" size="16"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
@@ -47,8 +47,9 @@
                                     <attributedString key="attributedTitle">
                                         <fragment content="로그아웃">
                                             <attributes>
-                                                <color key="NSColor" systemColor="systemGrayColor"/>
-                                                <font key="NSFont" size="16" name="SpoqaHanSansNeo-Medium"/>
+                                                <color key="NSColor" red="0.18823529411764706" green="0.44313725490196076" blue="0.90588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="16" name=".AppleSDGothicNeoI-Regular"/>
+                                                <font key="NSOriginalFont" metaFont="system" size="16"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
@@ -60,13 +61,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7LE-uU-bNX">
-                                <rect key="frame" x="0.0" y="145.5" width="414" height="34.5"/>
+                                <rect key="frame" x="0.0" y="144.5" width="414" height="33.5"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Button" image="carat.png">
                                     <attributedString key="attributedTitle">
                                         <fragment content="로그아웃">
                                             <attributes>
-                                                <font key="NSFont" size="16" name="SpoqaHanSansNeo-Medium"/>
+                                                <font key="NSFont" metaFont="system" size="16"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
@@ -77,8 +78,8 @@
                                     <attributedString key="attributedTitle">
                                         <fragment content="회원탈퇴">
                                             <attributes>
-                                                <color key="NSColor" systemColor="systemGrayColor"/>
-                                                <font key="NSFont" size="16" name="SpoqaHanSansNeo-Medium"/>
+                                                <color key="NSColor" red="0.18823529411764706" green="0.44313725490196076" blue="0.90588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="16" name=".AppleSDGothicNeoI-Regular"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
@@ -90,13 +91,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ESW-Zz-sdq">
-                                <rect key="frame" x="0.0" y="191" width="414" height="34.5"/>
+                                <rect key="frame" x="0.0" y="189" width="414" height="33.5"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Button" image="carat.png">
                                     <attributedString key="attributedTitle">
                                         <fragment content="로그아웃">
                                             <attributes>
-                                                <font key="NSFont" size="16" name="SpoqaHanSansNeo-Medium"/>
+                                                <font key="NSFont" metaFont="system" size="16"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
@@ -105,16 +106,50 @@
                                 <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" imagePadding="0.0" titleAlignment="automatic">
                                     <imageReference key="image" image="chevron.forward" catalog="system" symbolScale="default"/>
                                     <attributedString key="attributedTitle">
-                                        <fragment content="오픈소스 및 라이선스">
+                                        <fragment content="오픈소스">
                                             <attributes>
-                                                <color key="NSColor" systemColor="systemGrayColor"/>
-                                                <font key="NSFont" size="16" name="SpoqaHanSansNeo-Medium"/>
+                                                <color key="NSColor" red="0.18823529411764706" green="0.44313725490196076" blue="0.90588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="16" name=".AppleSDGothicNeoI-Regular"/>
+                                                <font key="NSOriginalFont" metaFont="system" size="16"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content=" ">
+                                            <attributes>
+                                                <color key="NSColor" red="0.18823529411764706" green="0.44313725490196076" blue="0.90588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" metaFont="system" size="16"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content="및">
+                                            <attributes>
+                                                <color key="NSColor" red="0.18823529411764706" green="0.44313725490196076" blue="0.90588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="16" name=".AppleSDGothicNeoI-Regular"/>
+                                                <font key="NSOriginalFont" metaFont="system" size="16"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content=" ">
+                                            <attributes>
+                                                <color key="NSColor" red="0.18823529411764706" green="0.44313725490196076" blue="0.90588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" metaFont="system" size="16"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content="라이선스">
+                                            <attributes>
+                                                <color key="NSColor" red="0.18823529411764706" green="0.44313725490196076" blue="0.90588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="16" name=".AppleSDGothicNeoI-Regular"/>
+                                                <font key="NSOriginalFont" metaFont="system" size="16"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                     </attributedString>
                                     <color key="baseForegroundColor" systemColor="systemGrayColor"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="presentInfo:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="hqj-jd-5ae"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
