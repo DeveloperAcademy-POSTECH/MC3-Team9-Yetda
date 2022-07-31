@@ -125,12 +125,8 @@ class SiteViewController: UIViewController {
     @IBAction func myPageButton(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "MyPageView", bundle: nil)
         guard let childVC = storyboard.instantiateViewController(withIdentifier: "MyPageViewController") as? MyPageViewController else { return }
-        //let childVC = MyPageViewController()
-        
         childVC.view.backgroundColor = UIColor(named: "YettdaMainBackground")
-        childVC.modalPresentationStyle = .formSheet
-        
-        
+        childVC.modalPresentationStyle = .overFullScreen
         self.present(childVC, animated: true)
     }
     
