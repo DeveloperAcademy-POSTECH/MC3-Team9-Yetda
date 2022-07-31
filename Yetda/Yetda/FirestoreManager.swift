@@ -8,11 +8,11 @@
 import Foundation
 import FirebaseFirestore
 
-class FirebaseFirestoreManager {
+class FirestoreManager {
     
-    var db = Firestore.firestore()
     // id 값이 있는 경우에는 수정, 없는 경우에는 UUID를 새롭게 만들어서 넣어줌.
-    func uploadData(present: Present) {
+    static func uploadData(present: Present) {
+        let db = Firestore.firestore()
         var documentId: String = ""
         if let id = present.id { documentId = id } else { documentId = UUID().uuidString }
         let stringData: [String: Any] = ["id": documentId,
@@ -35,7 +35,9 @@ class FirebaseFirestoreManager {
         }
     }
     
-    func deleteData(present: Present) {
+    static func deleteData(present: Present) {
+        let db = Firestore.firestore()
+    
         if let id = present.id {
             db.collection("presents").document(id).delete() { err in
                 if let err = err {

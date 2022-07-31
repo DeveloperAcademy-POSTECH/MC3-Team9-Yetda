@@ -98,24 +98,24 @@ class HomeViewController: UIViewController {
         self.topView.addGestureRecognizer(touchGesture)
         
         // Firestore DB 읽기
-//        db.collection("presents").addSnapshotListener { snapshot, error in
-//            guard let documents = snapshot?.documents else {
-//                print("ERROR Firestore fetching document \(String(describing: error?.localizedDescription))")
-//                return
-//            }
-//
-//            self.presents = documents.compactMap { doc -> Present? in
-//                do {
-//                    let jsonData = try JSONSerialization.data(withJSONObject: doc.data(), options: [])
-//                    let present = try JSONDecoder().decode(Present.self, from: jsonData)
-//                    return present
-//                } catch let error {
-//                    print("ERROR JSON Parsing \(error)")
-//                    return nil
-//                }
-//            }
-//            print(self.presents)
-//        }
+        db.collection("presents").whereField("user", isEqualTo: "testUser").addSnapshotListener { snapshot, error in
+            guard let documents = snapshot?.documents else {
+                print("ERROR Firestore fetching document \(String(describing: error?.localizedDescription))")
+                return
+            }
+
+            self.presents = documents.compactMap { doc -> Present? in
+                do {
+                    let jsonData = try JSONSerialization.data(withJSONObject: doc.data(), options: [])
+                    let present = try JSONDecoder().decode(Present.self, from: jsonData)
+                    return present
+                } catch let error {
+                    print("ERROR JSON Parsing \(error)")
+                    return nil
+                }
+            }
+            print(self.presents)
+        }
     }
     // MARK: Delegate 받는 준비인데 테스트를 못해봄 ㅠㅜ
     private func prepareGetData() {
@@ -304,7 +304,7 @@ class HomeViewController: UIViewController {
                     imagePicker.dismiss(animated: false)
                     let storyboard = UIStoryboard(name: "MakeCard", bundle: nil)
                     let makeCardVC = storyboard.instantiateViewController(withIdentifier: "MakeCard")
-                    self.present(makeCardVC, animated: true)
+                    self.navigationController?.pushViewController(makeCardVC, animated: true)
                 }
                 imagePicker.view.backgroundColor = .white
                 self.present(imagePicker, animated: true)

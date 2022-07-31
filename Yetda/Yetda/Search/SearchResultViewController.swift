@@ -199,7 +199,7 @@ extension SearchResultViewController: UICollectionViewDelegate {
     }
 }
 
-extension UIViewController {
+extension SearchResultViewController {
     // UserDefault 값 넣는 함수
     func setSiteUserDefault(site: String) {
         let siteList: [String] = [site]
