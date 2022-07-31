@@ -38,7 +38,6 @@ class SearchResultViewController: UIViewController {
     var subscriptions = Set<AnyCancellable>()
     
     let viewModel: SearchViewModel = SearchViewModel.shared
-//    let userSiteModel: UserSiteModel = UserSiteModel.shared
     
     private lazy var emptyView: UIView = {
         var emptyLabel = UILabel()

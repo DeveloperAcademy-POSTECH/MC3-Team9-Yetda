@@ -55,6 +55,8 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        // MARK: 모달로 연결 후에 init 대신에 아래 코드로 하겠습니다.
+        // self.city = defaults.string(forKey: "site")
         let showOnBoarding = defaults.bool(forKey: "isFirst")
         if !showOnBoarding {
             self.navigationController?.pushViewController(OnBoardingViewController(), animated: false)
@@ -63,6 +65,11 @@ class HomeViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        defaults.set(city, forKey: "site")
     }
     
     override func viewDidLoad() {
