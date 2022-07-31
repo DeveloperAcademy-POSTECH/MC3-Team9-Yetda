@@ -16,15 +16,22 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
     @IBOutlet weak var nextButton: UIButton!
     @IBAction func nextButton(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        let homeVC = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
         
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true)
+        homeVC.modalPresentationStyle = .fullScreen
+        self.present(homeVC, animated: true)
+        
+        print("\(giftNameData), \(giftRecipientData), \(keywordsData), \(storyTextView.text)")
     }
     
     var activeField: UITextField? = nil
-    var photos: [String] = ["photo1", "photo2", "photo3", "photo4", "photo5"]
     var isKeyboardShowing: Bool = false
+    
+    var photos: [UIImage]?
+    var giftNameData: String = ""
+    var giftRecipientData: String = ""
+    var keywordsData: [String] = []
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,12 +59,12 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photos.count
+        return photos!.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell2", for: indexPath) as! PhotoCollectionCell
-        cell.chosenPhotoStory.image = UIImage(named: photos[indexPath.row])
+        cell.chosenPhotoStory?.image = photos?[indexPath.row]
         cell.layer.cornerRadius = 10.0
         return cell
     }
