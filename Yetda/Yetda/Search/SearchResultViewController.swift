@@ -8,15 +8,36 @@
 import UIKit
 import Combine
 
+protocol GoHomeView {
+    func goToHomeView()
+}
+
 class SearchResultViewController: UIViewController {
+    var delegate: GoHomeView?
+    var dismissView: SuperView?
+    
+    enum SuperView {
+        case OnBoarding
+        case Nothing
+    }
+    
+    init(view: SuperView) {
+        self.dismissView = view
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     enum Section {
         case main
     }
+    
     var dataSource: UICollectionViewDiffableDataSource<Section, String>!
     var subscriptions = Set<AnyCancellable>()
     
     let viewModel: SearchViewModel = SearchViewModel.shared
-    let userSiteModel: UserSiteModel = UserSiteModel.shared
     
     private lazy var emptyView: UIView = {
         var emptyLabel = UILabel()
@@ -47,6 +68,22 @@ class SearchResultViewController: UIViewController {
         setupUI()
         configureCollectionView()
         bind()
+        prepareTapGesture()
+    }
+    
+    private func prepareTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
+        emptyView.addGestureRecognizer(tapGesture)
+    }
+    @objc func handleTap(sender: UITapGestureRecognizer) {
+        switch dismissView {
+        case .OnBoarding :
+            return
+        case .Nothing :
+            self.view.removeFromSuperview()
+        case .none :
+            return
+        }
     }
     
     private func setupUI() {
@@ -118,6 +155,13 @@ class SearchResultViewController: UIViewController {
         section.interGroupSpacing = spacing
         return UICollectionViewCompositionalLayout(section: section)
     }
+    private func homeViewWillAppear(city: String?) {
+        self.view.window?.rootViewController?.dismiss(animated: false, completion: {
+            let homeVC = UINavigationController(rootViewController: HomeViewController(city: city))
+            let sd = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+            sd.window?.rootViewController = homeVC
+        })
+    }
 }
 
 extension SearchResultViewController: UICollectionViewDelegate {
@@ -130,10 +174,21 @@ extension SearchResultViewController: UICollectionViewDelegate {
                         UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 3, options: [.curveEaseInOut], animations: { cell.transform = pressedDownTransform })
         }
         let site = viewModel.resultData[indexPath.item]
-        setSiteUserDefault(site: site)
-        defaults.set(site, forKey: "site")
+        defaults.set(site.localized, forKey: "site")
         defaults.set(true, forKey: "isFirst")
-        self.navigationController?.popViewController(animated: false)
+        
+        // MARK: Delegate로 가면 홈뷰의 UI가 조금 깨짐,,
+        //self.delegate?.goToHomeView()
+        switch dismissView {
+        case .OnBoarding :
+            setSiteUserDefault(site: site)
+            homeViewWillAppear(city: defaults.string(forKey: "site"))
+        case .Nothing :
+            setSiteUserDefault(site: site)
+            homeViewWillAppear(city: defaults.string(forKey: "site"))
+        case .none:
+            return
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
@@ -146,9 +201,13 @@ extension SearchResultViewController: UICollectionViewDelegate {
 
 extension SearchResultViewController {
     // UserDefault 값 넣는 함수
-    // 인자로 지역의 이름을 영문으로 넣어 주시면 됩니다.
     func setSiteUserDefault(site: String) {
-        userSiteModel.mysiteArray.append(site)
-        defaults.set(userSiteModel.mysiteArray, forKey: "sites")
+        let siteList: [String] = [site]
+        if var siteList = defaults.array(forKey: "sites") {
+            siteList.append(site)
+            defaults.set(siteList, forKey: "sites")
+        } else {
+            defaults.set(siteList, forKey: "sites")
+        }
     }
 }

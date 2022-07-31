@@ -7,9 +7,9 @@
 
 import UIKit
 
-class OnBoardingSecondViewController: UIViewController, UISearchControllerDelegate {
+class OnBoardingSecondViewController: UIViewController {
     let viewModel: SearchViewModel = SearchViewModel.shared
-    let searchResultViewController = SearchResultViewController()
+    let searchResultViewController = SearchResultViewController(view: .OnBoarding)
     
     private var constraintArr: [NSLayoutConstraint] = []
     
@@ -19,7 +19,8 @@ class OnBoardingSecondViewController: UIViewController, UISearchControllerDelega
         dismissKeyboard()
         view.backgroundColor = .white
         setupUI()
-        makeOnBoardingButton()
+        searchResultViewController.delegate = self
+        //makeOnBoardingButton()
     }
     
     private lazy var searchBar: UISearchBar = {
@@ -81,28 +82,28 @@ class OnBoardingSecondViewController: UIViewController, UISearchControllerDelega
         NSLayoutConstraint.activate(constraintArr)
     }
     
-    func makeOnBoardingButton() {
-        let button = UIButton()
-        button.setTitle("다음", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .blue
-        button.layer.cornerRadius = 10
-        
-        self.view.addSubview(button)
-        button.addTarget(self, action: #selector(moveToHome), for: .touchUpInside)
-        
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        button.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
-        button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        button.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20).isActive = true
-        button.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 50).isActive = true
-    }
-    
-    @objc func moveToHome() {
-        self.dismiss(animated: true, completion: nil)
-    }
+//    func makeOnBoardingButton() {
+//        let button = UIButton()
+//        button.setTitle("다음", for: .normal)
+//        button.setTitleColor(.white, for: .normal)
+//        button.backgroundColor = .blue
+//        button.layer.cornerRadius = 10
+//
+//        self.view.addSubview(button)
+//        button.addTarget(self, action: #selector(moveToHome), for: .touchUpInside)
+//
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//
+//        button.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
+//        button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+//        button.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20).isActive = true
+//        button.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20).isActive = true
+//        button.heightAnchor.constraint(equalToConstant: 50).isActive = true
+//    }
+//
+//    @objc func moveToHome() {
+//        self.dismiss(animated: true, completion: nil)
+//    }
 
     private func makeSearchBarHeader() {
         NSLayoutConstraint.deactivate(constraintArr)
@@ -121,7 +122,6 @@ class OnBoardingSecondViewController: UIViewController, UISearchControllerDelega
         searchResultViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         searchResultViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
-    
 }
 
 extension OnBoardingSecondViewController: UISearchBarDelegate {
@@ -158,12 +158,10 @@ extension OnBoardingSecondViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
-    
-    
 }
 
-extension OnBoardingSecondViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        viewModel.filterdData(text: searchController.searchBar.text!)
+extension OnBoardingSecondViewController: GoHomeView {
+    func goToHomeView() {
+        self.navigationController?.popViewController(animated: true)
     }
 }

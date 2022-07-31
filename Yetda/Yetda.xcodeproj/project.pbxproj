@@ -56,6 +56,7 @@
 		6EC3057F2893AB1800F9A34F /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC3057E2893AB1800F9A34F /* SearchViewModel.swift */; };
 		6EC305812893AB4500F9A34F /* SearchSiteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC305802893AB4500F9A34F /* SearchSiteCell.swift */; };
 		6EC305832893ABCD00F9A34F /* UserSiteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC305822893ABCD00F9A34F /* UserSiteModel.swift */; };
+		6EE9FCE4289575D300A4A9F3 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EE9FCE3289575D300A4A9F3 /* WebKit.framework */; };
 		73215E16288FC32C003AD7E7 /* Hero in Frameworks */ = {isa = PBXBuildFile; productRef = 73215E15288FC32C003AD7E7 /* Hero */; };
 		7355FEE5288708B0009F32E3 /* YPImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = 7355FEE4288708B0009F32E3 /* YPImagePicker */; };
 		736D28742885331D00F95DFD /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736D28732885331D00F95DFD /* CardCell.swift */; };
@@ -124,6 +125,7 @@
 		6EC3057E2893AB1800F9A34F /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		6EC305802893AB4500F9A34F /* SearchSiteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSiteCell.swift; sourceTree = "<group>"; };
 		6EC305822893ABCD00F9A34F /* UserSiteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSiteModel.swift; sourceTree = "<group>"; };
+		6EE9FCE3289575D300A4A9F3 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		736D28732885331D00F95DFD /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		736D28862885434800F95DFD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		736D2888288547F000F95DFD /* CardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListView.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EE9FCE4289575D300A4A9F3 /* WebKit.framework in Frameworks */,
 				7383463728911AB10087D76F /* (null) in Frameworks */,
 				736D2891288673B000F95DFD /* RxSwift in Frameworks */,
 				7355FEE5288708B0009F32E3 /* YPImagePicker in Frameworks */,
@@ -301,6 +304,7 @@
 		59B03FDE4B6B2CF887C6BC8D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6EE9FCE3289575D300A4A9F3 /* WebKit.framework */,
 				F20D45ACE0529691DB71925A /* Pods_Yetda.framework */,
 			);
 			name = Frameworks;
