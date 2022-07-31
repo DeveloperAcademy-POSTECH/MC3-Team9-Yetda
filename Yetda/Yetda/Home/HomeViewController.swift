@@ -74,7 +74,7 @@ class HomeViewController: UIViewController {
         self.topView.addGestureRecognizer(touchGesture)
         
         // Firestore DB 읽기
-        db.collection("presents").addSnapshotListener { snapshot, error in
+        db.collection("presents").whereField("user", isEqualTo: "testUser").addSnapshotListener { snapshot, error in
             guard let documents = snapshot?.documents else {
                 print("ERROR Firestore fetching document \(String(describing: error?.localizedDescription))")
                 return
