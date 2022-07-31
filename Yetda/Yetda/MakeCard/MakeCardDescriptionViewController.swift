@@ -136,16 +136,6 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
         
     }
     
-    @IBAction func saveButton(_ sender: UIButton) {
-        let selectedImage = UIImage(named: "photo1")
-//        guard let user = Auth.auth().currentUser else { return }
-                
-        let imageURL = StorageManager.uploadImage(image: selectedImage!)
-        
-        print(imageURL)
-    }
-    
-    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor(named: "YettdaMainLightBlue")?.cgColor
         textField.backgroundColor = UIColor(red: 211/255, green: 225/255, blue: 253/255, alpha: 0.1)
