@@ -9,10 +9,21 @@ import UIKit
 import Firebase
 import FirebaseStorage
 
-class FirebaseStorageManager {
-
-    static func uploadImage(image: UIImage) -> String {
+class StorageManager {
+    
+    static func uploadImages(images: [UIImage]) -> [String] {
+        var result = [String]()
         
+        for image in images {
+            result.append(uploadImage(image: image))
+        }
+        
+        return result
+    }
+
+    static func uploadImage(image: UIImage?) -> String {
+        
+        guard let image = image else { return "" }
         guard let imageData = image.jpegData(compressionQuality: 0.4) else { return "" }
         let imageName = UUID().uuidString + String(Date().timeIntervalSince1970)
         
