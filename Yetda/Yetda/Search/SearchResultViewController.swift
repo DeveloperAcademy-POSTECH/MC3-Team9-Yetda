@@ -63,6 +63,19 @@ class SearchResultViewController: UIViewController {
         return collectionView
     }()
   
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        switch dismissView {
+        case .Nothing :
+            self.emptyView.backgroundColor = UIColor(named: "YettdaMainBackground")
+            self.collectionView.backgroundColor = UIColor(named: "YettdaMainBackground")
+        case .OnBoarding :
+            return
+        case .none :
+            return
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
