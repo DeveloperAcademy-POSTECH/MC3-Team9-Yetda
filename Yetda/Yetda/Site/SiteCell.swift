@@ -19,19 +19,19 @@ class SiteCell: UICollectionViewCell {
     @IBOutlet weak var siteShadowCell: UIImageView!
     @IBOutlet weak var sitePlaceIcon: UIImageView!
     
-    func configure(_ data: SiteModel) {
+    func configure(_ data: String) {
         
         self.isHeroEnabled = true
-        self.hero.id = "\(data.name)".localized
+        self.hero.id = "\(data)".localized
         self.hero.modifiers = [.cascade]
         
         sitePlaceIcon.image = UIImage(named: "sitePlaceIcon")
-        siteLabel.text = "\(data.name)".localized
+        siteLabel.text = "\(data)".localized
         
         siteImage.widthAnchor.constraint(equalToConstant: 350).isActive = true
         siteImage.heightAnchor.constraint(equalToConstant: 141).isActive = true
 
-        siteImage.image = UIImage(named: "\(data.name)")
+        siteImage.image = UIImage(named: "\(data)")
         siteImage.contentMode = .scaleAspectFill
         siteImage.layer.cornerRadius = 20
         siteImage.clipsToBounds = true

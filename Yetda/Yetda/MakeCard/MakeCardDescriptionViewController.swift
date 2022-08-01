@@ -15,10 +15,17 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
     @IBOutlet weak var giftRecipientTextField: UITextField!
     @IBOutlet weak var photoCollection: UICollectionView!
     @IBOutlet weak var keywordCollection: UICollectionView!
+    @IBOutlet weak var nextButton: UIButton!
     @IBAction func sendKeywordList(_ sender: Any) {
         prepareKeyword()
     }
     
+    @IBAction func nextButton(_ sender: Any) {
+        let storyVC = UIStoryboard(name: "MakeCard", bundle: nil).instantiateViewController(withIdentifier: "MakeCardStoryViewController") as! MakeCardStoryViewController
+        self.navigationController?.pushViewController(storyVC, animated: true)
+    }
+    
+    var activeField: UITextField? = nil
     var photos: [String] = ["photo1", "photo2", "photo3", "photo4", "photo5"]
     var keywords: [Keyword] = [
         Keyword(name: "☀️햇빛쨍쨍", state: false),
@@ -44,15 +51,21 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         giftNameTextField?.delegate = self
         giftRecipientTextField?.delegate = self
+        nextButton.isUserInteractionEnabled = false
+        nextButton.backgroundColor = UIColor(named: "YettdaSubDisabledButton")
+        nextButton.layer.cornerRadius = 10
         
         if let giftNameTextField = giftNameTextField {borderRadius(giftNameTextField).addLeftPadding()}
-        if let giftRecipientTextField = giftRecipientTextField {borderRadius( giftRecipientTextField).addLeftPadding()}
+        if let giftRecipientTextField = giftRecipientTextField {borderRadius(giftRecipientTextField).addLeftPadding()}
         self.hideKeyboardWhenTappedAround()
         
+        
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
+        setUpUI()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -123,23 +136,45 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
         
     }
     
-    @IBAction func saveButton(_ sender: UIButton) {
-        let selectedImage = UIImage(named: "photo1")
-//        guard let user = Auth.auth().currentUser else { return }
-                
-        let imageURL = FirebaseStorageManager.uploadImage(image: selectedImage!)
-        
-        print(imageURL)
-    }
-    
-    
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.layer.borderColor = CGColor(red: 211/255, green: 225/255, blue: 253/255, alpha: 1)
+        textField.layer.borderColor = UIColor(named: "YettdaMainLightBlue")?.cgColor
         textField.backgroundColor = UIColor(red: 211/255, green: 225/255, blue: 253/255, alpha: 0.1)
+        self.activeField = textField
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         borderRadius(textField)
+        self.activeField = nil
+        
+        if giftNameTextField.text?.count == 0 || giftRecipientTextField.text?.count == 0 {
+            nextButton.isUserInteractionEnabled = false
+            nextButton.backgroundColor = UIColor(named: "YettdaSubDisabledButton")
+            nextButton.layer.cornerRadius = 10
+        } else {
+            nextButton.isUserInteractionEnabled = true
+            nextButton.backgroundColor = UIColor(named: "YettdaMainBlue")
+            nextButton.layer.cornerRadius = 10
+        }
+    }
+    
+    private func setUpUI() {
+        NSLayoutConstraint.activate([
+            view.keyboardLayoutGuide.topAnchor.constraint(greaterThanOrEqualTo: photoCollection.bottomAnchor, constant: 10)
+        ])
+    }
+    
+    // 글자수 15자 입력 제한 & 미입력시 버튼 비활성화
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if let char =  string.cString(using: String.Encoding.utf8) {
+            let isBackSpace = strcmp(char, "\\b")
+            if isBackSpace == -92 {
+                return true
+            }
+        }
+        guard textField.text!.count < 15 else {return false}
+        
+        return true
     }
     
     // textField corner 둥글게, 보더 적용하는 함수
@@ -147,7 +182,7 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
         textField.layer.masksToBounds = true
         textField.layer.cornerRadius = 19.0
         textField.layer.borderWidth = 1.0
-        textField.layer.borderColor = UIColor.systemGray5.cgColor
+        textField.layer.borderColor = UIColor(named: "YettdaMainGray")?.cgColor
         textField.backgroundColor = UIColor.white
         return textField
     }
@@ -179,6 +214,7 @@ extension UITextField {
         self.leftView = paddingView
         self.leftViewMode = ViewMode.always
     }
+    
 }
 
 extension UIViewController {
@@ -187,7 +223,7 @@ extension UIViewController {
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
-
+    
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }

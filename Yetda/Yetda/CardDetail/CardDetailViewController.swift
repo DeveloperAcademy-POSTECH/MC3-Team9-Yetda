@@ -122,7 +122,6 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate, ShareKaK
         topContainerView.addSubview(imageScrollView)
         topContainerView.addSubview(pageControl)
         topContainerView.addSubview(backButton)
-//        topContainerView.addSubview(configureShareButton(self, action: #selector(DidCardShareViewController.shareButtonAction)))
         
         setCardDetailViewConstraints(topView: topContainerView)
         setPageControlConstraints(topView: topContainerView)
@@ -195,7 +194,7 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate, ShareKaK
 //        self.navigationController?.popToRootViewController(animated: true)
     }
     
-    @objc func popoverModal() {
+    @objc func popOverModal() {
 //        var vc = UIViewController()
 //        self.present(vc, animated: true)
     }

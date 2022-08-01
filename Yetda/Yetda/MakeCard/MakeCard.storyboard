@@ -8,21 +8,26 @@
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SpoqaHanSansNeo-Regular.ttf">
+            <string>SpoqaHanSansNeo-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--카드 작성-->
         <scene sceneID="17M-sM-Rmg">
             <objects>
-                <viewController id="Zcw-ps-M3Y" customClass="MakeCardDescriptionViewController" customModule="Yetda" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MakeCard" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Zcw-ps-M3Y" customClass="MakeCardDescriptionViewController" customModule="Yetda" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" restorationIdentifier="MakeCardDescriptionViewController" id="fSg-S7-VDh">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="FAf-d9-WWN">
-                                <rect key="frame" x="20" y="130.66666666666663" width="350" height="135.33333333333337"/>
+                                <rect key="frame" x="20" y="104.00000000000001" width="350" height="135.33333333333337"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3YG-mw-jmO">
                                         <rect key="frame" x="0.0" y="0.0" width="350" height="94"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" red="0.97647058819999999" green="0.98039215690000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="350" id="1o6-bh-OMO"/>
                                             <constraint firstAttribute="height" constant="94" id="Rjg-lY-VLI"/>
@@ -33,6 +38,11 @@
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
+                                        <view key="backgroundView" contentMode="scaleToFill" id="e02-d1-em5">
+                                            <rect key="frame" x="0.0" y="0.0" width="350" height="94"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        </view>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCell" id="Oja-k5-EZ0" customClass="PhotoCollectionCell" customModule="Yetda" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="72" height="94"/>
@@ -48,6 +58,12 @@
                                                                 <constraint firstAttribute="width" constant="72" id="abL-Ql-GrN"/>
                                                             </constraints>
                                                         </imageView>
+                                                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wck-md-6qm">
+                                                            <rect key="frame" x="-19" y="-42" width="387" height="708"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <viewLayoutGuide key="contentLayoutGuide" id="4F7-i5-CHB"/>
+                                                            <viewLayoutGuide key="frameLayoutGuide" id="Lc2-ue-ife"/>
+                                                        </scrollView>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="Odf-ft-x9O" firstAttribute="leading" secondItem="59W-XC-2HT" secondAttribute="leading" id="5fL-gB-elQ"/>
@@ -68,14 +84,14 @@
                                         </connections>
                                     </collectionView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="ub8-5D-Rn9">
-                                        <rect key="frame" x="0.0" y="115" width="251.33333333333334" height="20.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="115" width="245.66666666666666" height="20.333333333333343"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="globe" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qBA-De-u4M">
                                                 <rect key="frame" x="0.0" y="0.99999999999999822" width="19.666666666666668" height="19"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Naka, Hakata Ward, Fukuoka, 812-8627" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6l6-ri-8t0">
-                                                <rect key="frame" x="26.666666666666671" y="0.0" width="224.66666666666663" height="20.333333333333332"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <rect key="frame" x="26.666666666666657" y="0.0" width="219" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -84,72 +100,72 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pe8-Ob-4yi">
-                                <rect key="frame" x="20" y="288" width="350" height="1"/>
+                                <rect key="frame" x="20" y="260" width="350" height="1"/>
                                 <color key="backgroundColor" red="0.8901960784313725" green="0.8901960784313725" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="MbP-mY-HJV"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="Bdb-MH-ChM">
-                                <rect key="frame" x="20" y="314" width="350" height="66.333333333333314"/>
+                                <rect key="frame" x="20" y="286" width="350" height="67.333333333333314"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="어떤 선물을 구매했나요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bMs-H1-udB">
-                                        <rect key="frame" x="0.0" y="0.0" width="350" height="19.333333333333332"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="350" height="20.333333333333332"/>
+                                        <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="입력하기" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ysi-vl-peB">
-                                        <rect key="frame" x="0.0" y="28.333333333333314" width="350" height="38"/>
+                                        <rect key="frame" x="0.0" y="29.333333333333314" width="350" height="38"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="38" id="Zgo-C0-3qG"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                     </textField>
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="S00-6y-1lu">
-                                <rect key="frame" x="20" y="405.33333333333331" width="350" height="67.333333333333314"/>
+                                <rect key="frame" x="20" y="379" width="350" height="68.333333333333314"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="누구를 위한 선물인가요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Hs-Lj-aud">
-                                        <rect key="frame" x="0.0" y="0.0" width="350" height="19.333333333333332"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="350" height="20.333333333333332"/>
+                                        <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="입력하기" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bro-oj-fVq">
-                                        <rect key="frame" x="0.0" y="29.333333333333371" width="350" height="38"/>
+                                        <rect key="frame" x="0.0" y="30.333333333333314" width="350" height="38"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="38" id="pun-In-5tr"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                     </textField>
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="syi-I4-Qwk">
-                                <rect key="frame" x="20" y="497.66666666666669" width="350" height="211.33333333333331"/>
+                                <rect key="frame" x="20" y="472.99999999999994" width="350" height="212.33333333333331"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="GKp-x6-T39">
-                                        <rect key="frame" x="0.0" y="0.0" width="232.33333333333334" height="19.333333333333332"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="241" height="20.333333333333332"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="선물 키워드를 선택해 주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G6Z-kn-KpS">
-                                                <rect key="frame" x="0.0" y="0.0" width="178.66666666666666" height="19.333333333333332"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="187.66666666666666" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(최대 4개)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="voG-7g-yTi">
-                                                <rect key="frame" x="180.66666666666666" y="0.0" width="51.666666666666657" height="19.333333333333332"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <rect key="frame" x="189.66666666666666" y="0.0" width="51.333333333333343" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7gM-ai-fUu">
-                                        <rect key="frame" x="0.0" y="26.333333333333314" width="350" height="185"/>
+                                        <rect key="frame" x="0.0" y="27.333333333333314" width="350" height="185"/>
                                         <color key="backgroundColor" red="0.97647058819999999" green="0.98039215690000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="185" id="3Ve-Ou-phF"/>
@@ -163,19 +179,19 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="keywordCell" id="fVb-ik-3Oc" customClass="KeywordCollectionCell" customModule="Yetda" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="90" height="38"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="95" height="38"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="lzi-hS-djz" customClass="KeywordCollectionCell" customModule="Yetda" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="90" height="38"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="95" height="38"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="viz-4P-aHG" userLabel="keywordButton">
-                                                            <rect key="frame" x="0.0" y="0.0" width="90" height="38"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="95" height="38"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="38" id="5fe-9T-9Mu"/>
-                                                                <constraint firstAttribute="width" constant="90" id="kMr-0b-NBI"/>
+                                                                <constraint firstAttribute="width" constant="95" id="kMr-0b-NBI"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="14"/>
                                                             <inset key="titleEdgeInsets" minX="10" minY="8" maxX="10" maxY="8"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             <state key="normal" title="☀️햇빛쨍쨍">
@@ -203,29 +219,33 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="feC-Ey-yjW">
-                                <rect key="frame" x="20" y="737" width="350" height="58"/>
+                                <rect key="frame" x="20" y="733" width="350" height="58"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="58" id="9zF-oj-nlN"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain">
-                                    <backgroundConfiguration key="background" cornerRadius="10">
-                                        <color key="backgroundColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </backgroundConfiguration>
+                                    <backgroundConfiguration key="background" cornerRadius="10"/>
                                     <attributedString key="attributedTitle">
                                         <fragment content="다음">
                                             <attributes>
-                                                <font key="NSFont" size="17" name="AppleSDGothicNeo-Medium"/>
+                                                <font key="NSFont" size="17" name="SpoqaHanSansNeo-Medium"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                     </attributedString>
-                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseForegroundColor" name="YettdaMainBackground"/>
                                 </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="nextButton:" destination="Zcw-ps-M3Y" eventType="touchUpInside" id="51Q-gX-MDN"/>
                                     <action selector="saveButton:" destination="Zcw-ps-M3Y" eventType="touchUpInside" id="2zf-Rw-nwi"/>
                                     <action selector="sendKeywordList:" destination="Zcw-ps-M3Y" eventType="touchUpInside" id="Ngb-mZ-cZ5"/>
-                                    <segue destination="qiv-ON-jwV" kind="push" id="75m-eH-Yan"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -235,7 +255,6 @@
                             <constraint firstItem="S00-6y-1lu" firstAttribute="leading" secondItem="KEM-ph-28x" secondAttribute="leading" constant="20" id="0Bx-Ry-6VP"/>
                             <constraint firstItem="pe8-Ob-4yi" firstAttribute="trailing" secondItem="FAf-d9-WWN" secondAttribute="trailing" id="4cH-30-4Ti"/>
                             <constraint firstItem="KEM-ph-28x" firstAttribute="trailing" secondItem="feC-Ey-yjW" secondAttribute="trailing" constant="20" id="6s6-GS-fHG"/>
-                            <constraint firstItem="feC-Ey-yjW" firstAttribute="top" secondItem="syi-I4-Qwk" secondAttribute="bottom" constant="28" id="B5k-g8-oyV"/>
                             <constraint firstItem="KEM-ph-28x" firstAttribute="trailing" secondItem="Bdb-MH-ChM" secondAttribute="trailing" constant="20" id="DXg-DL-1Tb"/>
                             <constraint firstItem="pe8-Ob-4yi" firstAttribute="leading" secondItem="fSg-S7-VDh" secondAttribute="leading" constant="20" id="F80-pv-3ah"/>
                             <constraint firstItem="KEM-ph-28x" firstAttribute="trailing" secondItem="syi-I4-Qwk" secondAttribute="trailing" constant="20" id="Jwb-ek-QZe"/>
@@ -243,63 +262,45 @@
                             <constraint firstItem="syi-I4-Qwk" firstAttribute="leading" secondItem="KEM-ph-28x" secondAttribute="leading" constant="20" id="LIw-nd-jpw"/>
                             <constraint firstItem="pe8-Ob-4yi" firstAttribute="leading" secondItem="FAf-d9-WWN" secondAttribute="leading" id="O9Y-p1-bDn"/>
                             <constraint firstItem="KEM-ph-28x" firstAttribute="trailing" secondItem="S00-6y-1lu" secondAttribute="trailing" constant="20" id="TCt-2R-LAR"/>
-                            <constraint firstItem="pe8-Ob-4yi" firstAttribute="top" secondItem="FAf-d9-WWN" secondAttribute="bottom" constant="21.999999999999972" id="aND-v2-UsW"/>
+                            <constraint firstItem="pe8-Ob-4yi" firstAttribute="top" secondItem="FAf-d9-WWN" secondAttribute="bottom" constant="20.666666666666629" id="aND-v2-UsW"/>
                             <constraint firstItem="feC-Ey-yjW" firstAttribute="centerX" secondItem="fSg-S7-VDh" secondAttribute="centerX" id="bmH-RF-8OY"/>
                             <constraint firstAttribute="trailing" secondItem="pe8-Ob-4yi" secondAttribute="trailing" constant="20" id="d2q-T3-uGf"/>
-                            <constraint firstItem="syi-I4-Qwk" firstAttribute="top" secondItem="S00-6y-1lu" secondAttribute="bottom" constant="25" id="jxQ-Fh-HFP"/>
-                            <constraint firstItem="S00-6y-1lu" firstAttribute="top" secondItem="Bdb-MH-ChM" secondAttribute="bottom" constant="25" id="vYB-Xu-NbH"/>
+                            <constraint firstItem="KEM-ph-28x" firstAttribute="bottom" secondItem="feC-Ey-yjW" secondAttribute="bottom" constant="19" id="haQ-Lb-hqu"/>
+                            <constraint firstItem="syi-I4-Qwk" firstAttribute="top" secondItem="S00-6y-1lu" secondAttribute="bottom" constant="25.666666666666686" id="ik0-SV-JZw"/>
+                            <constraint firstItem="S00-6y-1lu" firstAttribute="top" secondItem="Bdb-MH-ChM" secondAttribute="bottom" constant="25.666666666666686" id="vYB-Xu-NbH"/>
                             <constraint firstItem="feC-Ey-yjW" firstAttribute="leading" secondItem="KEM-ph-28x" secondAttribute="leading" constant="20" id="w8y-fQ-3YM"/>
-                            <constraint firstItem="Bdb-MH-ChM" firstAttribute="top" secondItem="pe8-Ob-4yi" secondAttribute="bottom" constant="25.000000000000028" id="xPk-lT-maJ"/>
-                            <constraint firstItem="pe8-Ob-4yi" firstAttribute="top" secondItem="fSg-S7-VDh" secondAttribute="top" constant="288" id="zzn-Rq-Rc7"/>
+                            <constraint firstItem="Bdb-MH-ChM" firstAttribute="top" secondItem="pe8-Ob-4yi" secondAttribute="bottom" constant="25" id="xPk-lT-maJ"/>
+                            <constraint firstItem="pe8-Ob-4yi" firstAttribute="top" secondItem="fSg-S7-VDh" secondAttribute="top" constant="260" id="zzn-Rq-Rc7"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="카드 작성" id="r2g-1s-WcJ">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="chevron.left" catalog="system" id="LTG-Od-5Fn"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="카드 작성" id="Jgw-Nd-Bua"/>
                     <connections>
                         <outlet property="giftNameTextField" destination="ysi-vl-peB" id="3Sf-j4-cxH"/>
                         <outlet property="giftRecipientTextField" destination="Bro-oj-fVq" id="caA-F1-nOg"/>
                         <outlet property="keywordCollection" destination="7gM-ai-fUu" id="n6k-GY-edE"/>
                         <outlet property="locationLabel" destination="6l6-ri-8t0" id="moa-6H-6GL"/>
+                        <outlet property="nextButton" destination="feC-Ey-yjW" id="h2Z-f6-36B"/>
                         <outlet property="photoCollection" destination="3YG-mw-jmO" id="6QA-Jy-gJn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NKH-RR-Zmr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1969.2307692307691" y="115.87677725118483"/>
-        </scene>
-        <!--MakeCardDescriptionViewController-->
-        <scene sceneID="68X-LH-20e">
-            <objects>
-                <navigationController storyboardIdentifier="MakeCardDescriptionViewController" title="MakeCardDescriptionView" automaticallyAdjustsScrollViewInsets="NO" id="dNQ-bI-tdR" userLabel="MakeCardDescriptionViewController" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LlE-2S-OJM">
-                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Zcw-ps-M3Y" kind="relationship" relationship="rootViewController" id="Kcb-gs-ZNu"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="C7L-Pr-SqS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1040" y="115.87677725118483"/>
+            <point key="canvasLocation" x="2977" y="116"/>
         </scene>
         <!--카드 작성-->
         <scene sceneID="wlM-eE-9Fo">
             <objects>
-                <viewController storyboardIdentifier="MakeCardStoryController" id="qiv-ON-jwV" customClass="MakeCardStoryViewController" customModule="Yetda" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MakeCardStoryViewController" id="qiv-ON-jwV" customClass="MakeCardStoryViewController" customModule="Yetda" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fuw-em-nST">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="mEo-cg-sSE">
-                                <rect key="frame" x="20" y="130" width="350" height="134.33333333333337"/>
+                                <rect key="frame" x="20" y="104.00000000000001" width="350" height="134.33333333333337"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="u85-SL-EsI">
                                         <rect key="frame" x="0.0" y="0.0" width="350" height="94"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" red="0.97647058819999999" green="0.98039215690000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="94" id="Rmx-S9-uBE"/>
                                             <constraint firstAttribute="width" constant="350" id="xJQ-P7-fe0"/>
@@ -345,14 +346,14 @@
                                         </connections>
                                     </collectionView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="nAl-tI-sXX">
-                                        <rect key="frame" x="0.0" y="114" width="251.33333333333334" height="20.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="114" width="245.66666666666666" height="20.333333333333343"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="globe" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qJr-15-QjW">
                                                 <rect key="frame" x="0.0" y="0.99999999999999822" width="19.666666666666668" height="19"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Naka, Hakata Ward, Fukuoka, 812-8627" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x2r-4e-bAQ">
-                                                <rect key="frame" x="26.666666666666671" y="0.0" width="224.66666666666663" height="20.333333333333332"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <rect key="frame" x="26.666666666666657" y="0.0" width="219" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -361,26 +362,23 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y3g-h4-iKK">
-                                <rect key="frame" x="20" y="286" width="350" height="1"/>
+                                <rect key="frame" x="20" y="260" width="350" height="1"/>
                                 <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="TJK-8u-CH4"/>
                                 </constraints>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="입력하기" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="NEH-wh-UXr">
-                                <rect key="frame" x="20" y="341.33333333333331" width="350" height="339.99999999999994"/>
+                                <rect key="frame" x="20" y="316.33333333333326" width="350" height="338.66666666666674"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="340" id="4yZ-lO-Z9h"/>
-                                </constraints>
                                 <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="15"/>
                                 <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="선물과 함께 전할 이야기를 작성해 주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="skb-Cm-xLQ">
-                                <rect key="frame" x="20" y="312" width="256.33333333333331" height="19.333333333333314"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <rect key="frame" x="20" y="286" width="268.33333333333331" height="20.333333333333314"/>
+                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -393,49 +391,79 @@
                                 <state key="normal" title="다음">
                                     <color key="titleColor" red="0.97647058819999999" green="0.98039215690000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <buttonConfiguration key="configuration" style="plain" title="다음">
-                                    <backgroundConfiguration key="background" cornerRadius="10">
-                                        <color key="backgroundColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </backgroundConfiguration>
-                                    <fontDescription key="titleFontDescription" type="system" pointSize="17"/>
-                                    <color key="baseForegroundColor" red="0.97647058819999999" green="0.98039215690000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <backgroundConfiguration key="background" cornerRadius="10"/>
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="다음">
+                                            <attributes>
+                                                <font key="NSFont" size="17" name="SpoqaHanSansNeo-Regular"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                    <color key="baseForegroundColor" name="YettdaMainBackground"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="nextButton:" destination="qiv-ON-jwV" eventType="touchUpInside" id="y84-v9-qZd"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/ 200" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7NT-tN-opk">
+                                <rect key="frame" x="333.66666666666669" y="660" width="36.333333333333314" height="19"/>
+                                <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="15"/>
+                                <color key="textColor" red="0.82745098039999998" green="0.8862745098" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rDz-Xa-Mum"/>
                         <color key="backgroundColor" red="0.97647058819999999" green="0.98039215690000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="NEH-wh-UXr" firstAttribute="centerX" secondItem="Fuw-em-nST" secondAttribute="centerX" id="2fz-He-zT5"/>
-                            <constraint firstItem="mEo-cg-sSE" firstAttribute="top" secondItem="rDz-Xa-Mum" secondAttribute="top" constant="42" id="9i6-Lq-4KT"/>
+                            <constraint firstItem="rDz-Xa-Mum" firstAttribute="bottom" secondItem="NEH-wh-UXr" secondAttribute="bottom" priority="250" constant="155" id="GN6-P4-4gk"/>
                             <constraint firstItem="hAN-Tw-Eqm" firstAttribute="leading" secondItem="rDz-Xa-Mum" secondAttribute="leading" constant="20" id="Nt4-Ew-SIg"/>
                             <constraint firstItem="skb-Cm-xLQ" firstAttribute="leading" secondItem="rDz-Xa-Mum" secondAttribute="leading" constant="20" id="OYA-lR-DyD"/>
                             <constraint firstItem="rDz-Xa-Mum" firstAttribute="trailing" secondItem="hAN-Tw-Eqm" secondAttribute="trailing" constant="20" id="Phd-9R-QZ9"/>
                             <constraint firstItem="mEo-cg-sSE" firstAttribute="leading" secondItem="Y3g-h4-iKK" secondAttribute="leading" id="Q96-qP-2j3"/>
                             <constraint firstItem="mEo-cg-sSE" firstAttribute="centerX" secondItem="Fuw-em-nST" secondAttribute="centerX" id="Qet-iu-k1e"/>
+                            <constraint firstItem="Y3g-h4-iKK" firstAttribute="top" secondItem="Fuw-em-nST" secondAttribute="top" constant="260" id="RZK-Ar-Uxq"/>
                             <constraint firstItem="skb-Cm-xLQ" firstAttribute="top" secondItem="Y3g-h4-iKK" secondAttribute="bottom" constant="25" id="S7S-aV-YUB"/>
                             <constraint firstItem="Y3g-h4-iKK" firstAttribute="top" secondItem="mEo-cg-sSE" secondAttribute="bottom" constant="21.666666666666629" id="V7P-1H-hwe"/>
                             <constraint firstItem="NEH-wh-UXr" firstAttribute="top" secondItem="skb-Cm-xLQ" secondAttribute="bottom" constant="10" id="Z0W-w6-IVs"/>
                             <constraint firstItem="rDz-Xa-Mum" firstAttribute="trailing" secondItem="NEH-wh-UXr" secondAttribute="trailing" constant="20" id="hL7-a6-tzF"/>
+                            <constraint firstItem="hAN-Tw-Eqm" firstAttribute="centerX" secondItem="Fuw-em-nST" secondAttribute="centerX" id="htI-f5-I6O"/>
+                            <constraint firstItem="7NT-tN-opk" firstAttribute="top" secondItem="NEH-wh-UXr" secondAttribute="bottom" constant="5" id="iEE-62-Ufy"/>
+                            <constraint firstItem="rDz-Xa-Mum" firstAttribute="bottom" secondItem="hAN-Tw-Eqm" secondAttribute="bottom" constant="19" id="iS4-dm-Fbl"/>
                             <constraint firstItem="NEH-wh-UXr" firstAttribute="leading" secondItem="rDz-Xa-Mum" secondAttribute="leading" constant="20" id="q6O-EW-Gbk"/>
                             <constraint firstItem="mEo-cg-sSE" firstAttribute="trailing" secondItem="Y3g-h4-iKK" secondAttribute="trailing" id="rpU-8L-l9W"/>
-                            <constraint firstAttribute="bottom" secondItem="hAN-Tw-Eqm" secondAttribute="bottom" constant="53" id="sUm-nZ-l5y"/>
+                            <constraint firstItem="rDz-Xa-Mum" firstAttribute="trailing" secondItem="7NT-tN-opk" secondAttribute="trailing" constant="20" id="uyN-DT-Q8g"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="카드 작성" id="Zqd-RT-lzc"/>
                     <connections>
                         <outlet property="locationLabel" destination="x2r-4e-bAQ" id="sEi-fx-WVv"/>
+                        <outlet property="nextButton" destination="hAN-Tw-Eqm" id="STd-Ss-9tv"/>
+                        <outlet property="numbersTyped" destination="7NT-tN-opk" id="gan-Y0-nzD"/>
                         <outlet property="storyTextView" destination="NEH-wh-UXr" id="FPS-z4-rtj"/>
+                        <outlet property="storyTypeLimit" destination="7NT-tN-opk" id="TOp-Ph-0fs"/>
                     </connections>
                 </viewController>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ccF-oA-SlR">
+                    <rect key="frame" x="0.0" y="0.0" width="28" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.82745098039999998" green="0.8862745098" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ohy-c9-2Pa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2820" y="115.87677725118483"/>
+            <point key="canvasLocation" x="3749.2307692307691" y="115.87677725118483"/>
         </scene>
     </scenes>
     <resources>
-        <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="globe" catalog="system" width="128" height="121"/>
         <image name="photo1" width="183" height="275"/>
+        <namedColor name="YettdaMainBackground">
+            <color red="0.97647058823529409" green="0.98039215686274506" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
