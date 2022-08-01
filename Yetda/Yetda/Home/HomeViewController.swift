@@ -27,13 +27,6 @@ class HomeViewController: UIViewController {
     let planeBtn = UIButton(type: .custom)
     let profileBtn = UIButton(type: .custom)
     let cityLabel = UILabel()
-    lazy var menuItems: [UIAction] = {
-        return [
-            UIAction(title: "이름변경", image: nil, state: .off, handler: { _ in }),
-            UIAction(title: "로그아웃", image: nil, state: .off, handler: { _ in }),
-            UIAction(title: "회원탈퇴", image: nil, state: .off, handler: { _ in })
-        ]
-    }()
     
     let viewModel = CardListViewModel()
     let disposeBag = DisposeBag()
@@ -64,11 +57,13 @@ class HomeViewController: UIViewController {
         setCardListView()
         
         self.isHeroEnabled = true
-        self.cardListView.hero.id = defaults.string(forKey: "site")
+        self.cardListView.hero.id = "후쿠오카"
+//        defaults.string(forKey: "site")
+        self.cardListView.hero.modifiers = [.cascade]
         self.hero.modalAnimationType = .fade
         
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.longTap(_:)))
-        cardListView.cardCollectionView.addGestureRecognizer(longPressGesture)
+        self.cardListView.cardCollectionView.addGestureRecognizer(longPressGesture)
         
         let touchGesture = UITapGestureRecognizer(target: self, action: #selector(self.tap(_:)))
         self.topView.addGestureRecognizer(touchGesture)
@@ -125,7 +120,7 @@ class HomeViewController: UIViewController {
         topView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         topView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         topView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-//        topView.heightAnchor.constraint(equalToConstant: 220).isActive = true
+        topView.heightAnchor.constraint(equalToConstant: 220).isActive = true
         
         topView.addSubview(backgroundImage)
         setBackgroundImage()
@@ -169,9 +164,11 @@ class HomeViewController: UIViewController {
         planeBtn.topAnchor.constraint(equalTo: topView.topAnchor, constant: 65).isActive = true
         
         planeBtn.rx.tap.bind {
-            self.dismiss(animated: true)
+            let storyboard = UIStoryboard(name: "SiteCollectionView", bundle: nil)
+            let siteVC = storyboard.instantiateViewController(withIdentifier: "SiteCollectionView")
+            siteVC.modalPresentationStyle = .fullScreen
+            self.present(siteVC, animated: true)
         }.disposed(by: disposeBag)
-        
     }
     
     private func setProfileBtn() {
@@ -181,8 +178,14 @@ class HomeViewController: UIViewController {
         profileBtn.trailingAnchor.constraint(equalTo: topView.trailingAnchor, constant: -20).isActive = true
         profileBtn.topAnchor.constraint(equalTo: topView.topAnchor, constant: 65).isActive = true
         
-        profileBtn.menu = UIMenu(title: "", image: nil, identifier: nil, options: .displayInline, children: menuItems)
-        profileBtn.showsMenuAsPrimaryAction = true
+        profileBtn.rx.tap.bind {
+            let storyboard = UIStoryboard(name: "MyPageView", bundle: nil)
+            guard let myPageVC = storyboard.instantiateViewController(withIdentifier: "MyPageViewController") as? MyPageViewController else { return }
+            
+            myPageVC.view.backgroundColor = UIColor(named: "YettdaMainBackground")
+            myPageVC.modalPresentationStyle = .formSheet
+            self.present(myPageVC, animated: true)
+        }.disposed(by: disposeBag)
         
     }
     
@@ -265,6 +268,7 @@ class HomeViewController: UIViewController {
                     imagePicker.dismiss(animated: false)
                     let storyboard = UIStoryboard(name: "MakeCard", bundle: nil)
                     let makeCardVC = storyboard.instantiateViewController(withIdentifier: "MakeCard")
+                    makeCardVC.modalPresentationStyle = .fullScreen
                     self.present(makeCardVC, animated: true)
                 }
                 imagePicker.view.backgroundColor = .white

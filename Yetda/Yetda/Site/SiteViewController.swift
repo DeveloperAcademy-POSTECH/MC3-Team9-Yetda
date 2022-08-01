@@ -51,6 +51,7 @@ class SiteViewController: UIViewController, UICollectionViewDelegate {
         snapshot.appendItems(list, toSection: .main)
         siteDataSource.apply(snapshot)
     
+        self.hero.isEnabled = true
         self.hero.modalAnimationType = .fade
         bindTouch()
     }
@@ -109,9 +110,7 @@ class SiteViewController: UIViewController, UICollectionViewDelegate {
     private func bindTouch() {
         siteCollectionView.rx.itemSelected.bind { indexPath in
             self.siteCollectionView.deselectItem(at: indexPath, animated: true)
-            let vc = HomeViewController()
-            vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true)
+            self.dismiss(animated: true)
         }.disposed(by: disposeBag)
     }
 }

@@ -230,7 +230,7 @@
                                     <attributedString key="attributedTitle">
                                         <fragment content="다음">
                                             <attributes>
-                                                <font key="NSFont" size="17" name="SpoqaHanSansNeo-Medium"/>
+                                                <font key="NSFont" metaFont="system" size="17"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
@@ -396,7 +396,7 @@
                                     <attributedString key="attributedTitle">
                                         <fragment content="다음">
                                             <attributes>
-                                                <font key="NSFont" size="17" name="SpoqaHanSansNeo-Regular"/>
+                                                <font key="NSFont" metaFont="system" size="17"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
