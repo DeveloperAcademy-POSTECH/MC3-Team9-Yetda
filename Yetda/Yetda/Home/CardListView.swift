@@ -12,9 +12,9 @@ class CardListView: UIView, UICollectionViewDelegateFlowLayout {
 
     let cardCollectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 14
+        layout.minimumLineSpacing = 20
         layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets(top: 15, left: 15, bottom: 0, right: 15)
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 20, bottom: 0, right: 20)
 
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         return cv
@@ -43,7 +43,7 @@ class CardListView: UIView, UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = self.cardCollectionView.frame.size.width
-        let cellWidth = (width - 42) / 2
+        let cellWidth = (width - 60) / 2
         return CGSize(width: cellWidth, height: cellWidth * 4/3)
     }
 }

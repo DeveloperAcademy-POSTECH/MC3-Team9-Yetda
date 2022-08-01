@@ -68,6 +68,7 @@ class SiteViewController: UIViewController {
         snapshot.appendItems([], toSection: .main)
         siteDataSource.apply(snapshot)
     
+        self.hero.isEnabled = true
         self.hero.modalAnimationType = .fade
         // bindTouch()
         makeSearchBar()
