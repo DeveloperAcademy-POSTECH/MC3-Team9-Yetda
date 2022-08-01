@@ -38,7 +38,6 @@ class MyPageViewController: UIViewController {
                 print("ERROR: singout \(signOutError.localizedDescription)")
             }
             
-            print("로그아웃 로직 짜야함")
         }
         logoutalert.addAction(cancle)
         logoutalert.addAction(logout)
@@ -49,7 +48,17 @@ class MyPageViewController: UIViewController {
         let resignAlert = UIAlertController(title: "회원탈퇴 확인", message: "회원탈퇴시 지금까지 기록된 데이터가 사라집니다", preferredStyle: .alert)
         let cancle = UIAlertAction(title: "취소", style: .default, handler: nil)
         let resign = UIAlertAction(title: "", style: .destructive) { UIAlertAction in
-            print("회원탈퇴 로직 짜야함")
+
+            let user = Auth.auth().currentUser
+
+            user?.delete { error in
+              if let error = error {
+                print("ERROR: User resign \(error.localizedDescription)")
+              } else {
+                print("회원 삭제에 성공하셨습니다.")
+              }
+            }
+
         }
         resignAlert.addAction(cancle)
         resignAlert.addAction(resign)
