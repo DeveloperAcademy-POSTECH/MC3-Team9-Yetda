@@ -19,4 +19,17 @@ struct Present: Hashable, Codable {
     var keyWords: [String]
     var images: [String]
     var coordinate: [String]
+    
+    init(id: String?, user: String, site: String, name: String, content: String, whosFor: String, date: String, keyWords: [String], images: [String], coordinate: [String]) {
+        self.id = id
+        self.user = user
+        self.site = site
+        self.name = name
+        self.content = content
+        self.whosFor = whosFor
+        self.date = date
+        self.keyWords = keyWords
+        self.images = images
+        self.coordinate = coordinate
+    }
 }

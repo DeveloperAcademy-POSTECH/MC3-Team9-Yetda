@@ -17,6 +17,17 @@ class HomeViewController: UIViewController {
 
     var sampleCards = BehaviorRelay<[String]>(value: [" . ", "Aichi.png", "Akita.png", "Aomori.png", "Chiba.png", "Ehime.png", "Fukui.png"])
     var db = Firestore.firestore()
+    var city: String?
+    
+    // MARK: Rx를 잘 몰라서 일단 데이터 넘겨받는거를 init을 사용해서 했슴당
+    init(city: String?) {
+        self.city = city
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     var presents: [Present] = []
     
@@ -35,21 +46,36 @@ class HomeViewController: UIViewController {
     var imageCount = 0
     var longPressEnabled = false
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        let showOnBoarding = defaults.bool(forKey: "isFirst")
-//        if !showOnBoarding {
-//            self.navigationController?.pushViewController(OnBoardingViewController(), animated: false)
-//        }
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // MARK: 모달로 연결 후에 init 대신에 아래 코드로 하겠습니다.
+        // self.city = defaults.string(forKey: "site") ?? "여행지를 추가 해주세요 !"
+        let showOnBoarding = defaults.bool(forKey: "isFirst")
+        if !showOnBoarding {
+            let vc = OnBoardingViewController()
+            vc.modalPresentationStyle = .overFullScreen
+            self.present(vc, animated: true)
+            //self.navigationController?.pushViewController(OnBoardingViewController(), animated: false)
+        }
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        defaults.set(city, forKey: "site")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        
+        // MARK: NavigationBar가 위에 있으면 카드리스트가 좀 올라와서 일단 주석했습니다.
+        //self.navigationController?.isNavigationBarHidden = true
+        
+        prepareGetData()
         
         self.view.addSubview(topView)
         setTopView()
@@ -57,7 +83,7 @@ class HomeViewController: UIViewController {
         setCardListView()
         
         self.isHeroEnabled = true
-        self.cardListView.hero.id = defaults.string(forKey: "site")
+        self.cardListView.hero.id = city
         self.cardListView.hero.modifiers = [.cascade]
         self.hero.modalAnimationType = .fade
         
@@ -68,24 +94,30 @@ class HomeViewController: UIViewController {
         self.topView.addGestureRecognizer(touchGesture)
         
         // Firestore DB 읽기
-//        db.collection("presents").addSnapshotListener { snapshot, error in
-//            guard let documents = snapshot?.documents else {
-//                print("ERROR Firestore fetching document \(String(describing: error?.localizedDescription))")
-//                return
-//            }
-//
-//            self.presents = documents.compactMap { doc -> Present? in
-//                do {
-//                    let jsonData = try JSONSerialization.data(withJSONObject: doc.data(), options: [])
-//                    let present = try JSONDecoder().decode(Present.self, from: jsonData)
-//                    return present
-//                } catch let error {
-//                    print("ERROR JSON Parsing \(error)")
-//                    return nil
-//                }
-//            }
-//            print(self.presents)
-//        }
+        db.collection("presents").whereField("user", isEqualTo: "testUser").addSnapshotListener { snapshot, error in
+            guard let documents = snapshot?.documents else {
+                print("ERROR Firestore fetching document \(String(describing: error?.localizedDescription))")
+                return
+            }
+
+            self.presents = documents.compactMap { doc -> Present? in
+                do {
+                    let jsonData = try JSONSerialization.data(withJSONObject: doc.data(), options: [])
+                    let present = try JSONDecoder().decode(Present.self, from: jsonData)
+                    return present
+                } catch let error {
+                    print("ERROR JSON Parsing \(error)")
+                    return nil
+                }
+            }
+            print(self.presents)
+        }
+    }
+    // MARK: Delegate 받는 준비인데 테스트를 못해봄 ㅠㅜ
+    private func prepareGetData() {
+        let storyboard = UIStoryboard(name: "SiteCollectionView", bundle: nil)
+        let siteVC = storyboard.instantiateViewController(withIdentifier: "SiteViewController") as? SiteViewController
+        siteVC?.delegate = self
     }
     
     @objc func longTap(_ gesture: UIGestureRecognizer) {
@@ -155,6 +187,7 @@ class HomeViewController: UIViewController {
         backgroundImage.contentMode = .scaleAspectFill
     }
     
+    // MARK: 얘가 클릭이 안되서 테스트 해볼려고 하는데 잘 안되네요,, ㅜㅡㅜ 왜죠;
     private func setPlaneBtn() {
         planeBtn.setImage(UIImage(named: "PlaneBtn"), for: .normal)
         
@@ -162,13 +195,14 @@ class HomeViewController: UIViewController {
         planeBtn.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: 20).isActive = true
         planeBtn.topAnchor.constraint(equalTo: topView.topAnchor, constant: 65).isActive = true
         
+        // MARK: Home뷰를 루트뷰로 두고 Site보는 뷰는 풀스크린커버로 띄울 생각입니다.
         planeBtn.rx.tap.bind {
             let storyboard = UIStoryboard(name: "SiteCollectionView", bundle: nil)
+            siteVC.modalPresentationStyle = .fullScreen
             let siteVC = storyboard.instantiateViewController(withIdentifier: "SiteViewController")
             siteVC.modalPresentationStyle = .fullScreen
             self.present(siteVC, animated: true)
         }.disposed(by: disposeBag)
-    }
     
     private func setProfileBtn() {
         profileBtn.setImage(UIImage(named: "ProfileBtn"), for: .normal)
@@ -193,7 +227,8 @@ class HomeViewController: UIViewController {
         cityLabel.leadingAnchor.constraint(equalTo: planeBtn.leadingAnchor).isActive = true
         cityLabel.topAnchor.constraint(equalTo: planeBtn.bottomAnchor, constant: 20).isActive = true
     
-        cityLabel.text = defaults.string(forKey: "site")
+//        cityLabel.text = defaults.string(forKey: "site")
+        cityLabel.text = city
         let font = UIFont.systemFont(ofSize: 25, weight: .bold)
         cityLabel.font = font
         cityLabel.textColor = .white
@@ -263,8 +298,6 @@ class HomeViewController: UIViewController {
                         
                     }
                     self.imageList = newImages
-//                    MakeCardDescriptionViewController().photos = self.imageList
-                    imagePicker.dismiss(animated: false)
                     let storyboard = UIStoryboard(name: "MakeCard", bundle: nil)
                     let makeCardVC = storyboard.instantiateViewController(withIdentifier: "MakeCard")
                     makeCardVC.modalPresentationStyle = .fullScreen
@@ -272,9 +305,9 @@ class HomeViewController: UIViewController {
                 }
                 imagePicker.view.backgroundColor = .white
                 self.present(imagePicker, animated: true)
-            } else {
-                self.sendCardData(indexPath: indexPath)
-            }
+                    let makeCardVC = storyboard.instantiateViewController(withIdentifier: "MakeCard")
+                    makeCardVC.modalPresentationStyle = .fullScreen
+                    self.present(makeCardVC, animated: true)
         }.disposed(by: disposeBag)
     }
     
@@ -290,5 +323,12 @@ class HomeViewController: UIViewController {
     private func sendCardData(indexPath: IndexPath) {
 //        viewModel.didSelect(indexPath)
         self.navigationController!.pushViewController(CardDetailViewController(), animated: true)
+    }
+}
+
+// MARK: Site뷰에서 지역 검색시 Delegate로 받으려고 구현했습니다.
+extension HomeViewController: SendUpdateDelegate {
+    func updateCity(city: String?) {
+        self.city = city
     }
 }
