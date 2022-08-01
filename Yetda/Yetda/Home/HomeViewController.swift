@@ -198,11 +198,11 @@ class HomeViewController: UIViewController {
         // MARK: Home뷰를 루트뷰로 두고 Site보는 뷰는 풀스크린커버로 띄울 생각입니다.
         planeBtn.rx.tap.bind {
             let storyboard = UIStoryboard(name: "SiteCollectionView", bundle: nil)
-            siteVC.modalPresentationStyle = .fullScreen
             let siteVC = storyboard.instantiateViewController(withIdentifier: "SiteViewController")
             siteVC.modalPresentationStyle = .fullScreen
             self.present(siteVC, animated: true)
         }.disposed(by: disposeBag)
+    }
     
     private func setProfileBtn() {
         profileBtn.setImage(UIImage(named: "ProfileBtn"), for: .normal)
@@ -299,15 +299,16 @@ class HomeViewController: UIViewController {
                     }
                     self.imageList = newImages
                     let storyboard = UIStoryboard(name: "MakeCard", bundle: nil)
-                    let makeCardVC = storyboard.instantiateViewController(withIdentifier: "MakeCard")
-                    makeCardVC.modalPresentationStyle = .fullScreen
-                    self.present(makeCardVC, animated: true)
+                    guard let makeCardVC = storyboard.instantiateViewController(withIdentifier: "MakeCard") as? MakeCardDescriptionViewController else { return }
+                    MakeCardDescriptionViewController().photos = self.imageList
+                    imagePicker.dismiss(animated: false)
+                    self.navigationController?.pushViewController(makeCardVC, animated: true)
                 }
                 imagePicker.view.backgroundColor = .white
                 self.present(imagePicker, animated: true)
-                    let makeCardVC = storyboard.instantiateViewController(withIdentifier: "MakeCard")
-                    makeCardVC.modalPresentationStyle = .fullScreen
-                    self.present(makeCardVC, animated: true)
+            } else {
+                self.sendCardData(indexPath: indexPath)
+            }
         }.disposed(by: disposeBag)
     }
     
