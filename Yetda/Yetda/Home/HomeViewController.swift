@@ -300,10 +300,10 @@ class HomeViewController: UIViewController {
                         
                     }
                     self.imageList = newImages
-//                    MakeCardDescriptionViewController().photos = self.imageList
-                    imagePicker.dismiss(animated: false)
                     let storyboard = UIStoryboard(name: "MakeCard", bundle: nil)
-                    let makeCardVC = storyboard.instantiateViewController(withIdentifier: "MakeCard")
+                    guard let makeCardVC = storyboard.instantiateViewController(withIdentifier: "MakeCard") as? MakeCardDescriptionViewController else { return }
+                    makeCardVC.photos = self.imageList
+                    imagePicker.dismiss(animated: false)
                     self.navigationController?.pushViewController(makeCardVC, animated: true)
                 }
                 imagePicker.view.backgroundColor = .white
