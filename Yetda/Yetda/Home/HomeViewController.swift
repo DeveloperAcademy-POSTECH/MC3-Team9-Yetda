@@ -57,8 +57,7 @@ class HomeViewController: UIViewController {
         setCardListView()
         
         self.isHeroEnabled = true
-        self.cardListView.hero.id = "후쿠오카"
-//        defaults.string(forKey: "site")
+        self.cardListView.hero.id = defaults.string(forKey: "site")
         self.cardListView.hero.modifiers = [.cascade]
         self.hero.modalAnimationType = .fade
         
@@ -165,7 +164,7 @@ class HomeViewController: UIViewController {
         
         planeBtn.rx.tap.bind {
             let storyboard = UIStoryboard(name: "SiteCollectionView", bundle: nil)
-            let siteVC = storyboard.instantiateViewController(withIdentifier: "SiteCollectionView")
+            let siteVC = storyboard.instantiateViewController(withIdentifier: "SiteViewController")
             siteVC.modalPresentationStyle = .fullScreen
             self.present(siteVC, animated: true)
         }.disposed(by: disposeBag)
