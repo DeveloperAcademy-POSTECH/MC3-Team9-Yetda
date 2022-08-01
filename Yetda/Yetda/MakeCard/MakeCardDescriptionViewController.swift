@@ -64,7 +64,6 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
         if let giftRecipientTextField = giftRecipientTextField {borderRadius(giftRecipientTextField).addLeftPadding()}
         self.hideKeyboardWhenTappedAround()
         
-        
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         setUpUI()

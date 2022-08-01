@@ -25,8 +25,6 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
             FirestoreManager.uploadData(present: Present(id: nil,
                                                          user: "testUser",
                                                          site: "testSite",
-
-                                                         
                                                          name: "\(giftNameData)",
                                                          content: "\(storyTextView.text ?? "")",
                                                          whosFor: "\(giftRecipientData)",
