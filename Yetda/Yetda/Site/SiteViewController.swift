@@ -158,7 +158,7 @@ class SiteViewController: UIViewController {
     
     private func setupResultViewUI() {
         searchResultViewController.view.translatesAutoresizingMaskIntoConstraints = false
-        searchResultViewController.view.topAnchor.constraint(equalTo: siteSearchBar.bottomAnchor,constant: 10).isActive = true
+        searchResultViewController.view.topAnchor.constraint(equalTo: siteSearchBar.bottomAnchor,constant: -4).isActive = true
         searchResultViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         searchResultViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         searchResultViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
@@ -169,9 +169,7 @@ extension SiteViewController: UISearchBarDelegate {
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         beginAppearanceTransition(true, animated: true)
         view.addSubview(searchResultViewController.view)
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            self.searchResultViewController.view.layer.opacity = 1
             self.searchResultViewController.view.layer.cornerRadius = 2
             self.searchResultViewController.view.isHidden = false
         }
@@ -199,6 +197,7 @@ extension SiteViewController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
     }
 }
+
 extension SiteViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         defaults.set(siteDataSource.itemIdentifier(for: indexPath), forKey: "site")
