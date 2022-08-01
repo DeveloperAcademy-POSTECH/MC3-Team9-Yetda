@@ -26,7 +26,7 @@ class OnBoardingFirstViewController: UIViewController {
         let titleLabel = UILabel()
         
         titleLabel.text = "옜다!"
-        titleLabel.font = UIFont(name: "SpoqaHanSansNeo-Medium", size: 30)
+        titleLabel.font = UIFont(name: "SpoqaHanSansNeo-Bold", size: 30)
         titleLabel.textColor = UIColor(named: "YettdaMainBlue")
         
         self.view.addSubview(titleLabel)
@@ -44,7 +44,7 @@ class OnBoardingFirstViewController: UIViewController {
         let subTitleLabel = UILabel()
         
         subTitleLabel.text = "소중한 사람에게"
-        subTitleLabel.font = UIFont(name: "SpoqaHanSansNeo-Medium", size: 25)
+        subTitleLabel.font = UIFont(name: "SpoqaHanSansNeo-Bold", size: 25)
         
         self.view.addSubview(subTitleLabel)
         
@@ -60,7 +60,7 @@ class OnBoardingFirstViewController: UIViewController {
         let subTitleLabel = UILabel()
         
         subTitleLabel.text = "마음을 담아 선물하세요"
-        subTitleLabel.font = UIFont(name: "SpoqaHanSansNeo-Medium", size: 25)
+        subTitleLabel.font = UIFont(name: "SpoqaHanSansNeo-Bold", size: 25)
         
         self.view.addSubview(subTitleLabel)
         
