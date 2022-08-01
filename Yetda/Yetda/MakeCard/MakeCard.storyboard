@@ -3,7 +3,6 @@
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -28,7 +27,7 @@
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3YG-mw-jmO">
                                         <rect key="frame" x="0.0" y="0.0" width="350" height="94"/>
-                                        <color key="backgroundColor" name="YettdaMainBackground"/>
+                                        <color key="backgroundColor" red="0.97647058819999999" green="0.98039215690000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="350" id="1o6-bh-OMO"/>
                                             <constraint firstAttribute="height" constant="94" id="Rjg-lY-VLI"/>
@@ -42,7 +41,7 @@
                                         <view key="backgroundView" contentMode="scaleToFill" id="e02-d1-em5">
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="94"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" name="YettdaMainBackground"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         </view>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCell" id="Oja-k5-EZ0" customClass="PhotoCollectionCell" customModule="Yetda" customModuleProvider="target">
@@ -75,7 +74,7 @@
                                                 </collectionViewCellContentView>
                                                 <size key="customSize" width="72" height="94"/>
                                                 <connections>
-                                                    <outlet property="chosenPhotoDescription" destination="Odf-ft-x9O" id="THo-6N-c3f"/>
+                                                    <outlet property="chosenPhotoDescription" destination="Odf-ft-x9O" id="tIA-mR-Jaf"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
@@ -246,6 +245,7 @@
                                 <connections>
                                     <action selector="nextButton:" destination="Zcw-ps-M3Y" eventType="touchUpInside" id="51Q-gX-MDN"/>
                                     <action selector="saveButton:" destination="Zcw-ps-M3Y" eventType="touchUpInside" id="2zf-Rw-nwi"/>
+                                    <action selector="sendKeywordList:" destination="Zcw-ps-M3Y" eventType="touchUpInside" id="Ngb-mZ-cZ5"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -319,7 +319,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="72" height="94"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="K1r-01-NVp">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo1" translatesAutoresizingMaskIntoConstraints="NO" id="K1r-01-NVp">
                                                             <rect key="frame" x="0.0" y="0.0" width="72" height="94"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="94" id="s5o-nh-uLO"/>
@@ -459,7 +459,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="background" width="916" height="1062"/>
         <image name="globe" catalog="system" width="128" height="121"/>
         <image name="photo1" width="183" height="275"/>
         <namedColor name="YettdaMainBackground">
