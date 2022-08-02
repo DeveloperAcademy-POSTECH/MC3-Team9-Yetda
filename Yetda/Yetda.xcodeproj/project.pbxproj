@@ -443,7 +443,7 @@
 		};
 		146DEDEF93899590EA103B0E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -661,9 +661,7 @@
 				CODE_SIGN_ENTITLEMENTS = Yetda/Yetda.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = RLD2Z6D224;
-				"EXCLUDED_ARCHS[sdk=*]" = arm64;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				DEVELOPMENT_TEAM = JASCMY8XL7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Yetda/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
@@ -698,8 +696,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RLD2Z6D224;
-				"EXCLUDED_ARCHS[sdk=*]" = arm64;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Yetda/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
