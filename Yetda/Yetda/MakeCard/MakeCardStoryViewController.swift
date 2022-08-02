@@ -23,8 +23,8 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
             let images: [UIImage]? = photos
             let imageURLs: [String] = StorageManager.uploadImages(images: images!)
             FirestoreManager.uploadData(present: Present(id: nil,
-                                                         user: "testUser",
-                                                         site: "testSite",
+                                                         user: "User",
+                                                         site: "후쿠이",
                                                          name: "\(giftNameData)",
                                                          content: "\(storyTextView.text ?? "")",
                                                          whosFor: "\(giftRecipientData)",

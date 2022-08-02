@@ -15,7 +15,6 @@ import FirebaseFirestore
 
 class HomeViewController: UIViewController {
 
-    var sampleCards = BehaviorRelay<[String]>(value: [" . ", "Aichi.png", "Akita.png", "Aomori.png", "Chiba.png", "Ehime.png", "Fukui.png"])
     var db = Firestore.firestore()
     var city: String?
     
@@ -29,7 +28,8 @@ class HomeViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var presents: [Present] = []
+    var presents: [Present] = [Present(id: nil, user: "", site: "", name: "", content: "", whosFor: "", date: "", keyWords: [], images: [], coordinate: [])]
+    var presentCards = BehaviorRelay<[Present]>(value: [])
     
     let topView = UIView()
     let cardListView = CardListView()
@@ -56,6 +56,31 @@ class HomeViewController: UIViewController {
             vc.modalPresentationStyle = .overFullScreen
             self.present(vc, animated: true)
         }
+        
+        // Firestore DB 읽기
+        db.collection("presents").whereField("user", isEqualTo: "User")
+            .whereField("site", isEqualTo: self.city ?? "")
+            .addSnapshotListener { snapshot, error in
+                guard let documents = snapshot?.documents else {
+                    print("ERROR Firestore fetching document \(String(describing: error?.localizedDescription))")
+                    return
+                }
+                
+                let temp = documents.compactMap { doc -> Present? in
+                    do {
+                        let jsonData = try JSONSerialization.data(withJSONObject: doc.data(), options: [])
+                        let present = try JSONDecoder().decode(Present.self, from: jsonData)
+                        return present
+                    } catch let error {
+                        print("ERROR JSON Parsing \(error)")
+                        return nil
+                    }
+                }
+                self.presents.append(contentsOf: temp)
+                print(self.presents)
+                self.presentCards.accept(self.presents)
+                print(self.presentCards.value.count)
+            }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -89,26 +114,6 @@ class HomeViewController: UIViewController {
         
         let touchGesture = UITapGestureRecognizer(target: self, action: #selector(self.tap(_:)))
         self.topView.addGestureRecognizer(touchGesture)
-        
-        // Firestore DB 읽기
-        db.collection("presents").whereField("user", isEqualTo: "testUser").addSnapshotListener { snapshot, error in
-            guard let documents = snapshot?.documents else {
-                print("ERROR Firestore fetching document \(String(describing: error?.localizedDescription))")
-                return
-            }
-
-            self.presents = documents.compactMap { doc -> Present? in
-                do {
-                    let jsonData = try JSONSerialization.data(withJSONObject: doc.data(), options: [])
-                    let present = try JSONDecoder().decode(Present.self, from: jsonData)
-                    return present
-                } catch let error {
-                    print("ERROR JSON Parsing \(error)")
-                    return nil
-                }
-            }
-            print(self.presents)
-        }
     }
     // MARK: Delegate 받는 준비인데 테스트를 못해봄 ㅠㅜ
     private func prepareGetData() {
@@ -234,13 +239,13 @@ class HomeViewController: UIViewController {
         
         let collectionView = cardListView.cardCollectionView
         
-        sampleCards
+        presentCards
             .bind(to: collectionView.rx.items(cellIdentifier: "PresentCardCell", cellType: CardCell.self)) { [self] row, model, cell in
             if (row == 0) {
-                cell.setData("addPhoto")
+                cell.setData(image: "addPhoto", whosFor: "")
                 cell.removeBtn.isHidden = true
             } else {
-                cell.setData(model)
+                cell.setData(image: model.images[0], whosFor: model.whosFor)
                 cell.removeBtn.addTarget(self, action: #selector(removeBtnClick(_:)), for: .touchUpInside)
                 if self.longPressEnabled {
                     cell.startAnimate()
@@ -312,14 +317,14 @@ class HomeViewController: UIViewController {
         let hitPoint = sender.convert(CGPoint.zero, to: self.cardListView.cardCollectionView)
         let hitIndex = self.cardListView.cardCollectionView.indexPathForItem(at: hitPoint)
         let row = hitIndex?.row ?? -1
-        var original = self.sampleCards.value
+        var original = self.presentCards.value
         original.remove(at: row + 2)
-        self.sampleCards.accept(original)
+        FirestoreManager.deleteData(present: presents[row+2])
+        self.presentCards.accept(original)
     }
     
     private func sendCardData(indexPath: IndexPath) {
-//        viewModel.didSelect(indexPath)
-        let cardDetailVC = CardDetailViewController()
+        let cardDetailVC = CardDetailViewController(selectedCard: presentCards.value[indexPath.item])
         self.navigationController?.pushViewController(cardDetailVC, animated: true)
     }
 }

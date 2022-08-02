@@ -39,14 +39,18 @@ class StorageManager {
     }
     
     static func downloadImage(urlString: String, completion: @escaping (UIImage?) -> Void) {
-        let storageReference = Storage.storage().reference(forURL: urlString)
-        let megaByte = Int64(1 * 1024 * 1024)
+//        let ourURL = "gs://yetda-5f2c3.appspot.com/"
+        let imageRef = Storage.storage().reference(forURL: "gs://yetda-5f2c3.appspot.com/")
+        let storageReference = imageRef.child(urlString + ".jpeg")
+//        let megaByte = Int64(1 * 1024 * 1024)
         
-        storageReference.getData(maxSize: megaByte) { data, error in
+        storageReference.getData(maxSize: 1 * 1024 * 1024) { data, error in
             guard let imageData = data else {
+                print("Image Download Error: \(error)")
                 completion(nil)
                 return
             }
+            print("이미지 가져오기 성공")
             completion(UIImage(data: imageData))
         }
     }

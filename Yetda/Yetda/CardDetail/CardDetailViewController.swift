@@ -9,7 +9,17 @@ import UIKit
 
 class CardDetailViewController: UIViewController, UIScrollViewDelegate, ShareKaKao {
     
-
+    var selectedCard: Present?
+    
+    init(selectedCard: Present?) {
+        self.selectedCard = selectedCard
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 //    let pageSize = Present().imageArray.count
     var dummyImages = ["Aichi", "Akita", "Aomori", "Chiba"]
     

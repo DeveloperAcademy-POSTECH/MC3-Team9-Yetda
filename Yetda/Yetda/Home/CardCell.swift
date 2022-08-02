@@ -64,7 +64,6 @@ class CardCell: UICollectionViewCell {
         thumbnailImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         thumbnailImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         
-//        thumbnailImage.clipsToBounds = true
         thumbnailImage.layer.cornerRadius = 20
         thumbnailImage.contentMode = .scaleAspectFill
     }
@@ -95,13 +94,16 @@ class CardCell: UICollectionViewCell {
         removeBtn.isHidden = true
     }
     
-    func setData(_ model: String) {
-        if (model == "addPhoto") {
+    func setData(image: String, whosFor: String) {
+        if (image == "addPhoto") {
             self.contentView.backgroundColor = .white
             thumbnailImage.image = UIImage(named: "plus")
         } else {
-            self.nameLabel.text = "  To. " + String(model.split(separator: ".")[0]) + "  "
-            thumbnailImage.image = UIImage(named: model)
+            self.nameLabel.text = "  To. " + whosFor + "  "
+            StorageManager.downloadImage(urlString: image, completion: setImage)
+            func setImage(image: UIImage?) -> Void {
+                thumbnailImage.image = image ?? UIImage(named: "photo4")!
+            }
         }
     }
     
