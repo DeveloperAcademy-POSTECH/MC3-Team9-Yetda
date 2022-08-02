@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let vc = storyboard.instantiateViewController(withIdentifier: "SiteViewController")
         
         let homeVC = UINavigationController(rootViewController: HomeViewController(city: defaults.string(forKey: "site")))
-        self.window?.rootViewController = vc
+        self.window?.rootViewController = homeVC
         self.window?.makeKeyAndVisible()
     }
 
