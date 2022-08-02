@@ -8,6 +8,7 @@
 import UIKit
 
 class DidCardShareViewController: UIViewController, ShareKaKao {
+    
     @IBOutlet weak var testLabel: UILabel!
     
     lazy var shareButton: UIButton = {
@@ -33,6 +34,8 @@ class DidCardShareViewController: UIViewController, ShareKaKao {
     }
     
     @objc func shareButtonAction(sender: UIButton!) {
-        shareKaKao(self, key: "Id", value: "2")
+        shareKaKao(self, key: "Id", value: "2") {
+            
+        }
     }
 }
