@@ -7,6 +7,11 @@
 
 import Foundation
 
+struct Site: Identifiable, Hashable {
+    var id = UUID()
+    var name: String
+}
+
 struct SiteModel {
     var name: String
     var latitude: Double

@@ -20,7 +20,7 @@ class OnBoardingSecondViewController: UIViewController {
         view.backgroundColor = .white
         setupUI()
         searchResultViewController.delegate = self
-        //makeOnBoardingButton()
+        
     }
     
     private lazy var searchBar: UISearchBar = {
@@ -81,30 +81,7 @@ class OnBoardingSecondViewController: UIViewController {
         constraintArr = [searchCon]
         NSLayoutConstraint.activate(constraintArr)
     }
-    
-//    func makeOnBoardingButton() {
-//        let button = UIButton()
-//        button.setTitle("다음", for: .normal)
-//        button.setTitleColor(.white, for: .normal)
-//        button.backgroundColor = .blue
-//        button.layer.cornerRadius = 10
-//
-//        self.view.addSubview(button)
-//        button.addTarget(self, action: #selector(moveToHome), for: .touchUpInside)
-//
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//
-//        button.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
-//        button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-//        button.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20).isActive = true
-//        button.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20).isActive = true
-//        button.heightAnchor.constraint(equalToConstant: 50).isActive = true
-//    }
-//
-//    @objc func moveToHome() {
-//        self.dismiss(animated: true, completion: nil)
-//    }
-
+   
     private func setupResultViewUI() {
         searchResultViewController.view.translatesAutoresizingMaskIntoConstraints = false
         searchResultViewController.view.topAnchor.constraint(equalTo: searchBar.bottomAnchor,constant: 20).isActive = true
