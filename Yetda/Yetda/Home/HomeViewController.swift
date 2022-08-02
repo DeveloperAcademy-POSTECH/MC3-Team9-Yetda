@@ -49,13 +49,12 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // MARK: 모달로 연결 후에 init 대신에 아래 코드로 하겠습니다.
-        // self.city = defaults.string(forKey: "site") ?? "여행지를 추가 해주세요 !"
+//        self.city = defaults.string(forKey: "site") ?? "여행지를 추가 해주세요 !"
         let showOnBoarding = defaults.bool(forKey: "isFirst")
         if !showOnBoarding {
             let vc = OnBoardingViewController()
             vc.modalPresentationStyle = .overFullScreen
             self.present(vc, animated: true)
-            //self.navigationController?.pushViewController(OnBoardingViewController(), animated: false)
         }
     }
     
@@ -73,7 +72,7 @@ class HomeViewController: UIViewController {
         self.view.backgroundColor = .white
         
         // MARK: NavigationBar가 위에 있으면 카드리스트가 좀 올라와서 일단 주석했습니다.
-        //self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = true
         
         prepareGetData()
         
@@ -171,7 +170,7 @@ class HomeViewController: UIViewController {
         cardListView.translatesAutoresizingMaskIntoConstraints = false
         cardListView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         cardListView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        cardListView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 90).isActive = true
+        cardListView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 125).isActive = true
         cardListView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
         bindCollectionCardData()
@@ -227,7 +226,6 @@ class HomeViewController: UIViewController {
         cityLabel.leadingAnchor.constraint(equalTo: planeBtn.leadingAnchor).isActive = true
         cityLabel.topAnchor.constraint(equalTo: planeBtn.bottomAnchor, constant: 20).isActive = true
     
-//        cityLabel.text = defaults.string(forKey: "site")
         cityLabel.text = city
         let font = UIFont.systemFont(ofSize: 25, weight: .bold)
         cityLabel.font = font
@@ -300,9 +298,10 @@ class HomeViewController: UIViewController {
                     self.imageList = newImages
                     let storyboard = UIStoryboard(name: "MakeCard", bundle: nil)
                     guard let makeCardVC = storyboard.instantiateViewController(withIdentifier: "MakeCard") as? MakeCardDescriptionViewController else { return }
-                    MakeCardDescriptionViewController().photos = self.imageList
+                    makeCardVC.photos = self.imageList
                     imagePicker.dismiss(animated: false)
-                    self.navigationController?.pushViewController(makeCardVC, animated: true)
+                    makeCardVC.modalPresentationStyle = .fullScreen
+                    self.present(makeCardVC, animated: true)
                 }
                 imagePicker.view.backgroundColor = .white
                 self.present(imagePicker, animated: true)
@@ -323,7 +322,9 @@ class HomeViewController: UIViewController {
     
     private func sendCardData(indexPath: IndexPath) {
 //        viewModel.didSelect(indexPath)
-        self.navigationController!.pushViewController(CardDetailViewController(), animated: true)
+        let cardDetailVC = CardDetailViewController()
+        cardDetailVC.modalPresentationStyle = .fullScreen
+        self.present(cardDetailVC, animated: true)
     }
 }
 

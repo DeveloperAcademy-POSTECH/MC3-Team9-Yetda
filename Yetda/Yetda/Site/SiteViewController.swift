@@ -70,7 +70,7 @@ class SiteViewController: UIViewController {
     
         self.hero.isEnabled = true
         self.hero.modalAnimationType = .fade
-        // bindTouch()
+        bindTouch()
         makeSearchBar()
         bind()
     }
@@ -127,18 +127,19 @@ class SiteViewController: UIViewController {
         let storyboard = UIStoryboard(name: "MyPageView", bundle: nil)
         guard let childVC = storyboard.instantiateViewController(withIdentifier: "MyPageViewController") as? MyPageViewController else { return }
         childVC.view.backgroundColor = UIColor(named: "YettdaMainBackground")
-        childVC.modalPresentationStyle = .overFullScreen
+        childVC.modalPresentationStyle = .formSheet
         self.present(childVC, animated: true)
     }
     
-//    private func bindTouch() {
-//        siteCollectionView.rx.itemSelected.bind { indexPath in
-//            self.siteCollectionView.deselectItem(at: indexPath, animated: true)
-//            let vc = HomeViewController()
-//            vc.modalPresentationStyle = .fullScreen
-//            self.present(vc, animated: true)
-//        }.disposed(by: disposeBag)
-//    }
+    private func bindTouch() {
+        siteCollectionView.rx.itemSelected.bind { indexPath in
+            self.siteCollectionView.deselectItem(at: indexPath, animated: true)
+            let vc = HomeViewController(city: self.list[0])
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true)
+        }.disposed(by: disposeBag)
+    }
+    
     private func applySnapshot(items: [String], section: Section){
         var snapshot = siteDataSource.snapshot()
         if snapshot.numberOfItems != 0 {

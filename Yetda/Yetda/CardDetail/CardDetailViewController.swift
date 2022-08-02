@@ -75,7 +75,7 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate, ShareKaK
     
     lazy var backButton: UIButton = {
         let button = makeButton(symbols: "chevron.backward")
-//        button.addTarget(self, action: #selector(moveToHomeView), for: .touchUpInside)
+        button.addTarget(self, action: #selector(moveToHomeView), for: .touchUpInside)
         
         return button
     }()
@@ -191,7 +191,7 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate, ShareKaK
     }
     
     @objc func moveToHomeView() {
-//        self.navigationController?.popToRootViewController(animated: true)
+        self.dismiss(animated: true)
     }
     
     @objc func popOverModal() {
