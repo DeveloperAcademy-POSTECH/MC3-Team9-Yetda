@@ -120,13 +120,10 @@ class OnBoardingFirstViewController: UIViewController {
     }
     
     @objc func moveToSecondView() {
-        startSignInWithAppleFlow()
-        let userId: String? = Auth.auth().currentUser?.email
-        guard let userId = userId else { return }
-
-        UserDefaults.standard.set(userId, forKey: "UserId")
-        let pageViewController = self.parent as! OnBoardingViewController
-        pageViewController.goToNextPage(index: 1)
+        DispatchQueue.global().sync {
+            startSignInWithAppleFlow()
+            
+        }
     }
 }
 
@@ -151,6 +148,12 @@ extension OnBoardingFirstViewController: ASAuthorizationControllerDelegate {
                 if let error = error {
                     print ("Error Apple sign in: %@", error)
                     return
+                } else {
+                    let userId: String? = Auth.auth().currentUser?.email
+                    guard let userId = userId else { return }
+                    UserDefaults.standard.set(userId, forKey: "UserId")
+                    let pageViewController = self.parent as! OnBoardingViewController
+                    pageViewController.goToNextPage(index: 1)
                 }
             }
         }
