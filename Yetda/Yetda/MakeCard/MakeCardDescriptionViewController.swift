@@ -18,7 +18,8 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
     @IBOutlet weak var nextButton: UIButton!
     @IBAction func nextButton(_ sender: Any) {
         let storyVC = UIStoryboard(name: "MakeCard", bundle: nil).instantiateViewController(withIdentifier: "MakeCardStoryViewController") as! MakeCardStoryViewController
-        self.navigationController?.pushViewController(storyVC, animated: true)
+        storyVC.modalPresentationStyle = .fullScreen
+        self.present(storyVC, animated: false)
         storyVC.keywordsData = prepareKeyword()
         storyVC.giftNameData = "\(giftNameTextField.text ?? "")"
         storyVC.giftRecipientData = "\(giftRecipientTextField.text ?? "")"
