@@ -9,6 +9,7 @@ import UIKit
 import CoreData
 import Firebase
 import FirebaseFirestore
+import KakaoSDKCommon
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         FirebaseApp.configure()
+        KakaoSDK.initSDK(appKey: "a4ab2b12a308ca5d518285cb3761be21")
         
         return true
     }
@@ -79,7 +81,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
 }
 
 extension AppDelegate {
