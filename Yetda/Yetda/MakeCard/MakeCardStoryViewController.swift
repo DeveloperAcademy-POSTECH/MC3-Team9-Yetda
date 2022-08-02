@@ -20,30 +20,31 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
         // 데이터 저장로직 누르자마자 저장 로직과는 별개로 바로 이동할 수 있도록 비동기로 처리함
         // 애초에 데이터 저장하고 넘어가는 UI를 실행하는 것은 텀이 생기게 돼서 iOS에서 터트림.
         DispatchQueue.global().sync {
-            let images: [UIImage] = [UIImage(named: "photo1")!, UIImage(named: "photo2")!]
-            let imageURLs: [String] = StorageManager.uploadImages(images: images)
+            let images: [UIImage]? = photos
+            let imageURLs: [String] = StorageManager.uploadImages(images: images!)
             FirestoreManager.uploadData(present: Present(id: nil,
-                                                         user: "testUser",
-                                                         site: "testSite",
-                                                         name: "testName",
-                                                         content: "testContent",
-                                                         whosFor: "testFor",
+                                                         user: "User",
+                                                         site: "후쿠이",
+                                                         name: "\(giftNameData)",
+                                                         content: "\(storyTextView.text ?? "")",
+                                                         whosFor: "\(giftRecipientData)",
                                                          date: "testDate",
-                                                         keyWords: ["testKeyword1", "testKeyword2", "testKeyword3", "testKeyword4"],
+                                                         keyWords: keywordsData,
                                                          images: imageURLs,
                                                          coordinate: ["coordinate1", "coordinate2"]))
         }
-        
-        let storyboard = UIStoryboard(name: "Home", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-        
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true)
+
+        let homeVC = HomeViewController(city: defaults.string(forKey: "site"))
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     var activeField: UITextField? = nil
-    var photos: [String] = ["photo1", "photo2", "photo3", "photo4", "photo5"]
     var isKeyboardShowing: Bool = false
+    
+    var photos: [UIImage]?
+    var giftNameData: String = ""
+    var giftRecipientData: String = ""
+    var keywordsData: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,12 +72,12 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photos.count
+        return photos!.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell2", for: indexPath) as! PhotoCollectionCell
-        cell.chosenPhotoStory.image = UIImage(named: photos[indexPath.row])
+        cell.chosenPhotoStory?.image = photos?[indexPath.row]
         cell.layer.cornerRadius = 10.0
         return cell
     }

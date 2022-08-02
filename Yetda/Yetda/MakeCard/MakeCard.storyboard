@@ -3,6 +3,7 @@
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -41,7 +42,7 @@
                                         <view key="backgroundView" contentMode="scaleToFill" id="e02-d1-em5">
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="94"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <color key="backgroundColor" name="YettdaMainBackground"/>
                                         </view>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCell" id="Oja-k5-EZ0" customClass="PhotoCollectionCell" customModule="Yetda" customModuleProvider="target">
@@ -166,7 +167,7 @@
                                     </stackView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7gM-ai-fUu">
                                         <rect key="frame" x="0.0" y="27.333333333333314" width="350" height="185"/>
-                                        <color key="backgroundColor" red="0.97647058819999999" green="0.98039215690000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" name="YettdaMainBackground"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="185" id="3Ve-Ou-phF"/>
                                             <constraint firstAttribute="width" constant="350" id="5Y6-ca-KTu"/>
@@ -230,7 +231,7 @@
                                     <attributedString key="attributedTitle">
                                         <fragment content="다음">
                                             <attributes>
-                                                <font key="NSFont" size="17" name="SpoqaHanSansNeo-Medium"/>
+                                                <font key="NSFont" metaFont="system" size="17"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
@@ -244,8 +245,6 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="nextButton:" destination="Zcw-ps-M3Y" eventType="touchUpInside" id="51Q-gX-MDN"/>
-                                    <action selector="saveButton:" destination="Zcw-ps-M3Y" eventType="touchUpInside" id="2zf-Rw-nwi"/>
-                                    <action selector="sendKeywordList:" destination="Zcw-ps-M3Y" eventType="touchUpInside" id="Ngb-mZ-cZ5"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -300,7 +299,7 @@
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="u85-SL-EsI">
                                         <rect key="frame" x="0.0" y="0.0" width="350" height="94"/>
-                                        <color key="backgroundColor" red="0.97647058819999999" green="0.98039215690000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" name="YettdaMainBackground"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="94" id="Rmx-S9-uBE"/>
                                             <constraint firstAttribute="width" constant="350" id="xJQ-P7-fe0"/>
@@ -396,7 +395,7 @@
                                     <attributedString key="attributedTitle">
                                         <fragment content="다음">
                                             <attributes>
-                                                <font key="NSFont" size="17" name="SpoqaHanSansNeo-Regular"/>
+                                                <font key="NSFont" metaFont="system" size="17"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>

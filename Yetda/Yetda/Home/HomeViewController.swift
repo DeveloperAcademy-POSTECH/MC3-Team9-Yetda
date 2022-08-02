@@ -15,7 +15,6 @@ import FirebaseFirestore
 
 class HomeViewController: UIViewController {
 
-    var sampleCards = BehaviorRelay<[String]>(value: [" . ", "Aichi.png", "Akita.png", "Aomori.png", "Chiba.png", "Ehime.png", "Fukui.png"])
     var db = Firestore.firestore()
     var city: String?
     
@@ -29,7 +28,8 @@ class HomeViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var presents: [Present] = []
+    var presents: [Present] = [Present(id: nil, user: "", site: "", name: "", content: "", whosFor: "", date: "", keyWords: [], images: [], coordinate: [])]
+    var presentCards = BehaviorRelay<[Present]>(value: [])
     
     let topView = UIView()
     let cardListView = CardListView()
@@ -38,13 +38,6 @@ class HomeViewController: UIViewController {
     let planeBtn = UIButton(type: .custom)
     let profileBtn = UIButton(type: .custom)
     let cityLabel = UILabel()
-    lazy var menuItems: [UIAction] = {
-        return [
-            UIAction(title: "이름변경", image: nil, state: .off, handler: { _ in }),
-            UIAction(title: "로그아웃", image: nil, state: .off, handler: { _ in }),
-            UIAction(title: "회원탈퇴", image: nil, state: .off, handler: { _ in })
-        ]
-    }()
     
     let viewModel = CardListViewModel()
     let disposeBag = DisposeBag()
@@ -56,11 +49,36 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // MARK: 모달로 연결 후에 init 대신에 아래 코드로 하겠습니다.
-        // self.city = defaults.string(forKey: "site")
+//        self.city = defaults.string(forKey: "site") ?? "여행지를 추가 해주세요 !"
         let showOnBoarding = defaults.bool(forKey: "isFirst")
         if !showOnBoarding {
-            self.navigationController?.pushViewController(OnBoardingViewController(), animated: false)
+            let vc = OnBoardingViewController()
+            vc.modalPresentationStyle = .overFullScreen
+            self.present(vc, animated: true)
         }
+        
+        // Firestore DB 읽기
+        db.collection("presents").whereField("user", isEqualTo: "User")
+            .whereField("site", isEqualTo: self.city ?? "")
+            .addSnapshotListener { snapshot, error in
+                guard let documents = snapshot?.documents else {
+                    print("ERROR Firestore fetching document \(String(describing: error?.localizedDescription))")
+                    return
+                }
+                
+                let temp = documents.compactMap { doc -> Present? in
+                    do {
+                        let jsonData = try JSONSerialization.data(withJSONObject: doc.data(), options: [])
+                        let present = try JSONDecoder().decode(Present.self, from: jsonData)
+                        return present
+                    } catch let error {
+                        print("ERROR JSON Parsing \(error)")
+                        return nil
+                    }
+                }
+                self.presents = [Present(id: nil, user: "", site: "", name: "", content: "", whosFor: "", date: "", keyWords: [], images: [], coordinate: [])] + temp
+                self.presentCards.accept(self.presents)
+            }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -77,8 +95,6 @@ class HomeViewController: UIViewController {
         self.view.backgroundColor = .white
         
         // MARK: NavigationBar가 위에 있으면 카드리스트가 좀 올라와서 일단 주석했습니다.
-        //self.navigationController?.isNavigationBarHidden = true
-        
         prepareGetData()
         
         self.view.addSubview(topView)
@@ -87,35 +103,15 @@ class HomeViewController: UIViewController {
         setCardListView()
         
         self.isHeroEnabled = true
-//        self.cardListView.hero.id = defaults.string(forKey: "site")
         self.cardListView.hero.id = city
+        self.cardListView.hero.modifiers = [.cascade]
         self.hero.modalAnimationType = .fade
         
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.longTap(_:)))
-        cardListView.cardCollectionView.addGestureRecognizer(longPressGesture)
+        self.cardListView.cardCollectionView.addGestureRecognizer(longPressGesture)
         
         let touchGesture = UITapGestureRecognizer(target: self, action: #selector(self.tap(_:)))
         self.topView.addGestureRecognizer(touchGesture)
-        
-        // Firestore DB 읽기
-        db.collection("presents").whereField("user", isEqualTo: "testUser").addSnapshotListener { snapshot, error in
-            guard let documents = snapshot?.documents else {
-                print("ERROR Firestore fetching document \(String(describing: error?.localizedDescription))")
-                return
-            }
-
-            self.presents = documents.compactMap { doc -> Present? in
-                do {
-                    let jsonData = try JSONSerialization.data(withJSONObject: doc.data(), options: [])
-                    let present = try JSONDecoder().decode(Present.self, from: jsonData)
-                    return present
-                } catch let error {
-                    print("ERROR JSON Parsing \(error)")
-                    return nil
-                }
-            }
-            print(self.presents)
-        }
     }
     // MARK: Delegate 받는 준비인데 테스트를 못해봄 ㅠㅜ
     private func prepareGetData() {
@@ -155,7 +151,7 @@ class HomeViewController: UIViewController {
         topView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         topView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         topView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-//        topView.heightAnchor.constraint(equalToConstant: 220).isActive = true
+        topView.heightAnchor.constraint(equalToConstant: 220).isActive = true
         
         topView.addSubview(backgroundImage)
         setBackgroundImage()
@@ -175,7 +171,7 @@ class HomeViewController: UIViewController {
         cardListView.translatesAutoresizingMaskIntoConstraints = false
         cardListView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         cardListView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        cardListView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 90).isActive = true
+        cardListView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 85).isActive = true
         cardListView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
         bindCollectionCardData()
@@ -201,15 +197,11 @@ class HomeViewController: UIViewController {
         
         // MARK: Home뷰를 루트뷰로 두고 Site보는 뷰는 풀스크린커버로 띄울 생각입니다.
         planeBtn.rx.tap.bind {
-            print("hi")
             let storyboard = UIStoryboard(name: "SiteCollectionView", bundle: nil)
-            let siteVC = storyboard.instantiateViewController(withIdentifier: "SiteViewController") as! SiteViewController
-            siteVC.heroModalAnimationType = .zoom
-            self.present(siteVC, animated: false)
-                        
-            //self.dismiss(animated: true)
+            let siteVC = storyboard.instantiateViewController(withIdentifier: "SiteViewController")
+            siteVC.modalPresentationStyle = .fullScreen
+            self.present(siteVC, animated: true)
         }.disposed(by: disposeBag)
-        
     }
     
     private func setProfileBtn() {
@@ -219,8 +211,14 @@ class HomeViewController: UIViewController {
         profileBtn.trailingAnchor.constraint(equalTo: topView.trailingAnchor, constant: -20).isActive = true
         profileBtn.topAnchor.constraint(equalTo: topView.topAnchor, constant: 65).isActive = true
         
-        profileBtn.menu = UIMenu(title: "", image: nil, identifier: nil, options: .displayInline, children: menuItems)
-        profileBtn.showsMenuAsPrimaryAction = true
+        profileBtn.rx.tap.bind {
+            let storyboard = UIStoryboard(name: "MyPageView", bundle: nil)
+            guard let myPageVC = storyboard.instantiateViewController(withIdentifier: "MyPageViewController") as? MyPageViewController else { return }
+            
+            myPageVC.view.backgroundColor = UIColor(named: "YettdaMainBackground")
+            myPageVC.modalPresentationStyle = .formSheet
+            self.present(myPageVC, animated: true)
+        }.disposed(by: disposeBag)
         
     }
     
@@ -229,7 +227,6 @@ class HomeViewController: UIViewController {
         cityLabel.leadingAnchor.constraint(equalTo: planeBtn.leadingAnchor).isActive = true
         cityLabel.topAnchor.constraint(equalTo: planeBtn.bottomAnchor, constant: 20).isActive = true
     
-//        cityLabel.text = defaults.string(forKey: "site")
         cityLabel.text = city
         let font = UIFont.systemFont(ofSize: 25, weight: .bold)
         cityLabel.font = font
@@ -240,13 +237,13 @@ class HomeViewController: UIViewController {
         
         let collectionView = cardListView.cardCollectionView
         
-        sampleCards
+        presentCards
             .bind(to: collectionView.rx.items(cellIdentifier: "PresentCardCell", cellType: CardCell.self)) { [self] row, model, cell in
             if (row == 0) {
-                cell.setData("addPhoto")
+                cell.setData(image: "addPhoto", whosFor: "")
                 cell.removeBtn.isHidden = true
             } else {
-                cell.setData(model)
+                cell.setData(image: model.images[0], whosFor: model.whosFor)
                 cell.removeBtn.addTarget(self, action: #selector(removeBtnClick(_:)), for: .touchUpInside)
                 if self.longPressEnabled {
                     cell.startAnimate()
@@ -269,7 +266,7 @@ class HomeViewController: UIViewController {
                 config.library.mediaType = .photo
                 config.library.isSquareByDefault = false
                 config.onlySquareImagesFromCamera = false
-                config.hidesCancelButton = false
+                config.hidesCancelButton = true
                 config.bottomMenuItemSelectedTextColour = UIColor(displayP3Red: 48/255, green: 113/255, blue: 231/255, alpha: 1.0)
                 config.startOnScreen = .library
                 config.wordings.libraryTitle = "모든 사진"
@@ -300,11 +297,11 @@ class HomeViewController: UIViewController {
                         
                     }
                     self.imageList = newImages
-//                    MakeCardDescriptionViewController().photos = self.imageList
-                    imagePicker.dismiss(animated: false)
                     let storyboard = UIStoryboard(name: "MakeCard", bundle: nil)
-                    let makeCardVC = storyboard.instantiateViewController(withIdentifier: "MakeCard")
+                    guard let makeCardVC = storyboard.instantiateViewController(withIdentifier: "MakeCard") as? MakeCardDescriptionViewController else { return }
+                    makeCardVC.photos = self.imageList
                     self.navigationController?.pushViewController(makeCardVC, animated: true)
+                    imagePicker.dismiss(animated: false)
                 }
                 imagePicker.view.backgroundColor = .white
                 self.present(imagePicker, animated: true)
@@ -317,15 +314,17 @@ class HomeViewController: UIViewController {
     @IBAction func removeBtnClick(_ sender: UIButton) {
         let hitPoint = sender.convert(CGPoint.zero, to: self.cardListView.cardCollectionView)
         let hitIndex = self.cardListView.cardCollectionView.indexPathForItem(at: hitPoint)
-        let row = hitIndex?.row ?? -1
-        var original = self.sampleCards.value
-        original.remove(at: row + 2)
-        self.sampleCards.accept(original)
+        let row = hitIndex?.row ?? 0
+        print(row+1)
+        var original = self.presentCards.value
+        original.remove(at: row+1)
+        FirestoreManager.deleteData(present: presents[row+1])
+        self.presentCards.accept(original)
     }
     
     private func sendCardData(indexPath: IndexPath) {
-//        viewModel.didSelect(indexPath)
-        self.navigationController!.pushViewController(CardDetailViewController(), animated: true)
+        let cardDetailVC = CardDetailViewController(selectedCard: presentCards.value[indexPath.item])
+        self.navigationController?.pushViewController(cardDetailVC, animated: true)
     }
 }
 

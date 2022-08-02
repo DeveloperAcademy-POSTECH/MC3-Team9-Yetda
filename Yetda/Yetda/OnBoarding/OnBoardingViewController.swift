@@ -15,6 +15,9 @@ class OnBoardingViewController: UIPageViewController {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         self.makePageVC()
+        for recognizer in self.gestureRecognizers {
+            recognizer.isEnabled = false
+        }
     }
     
     func makePageVC() {

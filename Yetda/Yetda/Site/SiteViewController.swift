@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
 import Hero
 import Combine
 
@@ -17,7 +15,9 @@ class SiteViewController: UIViewController {
     
     var delegate: SendUpdateDelegate?
     
-    @Published var list: [String] = []
+    private var isAppend: Bool = true
+    
+    @Published var siteList: [Site] = []
     var subscriptions = Set<AnyCancellable>()
     
     @IBOutlet weak var siteViewAirplaneIcon: UIImageView!
@@ -26,25 +26,31 @@ class SiteViewController: UIViewController {
     @IBOutlet weak var siteCollectionView: UICollectionView!
     @IBOutlet var siteView: UIView!
     
-    let disposeBag = DisposeBag()
-
+    typealias Item = Site
     enum Section {
         case main
     }
-    var siteDataSource: UICollectionViewDiffableDataSource<Section, String>!
+    var siteDataSource: UICollectionViewDiffableDataSource<Section, Item>!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let list = defaults.array(forKey: "sites") {
-            self.list = list as? [String] ?? ["error"]
-        } else {
-            list = []
-        }
-        
-//        let vc = HomeViewController(city: defaults.string(forKey: "site"))
-//        vc.modalPresentationStyle = .overfullScreen
-//        self.present(vc, animated: true)
 
+        if let list = defaults.array(forKey: "sites") as? [String] {
+            list.map { item in
+                self.siteList.forEach { Site in
+                    if Site.name == item {
+                        self.isAppend = false
+                    }
+                }
+                if self.isAppend {
+                    self.siteList.append(Site(name: item))
+                } else {
+                    self.isAppend = true
+                }
+            }
+        } else {
+            siteList = []
+        }
     }
     
     override func viewDidLoad() {
@@ -54,7 +60,7 @@ class SiteViewController: UIViewController {
         hideKeyboardWhenTappedAround()
         dismissKeyboard()
         
-        siteDataSource = UICollectionViewDiffableDataSource<Section,String>(collectionView: siteCollectionView, cellProvider: {
+        siteDataSource = UICollectionViewDiffableDataSource<Section,Item>(collectionView: siteCollectionView, cellProvider: {
             collectionView, indexPath, item in
             guard let siteCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SiteCell", for: indexPath)
                     as? SiteCell else {
@@ -63,20 +69,26 @@ class SiteViewController: UIViewController {
             siteCell.configure(item)
             return siteCell})
         
-        var snapshot = NSDiffableDataSourceSnapshot<Section, String>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections([.main])
         snapshot.appendItems([], toSection: .main)
         siteDataSource.apply(snapshot)
     
+        self.hero.isEnabled = true
         self.hero.modalAnimationType = .fade
-        // bindTouch()
         makeSearchBar()
         bind()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(dismissSelf(notification:)), name: Notification.Name.siteView, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.delegate?.updateCity(city: defaults.string(forKey: "site"))
+    }
+    
+    @objc func dismissSelf(notification: Notification) {
+        self.dismiss(animated: true)
     }
     
     private lazy var siteSearchBar: UISearchBar = {
@@ -130,15 +142,7 @@ class SiteViewController: UIViewController {
         self.present(childVC, animated: true)
     }
     
-//    private func bindTouch() {
-//        siteCollectionView.rx.itemSelected.bind { indexPath in
-//            self.siteCollectionView.deselectItem(at: indexPath, animated: true)
-//            let vc = HomeViewController()
-//            vc.modalPresentationStyle = .fullScreen
-//            self.present(vc, animated: true)
-//        }.disposed(by: disposeBag)
-//    }
-    private func applySnapshot(items: [String], section: Section){
+    private func applySnapshot(items: [Site], section: Section){
         var snapshot = siteDataSource.snapshot()
         if snapshot.numberOfItems != 0 {
             snapshot.deleteAllItems()
@@ -149,7 +153,7 @@ class SiteViewController: UIViewController {
     }
     
     private func bind() {
-        $list
+        $siteList
             .receive(on: RunLoop.main)
             .sink { item in
                 self.applySnapshot(items: item, section: .main)
@@ -158,7 +162,7 @@ class SiteViewController: UIViewController {
     
     private func setupResultViewUI() {
         searchResultViewController.view.translatesAutoresizingMaskIntoConstraints = false
-        searchResultViewController.view.topAnchor.constraint(equalTo: siteSearchBar.bottomAnchor,constant: 10).isActive = true
+        searchResultViewController.view.topAnchor.constraint(equalTo: siteSearchBar.bottomAnchor,constant: -4).isActive = true
         searchResultViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         searchResultViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         searchResultViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
@@ -169,9 +173,7 @@ extension SiteViewController: UISearchBarDelegate {
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         beginAppearanceTransition(true, animated: true)
         view.addSubview(searchResultViewController.view)
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            self.searchResultViewController.view.layer.opacity = 1
             self.searchResultViewController.view.layer.cornerRadius = 2
             self.searchResultViewController.view.isHidden = false
         }
@@ -199,13 +201,20 @@ extension SiteViewController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
     }
 }
+
 extension SiteViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        defaults.set(siteDataSource.itemIdentifier(for: indexPath), forKey: "site")
-        self.dismiss(animated: false)
+        defaults.set(siteDataSource.itemIdentifier(for: indexPath)?.name, forKey: "site")
+        self.dismiss(animated: true)
     }
 }
 
 protocol SendUpdateDelegate {
     func updateCity(city: String?)
+}
+
+
+extension Notification.Name {
+    static let siteView = Notification.Name("siteView")
+    static let onBoardingView = Notification.Name("onBoardingView")
 }

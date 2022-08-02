@@ -13,6 +13,7 @@ final class SearchViewModel {
     static let shared = SearchViewModel()
     
     @Published var resultData: [String] = []
+    
     let siteDidTapped = PassthroughSubject<String, Never>()
     
     func filterdData(text: String) {

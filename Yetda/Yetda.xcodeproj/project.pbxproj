@@ -46,8 +46,6 @@
 		5DDD60FA2885CBE50077742D /* KeywordCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDD60F92885CBE50077742D /* KeywordCollectionCell.swift */; };
 		6E27CDAC288E61E9009B9691 /* ShareButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E27CDAB288E61E9009B9691 /* ShareButton+Extension.swift */; };
 		6E27CDAE288E621F009B9691 /* AbleShareKaKao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E27CDAD288E621F009B9691 /* AbleShareKaKao.swift */; };
-		6E94A3DF28853B500076E703 /* DidCardShare.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E94A3DE28853B500076E703 /* DidCardShare.storyboard */; };
-		6E94A3E128853B8F0076E703 /* DidCardShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E94A3E028853B8F0076E703 /* DidCardShareViewController.swift */; };
 		6E94A3E328853C380076E703 /* DidPresent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E94A3E228853C380076E703 /* DidPresent.storyboard */; };
 		6E94A3E528853C4A0076E703 /* DidPresentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E94A3E428853C4A0076E703 /* DidPresentViewController.swift */; };
 		6EC305792893AAB200F9A34F /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC305782893AAB100F9A34F /* SearchResultViewController.swift */; };
@@ -114,8 +112,6 @@
 		5DDD60F92885CBE50077742D /* KeywordCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordCollectionCell.swift; sourceTree = "<group>"; };
 		6E27CDAB288E61E9009B9691 /* ShareButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShareButton+Extension.swift"; sourceTree = "<group>"; };
 		6E27CDAD288E621F009B9691 /* AbleShareKaKao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbleShareKaKao.swift; sourceTree = "<group>"; };
-		6E94A3DE28853B500076E703 /* DidCardShare.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DidCardShare.storyboard; sourceTree = "<group>"; };
-		6E94A3E028853B8F0076E703 /* DidCardShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DidCardShareViewController.swift; sourceTree = "<group>"; };
 		6E94A3E228853C380076E703 /* DidPresent.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DidPresent.storyboard; sourceTree = "<group>"; };
 		6E94A3E428853C4A0076E703 /* DidPresentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DidPresentViewController.swift; sourceTree = "<group>"; };
 		6EC305782893AAB100F9A34F /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
@@ -232,9 +228,7 @@
 		22B25D7D288E7F2300936EAD /* Sharing */ = {
 			isa = PBXGroup;
 			children = (
-				6E94A3DE28853B500076E703 /* DidCardShare.storyboard */,
 				6E94A3E228853C380076E703 /* DidPresent.storyboard */,
-				6E94A3E028853B8F0076E703 /* DidCardShareViewController.swift */,
 				6E94A3E428853C4A0076E703 /* DidPresentViewController.swift */,
 				6E27CDAB288E61E9009B9691 /* ShareButton+Extension.swift */,
 				6E27CDAD288E621F009B9691 /* AbleShareKaKao.swift */,
@@ -413,7 +407,6 @@
 				2241F126288AB2010044E704 /* SpoqaHanSansNeo-Medium.ttf in Resources */,
 				2241F129288AB2010044E704 /* SpoqaHanSansNeo-Thin.ttf in Resources */,
 				2241F127288AB2010044E704 /* SpoqaHanSansNeo-Light.ttf in Resources */,
-				6E94A3DF28853B500076E703 /* DidCardShare.storyboard in Resources */,
 				5DA0A056288A82DC00066653 /* MakeCard.storyboard in Resources */,
 				22E1AD49288FDAAD0031E911 /* GoogleService-Info.plist in Resources */,
 				22950155288FB87F0050BE44 /* GoogleService-Info.plist in Resources */,
@@ -498,7 +491,6 @@
 				6EC305792893AAB200F9A34F /* SearchResultViewController.swift in Sources */,
 				2FE866EE288E7061002242B0 /* MapCell.swift in Sources */,
 				13259622289250070045ACE2 /* MyPageViewController.swift in Sources */,
-				6E94A3E128853B8F0076E703 /* DidCardShareViewController.swift in Sources */,
 				5DB7C00B2888552F003BB5EF /* MakeCardStoryViewController.swift in Sources */,
 				6EC305812893AB4500F9A34F /* SearchSiteCell.swift in Sources */,
 				224AAF4528813A0F0053E66A /* SceneDelegate.swift in Sources */,

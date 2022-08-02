@@ -63,6 +63,19 @@ class SearchResultViewController: UIViewController {
         return collectionView
     }()
   
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        switch dismissView {
+        case .Nothing :
+            self.emptyView.backgroundColor = UIColor(named: "YettdaMainBackground")
+            self.collectionView.backgroundColor = UIColor(named: "YettdaMainBackground")
+        case .OnBoarding :
+            return
+        case .none :
+            return
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -100,7 +113,7 @@ class SearchResultViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 4),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
@@ -174,18 +187,18 @@ extension SearchResultViewController: UICollectionViewDelegate {
                         UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 3, options: [.curveEaseInOut], animations: { cell.transform = pressedDownTransform })
         }
         let site = viewModel.resultData[indexPath.item]
+        
         defaults.set(site.localized, forKey: "site")
         defaults.set(true, forKey: "isFirst")
-        
-        // MARK: Delegate로 가면 홈뷰의 UI가 조금 깨짐,,
-        //self.delegate?.goToHomeView()
+ 
         switch dismissView {
         case .OnBoarding :
             setSiteUserDefault(site: site)
-            homeViewWillAppear(city: defaults.string(forKey: "site"))
+            NotificationCenter.default.post(name: Notification.Name.onBoardingView, object: nil, userInfo: nil)
         case .Nothing :
             setSiteUserDefault(site: site)
-            homeViewWillAppear(city: defaults.string(forKey: "site"))
+            viewModel.resultData = []
+            NotificationCenter.default.post(name: Notification.Name.siteView, object: nil, userInfo: nil)
         case .none:
             return
         }

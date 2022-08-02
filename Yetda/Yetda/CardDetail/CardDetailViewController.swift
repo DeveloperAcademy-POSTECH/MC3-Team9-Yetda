@@ -8,8 +8,18 @@
 import UIKit
 
 class CardDetailViewController: UIViewController, UIScrollViewDelegate, ShareKaKao {
-    
+
     let sampleData = Present(id: "02DD7580-A0F3-49F0-816D-961C59DE40D5", user: "testUser", site: "testSite", name: "누굴까", content: "김수한무거북이와두루미삼천갑자동방삭치치카포사리사리센타워리워리세브리캉무두셀라구름이허리케인에담벼락서생원에고양이고양이는바둑이바둑이는돌돌이", whosFor: "그러게", date: "111111", keyWords: ["☀️햇빛쨍쨍", "😋짱맛있대", "🧳짐이많아", "☔️비가내려"], images: ["77DD934C-0989-408A-89D5-F145912FD4741659335924.433385", "DCFD6B2E-7F6C-4748-93E4-0640742CC29D1659335924.4658089"], coordinate: ["37.33480579432566", "-122.0089076379726"])
+    var selectedCard: Present?
+    
+    init(selectedCard: Present?) {
+        self.selectedCard = selectedCard
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl()

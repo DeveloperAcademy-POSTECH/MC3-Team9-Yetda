@@ -20,13 +20,13 @@ class OnBoardingSecondViewController: UIViewController {
         view.backgroundColor = .white
         setupUI()
         searchResultViewController.delegate = self
-        //makeOnBoardingButton()
+        
     }
     
     private lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.placeholder = "여행지를 추가해주세요"
-        searchBar.searchTextField.font =  UIFont(name: "SpoqaHanSansNeo-Medium", size: 17)
+        searchBar.searchTextField.font =  UIFont(name: "SpoqaHanSansNeo-Regular", size: 17)
         searchBar.searchBarStyle = .minimal
         searchBar.delegate = self
         searchBar.showsSearchResultsButton = true
@@ -37,7 +37,7 @@ class OnBoardingSecondViewController: UIViewController {
     private lazy var makeSubtitle1 : UILabel = {
         let subtitleLabel = UILabel()
         subtitleLabel.text = "기념품 구매하셨나요?"
-        subtitleLabel.font = UIFont(name: "SpoqaHanSansNeo-Medium", size: 30)
+        subtitleLabel.font = UIFont(name: "SpoqaHanSansNeo-Bold", size: 25)
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         return subtitleLabel
     }()
@@ -45,8 +45,7 @@ class OnBoardingSecondViewController: UIViewController {
     private lazy var makeSubtitle2: UILabel = {
         let subtitleLabel = UILabel()
         subtitleLabel.text = "여행지를 입력해주세요"
-        subtitleLabel.font = UIFont(name: "SpoqaHanSansNeo-Medium", size: 30)
-        
+        subtitleLabel.font = UIFont(name: "SpoqaHanSansNeo-Bold", size: 25)
         let attributedStr = NSMutableAttributedString(string: subtitleLabel.text!)
         attributedStr.addAttribute(.foregroundColor, value: UIColor(named: "YettdaMainBlue"), range: (subtitleLabel.text! as NSString).range(of: "여행지"))
         subtitleLabel.attributedText = attributedStr
@@ -71,50 +70,18 @@ class OnBoardingSecondViewController: UIViewController {
         self.view.addSubview(searchBar)
         NSLayoutConstraint.deactivate(constraintArr)
 
-        let topCon = searchBar.topAnchor.constraint(equalTo: makeSubtitle2.bottomAnchor, constant: 30)
+        let topCon = searchBar.topAnchor.constraint(equalTo: makeSubtitle2.bottomAnchor, constant: 26)
         let widthCon =  searchBar.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width)
-        let leadingCon = searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+        let leadingCon = searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12)
+        let trailiCon = searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12)
         
-        constraintArr = [topCon, widthCon, leadingCon]
+        constraintArr = [topCon, leadingCon, trailiCon]
         NSLayoutConstraint.activate(constraintArr)
         
         constraintArr = [searchCon]
         NSLayoutConstraint.activate(constraintArr)
     }
-    
-//    func makeOnBoardingButton() {
-//        let button = UIButton()
-//        button.setTitle("다음", for: .normal)
-//        button.setTitleColor(.white, for: .normal)
-//        button.backgroundColor = .blue
-//        button.layer.cornerRadius = 10
-//
-//        self.view.addSubview(button)
-//        button.addTarget(self, action: #selector(moveToHome), for: .touchUpInside)
-//
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//
-//        button.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
-//        button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-//        button.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20).isActive = true
-//        button.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20).isActive = true
-//        button.heightAnchor.constraint(equalToConstant: 50).isActive = true
-//    }
-//
-//    @objc func moveToHome() {
-//        self.dismiss(animated: true, completion: nil)
-//    }
-
-    private func makeSearchBarHeader() {
-        NSLayoutConstraint.deactivate(constraintArr)
-        let topCon = searchBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 40)
-        let widthCon = searchBar.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width)
-        let leadingCon = searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-
-        constraintArr = [topCon, widthCon, leadingCon]
-        NSLayoutConstraint.activate(constraintArr)
-    }
-    
+   
     private func setupResultViewUI() {
         searchResultViewController.view.translatesAutoresizingMaskIntoConstraints = false
         searchResultViewController.view.topAnchor.constraint(equalTo: searchBar.bottomAnchor,constant: 20).isActive = true

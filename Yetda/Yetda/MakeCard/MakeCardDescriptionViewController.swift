@@ -16,17 +16,19 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
     @IBOutlet weak var photoCollection: UICollectionView!
     @IBOutlet weak var keywordCollection: UICollectionView!
     @IBOutlet weak var nextButton: UIButton!
-    @IBAction func sendKeywordList(_ sender: Any) {
-        prepareKeyword()
-    }
-    
     @IBAction func nextButton(_ sender: Any) {
         let storyVC = UIStoryboard(name: "MakeCard", bundle: nil).instantiateViewController(withIdentifier: "MakeCardStoryViewController") as! MakeCardStoryViewController
         self.navigationController?.pushViewController(storyVC, animated: true)
+        storyVC.keywordsData = prepareKeyword()
+        storyVC.giftNameData = "\(giftNameTextField.text ?? "")"
+        storyVC.giftRecipientData = "\(giftRecipientTextField.text ?? "")"
+        if let photos = photos {
+            storyVC.photos = photos
+        }
     }
     
     var activeField: UITextField? = nil
-    var photos: [String] = ["photo1", "photo2", "photo3", "photo4", "photo5"]
+    var photos: [UIImage]?
     var keywords: [Keyword] = [
         Keyword(name: "☀️햇빛쨍쨍", state: false),
         Keyword(name: "😋짱맛있대", state: false),
@@ -62,7 +64,6 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
         if let giftRecipientTextField = giftRecipientTextField {borderRadius(giftRecipientTextField).addLeftPadding()}
         self.hideKeyboardWhenTappedAround()
         
-        
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         setUpUI()
@@ -70,14 +71,14 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         var result: Int
-        result = collectionView == self.photoCollection ? photos.count : keywords.count
+        result = collectionView == self.photoCollection ? photos!.count : keywords.count
         return result
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.photoCollection {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoCollectionCell
-            cell.chosenPhotoDescription.image = UIImage(named: photos[indexPath.row])
+            cell.chosenPhotoDescription?.image = photos?[indexPath.row]
             cell.layer.cornerRadius = 10.0
             return cell
         }
@@ -92,13 +93,13 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
     }
     
     // 다음 뷰에 키워드를 담은 배열 값을 넘겨줄 준비
-    func prepareKeyword() -> [Keyword] {
+    func prepareKeyword() -> [String] {
         
-        var results: [Keyword] = []
+        var results: [String] = []
         
         for keyword in keywords {
             if keyword.state {
-                results.append(keyword)
+                results.append(keyword.name)
             }
         }
         return results
