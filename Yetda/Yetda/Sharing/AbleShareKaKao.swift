@@ -4,11 +4,11 @@ import KakaoSDKTemplate
 import KakaoSDKCommon
 
 protocol ShareKaKao {
-    func shareKaKao(_ target: UIViewController?, key: String, value: String)
+    func shareKaKao(_ target: UIViewController?, key: String, value: String, completeHandler: @escaping () -> ())
     func showAlert(_ target: UIViewController?, msg: String)
 }
 extension ShareKaKao {
-    func shareKaKao(_ target: UIViewController? = nil, key: String, value: String) {
+    func shareKaKao(_ target: UIViewController? = nil, key: String, value: String, completeHandler: @escaping () -> ()) {
         if ShareApi.isKakaoTalkSharingAvailable(){
             // key value
             let appLink = Link(iosExecutionParams: [key: value])
@@ -30,7 +30,14 @@ extension ShareKaKao {
                         else {
                             print("defaultLink(templateObject:templateJsonObject) success.")
                             guard let linkResult = linkResult else { return }
-                            UIApplication.shared.open(linkResult.url, options: [:], completionHandler: nil)
+                            UIApplication.shared.open(linkResult.url, options: [:]) { openResult in
+                                if openResult { // 카카오톡 열기 성공 시
+                                    completeHandler()
+                                } else { // 실패시
+                                    showAlert(target, msg: "링크공유에 실패했습니다.")
+                                }
+                            }
+                            
                         }
                     }
                 }
