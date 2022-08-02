@@ -31,13 +31,12 @@ class MyPageViewController: UIViewController {
         let cancle = UIAlertAction(title: "취소", style: .default, handler: nil)
         let logout = UIAlertAction(title: "로그아웃", style: .destructive) { UIAlertAction in
             let firebaseAuth = Auth.auth()
-            
             do {
                 try firebaseAuth.signOut()
+                UserDefaults.standard.set(nil, forKey: "UserId")
             } catch let signOutError as NSError {
                 print("ERROR: singout \(signOutError.localizedDescription)")
             }
-            
         }
         logoutalert.addAction(cancle)
         logoutalert.addAction(logout)
@@ -47,7 +46,7 @@ class MyPageViewController: UIViewController {
     @IBAction func forResginButton(_ sender: UIButton) {
         let resignAlert = UIAlertController(title: "회원탈퇴", message: "회원탈퇴시 지금까지 기록된 데이터가 사라집니다", preferredStyle: .alert)
         let cancle = UIAlertAction(title: "취소", style: .default, handler: nil)
-        let resign = UIAlertAction(title: "", style: .destructive) { UIAlertAction in
+        let resign = UIAlertAction(title: "회원탈퇴", style: .destructive) { UIAlertAction in
 
             let user = Auth.auth().currentUser
 
