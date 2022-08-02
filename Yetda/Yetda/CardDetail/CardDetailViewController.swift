@@ -191,7 +191,7 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate, ShareKaK
     }
     
     @objc func moveToHomeView() {
-        self.dismiss(animated: true)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     @objc func popOverModal() {

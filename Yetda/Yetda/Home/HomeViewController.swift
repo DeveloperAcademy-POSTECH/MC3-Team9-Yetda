@@ -72,7 +72,7 @@ class HomeViewController: UIViewController {
         self.view.backgroundColor = .white
         
         // MARK: NavigationBar가 위에 있으면 카드리스트가 좀 올라와서 일단 주석했습니다.
-        self.navigationController?.isNavigationBarHidden = true
+//        self.navigationController?.isNavigationBarHidden = true
         
         prepareGetData()
         
@@ -170,7 +170,7 @@ class HomeViewController: UIViewController {
         cardListView.translatesAutoresizingMaskIntoConstraints = false
         cardListView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         cardListView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        cardListView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 125).isActive = true
+        cardListView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 90).isActive = true
         cardListView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
         bindCollectionCardData()
@@ -265,7 +265,7 @@ class HomeViewController: UIViewController {
                 config.library.mediaType = .photo
                 config.library.isSquareByDefault = false
                 config.onlySquareImagesFromCamera = false
-                config.hidesCancelButton = false
+                config.hidesCancelButton = true
                 config.bottomMenuItemSelectedTextColour = UIColor(displayP3Red: 48/255, green: 113/255, blue: 231/255, alpha: 1.0)
                 config.startOnScreen = .library
                 config.wordings.libraryTitle = "모든 사진"
@@ -299,9 +299,8 @@ class HomeViewController: UIViewController {
                     let storyboard = UIStoryboard(name: "MakeCard", bundle: nil)
                     guard let makeCardVC = storyboard.instantiateViewController(withIdentifier: "MakeCard") as? MakeCardDescriptionViewController else { return }
                     makeCardVC.photos = self.imageList
+                    self.navigationController?.pushViewController(makeCardVC, animated: true)
                     imagePicker.dismiss(animated: false)
-                    makeCardVC.modalPresentationStyle = .fullScreen
-                    self.present(makeCardVC, animated: true)
                 }
                 imagePicker.view.backgroundColor = .white
                 self.present(imagePicker, animated: true)
@@ -323,8 +322,7 @@ class HomeViewController: UIViewController {
     private func sendCardData(indexPath: IndexPath) {
 //        viewModel.didSelect(indexPath)
         let cardDetailVC = CardDetailViewController()
-        cardDetailVC.modalPresentationStyle = .fullScreen
-        self.present(cardDetailVC, animated: true)
+        self.navigationController?.pushViewController(cardDetailVC, animated: true)
     }
 }
 

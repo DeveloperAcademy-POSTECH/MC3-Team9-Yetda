@@ -35,8 +35,7 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
         }
 
         let homeVC = HomeViewController(city: defaults.string(forKey: "site"))
-        homeVC.modalPresentationStyle = .fullScreen
-        self.present(homeVC, animated: true)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     var activeField: UITextField? = nil
