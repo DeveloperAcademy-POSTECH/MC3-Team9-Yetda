@@ -76,10 +76,8 @@ class HomeViewController: UIViewController {
                         return nil
                     }
                 }
-                self.presents.append(contentsOf: temp)
-                print(self.presents)
+                self.presents = [Present(id: nil, user: "", site: "", name: "", content: "", whosFor: "", date: "", keyWords: [], images: [], coordinate: [])] + temp
                 self.presentCards.accept(self.presents)
-                print(self.presentCards.value.count)
             }
     }
     
@@ -316,10 +314,11 @@ class HomeViewController: UIViewController {
     @IBAction func removeBtnClick(_ sender: UIButton) {
         let hitPoint = sender.convert(CGPoint.zero, to: self.cardListView.cardCollectionView)
         let hitIndex = self.cardListView.cardCollectionView.indexPathForItem(at: hitPoint)
-        let row = hitIndex?.row ?? -1
+        let row = hitIndex?.row ?? 0
+        print(row+1)
         var original = self.presentCards.value
-        original.remove(at: row + 2)
-        FirestoreManager.deleteData(present: presents[row+2])
+        original.remove(at: row+1)
+        FirestoreManager.deleteData(present: presents[row+1])
         self.presentCards.accept(original)
     }
     

@@ -65,7 +65,7 @@ class CardCell: UICollectionViewCell {
         thumbnailImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         
         thumbnailImage.layer.cornerRadius = 20
-        thumbnailImage.contentMode = .scaleAspectFill
+        thumbnailImage.contentMode = .scaleAspectFit
     }
     
     private func setNameLabel() {
