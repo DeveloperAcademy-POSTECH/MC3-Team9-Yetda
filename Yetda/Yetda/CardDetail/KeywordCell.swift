@@ -23,6 +23,7 @@ class KeywordCell: UICollectionViewCell {
         setupLabel()
         self.layer.masksToBounds = true
         self.layer.cornerRadius = 12.0
+        self.backgroundColor = .white
     }
     
     func setupCell() {

@@ -235,7 +235,7 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
         case Section.title.rawValue:
             return CGSize(width: width, height: 50)
         case Section.keywordsCell.rawValue:
-            return CGSize(width: keywordWidth, height: keywordWidth)
+            return CGSize(width: keywordWidth, height: 30)
         case Section.story.rawValue:
             return CGSize(width: width, height: cellSize.height + 20)
         case Section.map.rawValue:
@@ -283,7 +283,6 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
             return contentsCell ?? UICollectionViewCell()
         case Section.keywordsCell.rawValue:
             keywordCell?.keywordLabel.text = keywords.keywords[indexPath.row]
-            keywordCell?.backgroundColor = .cyan
             return keywordCell ?? UICollectionViewCell()
         case Section.story.rawValue:
             contentsCell?.contentsLabel.text = contents
