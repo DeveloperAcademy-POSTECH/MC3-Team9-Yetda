@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
+    
     var window: UIWindow?
+    
+    var present: Present?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -21,52 +24,71 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window?.rootViewController = homeVC
         self.window?.makeKeyAndVisible()
     }
-
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
         // Release any resources associated with this scene that can be re-created the next time the scene connects.
         // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
     }
-
+    
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
     }
-
+    
     func sceneWillResignActive(_ scene: UIScene) {
         // Called when the scene will move from an active state to an inactive state.
         // This may occur due to temporary interruptions (ex. an incoming phone call).
     }
-
+    
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
     }
-
+    
     func sceneDidEnterBackground(_ scene: UIScene) {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
-
+        
         // Save changes in the application's managed object context when the application transitions to the background.
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
-          // kakao123456789://kakaolink
-          // kakao123456789://kakaolink?key1=value1&key2=value2
-          if let url = URLContexts.first?.url {
-              print("url : \(url)")
-              if ((url.query!.contains("second"))) {
-                  let storyboard = UIStoryboard(name: "DidPresent", bundle: nil)
-                  let vc = storyboard.instantiateViewController(withIdentifier: "DidPresentViewController") as? DidPresentViewController
-                  vc?.modalPresentationStyle = .overFullScreen
-                  self.window?.rootViewController?.present(vc!, animated: true)
-                  // TODO: 이 부분에서 데이터를 가공해서 보여주기
-                  // vc?.descriptionLabel.text = serverId.object.text
-                  
-              }
-          }
-      }
+        if let url = URLContexts.first?.url {
+            
+            let query = url.query!
+            let equalIndex = query.firstIndex(of: "=")!
+            let value = query[query.index(after: equalIndex)...]
+            
+            var db = Firestore.firestore()
+            db.collection("presents").whereField("id", isEqualTo: value)
+                .addSnapshotListener { snapshot, error in
+                    guard let documents = snapshot?.documents else {
+                        print("ERROR Firestore fetching document \(String(describing: error?.localizedDescription))")
+                        return
+                    }
+                    
+                    let temp = documents.compactMap { doc -> Present? in
+                        do {
+                            let jsonData = try JSONSerialization.data(withJSONObject: doc.data(), options: [])
+                            let present = try JSONDecoder().decode(Present.self, from: jsonData)
+                            return present
+                        } catch let error {
+                            print("ERROR JSON Parsing \(error)")
+                            return nil
+                        }
+                    }
+                    self.present = temp.first
+                }
+            
+            let vc = CardDetailViewController(selectedCard: present)
+            vc.modalPresentationStyle = .overFullScreen
+            self.window?.rootViewController?.present(vc, animated: true)
+            
+            
+        }
+    }
 }
