@@ -188,7 +188,15 @@ extension SearchResultViewController: UICollectionViewDelegate {
         }
         let site = viewModel.resultData[indexPath.item]
         
-        defaults.set(site.localized, forKey: "site")
+        let firstUpper = site.first?.uppercased()
+        let restString = String(site[site.index(after: site.startIndex)...])
+
+        guard let first = firstUpper else { return }
+        let siteName = first + restString
+        
+        let currentSite = SiteCell.imageList[site] ?? "\(siteName)"
+        
+        defaults.set(currentSite, forKey: "site")
         defaults.set(true, forKey: "isFirst")
  
         switch dismissView {
