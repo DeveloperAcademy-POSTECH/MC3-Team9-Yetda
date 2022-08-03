@@ -21,7 +21,7 @@ class HomeViewController: UIViewController {
     var city: String?
     
     // MARK: Rx를 잘 몰라서 일단 데이터 넘겨받는거를 init을 사용해서 했슴당
-    init(city: String?) {
+    init(city: String? = nil) {
         self.city = city
         super.init(nibName: nil, bundle: nil)
     }
@@ -47,8 +47,12 @@ class HomeViewController: UIViewController {
     var imageList: [UIImage] = []
     var imageCount = 0
     var longPressEnabled = false
+<<<<<<< HEAD
     let userId: String? = Auth.auth().currentUser?.email
     
+=======
+    let userId: String? = Auth.auth().currentUser?.email ?? ""
+>>>>>>> 0eb56eeaa5e67a3ddf14e859529bd90421901b03
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // MARK: 모달로 연결 후에 init 대신에 아래 코드로 하겠습니다.
@@ -63,8 +67,13 @@ class HomeViewController: UIViewController {
         
         // Firestore DB 읽기
         db.collection("presents")
+<<<<<<< HEAD
             .whereField("site", isEqualTo: defaults.string(forKey: "site") ?? "")
             .whereField("user", isEqualTo: self.userId ?? "")
+=======
+            .whereField("user", isEqualTo: self.userId)
+            .whereField("site", isEqualTo: defaults.string(forKey: "site") ?? "")
+>>>>>>> 0eb56eeaa5e67a3ddf14e859529bd90421901b03
             .addSnapshotListener { snapshot, error in
                 guard let documents = snapshot?.documents else {
                     print("ERROR Firestore fetching document \(String(describing: error?.localizedDescription))")

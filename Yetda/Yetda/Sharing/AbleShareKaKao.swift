@@ -13,9 +13,9 @@ extension ShareKaKao {
             // key value
             let appLink = Link(iosExecutionParams: [key: value])
             let button = Button(title: "앱에서 보기", link: appLink)
-            let content = Content(title: "선물 ㅎㅇ",
-                                  imageUrl: URL(string:"http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png")!,
-                                  description: "선물이 도착했습니다! 확인 하셈",
+            let content = Content(title: "선물",
+                                  imageUrl: URL(string:"gs://yetda-5f2c3.appspot.com/appstore.png")!,
+                                  description: "선물이 도착했습니다! 앱에서 확인 해보세요.",
                                   link: appLink)
             let template = FeedTemplate(content: content, buttons: [button])
             
