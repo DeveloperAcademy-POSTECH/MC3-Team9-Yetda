@@ -59,6 +59,7 @@ class MakeCardDescriptionViewController: UIViewController, UICollectionViewDeleg
         nextButton.isUserInteractionEnabled = false
         nextButton.backgroundColor = UIColor(named: "YettdaSubDisabledButton")
         nextButton.layer.cornerRadius = 10
+        locationLabel.text = defaults.string(forKey: "site") ?? ""
         
         if let giftNameTextField = giftNameTextField {borderRadius(giftNameTextField).addLeftPadding()}
         if let giftRecipientTextField = giftRecipientTextField {borderRadius(giftRecipientTextField).addLeftPadding()}

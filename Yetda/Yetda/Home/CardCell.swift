@@ -65,7 +65,6 @@ class CardCell: UICollectionViewCell {
         thumbnailImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         
         thumbnailImage.layer.cornerRadius = 20
-        thumbnailImage.contentMode = .scaleAspectFit
     }
     
     private func setNameLabel() {
@@ -99,6 +98,11 @@ class CardCell: UICollectionViewCell {
             self.contentView.backgroundColor = .white
             thumbnailImage.image = UIImage(named: "plus")
         } else {
+            thumbnailImage.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
+            thumbnailImage.heightAnchor.constraint(equalTo: contentView.heightAnchor).isActive = true
+            thumbnailImage.contentMode = .scaleAspectFill
+            thumbnailImage.clipsToBounds = true
+            
             self.nameLabel.text = "  To. " + whosFor + "  "
             StorageManager.downloadImage(urlString: image, completion: setImage)
             func setImage(image: UIImage?) -> Void {
