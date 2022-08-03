@@ -63,31 +63,57 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let equalIndex = query.firstIndex(of: "=")!
             let value = query[query.index(after: equalIndex)...]
             
+            print(value)
+            
+            defaults.set(value, forKey: "URL")
+            
             var db = Firestore.firestore()
-            db.collection("presents").whereField("id", isEqualTo: value)
-                .addSnapshotListener { snapshot, error in
-                    guard let documents = snapshot?.documents else {
-                        print("ERROR Firestore fetching document \(String(describing: error?.localizedDescription))")
-                        return
+//            db.collection("presents").whereField("id", isEqualTo: value)
+//                .addSnapshotListener { snapshot, error in
+//                    guard let documents = snapshot?.documents else {
+//                        print("ERROR Firestore fetching document \(String(describing: error?.localizedDescription))")
+//                        return
+//                    }
+//
+//                    let temp = documents.compactMap { doc -> Present? in
+//                        do {
+//                            let jsonData = try JSONSerialization.data(withJSONObject: doc.data(), options: [])
+//                            let present = try JSONDecoder().decode(Present.self, from: jsonData)
+//                            return present
+//                        } catch let error {
+//                            print("ERROR JSON Parsing \(error)")
+//                            return nil
+//                        }
+//                    }
+//                    self.present = temp.first
+//                }
+            DispatchQueue.global().sync {
+                db.collection("presents").whereField("id", isEqualTo: String(value))
+                    .getDocuments() { (snapshot, error) in
+                        guard let documents = snapshot?.documents else {
+                            print("ERROR Firestore fetching document \(String(describing: error?.localizedDescription))")
+                            return
+                        }
+
+                        let temp = documents.compactMap { doc -> Present? in
+                            do {
+                                let jsonData = try JSONSerialization.data(withJSONObject: doc.data(), options: [])
+                                let present = try JSONDecoder().decode(Present.self, from: jsonData)
+                                return present
+                            } catch let error {
+                                print("ERROR JSON Parsing \(error)")
+                                return nil
+                            }
+                        }
+                        self.present = temp.first
                     }
                     
-                    let temp = documents.compactMap { doc -> Present? in
-                        do {
-                            let jsonData = try JSONSerialization.data(withJSONObject: doc.data(), options: [])
-                            let present = try JSONDecoder().decode(Present.self, from: jsonData)
-                            return present
-                        } catch let error {
-                            print("ERROR JSON Parsing \(error)")
-                            return nil
-                        }
-                    }
-                    self.present = temp.first
-                }
-            
-            let vc = CardDetailViewController(selectedCard: present)
-            vc.modalPresentationStyle = .overFullScreen
-            self.window?.rootViewController?.present(vc, animated: true)
-            
+                
+                let vc = CardDetailViewController(selectedCard: present)
+                self.window?.rootViewController?.present(vc, animated: true)
+                print(self.window?.rootViewController)
+                
+            }
             
         }
     }

@@ -96,8 +96,14 @@ class CardCell: UICollectionViewCell {
     func setData(image: String, whosFor: String) {
         if (image == "addPhoto") {
             self.contentView.backgroundColor = .white
+            thumbnailImage.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = false
+            thumbnailImage.heightAnchor.constraint(equalTo: contentView.heightAnchor).isActive = false
+            thumbnailImage.widthAnchor.constraint(equalToConstant: 28).isActive = true
+            thumbnailImage.heightAnchor.constraint(equalToConstant: 28).isActive = true
             thumbnailImage.image = UIImage(named: "plus")
         } else {
+            thumbnailImage.widthAnchor.constraint(equalToConstant: 28).isActive = false
+            thumbnailImage.heightAnchor.constraint(equalToConstant: 28).isActive = false
             thumbnailImage.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
             thumbnailImage.heightAnchor.constraint(equalTo: contentView.heightAnchor).isActive = true
             thumbnailImage.contentMode = .scaleAspectFill

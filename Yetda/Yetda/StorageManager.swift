@@ -42,7 +42,7 @@ class StorageManager {
     //        let ourURL = "gs://yetda-5f2c3.appspot.com/"
             let imageRef = Storage.storage().reference(forURL: "gs://yetda-5f2c3.appspot.com/" + urlString)
     //        let storageReference = imageRef.child(urlString)
-            let megaByte = Int64(1 * 1024 * 1024)
+            let megaByte = Int64(1 * 4096 * 4096)
             
             imageRef.getData(maxSize: megaByte) { data, error in
                 guard let imageData = data else {

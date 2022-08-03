@@ -28,6 +28,8 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
                     let userId = Auth.auth().currentUser?.email ?? ""
                     let site = defaults.string(forKey: "site") ?? ""
                     let siteInfo = SiteModel.locationlList.filter{ $0.name == site }[0]
+            print(imageURLs)
+            
                     let siteCoordinate = [String(siteInfo.latitude), String(siteInfo.longitude)]
                     FirestoreManager.uploadData(present: Present(id: nil,
                                                                  user: userId,
