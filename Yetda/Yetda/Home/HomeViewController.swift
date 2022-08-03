@@ -12,6 +12,8 @@ import RxCocoa
 import YPImagePicker
 import Hero
 import FirebaseFirestore
+import KakaoSDKAuth
+import FirebaseAuth
 
 class HomeViewController: UIViewController {
 
@@ -45,6 +47,7 @@ class HomeViewController: UIViewController {
     var imageList: [UIImage] = []
     var imageCount = 0
     var longPressEnabled = false
+    let userId: String? = Auth.auth().currentUser?.email
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -59,8 +62,9 @@ class HomeViewController: UIViewController {
         }
         
         // Firestore DB 읽기
-        db.collection("presents").whereField("user", isEqualTo: "User")
-            .whereField("site", isEqualTo: self.city ?? "")
+        db.collection("presents")
+            .whereField("site", isEqualTo: defaults.string(forKey: "site") ?? "")
+            .whereField("user", isEqualTo: self.userId ?? "")
             .addSnapshotListener { snapshot, error in
                 guard let documents = snapshot?.documents else {
                     print("ERROR Firestore fetching document \(String(describing: error?.localizedDescription))")

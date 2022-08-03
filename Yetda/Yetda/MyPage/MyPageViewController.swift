@@ -34,6 +34,8 @@ class MyPageViewController: UIViewController {
             do {
                 try firebaseAuth.signOut()
                 UserDefaults.standard.set(nil, forKey: "UserId")
+                
+                
             } catch let signOutError as NSError {
                 print("ERROR: singout \(signOutError.localizedDescription)")
             }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, UITextViewDelegate, UICollectionViewDataSource {
     
@@ -22,16 +23,20 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
         DispatchQueue.global().sync {
             let images: [UIImage]? = photos
             let imageURLs: [String] = StorageManager.uploadImages(images: images!)
+            let userId = Auth.auth().currentUser?.email ?? ""
+            let site = defaults.string(forKey: "site") ?? ""
+            let siteInfo = SiteModel.locationlList.filter{ $0.name == "site" }[0]
+            let siteCoordinate = [String(siteInfo.latitude), String(siteInfo.longitude)]
             FirestoreManager.uploadData(present: Present(id: nil,
-                                                         user: "User",
-                                                         site: "후쿠이",
+                                                         user: userId,
+                                                         site: site,
                                                          name: "\(giftNameData)",
                                                          content: "\(storyTextView.text ?? "")",
                                                          whosFor: "\(giftRecipientData)",
-                                                         date: "testDate",
+                                                         date: Date().toString(),
                                                          keyWords: keywordsData,
                                                          images: imageURLs,
-                                                         coordinate: ["coordinate1", "coordinate2"]))
+                                                         coordinate: siteCoordinate))
         }
 
         let homeVC = HomeViewController(city: defaults.string(forKey: "site"))
