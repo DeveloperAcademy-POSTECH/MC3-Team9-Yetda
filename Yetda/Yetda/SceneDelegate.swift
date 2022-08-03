@@ -20,9 +20,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
         guard let _ = (scene as? UIWindowScene) else { return }
-        let storyboard = UIStoryboard(name: "SiteCollectionView", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "SiteViewController")
-        
         let homeVC = UINavigationController(rootViewController: HomeViewController(city: defaults.string(forKey: "site")))
         self.window?.rootViewController = homeVC
         self.window?.makeKeyAndVisible()

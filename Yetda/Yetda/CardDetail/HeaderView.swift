@@ -38,5 +38,6 @@ class HeaderView: UICollectionReusableView {
     func prepare(text: String?) {
         self.label.text = text
         label.textAlignment = .natural
+        label.font = .systemFont(ofSize: 14)
     }
 }

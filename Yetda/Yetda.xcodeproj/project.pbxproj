@@ -38,7 +38,6 @@
 		2FE866EF288E7061002242B0 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE866E9288E7060002242B0 /* HeaderView.swift */; };
 		2FE866F2288E7061002242B0 /* ContentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE866EC288E7060002242B0 /* ContentsCell.swift */; };
 		2FE866F3288E7061002242B0 /* KeywordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE866ED288E7061002242B0 /* KeywordCell.swift */; };
-		2FE866F5288E7103002242B0 /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE866F4288E7103002242B0 /* DummyData.swift */; };
 		2FE86705288E7258002242B0 /* CardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE86704288E7258002242B0 /* CardDetailViewController.swift */; };
 		5DA0A056288A82DC00066653 /* MakeCard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DDD60F528854AEE0077742D /* MakeCard.storyboard */; };
 		5DB7C00B2888552F003BB5EF /* MakeCardStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB7C00A2888552F003BB5EF /* MakeCardStoryViewController.swift */; };
@@ -105,7 +104,6 @@
 		2FE866E9288E7060002242B0 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		2FE866EC288E7060002242B0 /* ContentsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentsCell.swift; sourceTree = "<group>"; };
 		2FE866ED288E7061002242B0 /* KeywordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeywordCell.swift; sourceTree = "<group>"; };
-		2FE866F4288E7103002242B0 /* DummyData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyData.swift; sourceTree = "<group>"; };
 		2FE86704288E7258002242B0 /* CardDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetailViewController.swift; sourceTree = "<group>"; };
 		5DB7C00A2888552F003BB5EF /* MakeCardStoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCardStoryViewController.swift; sourceTree = "<group>"; };
 		5DDD60EF28853EC40077742D /* MakeCardDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCardDescriptionViewController.swift; sourceTree = "<group>"; };
@@ -281,7 +279,6 @@
 				2FE866E9288E7060002242B0 /* HeaderView.swift */,
 				2FE866ED288E7061002242B0 /* KeywordCell.swift */,
 				2FE866E8288E7060002242B0 /* MapCell.swift */,
-				2FE866F4288E7103002242B0 /* DummyData.swift */,
 			);
 			path = CardDetail;
 			sourceTree = "<group>";
@@ -443,7 +440,7 @@
 		};
 		146DEDEF93899590EA103B0E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -475,7 +472,6 @@
 				2241F11C288AB1900044E704 /* OnBoardingViewController.swift in Sources */,
 				736D28742885331D00F95DFD /* CardCell.swift in Sources */,
 				22884770289283A700C4B210 /* FirestoreManager.swift in Sources */,
-				2FE866F5288E7103002242B0 /* DummyData.swift in Sources */,
 				22801DA628912553009B955E /* Present.swift in Sources */,
 				2241F12F288AB37F0044E704 /* SiteModel.swift in Sources */,
 				6EC3057D2893AAF100F9A34F /* SearchSiteModel.swift in Sources */,
@@ -663,8 +659,6 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JASCMY8XL7;
-				"EXCLUDED_ARCHS[sdk=*]" = arm64;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Yetda/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
@@ -675,6 +669,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -701,8 +696,6 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JASCMY8XL7;
-				"EXCLUDED_ARCHS[sdk=*]" = arm64;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Yetda/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
@@ -713,6 +706,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

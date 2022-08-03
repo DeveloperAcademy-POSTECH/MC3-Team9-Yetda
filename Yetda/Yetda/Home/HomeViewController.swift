@@ -50,8 +50,8 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         // MARK: 모달로 연결 후에 init 대신에 아래 코드로 하겠습니다.
 //        self.city = defaults.string(forKey: "site") ?? "여행지를 추가 해주세요 !"
-        let showOnBoarding = defaults.bool(forKey: "isFirst")
-        if !showOnBoarding {
+        let showOnBoarding = UserDefaults.standard.string(forKey: "UserId")
+        if showOnBoarding == nil {
             let vc = OnBoardingViewController()
             vc.modalPresentationStyle = .overFullScreen
             self.present(vc, animated: true)

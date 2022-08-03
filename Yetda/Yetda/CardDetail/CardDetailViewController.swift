@@ -8,7 +8,8 @@
 import UIKit
 
 class CardDetailViewController: UIViewController, UIScrollViewDelegate, ShareKaKao {
-    
+
+    let sampleData = Present(id: "02DD7580-A0F3-49F0-816D-961C59DE40D5", user: "testUser", site: "testSite", name: "누굴까", content: "김수한무거북이와두루미삼천갑자동방삭치치카포사리사리센타워리워리세브리캉무두셀라구름이허리케인에담벼락서생원에고양이고양이는바둑이바둑이는돌돌이", whosFor: "그러게", date: "111111", keyWords: ["☀️햇빛쨍쨍", "😋짱맛있대", "🧳짐이많아", "☔️비가내려"], images: ["77DD934C-0989-408A-89D5-F145912FD4741659335924.433385", "DCFD6B2E-7F6C-4748-93E4-0640742CC29D1659335924.4658089"], coordinate: ["37.33480579432566", "-122.0089076379726"])
     var selectedCard: Present?
     
     init(selectedCard: Present?) {
@@ -20,18 +21,10 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate, ShareKaK
         fatalError("init(coder:) has not been implemented")
     }
     
-//    let pageSize = Present().imageArray.count
-    var dummyImages = ["Aichi", "Akita", "Aomori", "Chiba"]
-    
-    private let keywords = Keywords()
-    private let contents = "QWERTYQWERTYQWERTYQWEQRTYQWERTYQWERTYQWERTYQWERTYQWERTYQWERTYQWERTYQWERTYQWEQRTYQWERTYQWERTYQWERTYQWERTYQWERTY"
-    
-    let pageSize = 4
-    
     lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
 
-        pageControl.numberOfPages = pageSize
+        pageControl.numberOfPages = sampleData.images.count
         pageControl.currentPage = 0
         pageControl.isUserInteractionEnabled = false
         pageControl.hidesForSinglePage = true
@@ -49,7 +42,7 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate, ShareKaK
         
         scrollView.delegate  = self
         
-        scrollView.contentSize = CGSize(width: CGFloat(pageSize) * self.view.frame.maxX, height: 0)
+        scrollView.contentSize = CGSize(width: CGFloat(sampleData.images.count) * self.view.frame.maxX, height: 0)
         
         return scrollView
     }()
@@ -117,9 +110,11 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate, ShareKaK
         self.view.addSubview(topContainerView)
         setTopContainerViewConstraints(width: screenWidth, height: screenHeight)
         
-        for i in 0 ..< dummyImages.count {
+        for i in 0 ..< sampleData.images.count {
             let imageView = UIImageView(frame: CGRect(x: CGFloat(i) * screenWidth, y: 0, width: screenWidth, height: topContainerView.frame.height))
-            imageView.image = UIImage(named: dummyImages[i])
+            StorageManager.downloadImage(urlString: (sampleData.images[i]), completion: { item in
+                imageView.image = item!
+            })
             imageView.contentMode = .scaleToFill
             imageView.clipsToBounds = true
             imageView.layer.cornerRadius = 20
@@ -210,7 +205,12 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate, ShareKaK
     }
     
     @objc func shareButtonAction(sender: UIButton!) {
-        shareKaKao(self, key: "Id", value: "2")
+        shareKaKao(self, key: "Id", value: "2") {
+            let storyboard = UIStoryboard(name: "DidPresent", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "DidPresentViewController")
+            vc.modalPresentationStyle = .overFullScreen
+            self.present(vc, animated: true)
+        }
     }
 }
 
@@ -227,7 +227,7 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
         let width = collectionView.frame.width - 10
         let keywordWidth = collectionView.frame.width / 4 - 10
         
-        let cellSize = NSString(string: contents).boundingRect(
+        let cellSize = NSString(string: sampleData.content).boundingRect(
             with: CGSize(width: width, height: CGFloat.greatestFiniteMagnitude),
             options: .usesLineFragmentOrigin,
             attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)],
@@ -240,7 +240,7 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
         case Section.title.rawValue:
             return CGSize(width: width, height: 50)
         case Section.keywordsCell.rawValue:
-            return CGSize(width: keywordWidth, height: keywordWidth)
+            return CGSize(width: keywordWidth, height: 30)
         case Section.story.rawValue:
             return CGSize(width: width, height: cellSize.height + 20)
         case Section.map.rawValue:
@@ -257,7 +257,7 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
         case Section.title.rawValue:
             return 1
         case Section.keywordsCell.rawValue:
-            return keywords.keywords.count
+            return sampleData.keyWords.count
         case Section.story.rawValue:
             return 1
         case Section.map.rawValue:
@@ -277,29 +277,33 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
         let contentsCell = cardDetailView.dequeueReusableCell(withReuseIdentifier: "contentsCell", for: indexPath) as? ContentsCell
         let mapCell = cardDetailView.dequeueReusableCell(withReuseIdentifier: "mapCell", for: indexPath) as? MapCell
         
+        
         switch (indexPath.section) {
         case Section.site.rawValue:
-            contentsCell?.contentsLabel.text = "어딘가의 장소"
+            let attachment = NSTextAttachment()
+            attachment.image = UIImage(systemName: "globe")
+            let attachmentString = NSAttributedString(attachment: attachment)
+            let contentString = NSMutableAttributedString(string: " \(sampleData.site)")
+            contentString.insert(attachmentString, at: 0)
+            contentsCell?.contentsLabel.attributedText = contentString
             return contentsCell ?? UICollectionViewCell()
         case Section.title.rawValue:
-            contentsCell?.contentsLabel.text = "대충 제목"
+            contentsCell?.contentsLabel.text = sampleData.name
             contentsCell?.contentsLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
             contentsCell?.backgroundColor = UIColor(named: "YettdaBackgroundcolor")
             return contentsCell ?? UICollectionViewCell()
         case Section.keywordsCell.rawValue:
-            keywordCell?.keywordLabel.text = keywords.keywords[indexPath.row]
-            keywordCell?.backgroundColor = .cyan
+            keywordCell?.keywordLabel.text = sampleData.keyWords[indexPath.row]
             return keywordCell ?? UICollectionViewCell()
         case Section.story.rawValue:
-            contentsCell?.contentsLabel.text = contents
+            contentsCell?.contentsLabel.text = sampleData.content
             return contentsCell ?? UICollectionViewCell()
         case Section.map.rawValue:
-            mapCell?.moveLocation(latitudeValue: 37.334754657382234, longitudeValue: -122.00898272593827, delta: 0.01)
-            mapCell?.setAnnotation(latitudeValue: 37.334754657382234, longitudeValue: -122.00898272593827, delta: 0.01, title: "Apple Park", subtitle: "aa")
+            mapCell?.moveLocation(latitudeValue: Double(sampleData.coordinate[0]) ?? 0.0, longitudeValue: Double(sampleData.coordinate[1]) ?? 0.0, delta: 0.01)
+            mapCell?.setAnnotation(latitudeValue: Double(sampleData.coordinate[0]) ?? 0.0, longitudeValue: Double(sampleData.coordinate[1]) ?? 0.0, delta: 0.01, title: "Apple Park", subtitle: "aa")
             return mapCell ?? UICollectionViewCell()
         default:
-            contentsCell?.contentsLabel.text = contents
-            contentsCell?.backgroundColor = .cyan
+            contentsCell?.contentsLabel.text = "표시될 내용이 없습니다"
             return contentsCell ?? UICollectionViewCell()
         }
     }
@@ -319,10 +323,8 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let description: Int = 3
-        
         switch (section) {
-        case description:
+        case Section.story.rawValue:
             return CGSize(width: collectionView.frame.width, height: 30)
         default:
             return CGSize(width: 0, height: 0)
