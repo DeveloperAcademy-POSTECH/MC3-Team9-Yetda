@@ -55,6 +55,7 @@ class HomeViewController: UIViewController {
             let vc = OnBoardingViewController()
             vc.modalPresentationStyle = .overFullScreen
             self.present(vc, animated: true)
+            vc.updateDelegate = self
         }
         
         // Firestore DB 읽기
@@ -81,9 +82,10 @@ class HomeViewController: UIViewController {
             }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        self.city = defaults.string(forKey: "site")?.localized
+//    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -198,9 +200,10 @@ class HomeViewController: UIViewController {
         // MARK: Home뷰를 루트뷰로 두고 Site보는 뷰는 풀스크린커버로 띄울 생각입니다.
         planeBtn.rx.tap.bind {
             let storyboard = UIStoryboard(name: "SiteCollectionView", bundle: nil)
-            let siteVC = storyboard.instantiateViewController(withIdentifier: "SiteViewController")
-            siteVC.modalPresentationStyle = .fullScreen
-            self.present(siteVC, animated: true)
+            let siteVC = storyboard.instantiateViewController(withIdentifier: "SiteViewController") as? SiteViewController
+            siteVC?.modalPresentationStyle = .fullScreen
+            siteVC?.delegate = self
+            self.present(siteVC!, animated: true)
         }.disposed(by: disposeBag)
     }
     
@@ -332,5 +335,6 @@ class HomeViewController: UIViewController {
 extension HomeViewController: SendUpdateDelegate {
     func updateCity(city: String?) {
         self.city = city
+        self.cityLabel.text = city?.localized
     }
 }

@@ -11,6 +11,8 @@ class OnBoardingViewController: UIPageViewController {
 
     var pages: [UIViewController] = []
     
+    var updateDelegate: SendUpdateDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
@@ -18,6 +20,7 @@ class OnBoardingViewController: UIPageViewController {
         for recognizer in self.gestureRecognizers {
             recognizer.isEnabled = false
         }
+        NotificationCenter.default.addObserver(self, selector: #selector(dismissSelf(notification:)), name: Notification.Name.onBoardingView, object: nil)
     }
     
     func makePageVC() {
@@ -35,6 +38,11 @@ class OnBoardingViewController: UIPageViewController {
     func goToNextPage(index: Int) {
         setViewControllers([pages[index]], direction: .forward, animated: true, completion: nil)
     }
+    
+    @objc func dismissSelf(notification: Notification) {
+          self.updateDelegate?.updateCity(city: defaults.string(forKey: "site"))
+          self.dismiss(animated: true)
+      }
 }
 
 extension OnBoardingViewController: UIPageViewControllerDataSource {
