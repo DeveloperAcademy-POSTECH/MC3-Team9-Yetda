@@ -55,7 +55,7 @@ class SiteCell: UICollectionViewCell {
 }
 
 extension SiteCell {
-    static let imageList = ["아이치" : "Aichi", "후쿠오카" : "Fukuoka", "아키타" : "Akita", "아오모리" : "Aomori", "치바" : "Chiba", "에히메" : "Ehime", "후쿠이" : "Fukui", "후쿠시마" : "Fukushima", "기후" : "Gihu", "군마" : "Gunma", "히로시마" : "Hiroshima", "홋카이도" : "Hokkaido", "효고" : "Hyogo", "이바라키" : "Ibaraki" ,
+    static let imageList = ["아이치" : "Aichi", "후쿠오카" : "Fukuoka", "아키타" : "Akita", "아오모리" : "Aomori", "치바" : "Chiba", "에히메" : "Ehime", "후쿠이" : "Fukui", "후쿠시마" : "Fukushima", "기후" : "Gifu", "군마" : "Gunma", "히로시마" : "Hiroshima", "홋카이도" : "Hokkaido", "효고" : "Hyogo", "이바라키" : "Ibaraki" ,
                             "이시카와" : "Ishikawa",
                             "이와테" : "Iwate" ,
                             "가가와" : "Kagawa",
