@@ -19,7 +19,7 @@ class HomeViewController: UIViewController {
     var city: String?
     
     // MARK: Rx를 잘 몰라서 일단 데이터 넘겨받는거를 init을 사용해서 했슴당
-    init(city: String?) {
+    init(city: String? = nil) {
         self.city = city
         super.init(nibName: nil, bundle: nil)
     }
