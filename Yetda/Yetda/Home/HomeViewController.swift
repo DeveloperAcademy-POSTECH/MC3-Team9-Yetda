@@ -12,6 +12,7 @@ import RxCocoa
 import YPImagePicker
 import Hero
 import FirebaseFirestore
+import KakaoSDKAuth
 import FirebaseAuth
 
 class HomeViewController: UIViewController {
@@ -59,8 +60,10 @@ class HomeViewController: UIViewController {
         
         // Firestore DB 읽기
         db.collection("presents")
+
             .whereField("user", isEqualTo: self.userId)
             .whereField("site", isEqualTo: defaults.string(forKey: "site") ?? "")
+
             .addSnapshotListener { snapshot, error in
                 guard let documents = snapshot?.documents else {
                     print("ERROR Firestore fetching document \(String(describing: error?.localizedDescription))")
@@ -312,12 +315,12 @@ class HomeViewController: UIViewController {
     @IBAction func removeBtnClick(_ sender: UIButton) {
         let hitPoint = sender.convert(CGPoint.zero, to: self.cardListView.cardCollectionView)
         let hitIndex = self.cardListView.cardCollectionView.indexPathForItem(at: hitPoint)
-        let row = hitIndex?.row ?? 0
-        print(row+1)
-        var original = self.presentCards.value
-        original.remove(at: row+1)
-        FirestoreManager.deleteData(present: presents[row+1])
-        self.presentCards.accept(original)
+        let row = hitIndex?.row ?? -10
+        print(row)
+//        var original = self.presentCards.value
+//        original.remove(at: row+1)
+//        FirestoreManager.deleteData(present: presents[row+1])
+//        self.presentCards.accept(original)
     }
     
     private func sendCardData(indexPath: IndexPath) {
