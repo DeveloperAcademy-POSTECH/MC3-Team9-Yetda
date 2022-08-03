@@ -47,12 +47,7 @@ class HomeViewController: UIViewController {
     var imageList: [UIImage] = []
     var imageCount = 0
     var longPressEnabled = false
-<<<<<<< HEAD
-    let userId: String? = Auth.auth().currentUser?.email
-    
-=======
     let userId: String? = Auth.auth().currentUser?.email ?? ""
->>>>>>> 0eb56eeaa5e67a3ddf14e859529bd90421901b03
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // MARK: 모달로 연결 후에 init 대신에 아래 코드로 하겠습니다.
@@ -67,13 +62,10 @@ class HomeViewController: UIViewController {
         
         // Firestore DB 읽기
         db.collection("presents")
-<<<<<<< HEAD
-            .whereField("site", isEqualTo: defaults.string(forKey: "site") ?? "")
-            .whereField("user", isEqualTo: self.userId ?? "")
-=======
+
             .whereField("user", isEqualTo: self.userId)
             .whereField("site", isEqualTo: defaults.string(forKey: "site") ?? "")
->>>>>>> 0eb56eeaa5e67a3ddf14e859529bd90421901b03
+
             .addSnapshotListener { snapshot, error in
                 guard let documents = snapshot?.documents else {
                     print("ERROR Firestore fetching document \(String(describing: error?.localizedDescription))")
@@ -330,12 +322,12 @@ class HomeViewController: UIViewController {
     @IBAction func removeBtnClick(_ sender: UIButton) {
         let hitPoint = sender.convert(CGPoint.zero, to: self.cardListView.cardCollectionView)
         let hitIndex = self.cardListView.cardCollectionView.indexPathForItem(at: hitPoint)
-        let row = hitIndex?.row ?? 0
-        print(row+1)
-        var original = self.presentCards.value
-        original.remove(at: row+1)
-        FirestoreManager.deleteData(present: presents[row+1])
-        self.presentCards.accept(original)
+        let row = hitIndex?.row ?? -10
+        print(row)
+//        var original = self.presentCards.value
+//        original.remove(at: row+1)
+//        FirestoreManager.deleteData(present: presents[row+1])
+//        self.presentCards.accept(original)
     }
     
     private func sendCardData(indexPath: IndexPath) {

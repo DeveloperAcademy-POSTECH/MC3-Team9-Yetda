@@ -16,6 +16,8 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
     @IBOutlet weak var storyTypeLimit: UILabel!
     @IBOutlet weak var nextButton: UIButton!
     
+    let site = defaults.string(forKey: "site") ?? ""
+    
     @IBAction func nextButton(_ sender: Any) {
         
         // 데이터 저장로직 누르자마자 저장 로직과는 별개로 바로 이동할 수 있도록 비동기로 처리함
@@ -24,8 +26,7 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
             let images: [UIImage]? = photos
             let imageURLs: [String] = StorageManager.uploadImages(images: images!)
             let userId = Auth.auth().currentUser?.email ?? ""
-            let site = defaults.string(forKey: "site") ?? ""
-            let siteInfo = SiteModel.locationlList.filter{ $0.name == "site" }[0]
+            let siteInfo = SiteModel.locationlList.filter{ $0.name == self.site.localized }[0]
             let siteCoordinate = [String(siteInfo.latitude), String(siteInfo.longitude)]
             FirestoreManager.uploadData(present: Present(id: nil,
                                                          user: userId,
@@ -36,9 +37,8 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
                                                          date: Date().toString(),
                                                          keyWords: keywordsData,
                                                          images: imageURLs,
-                                                         coordinate: siteCoordinate))
+                                                         coordinate: []))
         }
-
         let homeVC = HomeViewController(city: defaults.string(forKey: "site"))
         self.navigationController?.popToRootViewController(animated: true)
     }
@@ -63,6 +63,8 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
         nextButton.backgroundColor = UIColor(named: "YettdaSubDisabledButton")
         nextButton.layer.cornerRadius = 10
         customTextView(storyTextView)
+        
+        locationLabel.text = site
         
         textViewDidBeginEditing(storyTextView)
         textViewDidEndEditing(storyTextView)
