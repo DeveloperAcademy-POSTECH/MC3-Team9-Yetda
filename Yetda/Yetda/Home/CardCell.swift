@@ -16,6 +16,8 @@ class CardCell: UICollectionViewCell {
 
     var nameLabel: UILabel = UILabel()
     var thumbnailImage: UIImageView = UIImageView()
+    var addPhotoConstraint = [NSLayoutConstraint]()
+    var imageConstraint = [NSLayoutConstraint]()
     
     var removeBtn = UIButton(configuration: UIButton.Configuration.plain())
     
@@ -63,7 +65,8 @@ class CardCell: UICollectionViewCell {
         thumbnailImage.translatesAutoresizingMaskIntoConstraints = false
         thumbnailImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         thumbnailImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        
+        addPhotoConstraint += [thumbnailImage.widthAnchor.constraint(equalToConstant: 28), thumbnailImage.heightAnchor.constraint(equalToConstant: 28)]
+        imageConstraint += [thumbnailImage.widthAnchor.constraint(equalTo: contentView.widthAnchor), thumbnailImage.heightAnchor.constraint(equalTo: contentView.heightAnchor)]
         thumbnailImage.layer.cornerRadius = 20
     }
     
@@ -96,16 +99,20 @@ class CardCell: UICollectionViewCell {
     func setData(image: String, whosFor: String) {
         if (image == "addPhoto") {
             self.contentView.backgroundColor = .white
-            thumbnailImage.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = false
-            thumbnailImage.heightAnchor.constraint(equalTo: contentView.heightAnchor).isActive = false
-            thumbnailImage.widthAnchor.constraint(equalToConstant: 28).isActive = true
-            thumbnailImage.heightAnchor.constraint(equalToConstant: 28).isActive = true
+            for constraint in imageConstraint {
+                constraint.isActive = false
+            }
+            for constraint in addPhotoConstraint {
+                constraint.isActive = true
+            }
             thumbnailImage.image = UIImage(named: "plus")
         } else {
-            thumbnailImage.widthAnchor.constraint(equalToConstant: 28).isActive = false
-            thumbnailImage.heightAnchor.constraint(equalToConstant: 28).isActive = false
-            thumbnailImage.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
-            thumbnailImage.heightAnchor.constraint(equalTo: contentView.heightAnchor).isActive = true
+            for constraint in addPhotoConstraint {
+                constraint.isActive = true
+            }
+            for constraint in imageConstraint {
+                constraint.isActive = true
+            }
             thumbnailImage.contentMode = .scaleAspectFill
             thumbnailImage.clipsToBounds = true
             
