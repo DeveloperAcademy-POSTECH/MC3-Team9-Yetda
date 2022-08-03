@@ -34,6 +34,8 @@ class MyPageViewController: UIViewController {
             do {
                 try firebaseAuth.signOut()
                 UserDefaults.standard.set(nil, forKey: "UserId")
+                self.homeViewWillAppear()
+                
             } catch let signOutError as NSError {
                 print("ERROR: singout \(signOutError.localizedDescription)")
             }
@@ -54,7 +56,11 @@ class MyPageViewController: UIViewController {
               if let error = error {
                 print("ERROR: User resign \(error.localizedDescription)")
               } else {
-                print("회원 삭제에 성공하셨습니다.")
+                  print("회원 삭제에 성공하셨습니다.")
+                  UserDefaults.standard.set(nil, forKey: "UserId")
+                  UserDefaults.standard.set(nil, forKey: "site")
+                  UserDefaults.standard.set(nil, forKey: "sites")
+                  self.homeViewWillAppear()
               }
             }
 
@@ -70,4 +76,12 @@ class MyPageViewController: UIViewController {
         let safari = SFSafariViewController(url: url)
         present(safari, animated: true)
     }
+    
+    private func homeViewWillAppear() {
+          self.view.window?.rootViewController?.dismiss(animated: false, completion: {
+              let homeVC = UINavigationController(rootViewController: HomeViewController())
+              let sd = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+              sd.window?.rootViewController = homeVC
+          })
+      }
 }
