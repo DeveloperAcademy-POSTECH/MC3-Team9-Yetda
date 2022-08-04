@@ -106,15 +106,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                             }
                         }
                         self.present = temp.first
+                        
+                        let vc = CardDetailViewController(selectedCard: self.present)
+                        self.window?.rootViewController?.present(vc, animated: true)
+                        print(self.window?.rootViewController)
                     }
-                    
-                
-                let vc = CardDetailViewController(selectedCard: present)
-                self.window?.rootViewController?.present(vc, animated: true)
-                print(self.window?.rootViewController)
-                
             }
-            
         }
     }
 }

@@ -22,13 +22,13 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
         
         // 데이터 저장로직 누르자마자 저장 로직과는 별개로 바로 이동할 수 있도록 비동기로 처리함
         // 애초에 데이터 저장하고 넘어가는 UI를 실행하는 것은 텀이 생기게 돼서 iOS에서 터트림.
-        DispatchQueue.global().sync {
+//        DispatchQueue.main.sync {
                     let images: [UIImage]? = photos
                     let imageURLs: [String] = StorageManager.uploadImages(images: images!)
                     let userId = Auth.auth().currentUser?.email ?? ""
                     let site = defaults.string(forKey: "site") ?? ""
                     let siteInfo = SiteModel.locationlList.filter{ $0.name == site }[0]
-            print(imageURLs)
+//            print(imageURLs)
             
                     let siteCoordinate = [String(siteInfo.latitude), String(siteInfo.longitude)]
                     FirestoreManager.uploadData(present: Present(id: nil,
@@ -41,7 +41,7 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
                                                                  keyWords: keywordsData,
                                                                  images: imageURLs,
                                                                  coordinate: siteCoordinate))
-                }
+//                }
         let homeVC = HomeViewController(city: defaults.string(forKey: "site"))
         self.navigationController?.popToRootViewController(animated: true)
     }
