@@ -21,7 +21,7 @@ class HeaderView: UICollectionReusableView {
         label.backgroundColor = UIColor(named: "YettdaMainBackground")
         label.translatesAutoresizingMaskIntoConstraints = false
         label.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
-        label.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 5).isActive = true
+        label.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
         label.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor).isActive = true
         label.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
@@ -36,7 +36,13 @@ class HeaderView: UICollectionReusableView {
     }
     
     func prepare(text: String?) {
-        self.label.text = text
+        let attachment = NSTextAttachment()
+        attachment.image = UIImage(systemName: "envelope.open")?.withTintColor(.systemBlue)
+        let attachmentString = NSAttributedString(attachment: attachment)
+        guard let text = text else { return }
+        let contentString = NSMutableAttributedString(string: " \(String(describing: text))")
+        contentString.insert(attachmentString, at: 0)
+        self.label.attributedText = contentString
         label.textAlignment = .natural
         label.font = .systemFont(ofSize: 14)
     }
