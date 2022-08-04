@@ -204,7 +204,19 @@ extension SiteViewController: UISearchBarDelegate {
 
 extension SiteViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        defaults.set(siteDataSource.itemIdentifier(for: indexPath)?.name, forKey: "site")
+        let site = siteDataSource.itemIdentifier(for: indexPath)?.name
+        
+        guard let site = site else { return }
+                
+        let firstUpper = site.first?.uppercased()
+        let restString = String(site[site.index(after: site.startIndex)...])
+
+        guard let first = firstUpper else { return }
+        let siteName = first + restString
+        
+        let currentSite = SiteCell.imageList[site] ?? "\(siteName)"
+        
+        defaults.set(currentSite, forKey: "site")
         self.dismiss(animated: true)
     }
 }

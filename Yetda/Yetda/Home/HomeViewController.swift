@@ -50,8 +50,6 @@ class HomeViewController: UIViewController {
     let userId: String? = Auth.auth().currentUser?.email ?? ""
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // MARK: 모달로 연결 후에 init 대신에 아래 코드로 하겠습니다.
-//        self.city = defaults.string(forKey: "site") ?? "여행지를 추가 해주세요 !"
         let showOnBoarding = UserDefaults.standard.string(forKey: "UserId")
         if showOnBoarding == nil {
             let vc = OnBoardingViewController()
@@ -87,23 +85,24 @@ class HomeViewController: UIViewController {
             }
     }
     
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        self.city = defaults.string(forKey: "site")?.localized
-//    }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        defaults.set(city, forKey: "site")
+        
+        guard let city = city else {
+            return
+        }
+        let firstUpper = city.first?.uppercased()
+        let restString = String(city[city.index(after: city.startIndex)...])
+        let first = firstUpper
+        let siteName = first! + restString
+        let currentSite = SiteCell.imageList[city] ?? "\(siteName)"
+
+        defaults.set(currentSite, forKey: "site")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        
-        // MARK: NavigationBar가 위에 있으면 카드리스트가 좀 올라와서 일단 주석했습니다.
-        prepareGetData()
-        
         self.view.addSubview(topView)
         setTopView()
         self.view.addSubview(cardListView)
@@ -119,12 +118,6 @@ class HomeViewController: UIViewController {
         
         let touchGesture = UITapGestureRecognizer(target: self, action: #selector(self.tap(_:)))
         self.topView.addGestureRecognizer(touchGesture)
-    }
-    // MARK: Delegate 받는 준비인데 테스트를 못해봄 ㅠㅜ
-    private func prepareGetData() {
-        let storyboard = UIStoryboard(name: "SiteCollectionView", bundle: nil)
-        let siteVC = storyboard.instantiateViewController(withIdentifier: "SiteViewController") as? SiteViewController
-        siteVC?.delegate = self
     }
     
     @objc func longTap(_ gesture: UIGestureRecognizer) {
@@ -235,7 +228,7 @@ class HomeViewController: UIViewController {
         cityLabel.leadingAnchor.constraint(equalTo: planeBtn.leadingAnchor).isActive = true
         cityLabel.topAnchor.constraint(equalTo: planeBtn.bottomAnchor, constant: 20).isActive = true
     
-        cityLabel.text = city
+        cityLabel.text = city?.localized
         let font = UIFont.systemFont(ofSize: 25, weight: .bold)
         cityLabel.font = font
         cityLabel.textColor = .white

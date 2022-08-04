@@ -26,21 +26,22 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
             let images: [UIImage]? = photos
             let imageURLs: [String] = StorageManager.uploadImages(images: images!)
             let userId = Auth.auth().currentUser?.email ?? ""
-            let siteInfo = SiteModel.locationlList.filter{ $0.name == "Fukui" }[0]
+            let site = defaults.string(forKey: "site") ?? ""
+            let siteInfo = SiteModel.locationlList.filter{ $0.name == site }[0]
             let siteCoordinate = [String(siteInfo.latitude), String(siteInfo.longitude)]
             FirestoreManager.uploadData(present: Present(id: nil,
-                                                         user: userId,
-                                                         site: site,
-                                                         name: "\(giftNameData)",
-                                                         content: "\(storyTextView.text ?? "")",
-                                                         whosFor: "\(giftRecipientData)",
-                                                         date: Date().toString(),
-                                                         keyWords: keywordsData,
-                                                         images: imageURLs,
-                                                         coordinate: []))
+                                                            user: userId,
+                                                            site: site,
+                                                            name: "\(giftNameData)",
+                                                            content: "\(storyTextView.text ?? "")",
+                                                            whosFor: "\(giftRecipientData)",
+                                                            date: Date().toString(),
+                                                            keyWords: keywordsData,
+                                                            images: imageURLs,
+                                                            coordinate: siteCoordinate))
+            let homeVC = HomeViewController(city: defaults.string(forKey: "site"))
+            self.navigationController?.popToRootViewController(animated: true)
         }
-        let homeVC = HomeViewController(city: defaults.string(forKey: "site"))
-        self.navigationController?.popToRootViewController(animated: true)
     }
     
     var activeField: UITextField? = nil
