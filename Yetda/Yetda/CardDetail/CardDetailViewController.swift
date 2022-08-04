@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class CardDetailViewController: UIViewController, UIScrollViewDelegate, ShareKaKao {
 
@@ -284,11 +285,12 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
         switch (indexPath.section) {
         case Section.site.rawValue:
             let attachment = NSTextAttachment()
-            attachment.image = UIImage(systemName: "globe")
+//            attachment.image = UIImage(systemName: "globe")?.withTintColor(.systemBlue)
             let attachmentString = NSAttributedString(attachment: attachment)
             let contentString = NSMutableAttributedString(string: " \(String(describing: selectedCard!.site))")
             contentString.insert(attachmentString, at: 0)
             contentsCell?.contentsLabel.attributedText = contentString
+//            contentsCell?.backgroundColor = UIColor(named: "YettdaBackgroundcolor")
             return contentsCell ?? UICollectionViewCell()
         case Section.title.rawValue:
             contentsCell?.contentsLabel.text = selectedCard?.name
@@ -303,8 +305,12 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
             return contentsCell ?? UICollectionViewCell()
         case Section.map.rawValue:
             let siteInfo = SiteModel.locationlList.filter{ $0.name == "Fukui" }[0]
-            mapCell?.moveLocation(latitudeValue: siteInfo.latitude ?? 0.0, longitudeValue: siteInfo.longitude ?? 0.0, delta: 0.01)
-            mapCell?.setAnnotation(latitudeValue: siteInfo.latitude ?? 0.0, longitudeValue: siteInfo.longitude ?? 0.0, delta: 0.01, title: selectedCard?.site ?? "", subtitle: " ")
+            let currentCoordinate = mapCell?.locationManager.location?.coordinate
+            let currentLocation = CLLocation(latitude: currentCoordinate?.latitude ?? 0.0, longitude: currentCoordinate?.longitude ?? 0.0)
+            let traveledLocation = CLLocation(latitude: siteInfo.latitude, longitude: siteInfo.longitude)
+            let distance = Int(round(currentLocation.distance(from: traveledLocation) / 1000))
+            mapCell?.moveLocation(latitudeValue: siteInfo.latitude , longitudeValue: siteInfo.longitude , delta: 0.01)
+            mapCell?.setAnnotation(latitudeValue: siteInfo.latitude , longitudeValue: siteInfo.longitude , delta: 0.01, title: selectedCard?.site ?? "", subtitle: "\(distance)km 떨어진 거리")
             return mapCell ?? UICollectionViewCell()
         default:
             contentsCell?.contentsLabel.text = "표시될 내용이 없습니다"
