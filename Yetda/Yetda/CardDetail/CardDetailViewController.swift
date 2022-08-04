@@ -61,6 +61,11 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate, ShareKaK
         topContainerView.layer.cornerRadius = 20
         topContainerView.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMaxYCorner, .layerMaxXMaxYCorner)
         
+        topContainerView.layer.shadowColor = UIColor.black.cgColor
+        topContainerView.layer.shadowRadius = 20
+        topContainerView.layer.shadowOpacity = 0.3
+        topContainerView.layer.masksToBounds = false
+        
         return topContainerView
     }()
     
@@ -128,6 +133,8 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate, ShareKaK
         }
         
         self.view.addSubview(cardDetailView)
+        self.view.bringSubviewToFront(topContainerView)
+
         topContainerView.addSubview(imageScrollView)
         topContainerView.addSubview(pageControl)
         topContainerView.addSubview(backButton)
@@ -166,7 +173,7 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate, ShareKaK
         topContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         topContainerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         topContainerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        topContainerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -width).isActive = true
+        topContainerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: width).isActive = true
     }
     
     func setBackButtonConstraints(topView: UIView, width: CGFloat) {
@@ -312,7 +319,7 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
             mapCell?.moveLocation(latitudeValue: siteInfo.latitude , longitudeValue: siteInfo.longitude , delta: 0.01)
             mapCell?.setAnnotation(latitudeValue: siteInfo.latitude , longitudeValue: siteInfo.longitude , delta: 0.01, title: selectedCard?.site ?? "", subtitle: "")
             mapCell?.distanceLabel.text = "\(distance)km \n구매 장소로부터 떨어진 거리"
-            mapCell?.distanceLabel.asFontColor(targetString: "\(distance)km", font: .systemFont(ofSize: 32, weight: .bold), color: UIColor(named: "YettdaMainYellow"))
+            mapCell?.distanceLabel.asFontColor(targetString: "\(distance)", font: .systemFont(ofSize: 32, weight: .bold), color: UIColor(named: "YettdaMainYellow"))
             return mapCell ?? UICollectionViewCell()
         default:
             contentsCell?.contentsLabel.text = "표시될 내용이 없습니다"
