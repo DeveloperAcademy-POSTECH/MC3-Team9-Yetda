@@ -209,7 +209,7 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate, ShareKaK
     }
     
     @objc func shareButtonAction(sender: UIButton!) {
-        shareKaKao(self, key: "Id", value: sampleData.id!) {
+        shareKaKao(self, key: "Id", value: (selectedCard?.id)!) {
             let storyboard = UIStoryboard(name: "DidPresent", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "DidPresentViewController")
             vc.modalPresentationStyle = .overFullScreen
@@ -287,7 +287,7 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
             let attachment = NSTextAttachment()
             attachment.image = UIImage(systemName: "globe")?.withTintColor(.systemBlue)
             let attachmentString = NSAttributedString(attachment: attachment)
-            let contentString = NSMutableAttributedString(string: " \(String(describing: selectedCard!.site))")
+            let contentString = NSMutableAttributedString(string: " \(String(describing: selectedCard?.site ?? ""))")
             contentString.insert(attachmentString, at: 0)
             contentsCell?.contentsLabel.attributedText = contentString
             contentsCell?.backgroundColor = UIColor(named: "YettdaBackgroundcolor")
