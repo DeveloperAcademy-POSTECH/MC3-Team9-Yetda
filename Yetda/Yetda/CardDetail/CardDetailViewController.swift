@@ -310,7 +310,9 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
             let traveledLocation = CLLocation(latitude: siteInfo.latitude, longitude: siteInfo.longitude)
             let distance = Int(round(currentLocation.distance(from: traveledLocation) / 1000))
             mapCell?.moveLocation(latitudeValue: siteInfo.latitude , longitudeValue: siteInfo.longitude , delta: 0.01)
-            mapCell?.setAnnotation(latitudeValue: siteInfo.latitude , longitudeValue: siteInfo.longitude , delta: 0.01, title: selectedCard?.site ?? "", subtitle: "\(distance)km 떨어진 거리")
+            mapCell?.setAnnotation(latitudeValue: siteInfo.latitude , longitudeValue: siteInfo.longitude , delta: 0.01, title: selectedCard?.site ?? "", subtitle: "")
+            mapCell?.distanceLabel.text = "\(distance)km \n구매 장소로부터 떨어진 거리"
+            mapCell?.distanceLabel.asFontColor(targetString: "\(distance)km", font: .systemFont(ofSize: 32, weight: .bold), color: UIColor(named: "YettdaMainYellow"))
             return mapCell ?? UICollectionViewCell()
         default:
             contentsCell?.contentsLabel.text = "표시될 내용이 없습니다"
@@ -346,4 +348,30 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
         return 5
     }
     
+}
+
+extension UILabel {
+    func asFont(targetString: String, font: UIFont) {
+        let fullText = text ?? ""
+        let attributedString = NSMutableAttributedString(string: fullText)
+        let range = (fullText as NSString).range(of: targetString)
+        attributedString.addAttribute(.font, value: font, range: range)
+        attributedText = attributedString
+    }
+    
+    func asColor(targetString: String, color: UIColor) {
+        let fullText = text ?? ""
+        let attributedString = NSMutableAttributedString(string: fullText)
+        let range = (fullText as NSString).range(of: targetString)
+        attributedString.addAttribute(.foregroundColor, value: color, range: range)
+        attributedText = attributedString
+    }
+    
+    func asFontColor(targetString: String, font: UIFont?, color: UIColor?) {
+        let fullText = text ?? ""
+        let attributedString = NSMutableAttributedString(string: fullText)
+        let range = (fullText as NSString).range(of: targetString)
+        attributedString.addAttributes([.font: font as Any, .foregroundColor: color as Any], range: range)
+        attributedText = attributedString
+    }
 }
