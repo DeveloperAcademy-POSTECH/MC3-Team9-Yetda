@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, UITextViewDelegate, UICollectionViewDataSource {
     
@@ -18,31 +19,7 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
     
     let site = defaults.string(forKey: "site") ?? ""
     
-    @IBAction func nextButton(_ sender: Any) {
-        
-        // 데이터 저장로직 누르자마자 저장 로직과는 별개로 바로 이동할 수 있도록 비동기로 처리함
-        // 애초에 데이터 저장하고 넘어가는 UI를 실행하는 것은 텀이 생기게 돼서 iOS에서 터트림.
-        DispatchQueue.global().sync {
-            let images: [UIImage]? = photos
-            let imageURLs: [String] = StorageManager.uploadImages(images: images!)
-            let userId = Auth.auth().currentUser?.email ?? ""
-            let site = defaults.string(forKey: "site") ?? ""
-            let siteInfo = SiteModel.locationlList.filter{ $0.name == site }[0]
-            let siteCoordinate = [String(siteInfo.latitude), String(siteInfo.longitude)]
-            FirestoreManager.uploadData(present: Present(id: nil,
-                                                            user: userId,
-                                                            site: site,
-                                                            name: "\(giftNameData)",
-                                                            content: "\(storyTextView.text ?? "")",
-                                                            whosFor: "\(giftRecipientData)",
-                                                            date: Date().toString(),
-                                                            keyWords: keywordsData,
-                                                            images: imageURLs,
-                                                            coordinate: siteCoordinate))
-            let homeVC = HomeViewController(city: defaults.string(forKey: "site"))
-            self.navigationController?.popToRootViewController(animated: true)
-        }
-    }
+    
     
     var activeField: UITextField? = nil
     var isKeyboardShowing: Bool = false
@@ -51,6 +28,44 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
     var giftNameData: String = ""
     var giftRecipientData: String = ""
     var keywordsData: [String] = []
+    
+    @IBAction func nextButton(_ sender: Any) {
+        
+        // 데이터 저장로직 누르자마자 저장 로직과는 별개로 바로 이동할 수 있도록 비동기로 처리함
+        // 애초에 데이터 저장하고 넘어가는 UI를 실행하는 것은 텀이 생기게 돼서 iOS에서 터트림.
+        let userId = Auth.auth().currentUser?.email ?? ""
+        let site = defaults.string(forKey: "site") ?? ""
+        let siteInfo = SiteModel.locationlList.filter{ $0.name == site }[0]
+        let siteCoordinate = [String(siteInfo.latitude), String(siteInfo.longitude)]
+
+        let images: [UIImage]? = self.photos
+        
+        var imageURLs = [String]()
+        
+        let imageGroup = DispatchGroup()
+        
+        imageGroup.enter()
+        StorageManager.uploadImages(images: images!, completion: setURLs)
+        
+        func setURLs(urls: [String?]) {
+            imageURLs = urls.map {$0 ?? ""}
+            imageGroup.leave()
+        }
+        
+        imageGroup.notify(queue: DispatchQueue.main) {
+            print("imageURL Main Thread: \(imageURLs)")
+            self.uploadData(present: Present(id: nil,
+                                             user: userId,
+                                             site: site,
+                                             name: self.giftNameData,
+                                             content: self.storyTextView.text,
+                                             whosFor: self.giftRecipientData,
+                                             date: Date().toString(),
+                                             keyWords: self.keywordsData,
+                                             images: imageURLs,
+                                             coordinate: siteCoordinate))
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -171,6 +186,32 @@ class MakeCardStoryViewController: UIViewController, UICollectionViewDelegate, U
     @objc func keyboardWillHide(notification: NSNotification) {
         self.view.frame.origin.y = 0
         isKeyboardShowing.toggle()
+    }
+    
+    func uploadData(present: Present) {
+        let db = Firestore.firestore()
+        var documentId: String = ""
+        if let id = present.id { documentId = id } else { documentId = UUID().uuidString }
+        
+        let stringData: [String: Any] = ["id": documentId,
+                                         "user": present.user,
+                                         "site": present.site,
+                                         "name": present.name,
+                                         "content": present.content,
+                                         "whosFor": present.whosFor,
+                                         "date": present.date,
+                                         "keyWords": present.keyWords,
+                                         "images": present.images,
+                                         "coordinate": present.coordinate]
+        
+        db.collection("presents").document(documentId).setData(stringData) { err in
+            if let err = err {
+                print("ERROR Writing document: \(err)")
+            } else {
+                self.navigationController?.popToRootViewController(animated: true)
+                print("성공")
+            }
+        }
     }
 }
 

@@ -48,6 +48,7 @@ class HomeViewController: UIViewController {
     var imageCount = 0
     var longPressEnabled = false
     let userId: String? = Auth.auth().currentUser?.email ?? ""
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let showOnBoarding = UserDefaults.standard.string(forKey: "UserId")
@@ -118,6 +119,8 @@ class HomeViewController: UIViewController {
         
         let touchGesture = UITapGestureRecognizer(target: self, action: #selector(self.tap(_:)))
         self.topView.addGestureRecognizer(touchGesture)
+        
+        
     }
     
     @objc func longTap(_ gesture: UIGestureRecognizer) {

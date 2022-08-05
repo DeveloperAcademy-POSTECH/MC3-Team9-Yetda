@@ -13,8 +13,6 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate, ShareKaK
     
     var selectedCard: Present?
     
-   
-    
     init(selectedCard: Present?) {
         self.selectedCard = selectedCard
         super.init(nibName: nil, bundle: nil)
@@ -279,7 +277,6 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
         let keywordCell = cardDetailView.dequeueReusableCell(withReuseIdentifier: "keywordCell", for: indexPath) as? KeywordCell
         let contentsCell = cardDetailView.dequeueReusableCell(withReuseIdentifier: "contentsCell", for: indexPath) as? ContentsCell
         let mapCell = cardDetailView.dequeueReusableCell(withReuseIdentifier: "mapCell", for: indexPath) as? MapCell
-        
         
         switch (indexPath.section) {
         case Section.site.rawValue:

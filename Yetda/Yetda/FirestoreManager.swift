@@ -11,7 +11,7 @@ import FirebaseFirestore
 class FirestoreManager {
     
     // id 값이 있는 경우에는 수정, 없는 경우에는 UUID를 새롭게 만들어서 넣어줌.
-    static func uploadData(present: Present) {
+    func uploadData(present: Present) {
         let db = Firestore.firestore()
         var documentId: String = ""
         if let id = present.id { documentId = id } else { documentId = UUID().uuidString }
@@ -25,12 +25,15 @@ class FirestoreManager {
                                          "keyWords": present.keyWords,
                                          "images": present.images,
                                          "coordinate": present.coordinate]
-        
-        db.collection("presents").document(documentId).setData(stringData) { err in
-            if let err = err {
-                print("ERROR Writing document: \(err)")
-            } else {
-                print()
+        DispatchQueue.main.async {
+            db.collection("presents").document(documentId).setData(stringData) { err in
+                if let err = err {
+                    print("ERROR Writing document: \(err)")
+                } else {
+                    let homeVC = HomeViewController(city: defaults.string(forKey: "site"))
+                    MakeCardDescriptionViewController().navigationController?.popToRootViewController(animated: true)
+                    print()
+                }
             }
         }
     }
