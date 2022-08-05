@@ -7,7 +7,6 @@
 
 import UIKit
 import MapKit
-import SwiftUI
 
 class MapCell: UICollectionViewCell {
     var mapView: MKMapView!
