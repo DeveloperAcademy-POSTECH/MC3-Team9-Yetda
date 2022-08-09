@@ -34,6 +34,7 @@
 		22950155288FB87F0050BE44 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22950154288FB87F0050BE44 /* GoogleService-Info.plist */; };
 		22E1AD49288FDAAD0031E911 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22E1AD48288FDAAD0031E911 /* GoogleService-Info.plist */; };
 		22EEF862288FE13F0046ECB8 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22EEF861288FE13F0046ECB8 /* Home.storyboard */; };
+		2FDB46CE289B8E5F004A0540 /* Key-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2FDB46CD289B8E5F004A0540 /* Key-Info.plist */; };
 		2FE866EE288E7061002242B0 /* MapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE866E8288E7060002242B0 /* MapCell.swift */; };
 		2FE866EF288E7061002242B0 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE866E9288E7060002242B0 /* HeaderView.swift */; };
 		2FE866F2288E7061002242B0 /* ContentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE866EC288E7060002242B0 /* ContentsCell.swift */; };
@@ -100,6 +101,7 @@
 		22A72FBD2890C71500FC3B96 /* Yetda.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Yetda.entitlements; sourceTree = "<group>"; };
 		22E1AD48288FDAAD0031E911 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		22EEF861288FE13F0046ECB8 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		2FDB46CD289B8E5F004A0540 /* Key-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Key-Info.plist"; sourceTree = "<group>"; };
 		2FE866E8288E7060002242B0 /* MapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapCell.swift; sourceTree = "<group>"; };
 		2FE866E9288E7060002242B0 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		2FE866EC288E7060002242B0 /* ContentsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentsCell.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				224AAF5328813A110053E66A /* Info.plist */,
 				22E1AD48288FDAAD0031E911 /* GoogleService-Info.plist */,
 				22950154288FB87F0050BE44 /* GoogleService-Info.plist */,
+				2FDB46CD289B8E5F004A0540 /* Key-Info.plist */,
 			);
 			path = Yetda;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				13E7EE63288ABD9F001090EC /* LocalizingFile.strings in Resources */,
 				2241F125288AB2010044E704 /* SpoqaHanSansNeo-Regular.ttf in Resources */,
 				224AAF5228813A110053E66A /* LaunchScreen.storyboard in Resources */,
+				2FDB46CE289B8E5F004A0540 /* Key-Info.plist in Resources */,
 				6E94A3E328853C380076E703 /* DidPresent.storyboard in Resources */,
 				224AAF4F28813A110053E66A /* Assets.xcassets in Resources */,
 				224AAF4A28813A0F0053E66A /* Main.storyboard in Resources */,

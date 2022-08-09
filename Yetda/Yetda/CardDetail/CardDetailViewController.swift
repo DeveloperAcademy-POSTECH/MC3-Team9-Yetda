@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class CardDetailViewController: UIViewController, UIScrollViewDelegate, ShareKaKao {
 
@@ -59,6 +60,11 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate, ShareKaK
         topContainerView.clipsToBounds = true
         topContainerView.layer.cornerRadius = 20
         topContainerView.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMaxYCorner, .layerMaxXMaxYCorner)
+        
+        topContainerView.layer.shadowColor = UIColor.black.cgColor
+        topContainerView.layer.shadowRadius = 20
+        topContainerView.layer.shadowOpacity = 0.3
+        topContainerView.layer.masksToBounds = false
         
         return topContainerView
     }()
@@ -127,6 +133,8 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate, ShareKaK
         }
         
         self.view.addSubview(cardDetailView)
+        self.view.bringSubviewToFront(topContainerView)
+
         topContainerView.addSubview(imageScrollView)
         topContainerView.addSubview(pageControl)
         topContainerView.addSubview(backButton)
@@ -165,7 +173,7 @@ class CardDetailViewController: UIViewController, UIScrollViewDelegate, ShareKaK
         topContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         topContainerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         topContainerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        topContainerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -width).isActive = true
+        topContainerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: width).isActive = true
     }
     
     func setBackButtonConstraints(topView: UIView, width: CGFloat) {
@@ -284,11 +292,12 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
         switch (indexPath.section) {
         case Section.site.rawValue:
             let attachment = NSTextAttachment()
-            attachment.image = UIImage(systemName: "globe")
+            attachment.image = UIImage(systemName: "globe")?.withTintColor(.systemBlue)
             let attachmentString = NSAttributedString(attachment: attachment)
             let contentString = NSMutableAttributedString(string: " \(String(describing: selectedCard?.site ?? ""))")
             contentString.insert(attachmentString, at: 0)
             contentsCell?.contentsLabel.attributedText = contentString
+            contentsCell?.backgroundColor = UIColor(named: "YettdaBackgroundcolor")
             return contentsCell ?? UICollectionViewCell()
         case Section.title.rawValue:
             contentsCell?.contentsLabel.text = selectedCard?.name
@@ -303,8 +312,14 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
             return contentsCell ?? UICollectionViewCell()
         case Section.map.rawValue:
             let siteInfo = SiteModel.locationlList.filter{ $0.name == "Fukui" }[0]
-            mapCell?.moveLocation(latitudeValue: siteInfo.latitude ?? 0.0, longitudeValue: siteInfo.longitude ?? 0.0, delta: 0.01)
-            mapCell?.setAnnotation(latitudeValue: siteInfo.latitude ?? 0.0, longitudeValue: siteInfo.longitude ?? 0.0, delta: 0.01, title: selectedCard?.site ?? "", subtitle: " ")
+            let currentCoordinate = mapCell?.locationManager.location?.coordinate
+            let currentLocation = CLLocation(latitude: currentCoordinate?.latitude ?? 0.0, longitude: currentCoordinate?.longitude ?? 0.0)
+            let traveledLocation = CLLocation(latitude: siteInfo.latitude, longitude: siteInfo.longitude)
+            let distance = Int(round(currentLocation.distance(from: traveledLocation) / 1000))
+            mapCell?.moveLocation(latitudeValue: siteInfo.latitude , longitudeValue: siteInfo.longitude , delta: 0.01)
+            mapCell?.setAnnotation(latitudeValue: siteInfo.latitude , longitudeValue: siteInfo.longitude , delta: 0.01, title: selectedCard?.site ?? "", subtitle: "")
+            mapCell?.distanceLabel.text = "\(distance)km \n구매 장소로부터 떨어진 거리"
+            mapCell?.distanceLabel.asFontColor(targetString: "\(distance)", font: .systemFont(ofSize: 32, weight: .bold), color: UIColor(named: "YettdaMainYellow"))
             return mapCell ?? UICollectionViewCell()
         default:
             contentsCell?.contentsLabel.text = "표시될 내용이 없습니다"
@@ -340,4 +355,30 @@ extension CardDetailViewController: UICollectionViewDelegate, UICollectionViewDa
         return 5
     }
     
+}
+
+extension UILabel {
+    func asFont(targetString: String, font: UIFont) {
+        let fullText = text ?? ""
+        let attributedString = NSMutableAttributedString(string: fullText)
+        let range = (fullText as NSString).range(of: targetString)
+        attributedString.addAttribute(.font, value: font, range: range)
+        attributedText = attributedString
+    }
+    
+    func asColor(targetString: String, color: UIColor) {
+        let fullText = text ?? ""
+        let attributedString = NSMutableAttributedString(string: fullText)
+        let range = (fullText as NSString).range(of: targetString)
+        attributedString.addAttribute(.foregroundColor, value: color, range: range)
+        attributedText = attributedString
+    }
+    
+    func asFontColor(targetString: String, font: UIFont?, color: UIColor?) {
+        let fullText = text ?? ""
+        let attributedString = NSMutableAttributedString(string: fullText)
+        let range = (fullText as NSString).range(of: targetString)
+        attributedString.addAttributes([.font: font as Any, .foregroundColor: color as Any], range: range)
+        attributedText = attributedString
+    }
 }

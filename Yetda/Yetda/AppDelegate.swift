@@ -14,11 +14,25 @@ import KakaoSDKCommon
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    private var apiKey: String {
+      get {
+        guard let filePath = Bundle.main.path(forResource: "Key-Info", ofType: "plist") else {
+          fatalError("Couldn't find file 'Key-Info.plist'.")
+        }
+        let plist = NSDictionary(contentsOfFile: filePath)
+        guard let value = plist?.object(forKey: "API_KEY_KAKAO") as? String else {
+          fatalError("Couldn't find key 'API_KEY_KAKAO' in 'Key-Info.plist'.")
+        }
+        return value
+      }
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        
         FirebaseApp.configure()
-        KakaoSDK.initSDK(appKey: "a4ab2b12a308ca5d518285cb3761be21")
+        KakaoSDK.initSDK(appKey: apiKey)
         
         return true
     }
